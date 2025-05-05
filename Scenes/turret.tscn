@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cup7eyokmuwhy"]
+
+[ext_resource type="Script" uid="uid://bj7qrardp2pg5" path="res://Scripts/turret.gd" id="1_hskch"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_6spbj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
+radius = 48.28
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_hskch")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.304688, 0.304688)
+texture = ExtResource("2_6spbj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("CircleShape2D_hskch")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,54 @@
+extends CharacterBody2D
+@onready var path: PathFollow2D = $".."
+@onready var attack_timer: Timer = $AttackTimer
+
+@export var speed: int = 2
+@export var health: int = 15
+@export var damage: int = 10
+
+
+var attack_distance: float = 50.0
+var current_turret = null
+var old_speed: int
+var slow_speed: int = 20
+func _physics_process(delta: float) -> void:
+	check_turret()
+	path.progress += speed * delta
+	
+	if path.progress_ratio >= 0.99 or health <= 0:
+		destroy()
+
+func destroy():
+	path.queue_free()
+	GlobalVariables.enemy_count -= 1
+	GlobalVariables.player_hp -= damage
+	
+func check_turret():
+	var nearest_turret = null
+	var nearest_distance = 999999.0
+	
+	for turret in GlobalVariables.turrets:
+		if turret:
+			var dist = global_position.distance_to(turret.global_position)
+			if dist < nearest_distance:
+				nearest_distance = dist
+				nearest_turret = turret
+				current_turret = turret
+			
+	if nearest_turret and nearest_distance < attack_distance:
+		if old_speed == 0: old_speed = speed
+		speed = slow_speed
+		if attack_timer.is_stopped():
+			attack_timer.start()
+	else:
+		if old_speed != 0: 
+			speed = old_speed
+			old_speed = 0
+			
+func take_damage(damgae: int):
+	health -= damgae
+	print(health)
+
+func _on_attack_timer_timeout() -> void:
+	if current_turret and current_turret.has_method("take_damage"):
+		current_turret.take_damage(damage)
