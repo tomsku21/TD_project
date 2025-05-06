@@ -14,6 +14,7 @@ extends Node
 var time: float
 
 func _ready() -> void:
+	GlobalVariables.cost += 3
 	spawn_timer.start()
 
 func _physics_process(delta: float) -> void:
@@ -22,6 +23,7 @@ func _physics_process(delta: float) -> void:
 		if GlobalVariables.enemy_count == 0:
 			GlobalVariables.spawned_enemies = 0
 			if GlobalVariables.current_round < GlobalVariables.max_rounds:
+				GlobalVariables.cost += 3
 				GlobalVariables.current_round += 1
 			spawn_timer.start()
 	print(rounds[GlobalVariables.current_round])
