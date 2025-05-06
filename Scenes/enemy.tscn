@@ -1,19 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmnfkxxc82kcv"]
+[gd_scene load_steps=10 format=3 uid="uid://cmnfkxxc82kcv"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_1f0kj"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
-atlas = ExtResource("2_1f0kj")
-region = Rect2(0, 33, 91, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ghaa6"]
-atlas = ExtResource("2_1f0kj")
-region = Rect2(91, 33, 91, 92)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1dp5w"]
-atlas = ExtResource("2_1f0kj")
-region = Rect2(182, 33, 91, 92)
+[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_afpow"]
+[ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="4_287tu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("2_1f0kj")
@@ -29,20 +19,6 @@ region = Rect2(182, 125, 91, 92)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0830c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ghaa6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1dp5w")
-}],
-"loop": true,
-"name": &"Down",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1f0kj")
@@ -71,8 +47,8 @@ speed = 70
 position = Vector2(-5.96046e-08, -1)
 scale = Vector2(0.171367, 0.171368)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
-animation = &"Down"
 autoplay = "default"
+frame_progress = 0.505874
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -81,5 +57,15 @@ shape = SubResource("RectangleShape2D_287tu")
 
 [node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
 one_shot = true
+
+[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("3_afpow")]
+unique_name_in_owner = true
+character = NodePath("..")
+MAX_HEALTH = 15
+
+[node name="HealthBar" parent="CharacterBody2D" instance=ExtResource("4_287tu")]
+unique_name_in_owner = true
+offset_top = -19.0
+offset_bottom = -12.0
 
 [connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]

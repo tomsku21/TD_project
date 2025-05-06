@@ -30,7 +30,7 @@ func _on_timer_timeout() -> void:
 	var new_enemy = enemys[GlobalVariables.current_round].instantiate()
 	path.add_child(new_enemy)
 	new_enemy.get_child(0).speed = randi_range(200, 300)
-	new_enemy.get_child(0).damage = randi_range(5, 10)
+	new_enemy.get_child(0).sdamage = randi_range(5, 10)
 	
 	GlobalVariables.enemy_count += 1
 	GlobalVariables.spawned_enemies += 1
