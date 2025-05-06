@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqlyalso8oltf"]
+[gd_scene load_steps=11 format=3 uid="uid://cqlyalso8oltf"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_g6ed3"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_k6nad"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_aynp6"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="4_2arym"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_f1qqd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6ed3"]
 atlas = ExtResource("2_k6nad")
@@ -61,6 +62,7 @@ one_shot = true
 unique_name_in_owner = true
 character = NodePath("..")
 MAX_HEALTH = 15
+shader_material = ExtResource("4_f1qqd")
 
 [node name="HealthBar" parent="CharacterBody2D" instance=ExtResource("4_2arym")]
 unique_name_in_owner = true

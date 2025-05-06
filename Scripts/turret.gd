@@ -4,6 +4,7 @@ extends Area2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 @export var bullet: PackedScene
 
+
 var sdamage: int = 10 #self damage, to not mix with taken damage from enemies
 var enemies: Array[Node2D] = []
 
