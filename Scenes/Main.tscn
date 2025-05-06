@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=12 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/turret.tscn" id="2_kln2b"]
+[ext_resource type="Texture2D" uid="uid://7gl0h6nrxrqd" path="res://Assets/World/Puu.png" id="2_v1gob"]
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="3_kln2b"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_rgh2o"]
-[ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="4_v1gob"]
 [ext_resource type="PackedScene" uid="uid://dnj3dolv3tsbx" path="res://Scenes/building/buy_me.tscn" id="5_pbw6q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idj7w"]
@@ -669,6 +669,29 @@ texture = ExtResource("1_r150o")
 10:6/0/terrains_peering_bit/top_left_corner = 0
 10:6/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jw32o"]
+texture = ExtResource("2_v1gob")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_c1w88"]
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
@@ -679,6 +702,7 @@ terrain_set_1/terrain_0/color = Color(0.524037, 0.387501, 0.976314, 1)
 custom_data_layer_0/name = ""
 custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_idj7w")
+sources/1 = SubResource("TileSetAtlasSource_jw32o")
 
 [sub_resource type="Curve2D" id="Curve2D_r150o"]
 _data = {
@@ -712,6 +736,7 @@ curve = SubResource("Curve2D_r150o")
 
 [node name="Trees" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAPv/AQAAAAAAAAAIAPz/AQAAAAEAAAAIAP3/AQAAAAIAAAAIAP7/AQAAAAMAAAAJAPv/AQABAAAAAAAJAPz/AQABAAEAAAAJAP3/AQABAAIAAAAJAP7/AQABAAMAAAAKAPv/AQACAAAAAAAKAPz/AQACAAEAAAAKAP3/AQACAAIAAAAKAP7/AQACAAMAAAALAPv/AQADAAAAAAALAPz/AQADAAEAAAALAP3/AQADAAIAAAALAP7/AQADAAMAAAAIAP//AQAAAAQAAAAJAP//AQABAAQAAAAKAP//AQACAAQAAAALAP//AQADAAQAAAA=")
 tile_set = SubResource("TileSet_c1w88")
 
 [node name="Spawner" type="Node" parent="."]
@@ -724,10 +749,10 @@ wait_time = 0.1
 [node name="Turrets" type="Node" parent="."]
 
 [node name="Turret" parent="Turrets" instance=ExtResource("2_kln2b")]
-position = Vector2(35, 189)
+position = Vector2(-117, 92)
 
 [node name="Turret2" parent="Turrets" instance=ExtResource("2_kln2b")]
-position = Vector2(-326, 189)
+position = Vector2(119, 92)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -749,7 +774,6 @@ offset_bottom = 72.0
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-script = ExtResource("4_v1gob")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(24, 24)
@@ -757,7 +781,7 @@ layout_mode = 2
 texture = ExtResource("4_rgh2o")
 expand_mode = 1
 
-[node name="BankM" type="RichTextLabel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32.14, 24)
 layout_mode = 2
 text = "300"
