@@ -684,6 +684,9 @@ point_count = 41
 [node name="Main" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-156.0]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.645, 1.645)
+
 [node name="TileMap" type="Node" parent="."]
 
 [node name="Grass" type="TileMapLayer" parent="TileMap"]
@@ -703,14 +706,10 @@ curve = SubResource("Curve2D_r150o")
 use_parent_material = true
 tile_set = SubResource("TileSet_c1w88")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.645, 1.645)
-
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("3_kln2b")
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
-wait_time = 0.1
 
 [node name="Turrets" type="Node" parent="."]
 

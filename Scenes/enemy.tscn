@@ -1,23 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmnfkxxc82kcv"]
+[gd_scene load_steps=8 format=3 uid="uid://cmnfkxxc82kcv"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_afpow"]
+[ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_1f0kj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(0, 192, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(90, 192, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(180, 192, 90, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afpow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0830c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
+size = Vector2(20, 9)
 
 [node name="Enemy" type="PathFollow2D"]
-rotates = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_1f0kj")
 speed = 70
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(-4.76837e-07, 4.76837e-07)
-scale = Vector2(0.164063, 0.164063)
-texture = ExtResource("2_afpow")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(3.8147e-06, -6)
+scale = Vector2(0.188889, 0.188889)
+sprite_frames = SubResource("SpriteFrames_ghaa6")
+autoplay = "default"
+frame_progress = 0.845413
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_287tu")
 
 [node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
