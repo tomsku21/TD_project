@@ -4,7 +4,7 @@ extends Area2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 @export var bullet: PackedScene
 
-var damage: int = 10
+var sdamage: int = 10 #self damage, to not mix with taken damage from enemies
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
@@ -38,5 +38,5 @@ func _on_attack_timer_timeout() -> void:
 		if is_instance_valid(target) and target.has_method("take_damage"):
 			#obvs, mut sit instantiatee projektilin, joka suuntaa vastustajan positioon.
 			#projektilille asetettaa instantiates damage, ja homaa/suuntaa vastustajan aikaisempaan positioon.
-			target.take_damage(damage)
+			target.take_damage(sdamage)
 	

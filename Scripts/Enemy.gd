@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var healthcomponent: HealthComponent = %HealthComponent
 @export var speed: int = 2
-@export var damage: int = 10
+@export var sdamage: int = 10 #selfdamage
 
 
 var attack_distance: float = 50.0
@@ -22,7 +22,7 @@ func destroy():
 	#instantiates gib/death effect and dies.
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
-	GlobalVariables.player_hp -= damage
+	GlobalVariables.player_hp -= sdamage
 	
 func check_turret():
 	var nearest_turret = null
@@ -46,10 +46,13 @@ func check_turret():
 			speed = old_speed
 			old_speed = 0
 	
-func take_damage(damgae: int):
+func take_damage(damage: int):
 	if healthcomponent:
 		healthcomponent.damage(damage)
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
-		current_turret.take_damage(damage)
+		#todo:
+		#instantiate projectile, joka osuessan sit checkaa ocllisionin ja heittää damaget.
+		#damage arvo annetaan projectilelle instantiaten yhteydes.
+		current_turret.take_damage(sdamage)
