@@ -1,33 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqlyalso8oltf"]
+[gd_scene load_steps=10 format=3 uid="uid://c5vbinjukgp3g"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_g6ed3"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_k6nad"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_aynp6"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="4_2arym"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g6ed3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("2_k6nad")
-region = Rect2(273, 125, 91, 92)
+region = Rect2(0, 125, 91, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k6nad"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
 atlas = ExtResource("2_k6nad")
-region = Rect2(364, 125, 91, 92)
+region = Rect2(91, 125, 91, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aynp6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
 atlas = ExtResource("2_k6nad")
-region = Rect2(455, 125, 91, 92)
+region = Rect2(182, 125, 91, 92)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g6ed3")
+"texture": SubResource("AtlasTexture_1f0kj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k6nad")
+"texture": SubResource("AtlasTexture_afpow")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aynp6")
+"texture": SubResource("AtlasTexture_287tu")
 }],
 "loop": true,
 "name": &"default",
@@ -38,6 +38,7 @@ animations = [{
 size = Vector2(20, 9)
 
 [node name="Enemy" type="PathFollow2D"]
+rotates = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_g6ed3")
@@ -48,6 +49,7 @@ position = Vector2(-5.96046e-08, -1)
 scale = Vector2(0.171367, 0.171368)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 autoplay = "default"
+frame_progress = 0.505874
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
