@@ -44,7 +44,7 @@ func check_turret():
 		if old_speed != 0: 
 			speed = old_speed
 			old_speed = 0
-			
+	
 func take_damage(damgae: int):
 	health -= damgae
 	print(health)

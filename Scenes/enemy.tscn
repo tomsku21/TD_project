@@ -3,29 +3,29 @@
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_1f0kj"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(0, 125, 91, 92)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
 atlas = ExtResource("2_1f0kj")
-region = Rect2(0, 192, 90, 96)
+region = Rect2(91, 125, 91, 92)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
 atlas = ExtResource("2_1f0kj")
-region = Rect2(90, 192, 90, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
-atlas = ExtResource("2_1f0kj")
-region = Rect2(180, 192, 90, 96)
+region = Rect2(182, 125, 91, 92)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1f0kj")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_afpow")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_287tu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0830c")
 }],
 "loop": true,
 "name": &"default",
@@ -42,11 +42,12 @@ script = ExtResource("1_1f0kj")
 speed = 70
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(3.8147e-06, -6)
-scale = Vector2(0.188889, 0.188889)
+position = Vector2(-5.96046e-08, -1)
+scale = Vector2(0.171367, 0.171368)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 autoplay = "default"
-frame_progress = 0.845413
+frame_progress = 0.505874
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, -1.5)
