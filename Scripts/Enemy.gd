@@ -1,9 +1,8 @@
 extends CharacterBody2D
 @onready var path: PathFollow2D = $".."
 @onready var attack_timer: Timer = $AttackTimer
-
+@onready var healthcomponent: HealthComponent = %HealthComponent
 @export var speed: int = 2
-@export var health: int = 15
 @export var damage: int = 10
 
 
@@ -15,10 +14,12 @@ func _physics_process(delta: float) -> void:
 	check_turret()
 	path.progress += speed * delta
 	
-	if path.progress_ratio >= 0.99 or health <= 0:
+	if path.progress_ratio >= 0.99:
 		destroy()
 
 func destroy():
+	#todo:
+	#instantiates gib/death effect and dies.
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
 	GlobalVariables.player_hp -= damage
@@ -46,8 +47,8 @@ func check_turret():
 			old_speed = 0
 			
 func take_damage(damgae: int):
-	health -= damgae
-	print(health)
+	if healthcomponent:
+		healthcomponent.damage(damage)
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
