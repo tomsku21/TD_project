@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://caqxysn4tq1wx"]
+
+[ext_resource type="Shader" uid="uid://2aibcvxsc5ar" path="res://Shaders/enemy_hit.gdshader" id="1_i0ttu"]
+
+[resource]
+shader = ExtResource("1_i0ttu")
+shader_parameter/flash_amount = 0.0
+shader_parameter/red_tint_amount = 0.0

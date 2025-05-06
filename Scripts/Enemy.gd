@@ -14,7 +14,6 @@ var current_turret = null
 var old_speed: int
 var slow_speed: int = 20
 
-
 func _physics_process(delta: float) -> void:
 	check_turret()
 	change_rotation()
@@ -57,6 +56,7 @@ func check_turret():
 	
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
+
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
