@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=10 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
-[ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/turret.tscn" id="2_kln2b"]
+[ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/turret.tscn" id="2_kln2b"]
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="3_kln2b"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://dnj3dolv3tsbx" path="res://Scenes/building/buy_me.tscn" id="5_pbw6q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idj7w"]
 texture = ExtResource("1_r150o")
@@ -673,6 +675,8 @@ terrain_set_0/terrain_0/color = Color(1, 0.372549, 1, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "Road"
 terrain_set_1/terrain_0/color = Color(0.524037, 0.387501, 0.976314, 1)
+custom_data_layer_0/name = ""
+custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_idj7w")
 
 [sub_resource type="Curve2D" id="Curve2D_r150o"]
@@ -680,6 +684,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -359, 8, 0, 0, 0, 0, -168, 8, 0, 0, 0, 0, -168, -8, 0, 0, 0, 0, -153, -10, 0, 0, 0, 0, -151, -24, 0, 0, 0, 0, -137, -26, 0, 0, 0, 0, -134, -40, 0, 0, 0, 0, -41, -41, 0, 0, 0, 0, -39, -56, 0, 0, 0, 0, 135, -56, 0, 0, 0, 0, 138, -41, 0, 0, 0, 0, 248, -39, -2.94314, -0.981048, 2.94314, 0.981048, 248, -23, 0, 0, 0, 0, 263, -23, 0, 0, 0, 0, 265, -5, 0, 0, 0, 0, 281, -8, 0, 0, 0, 0, 279, 86, 0, 0, 0, 0, 263, 89, 0, 0, 0, 0, 263, 120, 0, 0, 0, 0, 232, 121, 0, 0, 0, 0, 230, 136, 0, 0, 0, 0, 184, 136, 0, 0, 0, 0, 184, 152, 0, 0, 0, 0, 120, 153, 0, 0, 0, 0, 118, 168, 0, 0, 0, 0, -104, 168, 0, 0, 0, 0, -104, 152, 0, 0, 0, 0, -120, 150, 0, 0, 0, 0, -122, 136, 0, 0, 0, 0, -136, 133, 0, 0, 0, 0, -136, 72, 0, 0, 0, 0, -120, 71, 0, 0, 0, 0, -120, 39, 0, 0, 0, 0, -105, 39, 0, 0, 0, 0, -104, 24, 0, 0, 0, 0, -72, 23, 0, 0, 0, 0, -71, 8, 0, 0, 0, 0, 72, 9, 0, 0, 0, 0, 73, 39, 0, 0, 0, 0, 88, 40, 0, 0, 0, 0, 89, 56)
 }
 point_count = 41
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
+bg_color = Color(0.394531, 0.316872, 0.195724, 1)
 
 [node name="Main" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-156.0]
@@ -720,5 +727,42 @@ position = Vector2(-14, -30)
 
 [node name="Turret2" parent="Turrets" instance=ExtResource("2_kln2b")]
 position = Vector2(111, -29)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 207.0
+offset_top = -222.0
+offset_right = 382.0
+offset_bottom = -149.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+custom_minimum_size = Vector2(25, 50)
+layout_mode = 0
+offset_right = 175.0
+offset_bottom = 72.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("4_rgh2o")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32.14, 24)
+layout_mode = 2
+text = "300"
+
+[node name="build" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="BuyMe" parent="CanvasLayer/Panel/VBoxContainer/build" instance=ExtResource("5_pbw6q")]
+layout_mode = 2
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

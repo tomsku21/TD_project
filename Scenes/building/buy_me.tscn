@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnj3dolv3tsbx"]
+
+[ext_resource type="Script" uid="uid://g8ai60k58fw2" path="res://Scripts/buy_me.gd" id="1_er6dn"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="1_je7a8"]
+[ext_resource type="PackedScene" uid="uid://ciep7eg1iuuew" path="res://Scenes/building/temp_building.tscn" id="2_rdrkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdrkc"]
+size = Vector2(30, 30)
+
+[node name="BuyMe" type="TextureRect"]
+custom_minimum_size = Vector2(30, 30)
+texture = ExtResource("1_je7a8")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(15, 15)
+script = ExtResource("1_er6dn")
+building = ExtResource("2_rdrkc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rdrkc")
