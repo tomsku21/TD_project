@@ -1,29 +1,36 @@
 extends CharacterBody2D
 @onready var path: PathFollow2D = $".."
 @onready var attack_timer: Timer = $AttackTimer
-@onready var healthcomponent: HealthComponent = %HealthComponent
-@export var speed: int = 2
-@export var sdamage: int = 10 #selfdamage
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+@export var speed: int = 2
+@export var health: int = 15
+@export var damage: int = 10
 
 var attack_distance: float = 50.0
 var current_turret = null
 var old_speed: int
 var slow_speed: int = 20
+
+
 func _physics_process(delta: float) -> void:
 	check_turret()
+	change_rotation()
 	path.progress += speed * delta
-	
-	if path.progress_ratio >= 0.99:
+	if path.progress_ratio >= 0.99 or health <= 0:
 		destroy()
 
 func destroy():
-	#todo:
-	#instantiates gib/death effect and dies.
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
-	GlobalVariables.player_hp -= sdamage
-	
+	GlobalVariables.player_hp -= damage
+
+func change_rotation():
+	if path.rotation_degrees > 160 and path.rotation_degrees < 190:
+		animated_sprite_2d.flip_v = true
+	else:
+		animated_sprite_2d.flip_v = false
+
 func check_turret():
 	var nearest_turret = null
 	var nearest_distance = 999999.0
@@ -46,13 +53,10 @@ func check_turret():
 			speed = old_speed
 			old_speed = 0
 	
-func take_damage(damage: int):
-	if healthcomponent:
-		healthcomponent.damage(damage)
+func take_damage(damgae: int):
+	health -= damgae
+	print(health)
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
-		#todo:
-		#instantiate projectile, joka osuessan sit checkaa ocllisionin ja heittää damaget.
-		#damage arvo annetaan projectilelle instantiaten yhteydes.
-		current_turret.take_damage(sdamage)
+		current_turret.take_damage(damage)
