@@ -38,6 +38,7 @@ animations = [{
 size = Vector2(20, 9)
 
 [node name="Enemy" type="PathFollow2D"]
+rotates = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_1f0kj")

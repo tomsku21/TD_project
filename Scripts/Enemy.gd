@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
+@onready var health_bar: ProgressBar = %HealthBar
+
 @export var speed: int = 2
 @export var health: int = 15
 @export var sdamage: int = 10
