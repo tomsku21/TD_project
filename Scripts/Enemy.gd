@@ -2,10 +2,10 @@ extends CharacterBody2D
 @onready var path: PathFollow2D = $".."
 @onready var attack_timer: Timer = $AttackTimer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var healthcomponent: HealthComponent = %HealthComponent
 @export var speed: int = 2
 @export var health: int = 15
-@export var damage: int = 10
+@export var sdamage: int = 10
 
 var attack_distance: float = 50.0
 var current_turret = null
@@ -17,13 +17,13 @@ func _physics_process(delta: float) -> void:
 	check_turret()
 	change_rotation()
 	path.progress += speed * delta
-	if path.progress_ratio >= 0.99 or health <= 0:
+	if path.progress_ratio >= 0.99:
 		destroy()
 
 func destroy():
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
-	GlobalVariables.player_hp -= damage
+	GlobalVariables.player_hp -= sdamage
 
 func change_rotation():
 	if path.rotation_degrees > 160 and path.rotation_degrees < 190:
@@ -53,10 +53,9 @@ func check_turret():
 			speed = old_speed
 			old_speed = 0
 	
-func take_damage(damgae: int):
-	health -= damgae
-	print(health)
+func take_damage(damage: int):
+	healthcomponent.damage(damage)
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
-		current_turret.take_damage(damage)
+		current_turret.take_damage(sdamage)
