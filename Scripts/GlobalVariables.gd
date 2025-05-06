@@ -7,3 +7,5 @@ var player_hp: float = 100.0
 var cost: int = 0
 var current_round: int = 0
 var max_rounds: int = 1
+var has_turret: bool = false
+var last_turret_position: Area2D

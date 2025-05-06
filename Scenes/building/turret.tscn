@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 48.28
 
-[node name="Turret" type="Area2D"]
+[node name="Turret" type="Area2D" groups=["Turret"]]
 script = ExtResource("1_hskch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

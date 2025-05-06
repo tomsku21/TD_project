@@ -28,10 +28,13 @@ settings/stdout/print_fps=true
 window/size/viewport_width=1620
 window/size/viewport_height=920
 window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [global_group]
 
 enemies=""
+Turret_position=""
+Turret=""
 
 [input]
 
