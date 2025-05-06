@@ -708,8 +708,10 @@ tile_set = SubResource("TileSet_c1w88")
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("3_kln2b")
+rounds = [10, 20]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
+wait_time = 0.1
 
 [node name="Turrets" type="Node" parent="."]
 
