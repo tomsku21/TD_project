@@ -41,3 +41,11 @@ func _on_attack_timer_timeout() -> void:
 			#projektilille asetettaa instantiates damage, ja homaa/suuntaa vastustajan aikaisempaan positioon.
 			target.take_damage(sdamage)
 	
+
+
+func _on_mouse_entered() -> void:
+	GlobalVariables.is_mouse_in_Area2D = true
+
+
+func _on_mouse_exited() -> void:
+	GlobalVariables.is_mouse_in_Area2D = false

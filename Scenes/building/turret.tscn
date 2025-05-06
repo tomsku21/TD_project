@@ -32,4 +32,6 @@ shader_material = ExtResource("2_lfpdx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
