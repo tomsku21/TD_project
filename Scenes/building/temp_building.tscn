@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciep7eg1iuuew"]
+
+[ext_resource type="Script" uid="uid://c3q10i3t6o7gx" path="res://Scripts/temp_building.gd" id="1_t3tqr"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_jbymx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cymiu"]
+radius = 72.111
+
+[node name="TempBuilding" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_t3tqr")
+
+[node name="sprite2d" type="Sprite2D" parent="."]
+texture = ExtResource("2_jbymx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cymiu")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
