@@ -27,6 +27,7 @@ shape = SubResource("CircleShape2D_hskch")
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_6spbj")]
 unique_name_in_owner = true
 character = NodePath("..")
+MAX_HEALTH = 100
 shader_material = ExtResource("2_lfpdx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
