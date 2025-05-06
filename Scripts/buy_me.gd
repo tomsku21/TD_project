@@ -1,11 +1,10 @@
-extends Area2D
+extends TextureButton
 @export var cost: int = 1
 @export var building: PackedScene
 
-func _on_input_event(event):
+func _on_click():
 	print("clicked?")
-	if Input.is_action_just_pressed("click"):
-		if GlobalVariables.money >= cost:
-			#instantiate building under cursor, that has code to stay under your pointer.
-			var ghostT = building.instantiate()
-			add_child(ghostT)
+	if GlobalVariables.cost >= cost:
+		#instantiate building under cursor, that has code to stay under your pointer.
+		var ghostT = building.instantiate()
+		add_child(ghostT)
