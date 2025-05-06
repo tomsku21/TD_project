@@ -41,7 +41,7 @@ size = Vector2(20, 9)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_g6ed3")
-speed = 70
+speed = 70.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(-5.96046e-08, -1)
@@ -63,4 +63,8 @@ character = NodePath("..")
 MAX_HEALTH = 15
 shader_material = ExtResource("4_f1qqd")
 
+[node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
 [connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/WalkTimer" to="CharacterBody2D" method="_walk_again"]
