@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=13 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/turret.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://7gl0h6nrxrqd" path="res://Assets/World/Puu.png" id="2_v1gob"]
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="3_kln2b"]
+[ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="4_jw32o"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://dnj3dolv3tsbx" path="res://Scenes/building/buy_me.tscn" id="5_pbw6q"]
 
@@ -817,6 +818,7 @@ offset_bottom = 72.0
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
+script = ExtResource("4_jw32o")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(24, 24)
@@ -824,7 +826,7 @@ layout_mode = 2
 texture = ExtResource("4_rgh2o")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+[node name="BankM" type="RichTextLabel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32.14, 24)
 layout_mode = 2
 text = "300"

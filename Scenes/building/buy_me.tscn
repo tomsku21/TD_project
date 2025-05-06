@@ -12,7 +12,6 @@ texture_normal = ExtResource("1_je7a8")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_er6dn")
-cost = 0
 building = ExtResource("2_rdrkc")
 
 [connection signal="pressed" from="." to="." method="_on_click"]

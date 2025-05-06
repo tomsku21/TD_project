@@ -3,17 +3,25 @@
 [ext_resource type="Script" uid="uid://c3q10i3t6o7gx" path="res://Scripts/temp_building.gd" id="1_t3tqr"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_jbymx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cymiu"]
-radius = 72.111
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3tqr"]
+size = Vector2(128, 128)
 
 [node name="TempBuilding" type="Area2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_t3tqr")
 
+[node name="Shadow" type="ColorRect" parent="."]
+visible = false
+offset_left = -80.0
+offset_top = -76.0
+offset_right = 84.0
+offset_bottom = 76.0
+color = Color(0, 0.827451, 0.227451, 0.490196)
+
 [node name="sprite2d" type="Sprite2D" parent="."]
 texture = ExtResource("2_jbymx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_cymiu")
+shape = SubResource("RectangleShape2D_t3tqr")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
