@@ -61,7 +61,7 @@ one_shot = true
 [node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("3_afpow")]
 unique_name_in_owner = true
 character = NodePath("..")
-MAX_HEALTH = 10
+MAX_HEALTH = 15
 
 [node name="HealthBar" parent="CharacterBody2D" instance=ExtResource("4_287tu")]
 unique_name_in_owner = true
