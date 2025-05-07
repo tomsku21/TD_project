@@ -4,6 +4,8 @@ var gun: Marker2D
 var speed: float = 500
 var damage_dealt: int
 var damage: int
+@onready var audio: Node = $Audio
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:
 	if target:
@@ -19,6 +21,10 @@ func _on_body_entered(body: Node2D) -> void:
 		if is_instance_valid(target) and target.has_method("take_damage"):
 			var status = target.take_damage(damage)
 			damage_dealt += damage
+			audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
+			audio.get_node("Hit").play()
+			sprite_2d.visible = false
+			await get_tree().create_timer(1).timeout
 			if status:
 				get_parent().kills += 1
 			queue_free()

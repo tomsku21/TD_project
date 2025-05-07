@@ -40,7 +40,8 @@ func destroy():
 	GlobalVariables.enemy_count -= 1
 
 func change_rotation():
-	if path.rotation_degrees > 160 and path.rotation_degrees < 190:
+	var rot_deg = path.rotation_degrees
+	if rot_deg > 160 and rot_deg < 190 or rot_deg < -160 and rot_deg > -190:
 		animated_sprite_2d.flip_v = true
 	else:
 		animated_sprite_2d.flip_v = false
