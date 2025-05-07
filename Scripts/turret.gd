@@ -79,4 +79,3 @@ func _on_focus_entered():
 func _on_focus_eited():
 	hovered = false
 	Popups.hideBuildInfo()
-	
