@@ -3,6 +3,7 @@ extends Area2D
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 @onready var circle: Sprite2D = $Circle
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
 
 var hovered: bool = false #for popups
@@ -24,9 +25,12 @@ func _process(delta):
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
 	damage_taken += damage
+	cpu_particles_2d.emitting = true
 
 
 func destroy():
+	cpu_particles_2d.emitting = true
+	await get_tree().create_timer(0.1).timeout
 	queue_free()
 	GlobalVariables.turrets.erase(self)
 

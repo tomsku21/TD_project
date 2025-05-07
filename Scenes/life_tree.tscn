@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxlu7iv3kho3"]
+
+[ext_resource type="Script" uid="uid://c6pe716quh1eo" path="res://Scripts/life_tree.gd" id="1_883my"]
+[ext_resource type="Texture2D" uid="uid://7gl0h6nrxrqd" path="res://Assets/World/Puu.png" id="2_5jboi"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_yb4q4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb4q4"]
+size = Vector2(61, 69)
+
+[node name="LifeTree" type="Area2D" groups=["LifeTree"]]
+script = ExtResource("1_883my")
+shader_material = ExtResource("2_yb4q4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5jboi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -6.5)
+shape = SubResource("RectangleShape2D_yb4q4")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = -69.0
+offset_right = 27.0
+offset_bottom = -42.0
+value = 100.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,26 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=9 format=3 uid="uid://dq5pfe5ho4c80"]
 
+[ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="1_7tgkj"]
 [ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="1_b83rk"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
 [ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/turret.tscn" id="4_jevvu"]
 [ext_resource type="PackedScene" uid="uid://ciep7eg1iuuew" path="res://Scenes/building/temp_building.tscn" id="4_oqha6"]
-[ext_resource type="Script" uid="uid://cwm6jndskd1gp" path="res://Scripts/Buytier1.gd" id="6_7tgkj"]
+[ext_resource type="Script" path="res://Scripts/Buytier1.gd" id="6_7tgkj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
-bg_color = Color(0.386719, 0.352163, 0.294571, 0.866667)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.148438, 0.0487061, 0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jevvu"]
+texture = ExtResource("1_7tgkj")
+axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqha6"]
-bg_color = Color(0.376471, 0.345098, 0.294118, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.14902, 0.0470588, 0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7tgkj"]
+texture = ExtResource("1_7tgkj")
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -29,17 +21,17 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -298.0
-offset_bottom = 59.0
+offset_bottom = 139.555
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
+theme_override_styles/panel = SubResource("StyleBoxTexture_jevvu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bank"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 293.0
-offset_bottom = 47.0
+offset_left = 44.0
+offset_top = 49.0
+offset_right = 329.0
+offset_bottom = 89.0
 script = ExtResource("1_b83rk")
 
 [node name="TextureRect" type="TextureRect" parent="Bank/HBoxContainer"]
@@ -61,18 +53,20 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -307.0
-offset_top = -121.0
+offset_left = -390.0
+offset_top = -208.0
+offset_right = 0.984985
+offset_bottom = -0.195007
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_oqha6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_7tgkj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="buymenu"]
 layout_mode = 2
-offset_left = 9.0
-offset_top = 7.0
-offset_right = 49.0
-offset_bottom = 51.0
+offset_left = 48.0
+offset_top = 52.0
+offset_right = 339.0
+offset_bottom = 160.0
 
 [node name="build" type="HBoxContainer" parent="buymenu/VBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
