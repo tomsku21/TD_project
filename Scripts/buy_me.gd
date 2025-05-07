@@ -11,4 +11,3 @@ func _on_click():
 		var ghostT = building.instantiate()
 		ghost_node.add_child(ghostT)
 		GlobalVariables.selected_turret = item
-		
