@@ -26,7 +26,6 @@ func _ready() -> void:
 	$Button.grab_focus()
 
 func _process(delta):
-	print(kills)
 	if GlobalVariables.show_circles:
 		circle.visible = true
 	elif clicked:
@@ -35,11 +34,14 @@ func _process(delta):
 	else:
 		circle.visible = false
 	
-	if Input.is_action_just_released("click") and !hovered:
+	if Input.is_action_just_released("click") and !hovered and clicked:
 		if $Button.has_focus():
 			$Button.release_focus()
 		else:
 			_on_focus_exited()
+	if !GlobalVariables.is_mouse_in_Area2D and hovered:
+		print("get unhovered nerd")
+		hovered = false
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
