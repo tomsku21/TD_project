@@ -6,8 +6,6 @@ var sprite
 @export var health: int
 @export var shader_material: ShaderMaterial
 
-var healthbar : ProgressBar
-
 
 func _ready():
 	health = MAX_HEALTH	

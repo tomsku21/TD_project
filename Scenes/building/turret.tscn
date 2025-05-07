@@ -33,11 +33,19 @@ z_index = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6spbj")
 
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("CircleShape2D_hskch")
 
 [node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
@@ -56,4 +64,6 @@ texture = ExtResource("5_lfpdx")
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="Button" to="." method="_on_focus_eited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

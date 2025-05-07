@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
+
+[ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/Popups.gd" id="1_toe2v"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_5v7bk"]
+[ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0164795, 0.28125, 0.137833, 0.215686)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.125, 0.0820313, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Popup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_toe2v")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Buildingstats" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 241.0
+
+[node name="Upgrades" type="VBoxContainer" parent="UI/Buildingstats"]
+offset_left = -56.0
+offset_top = -112.0
+offset_right = 54.0
+offset_bottom = -48.0
+alignment = 1
+
+[node name="build2" type="TextureButton" parent="UI/Buildingstats/Upgrades"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("2_5v7bk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buildingstats/Upgrades"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="build1" type="TextureButton" parent="UI/Buildingstats/Upgrades/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_5v7bk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="build3" type="TextureButton" parent="UI/Buildingstats/Upgrades/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_5v7bk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BuildPopup" type="PanelContainer" parent="UI/Buildingstats"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = -66.0
+offset_right = 222.0
+offset_bottom = 134.0
+pivot_offset = Vector2(70, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Buildingstats/BuildPopup"]
+layout_mode = 2
+
+[node name="Desc" type="RichTextLabel" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "Get chompy with it oh yeah... is there space for a third line"
+fit_content = true
+scroll_active = false
+
+[node name="HealthBar" parent="UI/Buildingstats/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Dmg" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dmg: "
+
+[node name="AtkSpeed" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AtkSpeed: "
+
+[node name="Kills" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Kills:"
