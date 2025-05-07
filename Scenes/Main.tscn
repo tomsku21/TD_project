@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=11 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://7gl0h6nrxrqd" path="res://Assets/World/Puu.png" id="2_v1gob"]
@@ -717,6 +717,11 @@ _data = {
 }
 point_count = 12
 
+[sub_resource type="Curve" id="Curve_pbw6q"]
+_limits = [0.550562, 1.0, 102.766, 1024.0]
+_data = [Vector2(102.766, 0.550562), 0.0, 0.0, 0, 0, Vector2(1024, 1), 0.000648085, 0.0, 0, 0]
+point_count = 2
+
 [node name="Main" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-156.0]
 
@@ -756,5 +761,17 @@ rounds = [10, 20]
 [node name="Ghost" type="Node" parent="Turrets" groups=["Ghost"]]
 
 [node name="UI" parent="." instance=ExtResource("4_rgh2o")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 9
+position = Vector2(0, 6.805)
+amount = 100
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(600, 300)
+gravity = Vector2(200, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_pbw6q")
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
