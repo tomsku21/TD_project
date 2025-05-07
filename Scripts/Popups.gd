@@ -38,7 +38,7 @@ func setupDescription(content):
 	%AtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
 	%HealthBar.hide()
 	%Kills.hide()
-	lasttower.hovered = false
+	lasttower.clicked = false
 
 func returnDesc():
-	lasttower.hovered = true
+	lasttower.clicked = true
