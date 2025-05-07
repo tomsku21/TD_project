@@ -27,12 +27,12 @@ func _physics_process(delta: float) -> void:
 	path.progress += current_speed * delta
 	if path.progress_ratio >= 0.99:
 		destroy()
+		if life_tree and life_tree.has_method("take_damage"):
+			life_tree.take_damage(sdamage)
 
 func destroy():
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
-	if life_tree and life_tree.has_method("take_damage"):
-		life_tree.take_damage(sdamage)
 
 func change_rotation():
 	if path.rotation_degrees > 160 and path.rotation_degrees < 190:

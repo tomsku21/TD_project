@@ -42,7 +42,7 @@ rotates = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_1f0kj")
-speed = 500.0
+speed = 20.0
 health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
