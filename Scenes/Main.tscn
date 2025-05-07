@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=12 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://7gl0h6nrxrqd" path="res://Assets/World/Puu.png" id="2_v1gob"]
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="3_kln2b"]
-[ext_resource type="PackedScene" path="res://Scenes/life_tree.tscn" id="3_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://cxlu7iv3kho3" path="res://Scenes/life_tree.tscn" id="3_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dq5pfe5ho4c80" path="res://Scenes/UI/UI.tscn" id="4_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="6_v1gob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idj7w"]
 texture = ExtResource("1_r150o")
@@ -764,14 +765,17 @@ rounds = [10, 20]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 9
-position = Vector2(0, 6.805)
-amount = 100
+position = Vector2(-537, 7)
+amount = 50
+texture = ExtResource("6_v1gob")
+lifetime = 19.38
 draw_order = 1
 emission_shape = 3
-emission_rect_extents = Vector2(600, 300)
-gravity = Vector2(200, 0)
-scale_amount_min = 2.0
-scale_amount_max = 2.0
+emission_rect_extents = Vector2(0, 300)
+direction = Vector2(1, 1)
+gravity = Vector2(10, 0)
+angle_max = 540.0
+scale_amount_max = 1.5
 scale_amount_curve = SubResource("Curve_pbw6q")
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
