@@ -14,8 +14,10 @@ var current_speed: float
 var attack_distance: float = 50.0
 var current_turret = null
 var attacktime: float
+var life_tree: Area2D
 
 func _ready():
+	life_tree = get_tree().get_first_node_in_group("LifeTree")
 	speed = speed * randf_range(0.8, 1.2)
 	current_speed = speed
 
@@ -29,7 +31,8 @@ func _physics_process(delta: float) -> void:
 func destroy():
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
-	GlobalVariables.player_hp -= sdamage
+	if life_tree and life_tree.has_method("take_damage"):
+		life_tree.take_damage(sdamage)
 
 func change_rotation():
 	if path.rotation_degrees > 160 and path.rotation_degrees < 190:

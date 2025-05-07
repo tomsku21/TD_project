@@ -30,8 +30,8 @@ mouse_cursor/custom_image="uid://c82n8gwglomqn"
 [global_group]
 
 enemies=""
-Turret_position=""
 Turret=""
+LifeTree=""
 
 [input]
 
