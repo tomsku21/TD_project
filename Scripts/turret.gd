@@ -7,7 +7,8 @@ extends Area2D
 @export var bullet: PackedScene
 
 
-var hovered: bool = false #for popups
+var clicked: bool = false #for popups
+var hovered: bool = false #more for popups
 var damage_taken: int
 var damage_dealt: int
 var atk_speed: float
@@ -28,6 +29,9 @@ func _process(delta):
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
 		circle.visible = false
+	
+	if Input.is_action_just_released("click") and !hovered:
+		_on_focus_exited()
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -63,20 +67,22 @@ func _on_attack_timer_timeout() -> void:
 		new_bullet.damage = sdamage
 	
 
-
+##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	#circle.visible = true
 	GlobalVariables.is_mouse_in_Area2D = true
+	hovered = true
 
 
 func _on_mouse_exited() -> void:
 	#circle.visible = false
 	GlobalVariables.is_mouse_in_Area2D = false
-
+	hovered = false
 
 func _on_focus_entered():
+	clicked = true
 	hovered = true
 
 func _on_focus_exited():
-	hovered = false
+	clicked = false
 	Popups.hideBuildInfo()
