@@ -65,7 +65,6 @@ func _on_attack_timer_timeout() -> void:
 		var new_bullet = bullet.instantiate()
 		add_child(new_bullet)
 		new_bullet.gun = marker_2d
-		new_bullet.targets = enemies
 		new_bullet.target = target
 		new_bullet.damage = sdamage
 	
