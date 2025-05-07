@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://dq5pfe5ho4c80"]
+
+[ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="1_b83rk"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
+[ext_resource type="Script" uid="uid://g8ai60k58fw2" path="res://Scripts/buy_me.gd" id="3_b83rk"]
+[ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/turret.tscn" id="4_jevvu"]
+[ext_resource type="PackedScene" uid="uid://ciep7eg1iuuew" path="res://Scenes/building/temp_building.tscn" id="4_oqha6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbw6q"]
+bg_color = Color(0.386719, 0.352163, 0.294571, 0.866667)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.148438, 0.0487061, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqha6"]
+bg_color = Color(0.376471, 0.345098, 0.294118, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.14902, 0.0470588, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Bank" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -298.0
+offset_bottom = 59.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbw6q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bank"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 293.0
+offset_bottom = 47.0
+script = ExtResource("1_b83rk")
+
+[node name="TextureRect" type="TextureRect" parent="Bank/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("2_oqha6")
+expand_mode = 1
+
+[node name="BankM" type="RichTextLabel" parent="Bank/HBoxContainer"]
+custom_minimum_size = Vector2(89.48, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 26
+text = "300"
+vertical_alignment = 1
+
+[node name="buymenu" type="Panel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -307.0
+offset_top = -121.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqha6")
+script = ExtResource("3_b83rk")
+building = ExtResource("4_oqha6")
+item = ExtResource("4_jevvu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="buymenu"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 49.0
+offset_bottom = 51.0
+
+[node name="build" type="HBoxContainer" parent="buymenu/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Buyt1" type="TextureButton" parent="buymenu/VBoxContainer/build"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture_normal = ExtResource("2_oqha6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="buymenu/VBoxContainer"]
+custom_minimum_size = Vector2(291.34, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 22
+text = "Replace this text u dummy"
+
+[connection signal="button_down" from="buymenu/VBoxContainer/build/Buyt1" to="buymenu" method="_on_click"]
+[connection signal="pressed" from="buymenu/VBoxContainer/build/Buyt1" to="buymenu" method="_on_click"]

@@ -11,7 +11,7 @@ func _process(delta):
 	self.global_position = get_global_mouse_position()
 
 func _input(event):
-	if Input.is_action_just_pressed("click"):
+	if Input.is_action_just_released("click"):
 		var world_pos = get_global_mouse_position()
 		var cell = tilemap.local_to_map(tilemap.to_local(world_pos))
 		var tile_data = tilemap.get_cell_tile_data(cell)
@@ -25,3 +25,4 @@ func _input(event):
 				turret.add_child(new_turret)
 				new_turret.global_position = tilemap.map_to_local(cell)
 		queue_free()
+	
