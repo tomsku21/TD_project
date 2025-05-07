@@ -15,7 +15,16 @@ func showBuildInfo(sizing, content):
 		%Build1stats.position = finalpos
 		%Build1stats.show()
 		lasttower = content
-		
+		%Upgrades.show()
+
+func showPlant2Info(sizing, content):
+	if !content == null:
+		setcontent(content)
+		var finalpos = sizing.get_origin()
+		%Build1stats.position = finalpos
+		%Build1stats.show()
+		lasttower = content
+		%Upgrades.hide()
 
 func setcontent(content):
 	%Desc.hide()
@@ -27,8 +36,9 @@ func setcontent(content):
 	%Kills.text = str("Kills: ", content.kills)
 	%Kills.show()
 	%Cost.hide()
-	
 
+
+#The middle manager.
 func upgrade():
 	lasttower.upgrade()
 

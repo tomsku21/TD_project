@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://pjc4slgtno24"]
 
-[ext_resource type="Script" uid="uid://bj7qrardp2pg5" path="res://Scripts/turret.gd" id="1_s6nl5"]
+[ext_resource type="Script" uid="uid://cnf61kln1lldx" path="res://Scripts/turreter.gd" id="1_vdcao"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_a4jgc"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_006wr"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_6ytof"]
@@ -10,8 +10,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 48.28
 
-[node name="Turret" type="Area2D" groups=["Turret"]]
-script = ExtResource("1_s6nl5")
+[node name="Turreter" type="Area2D" groups=["Turret"]]
+script = ExtResource("1_vdcao")
 bullet = ExtResource("2_a4jgc")
 sdamage = 15
 
@@ -32,6 +32,7 @@ scale_amount_min = 0.0
 scale_amount_max = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.207031, 0.207031, 1)
 z_index = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_006wr")

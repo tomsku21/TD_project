@@ -36,6 +36,7 @@ anchors_preset = 0
 offset_right = 241.0
 
 [node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -56.0
 offset_top = -112.0
