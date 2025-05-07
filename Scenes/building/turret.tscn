@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cup7eyokmuwhy"]
+[gd_scene load_steps=10 format=3 uid="uid://cup7eyokmuwhy"]
 
 [ext_resource type="Script" uid="uid://bj7qrardp2pg5" path="res://Scripts/turret.gd" id="1_hskch"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_0ggxg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_6spbj"]
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_qeyrt"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
+[ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_ar33y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 48.28
@@ -63,6 +64,10 @@ shader_material = ExtResource("2_lfpdx")
 visible = false
 scale = Vector2(0.178333, 0.178333)
 texture = ExtResource("5_lfpdx")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ar33y")
+pitch_scale = 1.1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
