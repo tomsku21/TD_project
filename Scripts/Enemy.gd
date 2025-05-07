@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 #@onready var health_bar: ProgressBar = %HealthBar
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 @export var speed: float = 2.0
 @export var health: int = 15
@@ -26,11 +27,15 @@ func _physics_process(delta: float) -> void:
 	change_rotation()
 	path.progress += current_speed * delta
 	if path.progress_ratio >= 0.99:
-		destroy()
 		if life_tree and life_tree.has_method("take_damage"):
 			life_tree.take_damage(sdamage)
+			cpu_particles_2d.emitting = true
+			await get_tree().create_timer(0.1).timeout
+		destroy()
 
 func destroy():
+	cpu_particles_2d.emitting = true
+	await get_tree().create_timer(0.1).timeout
 	path.queue_free()
 	GlobalVariables.enemy_count -= 1
 
@@ -65,7 +70,7 @@ func check_turret():
 	
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
-
+	cpu_particles_2d.emitting = true
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
