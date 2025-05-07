@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cup7eyokmuwhy"]
+[gd_scene load_steps=9 format=3 uid="uid://cup7eyokmuwhy"]
 
 [ext_resource type="Script" uid="uid://bj7qrardp2pg5" path="res://Scripts/turret.gd" id="1_hskch"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_0ggxg"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_6spbj"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_lfpdx"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_6spbj"]
+[ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_qeyrt"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
@@ -13,6 +14,7 @@ radius = 48.28
 [node name="Turret" type="Area2D" groups=["Turret"]]
 script = ExtResource("1_hskch")
 bullet = ExtResource("2_0ggxg")
+upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), null, null])
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

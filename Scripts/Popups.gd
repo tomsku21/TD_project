@@ -1,4 +1,5 @@
 extends Control
+@export var Upgrades: Array[Node] #Feels like a dumb way to do this, but should work
 var lasttower: Area2D
 
 func _enter_tree():
@@ -11,20 +12,21 @@ func hideBuildInfo():
 func showBuildInfo(sizing, content):
 	if !content == null:
 		setcontent(content)
+		setupgrades(content)
 		var finalpos = sizing.get_origin()
 		%Build1stats.position = finalpos
 		%Build1stats.show()
 		lasttower = content
 		%Upgrades.show()
 
-func showPlant2Info(sizing, content):
-	if !content == null:
-		setcontent(content)
-		var finalpos = sizing.get_origin()
-		%Build1stats.position = finalpos
-		%Build1stats.show()
-		lasttower = content
-		%Upgrades.hide()
+func setupgrades(content):
+	for i in Upgrades.size():
+		if content.upgrades[i] != null:
+			Upgrades[i].new_tower = content.upgrades[i]
+			Upgrades[i].show()
+		else:
+			Upgrades[i].hide()
+		
 
 func setcontent(content):
 	%Desc.hide()

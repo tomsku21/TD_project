@@ -5,6 +5,8 @@ extends Area2D
 @onready var circle: Sprite2D = $Circle
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
+@export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
+
 
 var turret
 var clicked: bool = false #for popups
@@ -17,6 +19,7 @@ var kills: int #spawned bullets increase this
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
+	
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	atk_speed = %AttackTimer.wait_time
