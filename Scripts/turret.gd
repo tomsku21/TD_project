@@ -6,6 +6,7 @@ extends Area2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
 
+var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
 var damage_taken: int
@@ -16,6 +17,7 @@ var kills: int #spawned bullets increase this
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
+	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	atk_speed = %AttackTimer.wait_time
 	$Button.grab_focus()
@@ -69,6 +71,13 @@ func _on_attack_timer_timeout() -> void:
 		new_bullet.target = target
 		new_bullet.damage = sdamage
 	
+
+func upgrade():
+	var new_plant = GlobalVariables.selected_turret.instantiate()
+	turret.add_child(new_plant)
+	new_plant.global_position = global_position
+	$Button.release_focus()
+	queue_free()
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:

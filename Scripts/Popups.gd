@@ -26,10 +26,11 @@ func setcontent(content):
 	%AtkSpeed.text = str("ATKSpeed: ", content.atk_speed)
 	%Kills.text = str("Kills: ", content.kills)
 	%Kills.show()
+	%Cost.hide()
 	
 
-#func upgrade(newtower):
-	#lasttower.upgrade(newtower)
+func upgrade():
+	lasttower.upgrade()
 
 func setupDescription(content):
 	%Desc.text = str(content.description)
@@ -38,6 +39,8 @@ func setupDescription(content):
 	%AtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
 	%HealthBar.hide()
 	%Kills.hide()
+	%Cost.text = str("Costs: ", content.cost)
+	%Cost.show()
 	lasttower.clicked = false
 
 func returnDesc():
