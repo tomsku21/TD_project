@@ -11,13 +11,14 @@ var hovered: bool = false #more for popups
 var damage_taken: int
 var damage_dealt: int
 var atk_speed: float
-var kills: int #add ways to increase later...!!!!
-@export var sdamage: int = 10 #self damage, to not mix with taken damage from enemies
+var kills: int #spawned bullets increase this
+@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
 	GlobalVariables.turrets.append(self)
 	atk_speed = %AttackTimer.wait_time
+	$Button.grab_focus()
 
 func _process(delta):
 	print(kills)

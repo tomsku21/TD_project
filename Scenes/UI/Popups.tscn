@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://yye8rlsvusfg"]
+[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
 
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/Popups.gd" id="1_toe2v"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
+[ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
@@ -29,6 +29,7 @@ script = ExtResource("1_toe2v")
 
 [node name="Build1stats" type="Control" parent="UI"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 241.0
@@ -46,6 +47,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 description = "Upgrade1 incoming"
+damage = 50
+atk_speed = 0.5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Build1stats/Upgrades"]
 layout_mode = 2
@@ -54,10 +57,14 @@ theme_override_constants/separation = 50
 [node name="Up2" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
 layout_mode = 2
 description = "Upgrade 2 incoming"
+damage = 15
+atk_speed = 2.0
 
 [node name="Up3" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
 layout_mode = 2
 description = "Upgrade 3 incoming"
+damage = 13
+atk_speed = 5.5
 
 [node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
 custom_minimum_size = Vector2(150, 116)
