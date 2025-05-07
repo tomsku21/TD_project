@@ -6,8 +6,8 @@ extends Area2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
 
-var clicked: bool = false #for popups
-var hovered: bool = false #more for popups
+
+var hovered: bool = false #for popups
 var damage_taken: int
 var damage_dealt: int
 var atk_speed: float
@@ -20,16 +20,14 @@ func _ready() -> void:
 	atk_speed = %AttackTimer.wait_time
 
 func _process(delta):
+	print(kills)
 	if GlobalVariables.show_circles:
 		circle.visible = true
-	elif clicked:
+	elif hovered:
 		circle.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
 		circle.visible = false
-	
-	if Input.is_action_just_released("click") and !hovered:
-		_on_focus_exited()
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -61,26 +59,25 @@ func _on_attack_timer_timeout() -> void:
 		var new_bullet = bullet.instantiate()
 		add_child(new_bullet)
 		new_bullet.gun = marker_2d
+		new_bullet.targets = enemies
 		new_bullet.target = target
 		new_bullet.damage = sdamage
+	
 
 
-##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	#circle.visible = true
 	GlobalVariables.is_mouse_in_Area2D = true
-	hovered = true
 
 
 func _on_mouse_exited() -> void:
 	#circle.visible = false
 	GlobalVariables.is_mouse_in_Area2D = false
-	hovered = false
+
 
 func _on_focus_entered():
-	clicked = true
+	hovered = true
 
-func _on_focus_exited():
-	clicked = false
+func _on_focus_eited():
+	hovered = false
 	Popups.hideBuildInfo()
-	
