@@ -2,6 +2,7 @@ extends Area2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
+@onready var circle: Sprite2D = $Circle
 @export var bullet: PackedScene
 
 
@@ -44,8 +45,10 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_mouse_entered() -> void:
+	circle.visible = true
 	GlobalVariables.is_mouse_in_Area2D = true
 
 
 func _on_mouse_exited() -> void:
+	circle.visible = false
 	GlobalVariables.is_mouse_in_Area2D = false

@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 				GlobalVariables.cost += 3
 				GlobalVariables.current_round += 1
 			spawn_timer.start()
-	print(rounds[GlobalVariables.current_round])
 
 func _on_timer_timeout() -> void:
 	var new_enemy = enemys[GlobalVariables.current_round].instantiate()
