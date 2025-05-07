@@ -54,12 +54,11 @@ func _on_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	if not enemies.is_empty():
 		var target = enemies[0]
-		if is_instance_valid(target) and target.has_method("take_damage"):
-			#obvs, mut sit instantiatee projektilin, joka suuntaa vastustajan positioon.
-			#projektilille asetettaa instantiates damage, ja homaa/suuntaa vastustajan aikaisempaan positioon.
-			#projektilis also omistaja turretti tietona, kutsuu damagee tehtyään täällä olevaa dealtdmg() funktiota
-			target.take_damage(sdamage)
-			damage_dealt += sdamage
+		var new_bullet = bullet.instantiate()
+		add_child(new_bullet)
+		new_bullet.gun = marker_2d
+		new_bullet.target = target
+		new_bullet.damage = sdamage
 	
 
 
