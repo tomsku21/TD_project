@@ -6,7 +6,6 @@ extends Area2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
 
-
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
 var damage_taken: int
@@ -24,14 +23,17 @@ func _process(delta):
 	print(kills)
 	if GlobalVariables.show_circles:
 		circle.visible = true
-	elif hovered:
+	elif clicked:
 		circle.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
 		circle.visible = false
 	
 	if Input.is_action_just_released("click") and !hovered:
-		_on_focus_exited()
+		if $Button.has_focus():
+			$Button.release_focus()
+		else:
+			_on_focus_exited()
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -85,5 +87,6 @@ func _on_focus_entered():
 	hovered = true
 
 func _on_focus_exited():
+	print("focus released")
 	clicked = false
 	Popups.hideBuildInfo()
