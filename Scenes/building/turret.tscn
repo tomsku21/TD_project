@@ -55,7 +55,6 @@ unique_name_in_owner = true
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_6spbj")]
 unique_name_in_owner = true
 character = NodePath("..")
-MAX_HEALTH = 100
 shader_material = ExtResource("2_lfpdx")
 
 [node name="Circle" type="Sprite2D" parent="."]

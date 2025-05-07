@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
+[gd_scene load_steps=5 format=3 uid="uid://yye8rlsvusfg"]
 
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/Popups.gd" id="1_toe2v"]
-[ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]

@@ -1,5 +1,4 @@
 extends Area2D
-var targets: Array
 var target
 var gun: Marker2D
 var speed: float = 500
