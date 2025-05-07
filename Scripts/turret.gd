@@ -5,14 +5,21 @@ extends Area2D
 @onready var circle: Sprite2D = $Circle
 @export var bullet: PackedScene
 
+var hovered: bool = false #for popups
 var damage_taken: int
 var damage_dealt: int
-
-var sdamage: int = 10 #self damage, to not mix with taken damage from enemies
+var atk_speed: float
+var kills: int #add ways to increase later...!!!!
+@export var sdamage: int = 10 #self damage, to not mix with taken damage from enemies
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
 	GlobalVariables.turrets.append(self)
+	atk_speed = %AttackTimer.wait_time
+
+func _process(delta):
+	if hovered:
+		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -55,3 +62,12 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	circle.visible = false
 	GlobalVariables.is_mouse_in_Area2D = false
+
+
+func _on_focus_entered():
+	hovered = true
+
+func _on_focus_eited():
+	hovered = false
+	Popups.hideBuildInfo()
+	
