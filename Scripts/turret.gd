@@ -26,7 +26,6 @@ func _ready() -> void:
 	$Button.grab_focus()
 
 func _process(delta):
-	print(kills)
 	if GlobalVariables.show_circles:
 		circle.visible = true
 	elif clicked:
