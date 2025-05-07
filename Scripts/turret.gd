@@ -5,6 +5,8 @@ extends Area2D
 @onready var circle: Sprite2D = $Circle
 @export var bullet: PackedScene
 
+var damage_taken: int
+var damage_dealt: int
 
 var sdamage: int = 10 #self damage, to not mix with taken damage from enemies
 var enemies: Array[Node2D] = []
@@ -13,9 +15,8 @@ func _ready() -> void:
 	GlobalVariables.turrets.append(self)
 
 func take_damage(damage: int):
-	#todo:
-	#hit effects here.
 	healthcomponent.damage(damage)
+	damage_taken += damage
 
 
 func destroy():
@@ -40,7 +41,9 @@ func _on_attack_timer_timeout() -> void:
 		if is_instance_valid(target) and target.has_method("take_damage"):
 			#obvs, mut sit instantiatee projektilin, joka suuntaa vastustajan positioon.
 			#projektilille asetettaa instantiates damage, ja homaa/suuntaa vastustajan aikaisempaan positioon.
+			#projektilis also omistaja turretti tietona, kutsuu damagee tehtyään täällä olevaa dealtdmg() funktiota
 			target.take_damage(sdamage)
+			damage_dealt += sdamage
 	
 
 
