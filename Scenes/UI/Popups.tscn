@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
+[gd_scene load_steps=6 format=3 uid="uid://c2n6impoyuneo"]
 
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/Popups.gd" id="1_toe2v"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_5v7bk"]
+[ext_resource type="Script" uid="uid://ol8yu84krmdy" path="res://Scripts/upgradingButton.gd" id="3_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
@@ -27,21 +28,21 @@ script = ExtResource("1_toe2v")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Buildingstats" type="Control" parent="UI"]
+[node name="Build1stats" type="Control" parent="UI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 241.0
 
-[node name="Upgrades" type="VBoxContainer" parent="UI/Buildingstats"]
+[node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
+layout_mode = 0
 offset_left = -56.0
 offset_top = -112.0
 offset_right = 54.0
 offset_bottom = -48.0
 alignment = 1
 
-[node name="build2" type="TextureButton" parent="UI/Buildingstats/Upgrades"]
+[node name="build2" type="TextureButton" parent="UI/Build1stats/Upgrades"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -50,61 +51,65 @@ texture_normal = ExtResource("2_5v7bk")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buildingstats/Upgrades"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Build1stats/Upgrades"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="build1" type="TextureButton" parent="UI/Buildingstats/Upgrades/HBoxContainer"]
+[node name="build1" type="TextureButton" parent="UI/Build1stats/Upgrades/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_5v7bk")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_5v7bk")
+
+[node name="build3" type="TextureButton" parent="UI/Build1stats/Upgrades/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture_normal = ExtResource("2_5v7bk")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="build3" type="TextureButton" parent="UI/Buildingstats/Upgrades/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture_normal = ExtResource("2_5v7bk")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="BuildPopup" type="PanelContainer" parent="UI/Buildingstats"]
+[node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
 layout_mode = 1
 offset_left = 80.0
 offset_top = -66.0
 offset_right = 222.0
 offset_bottom = 134.0
 pivot_offset = Vector2(70, 0)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Buildingstats/BuildPopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/BuildPopup"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Desc" type="RichTextLabel" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+[node name="Desc" type="RichTextLabel" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 60)
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 14
-text = "Get chompy with it oh yeah... is there space for a third line"
 fit_content = true
 scroll_active = false
 
-[node name="HealthBar" parent="UI/Buildingstats/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
+[node name="HealthBar" parent="UI/Build1stats/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Dmg" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+[node name="Dmg" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Dmg: "
 
-[node name="AtkSpeed" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+[node name="AtkSpeed" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "AtkSpeed: "
 
-[node name="Kills" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
+[node name="Kills" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Kills:"

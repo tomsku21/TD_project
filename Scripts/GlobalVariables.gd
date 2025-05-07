@@ -10,6 +10,7 @@ var current_round: int = 0
 var max_rounds: int = 1
 var selected_turret
 var is_mouse_in_Area2D = false
+var show_circles = false
 
 var normal_cursor = load("res://Assets/cursor/normal.png")
 var clicked_cursor = load("res://Assets/cursor/clicked.png")

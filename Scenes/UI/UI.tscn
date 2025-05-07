@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
 [ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/turret.tscn" id="4_jevvu"]
 [ext_resource type="PackedScene" uid="uid://ciep7eg1iuuew" path="res://Scenes/building/temp_building.tscn" id="4_oqha6"]
-[ext_resource type="Script" path="res://Scripts/Buytier1.gd" id="6_7tgkj"]
+[ext_resource type="Script" uid="uid://cwm6jndskd1gp" path="res://Scripts/Buytier1.gd" id="6_7tgkj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jevvu"]
 texture = ExtResource("1_7tgkj")
