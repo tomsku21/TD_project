@@ -6,6 +6,7 @@ extends Area2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
 
+
 var hovered: bool = false #for popups
 var damage_taken: int
 var damage_dealt: int
@@ -19,6 +20,7 @@ func _ready() -> void:
 	atk_speed = %AttackTimer.wait_time
 
 func _process(delta):
+	print(kills)
 	if GlobalVariables.show_circles:
 		circle.visible = true
 	elif hovered:
@@ -57,6 +59,7 @@ func _on_attack_timer_timeout() -> void:
 		var new_bullet = bullet.instantiate()
 		add_child(new_bullet)
 		new_bullet.gun = marker_2d
+		new_bullet.targets = enemies
 		new_bullet.target = target
 		new_bullet.damage = sdamage
 	
