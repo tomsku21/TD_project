@@ -78,6 +78,6 @@ func _on_mouse_exited() -> void:
 func _on_focus_entered():
 	hovered = true
 
-func _on_focus_eited():
+func _on_focus_exited():
 	hovered = false
 	Popups.hideBuildInfo()
