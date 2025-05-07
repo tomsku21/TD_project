@@ -19,8 +19,13 @@ func _ready() -> void:
 	atk_speed = %AttackTimer.wait_time
 
 func _process(delta):
-	if hovered:
+	if GlobalVariables.show_circles:
+		circle.visible = true
+	elif hovered:
+		circle.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
+	else:
+		circle.visible = false
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -59,12 +64,12 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_mouse_entered() -> void:
-	circle.visible = true
+	#circle.visible = true
 	GlobalVariables.is_mouse_in_Area2D = true
 
 
 func _on_mouse_exited() -> void:
-	circle.visible = false
+	#circle.visible = false
 	GlobalVariables.is_mouse_in_Area2D = false
 
 

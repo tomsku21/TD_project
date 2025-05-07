@@ -25,4 +25,5 @@ func _input(event: InputEvent) -> void:
 				var new_turret = GlobalVariables.selected_turret.instantiate()
 				turret.add_child(new_turret)
 				new_turret.global_position = tilemap.map_to_local(cell)
+				GlobalVariables.show_circles = false
 		queue_free()

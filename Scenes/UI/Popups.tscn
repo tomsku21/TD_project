@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
+[gd_scene load_steps=5 format=3 uid="uid://yye8rlsvusfg"]
 
-[ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/Popups.gd" id="1_toe2v"]
+[ext_resource type="Script" path="res://Scripts/Popups.gd" id="1_toe2v"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 
@@ -29,12 +29,13 @@ script = ExtResource("1_toe2v")
 
 [node name="Buildingstats" type="Control" parent="UI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 241.0
+mouse_filter = 2
 
 [node name="Upgrades" type="VBoxContainer" parent="UI/Buildingstats"]
+layout_mode = 0
 offset_left = -56.0
 offset_top = -112.0
 offset_right = 54.0
@@ -46,6 +47,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+mouse_filter = 1
 texture_normal = ExtResource("2_5v7bk")
 ignore_texture_size = true
 stretch_mode = 0
@@ -57,6 +59,7 @@ theme_override_constants/separation = 50
 [node name="build1" type="TextureButton" parent="UI/Buildingstats/Upgrades/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("2_5v7bk")
 ignore_texture_size = true
 stretch_mode = 0
@@ -64,6 +67,7 @@ stretch_mode = 0
 [node name="build3" type="TextureButton" parent="UI/Buildingstats/Upgrades/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("2_5v7bk")
 ignore_texture_size = true
 stretch_mode = 0
@@ -75,15 +79,18 @@ offset_top = -66.0
 offset_right = 222.0
 offset_bottom = 134.0
 pivot_offset = Vector2(70, 0)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Buildingstats/BuildPopup"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Desc" type="RichTextLabel" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 60)
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 14
 text = "Get chompy with it oh yeah... is there space for a third line"
 fit_content = true
@@ -93,6 +100,7 @@ scroll_active = false
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Dmg" type="Label" parent="UI/Buildingstats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
