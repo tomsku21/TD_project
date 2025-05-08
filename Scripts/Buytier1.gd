@@ -16,7 +16,7 @@ func _on_down():
 		var ghostT = building.instantiate()
 		ghost_node.add_child(ghostT)
 		GlobalVariables.selected_turret = item
-		GlobalVariables.show_circles = true
+		#GlobalVariables.show_circles = true #Doesn't look good with multiple plants
 
 func _on_mouse_entered():
 	var new_plant = item.instantiate()

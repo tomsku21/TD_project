@@ -12,6 +12,7 @@ class_name Tower
 @export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
 @export var atk_speed: float
 @export var cost: int
+@export var title: String #Name of tower
 @export var description: String
 @export var max_health: int
 var turret

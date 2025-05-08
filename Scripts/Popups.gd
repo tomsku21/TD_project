@@ -29,6 +29,8 @@ func setupgrades(content):
 		
 
 func setcontent(content):
+	%Name.text = content.title
+	%Name.show()
 	%Desc.hide()
 	%HealthBar.max_value = content.healthcomponent.MAX_HEALTH
 	%HealthBar.value = content.healthcomponent.health
@@ -45,6 +47,7 @@ func upgrade():
 	lasttower.upgrade()
 
 func setupDescription(content):
+	%Name.hide()
 	%Desc.text = str(content.description)
 	%Desc.show()
 	%Dmg.text = str("DMG: ", content.damage)
