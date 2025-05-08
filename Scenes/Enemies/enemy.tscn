@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmnfkxxc82kcv"]
+
+[ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_ubio8"]
+[ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_miwey"]
+[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_l8da7"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_haj6g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
+atlas = ExtResource("2_miwey")
+region = Rect2(0, 125, 91, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
+atlas = ExtResource("2_miwey")
+region = Rect2(91, 125, 91, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
+atlas = ExtResource("2_miwey")
+region = Rect2(182, 125, 91, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f0kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afpow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afpow")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
+size = Vector2(20, 9)
+
+[node name="Enemy" type="PathFollow2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
+script = ExtResource("1_ubio8")
+speed = 20.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -3)
+scale = Vector2(0.272497, 0.272498)
+sprite_frames = SubResource("SpriteFrames_ghaa6")
+autoplay = "default"
+frame_progress = 0.505874
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_287tu")
+
+[node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
+[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("3_l8da7")]
+unique_name_in_owner = true
+character = NodePath("..")
+MAX_HEALTH = 15
+shader_material = ExtResource("4_haj6g")
+
+[node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
+emitting = false
+amount = 10
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.0
+scale_amount_max = 3.0
+
+[node name="SlowDebuff" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
+[node name="PoisonDebuff" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
+[connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/WalkTimer" to="CharacterBody2D" method="_walk_again"]
+[connection signal="timeout" from="CharacterBody2D/SlowDebuff" to="CharacterBody2D" method="_on_slow_debuff_timeout"]
+[connection signal="timeout" from="CharacterBody2D/PoisonDebuff" to="CharacterBody2D" method="_on_poison_debuff_timeout"]

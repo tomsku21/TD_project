@@ -1,19 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq8hxtkkv0nsq"]
+[gd_scene load_steps=10 format=3 uid="uid://dq8hxtkkv0nsq"]
 
 [ext_resource type="Script" uid="uid://crjftde3aets7" path="res://Scripts/HealerPlant.gd" id="1_d0lby"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_d3xvl"]
+[ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="2_rjmf3"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_rjmf3"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_bcjs5"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_oc3se"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_rxxsh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 150.0
+radius = 261.989
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4jgc"]
 size = Vector2(90, 90)
 
 [node name="Healer" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+material = ExtResource("2_rjmf3")
 script = ExtResource("1_d0lby")
 Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])
@@ -40,11 +42,10 @@ scale_amount_max = 3.0
 
 [node name="Attack" type="CPUParticles2D" parent="."]
 z_index = 6
-emitting = false
-amount = 100
-lifetime = 0.44
-one_shot = true
+amount = 300
+lifetime = 2.0
 explosiveness = 1.0
+lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 63.01
 spread = 180.0
@@ -85,8 +86,8 @@ character = NodePath("..")
 shader_material = ExtResource("4_bcjs5")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.553, 0.553)
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.969979, 0.963729)
 texture = ExtResource("5_oc3se")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]

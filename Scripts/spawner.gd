@@ -5,8 +5,8 @@ extends Node
 @onready var path: Path2D = $"../TileMap/Road/Path2D"
 
 @export var enemys: Dictionary = {
-	0: preload("res://Scenes/enemy.tscn"),
-	1: preload("res://Scenes/enemy2.tscn")
+	0: preload("res://Scenes/Enemies/enemy.tscn"),
+	1: preload("res://Scenes/Enemies/enemy2.tscn")
 }
 
 @export var rounds := []

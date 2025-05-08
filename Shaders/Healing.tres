@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmfe7jhka1l33"]
+
+[ext_resource type="Shader" uid="uid://bs5om45g778lr" path="res://Shaders/Healer.gdshader" id="1_euna7"]
+
+[resource]
+shader = ExtResource("1_euna7")
+shader_parameter/wave_progress = 0.7
+shader_parameter/wave_speed = 1.0
+shader_parameter/wave_thickness = 0.1
+shader_parameter/wave_intensity = 1.0
