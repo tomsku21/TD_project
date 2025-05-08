@@ -15,8 +15,8 @@ size = Vector2(90, 90)
 
 [node name="PoisonPlant" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
 script = ExtResource("1_apre2")
-upgrades = Array[PackedScene]([null, null, null])
 Attack_effect = NodePath("Attack")
+upgrades = Array[PackedScene]([null, null, null])
 atk_speed = 5.0
 cost = 1
 description = "Poison"

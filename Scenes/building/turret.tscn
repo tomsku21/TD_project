@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cup7eyokmuwhy"]
 
-[ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/BasicPlant.gd" id="1_0ggxg"]
+[ext_resource type="Script" path="res://Scripts/BasicPlant.gd" id="1_0ggxg"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_0ggxg"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_6spbj"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_lfpdx"]
