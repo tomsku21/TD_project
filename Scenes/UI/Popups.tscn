@@ -1,0 +1,124 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
+
+[ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/Popups.gd" id="1_toe2v"]
+[ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
+[ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0.466667, 0.211765, 0.690196)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.125, 0.0820313, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Popup" type="Control" node_paths=PackedStringArray("Upgrades")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_toe2v")
+Upgrades = [NodePath("UI/Build1stats/Upgrades/HBoxContainer/Up1"), NodePath("UI/Build1stats/Upgrades/HBoxContainer/Up2"), NodePath("UI/Build1stats/Upgrades/Up3")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Build1stats" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 241.0
+
+[node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -56.0
+offset_top = -112.0
+offset_right = 54.0
+offset_bottom = -48.0
+alignment = 1
+
+[node name="Up3" parent="UI/Build1stats/Upgrades" instance=ExtResource("2_toe2v")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+description = "Upgrade1 incoming"
+damage = 50
+atk_speed = 2.0
+cost = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Build1stats/Upgrades"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Up1" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
+layout_mode = 2
+description = "Upgrade 2 incoming"
+damage = 15
+atk_speed = 0.5
+cost = 1
+
+[node name="Up2" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
+layout_mode = 2
+description = "Upgrade 3 incoming"
+damage = 13
+atk_speed = 0.2
+cost = 50
+
+[node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
+custom_minimum_size = Vector2(150, 116)
+layout_mode = 1
+offset_left = 80.0
+offset_top = -66.0
+offset_right = 230.0
+offset_bottom = 50.0
+pivot_offset = Vector2(70, 0)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/BuildPopup"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Desc" type="RichTextLabel" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 10)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "Lorem lapsum"
+fit_content = true
+scroll_active = false
+
+[node name="HealthBar" parent="UI/Build1stats/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Dmg" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dmg: "
+
+[node name="AtkSpeed" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AtkSpeed: "
+
+[node name="Kills" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Kills:"
+
+[node name="Cost" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cost:"

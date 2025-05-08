@@ -5,8 +5,6 @@ extends Area2D
 @onready var circle: Sprite2D = $Circle
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
-@export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
-
 
 var turret
 var clicked: bool = false #for popups
@@ -19,29 +17,26 @@ var kills: int #spawned bullets increase this
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
-	
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	atk_speed = %AttackTimer.wait_time
 	$Button.grab_focus()
 
 func _process(delta):
+	print(kills)
 	if GlobalVariables.show_circles:
 		circle.visible = true
 	elif clicked:
 		circle.visible = true
-		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
+		Popups.showPlant2Info(get_global_transform_with_canvas(), self)
 	else:
 		circle.visible = false
 	
-	if Input.is_action_just_released("click") and !hovered and clicked:
+	if Input.is_action_just_released("click") and !hovered:
 		if $Button.has_focus():
 			$Button.release_focus()
 		else:
 			_on_focus_exited()
-	if !GlobalVariables.is_mouse_in_Area2D and hovered:
-		print("get unhovered nerd")
-		hovered = false
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -69,8 +64,6 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	if not enemies.is_empty():
-		$Shoot.pitch_scale = randf_range(0.9, 1.2)
-		$Shoot.play()
 		var target = enemies[0]
 		var new_bullet = bullet.instantiate()
 		add_child(new_bullet)
