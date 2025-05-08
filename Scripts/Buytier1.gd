@@ -9,6 +9,7 @@ var ghost_node: Node
 
 func _ready():
 	ghost_node = get_tree().get_first_node_in_group("Ghost")
+	%TDesc.text = str("")
 
 func _on_down():
 	if GlobalVariables.cost >= cost:

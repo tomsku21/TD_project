@@ -37,6 +37,7 @@ mouse_cursor/custom_image="uid://c82n8gwglomqn"
 enemies=""
 Turret=""
 LifeTree=""
+Turretbuttons="For mouse over checks"
 
 [input]
 
