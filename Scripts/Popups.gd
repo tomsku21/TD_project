@@ -22,7 +22,7 @@ func showBuildInfo(sizing, content):
 func setupgrades(content):
 	for i in Upgrades.size():
 		if content.upgrades[i] != null:
-			Upgrades[i].new_tower = content.upgrades[i]
+			Upgrades[i].plant = content.upgrades[i]
 			Upgrades[i].show()
 		else:
 			Upgrades[i].hide()

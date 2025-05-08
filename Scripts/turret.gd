@@ -7,20 +7,25 @@ extends Area2D
 @export var bullet: PackedScene
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
 
+@export_category("Tower Stats")
+@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
+@export var atk_speed: float
+@export var cost: int
+@export var description: String
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
 var damage_taken: int
 var damage_dealt: int
-var atk_speed: float
+
 var kills: int #spawned bullets increase this
-@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
+
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
-	atk_speed = %AttackTimer.wait_time
+	%AttackTimer.wait_time = atk_speed
 	$Button.grab_focus()
 
 func _process(delta):
@@ -37,7 +42,7 @@ func _process(delta):
 			$Button.release_focus()
 		else:
 			_on_focus_exited()
-	if !GlobalVariables.is_mouse_in_Area2D and hovered:
+	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
 		print("get unhovered nerd")
 		hovered = false
 
@@ -87,7 +92,7 @@ func upgrade():
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	#circle.visible = true
-	print("mouse entered")
+	#print("mouse entered")
 	GlobalVariables.is_mouse_in_Area2D = true
 	hovered = true
 
@@ -95,18 +100,17 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	#circle.visible = false
 	if _check_mouseover(): #Ductape fix for exiting when hovering over button
-		print("mouse left")
 		GlobalVariables.is_mouse_in_Area2D = false
 		hovered = false
 	else:
-		print("mouse was still over button, ignore")
+		#print("mouse was still over button, ignore")
+		pass
 
 func _on_focus_entered():
 	clicked = true
 	hovered = true
 
 func _on_focus_exited():
-	print("focus released")
 	clicked = false
 	Popups.hideBuildInfo()
 
