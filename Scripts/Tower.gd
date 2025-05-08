@@ -32,9 +32,9 @@ func _ready() -> void:
 	$Button.grab_focus()
 
 func _process(delta):
-	if GlobalVariables.show_circles:
-		ARange.visible = true
-	elif clicked:
+	#if GlobalVariables.show_circles:
+		#ARange.visible = true
+	if clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:

@@ -6,11 +6,14 @@ var damage: int
 var atk_speed: float
 var cost: int
 
+func _process(delta):
+	if plant != null:
+		self.disabled = (GlobalVariables.cost < cost)
+
 func _on_click():
-	if GlobalVariables.cost >= cost and plant != null:
-		GlobalVariables.cost -= cost
-		GlobalVariables.selected_turret = plant
-		Popups.upgrade()
+	GlobalVariables.cost -= cost
+	GlobalVariables.selected_turret = plant
+	Popups.upgrade()
 
 func _on_mouse_entered():
 	set_stats()

@@ -20,7 +20,7 @@ upgrades = Array[PackedScene]([null, null, null])
 atk_speed = 5.0
 cost = 1
 title = "Poison Plant"
-description = "Poison"
+description = "Poisons enemies, applying a damage over time debuff"
 max_health = 10000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
