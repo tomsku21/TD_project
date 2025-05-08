@@ -21,7 +21,7 @@ var attacktime: float
 var life_tree: Area2D
 var grabbed: bool = false
 var currently_grabbed: bool = false
-
+var poisoned: bool = false
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
 	speed = speed * randf_range(0.8, 1.2)
@@ -81,6 +81,10 @@ func take_damage(damage: int):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
+	if poisoned:
+		cpu_particles_2d.color = Color.GREEN
+	else:
+		cpu_particles_2d.color = Color.WHITE
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		return true
@@ -92,11 +96,12 @@ func SlowDebuff():
 func PoisonDebuff():
 	if taking_damage == false:
 		taking_damage = true
+		poisoned = true
 		for i in 4:
 			take_damage(randi_range(1,2))
 			await get_tree().create_timer(1).timeout
 		taking_damage = false
-
+		poisoned = false
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
 		#ideally start an animation, where at the end it shoots a projectile/attacks.
