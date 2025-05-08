@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_qeyrt"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_g53be"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
-[ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="5_x7lha"]
+[ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_x7lha"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_ar33y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
