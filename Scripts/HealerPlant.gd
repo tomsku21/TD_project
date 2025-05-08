@@ -4,8 +4,10 @@ extends SupportTower
 
 func _on_attack_timer_timeout() -> void:
 	if not towers.is_empty():
-		Attack_effect.emitting = true
 		for i in towers.size():
 			var target = towers[i]
+			print(target)
 			await get_tree().create_timer(5).timeout
-			target.Heal()
+			if target != null:
+				target.Heal()
+		Attack_effect.emitting = true

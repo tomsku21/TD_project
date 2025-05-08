@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=10 format=3 uid="uid://bfdli3w1fom06"]
 
-[ext_resource type="Script" path="res://Scripts/slower.gd" id="1_6jtdp"]
+[ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
+[ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="2_jsynv"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_h2nyj"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_x6bfs"]
@@ -16,7 +17,7 @@ size = Vector2(90, 90)
 [node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")
-upgrades = Array[PackedScene]([null, null, null])
+upgrades = Array[PackedScene]([ExtResource("2_jsynv"), null, null])
 atk_speed = 5.0
 cost = 1
 title = "Cold Plant"

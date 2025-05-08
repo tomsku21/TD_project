@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 #@onready var health_bar: ProgressBar = %HealthBar
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var audio: Node = $Audio
 
 @export var speed: float = 2.0
 @export var max_health: int = 15
@@ -72,6 +73,8 @@ func check_turret():
 				nearest_turret = null
 	
 func take_damage(damage: int):
+	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
+	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:

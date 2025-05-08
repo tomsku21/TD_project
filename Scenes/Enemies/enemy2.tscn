@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh14dlu836nuy"]
+[gd_scene load_steps=11 format=3 uid="uid://bh14dlu836nuy"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_1cilx"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_trx3d"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_rvhp7"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_c0b6a"]
+[ext_resource type="AudioStream" uid="uid://c27afwy3dwqvm" path="res://Assets/Sounds/splash small 9.wav" id="5_trx3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1cilx"]
 atlas = ExtResource("2_trx3d")
@@ -87,6 +88,13 @@ wait_time = 5.0
 
 [node name="PoisonDebuff" type="Timer" parent="CharacterBody2D"]
 wait_time = 5.0
+
+[node name="Audio" type="Node" parent="CharacterBody2D"]
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="CharacterBody2D/Audio"]
+stream = ExtResource("5_trx3d")
+volume_db = -10.0
+pitch_scale = 0.8
 
 [connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/WalkTimer" to="CharacterBody2D" method="_walk_again"]

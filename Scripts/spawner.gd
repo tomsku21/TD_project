@@ -14,7 +14,7 @@ extends Node
 var time: float
 
 func _ready() -> void:
-	GlobalVariables.cost += 3
+	GlobalVariables.cost += 100
 	spawn_timer.start()
 
 func _physics_process(delta: float) -> void:
