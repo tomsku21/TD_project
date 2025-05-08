@@ -84,6 +84,10 @@ func upgrade():
 	$Button.release_focus()
 	queue_free()
 
+func Heal():
+	if healthcomponent.health < healthcomponent.MAX_HEALTH:
+		healthcomponent.health += randi_range(10,20)
+
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	#circle.visible = true
