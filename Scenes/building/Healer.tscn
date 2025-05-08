@@ -7,12 +7,10 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_bcjs5"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_oc3se"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_rxxsh"]
+[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_rjmf3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 261.989
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4jgc"]
-size = Vector2(90, 90)
 
 [node name="Healer" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
 material = ExtResource("2_rjmf3")
@@ -97,10 +95,7 @@ texture = ExtResource("5_oc3se")
 stream = ExtResource("6_rxxsh")
 pitch_scale = 1.1
 
-[node name="Mousecheck" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousecheck"]
-shape = SubResource("RectangleShape2D_a4jgc")
+[node name="Mousecheck" parent="." instance=ExtResource("8_rjmf3")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

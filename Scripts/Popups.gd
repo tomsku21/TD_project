@@ -60,3 +60,5 @@ func setupDescription(content):
 
 func returnDesc():
 	lasttower.clicked = true
+	lasttower.hovered = false
+	GlobalVariables.is_mouse_in_Area2D = false
