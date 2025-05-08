@@ -1,13 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=12 format=3 uid="uid://bfdli3w1fom06"]
 
 [ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
 [ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="2_jsynv"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_h2nyj"]
 [ext_resource type="PackedScene" uid="uid://qv4gs0heqxmg" path="res://Scenes/building/Grabber.tscn" id="3_h27ut"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
+[ext_resource type="Texture2D" uid="uid://bnb1o5g3ctu5c" path="res://Assets/Plants/Frostie.png" id="4_h27ut"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_x6bfs"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_b70jt"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_yltu3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h27ut"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
@@ -60,8 +63,7 @@ scale_amount_max = 3.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.464645, 0.626273, 0, 1)
 z_index = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_h2nyj")
+texture = ExtResource("4_h27ut")
 
 [node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
 unique_name_in_owner = true
@@ -71,6 +73,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 focus_mode = 1
 mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxFlat_h27ut")
+flat = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -88,7 +92,6 @@ character = NodePath("..")
 shader_material = ExtResource("5_x6bfs")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.553, 0.553)
 texture = ExtResource("6_b70jt")
 
