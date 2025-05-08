@@ -21,6 +21,7 @@ upgrades = Array[PackedScene]([null, null, null])
 sdamage = 9
 atk_speed = 0.5
 cost = 2
+title = "Sapling"
 description = "A young sapling"
 max_health = 1250
 

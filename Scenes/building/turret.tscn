@@ -25,6 +25,7 @@ upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), ExtResource("4_g53be"), E
 sdamage = 5
 atk_speed = 1.0
 cost = 1
+title = "Seed"
 description = "Small seed."
 max_health = 500
 

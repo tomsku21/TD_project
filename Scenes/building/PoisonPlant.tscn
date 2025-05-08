@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b6n50uvhrsfbv"]
 
-[ext_resource type="Script" uid="uid://dqufmnixe4s74" path="res://Scripts/poisonPlant.gd" id="1_apre2"]
+[ext_resource type="Script" path="res://Scripts/poisonPlant.gd" id="1_apre2"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_3e7sh"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_8tyrp"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_1ebtt"]
@@ -19,7 +19,8 @@ Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])
 atk_speed = 5.0
 cost = 1
-description = "Poison"
+title = "Poison Plant"
+description = "Poisons enemies, applying a damage over time debuff"
 max_health = 10000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
