@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
 [ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_x7lha"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_ar33y"]
-[ext_resource type="PackedScene" path="res://Scenes/components/mousecheckComponent.tscn" id="11_qketn"]
+[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="11_qketn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 100.0
