@@ -11,12 +11,12 @@ func hideBuildInfo():
 
 func showBuildInfo(sizing, content):
 	if !content == null:
+		lasttower = content
 		setcontent(content)
 		setupgrades(content)
 		var finalpos = sizing.get_origin()
 		%Build1stats.position = finalpos
 		%Build1stats.show()
-		lasttower = content
 		%Upgrades.show()
 
 func setupgrades(content):
