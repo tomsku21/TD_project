@@ -10,12 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
 [ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_x7lha"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_ar33y"]
+[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="11_qketn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 100.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar33y"]
-size = Vector2(90, 90)
 
 [node name="Turret" type="Area2D" groups=["Turret"]]
 input_pickable = false
@@ -50,7 +48,7 @@ z_index = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6spbj")
 
-[node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
+[node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = -16.0
 offset_top = -16.0
@@ -81,11 +79,7 @@ texture = ExtResource("5_lfpdx")
 stream = ExtResource("8_ar33y")
 pitch_scale = 1.1
 
-[node name="Mousecheck" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousecheck"]
-shape = SubResource("RectangleShape2D_ar33y")
+[node name="Mousecheck" parent="." instance=ExtResource("11_qketn")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
