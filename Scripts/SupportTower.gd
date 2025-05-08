@@ -1,5 +1,5 @@
 extends Area2D
-class_name Tower
+class_name SupportTower
 @onready var attack_timer: Timer = $AttackTimer
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
@@ -22,7 +22,7 @@ var damage_dealt: int
 
 var kills: int #spawned bullets increase this
 
-var enemies: Array[Node2D] = []
+var towers: Array[Area2D] = []
 
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
@@ -60,16 +60,16 @@ func destroy():
 	queue_free()
 	GlobalVariables.turrets.erase(self)
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and not body in enemies:
-		enemies.append(body)
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Turret") and not area in towers:
+		towers.append(area)
 		if attack_timer.is_stopped():
 			attack_timer.start()
 
-func _on_body_exited(body: Node2D) -> void:
-	if body in enemies:
-		enemies.erase(body)
-		if enemies.is_empty():
+func _on_area_exited(area: Area2D) -> void:
+	if area in towers:
+		towers.erase(area)
+		if towers.is_empty():
 			attack_timer.stop()
 
 func upgrade():
@@ -78,10 +78,6 @@ func upgrade():
 	new_plant.global_position = global_position
 	$Button.release_focus()
 	queue_free()
-
-func Heal():
-	if healthcomponent.health < healthcomponent.MAX_HEALTH:
-		healthcomponent.health += randi_range(10,20)
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
