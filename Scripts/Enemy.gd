@@ -19,6 +19,8 @@ var attack_distance: float = 50.0
 var current_turret = null
 var attacktime: float
 var life_tree: Area2D
+var grabbed: bool = false
+var currently_grabbed: bool = false
 
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
@@ -35,6 +37,9 @@ func _physics_process(delta: float) -> void:
 			cpu_particles_2d.emitting = true
 			await get_tree().create_timer(0.1).timeout
 		destroy()
+	if grabbed == true and currently_grabbed == false:
+		await get_tree().create_timer(10).timeout
+		grabbed = false
 
 func destroy():
 	cpu_particles_2d.emitting = true

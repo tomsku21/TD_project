@@ -1,29 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=9 format=3 uid="uid://qv4gs0heqxmg"]
 
-[ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
-[ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="2_jsynv"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_h2nyj"]
-[ext_resource type="PackedScene" uid="uid://qv4gs0heqxmg" path="res://Scenes/building/Grabber.tscn" id="3_h27ut"]
-[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
-[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_x6bfs"]
-[ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_b70jt"]
-[ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_yltu3"]
+[ext_resource type="Script" uid="uid://bl2pfumkmdjyk" path="res://Scripts/grabber.gd" id="1_cm8b3"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_pbchp"]
+[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_xqlid"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_jpcs6"]
+[ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
+[ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 150.0
+radius = 74.0068
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4jgc"]
 size = Vector2(90, 90)
 
-[node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
-script = ExtResource("1_6jtdp")
-Attack_effect = NodePath("Attack")
-upgrades = Array[PackedScene]([ExtResource("2_jsynv"), ExtResource("3_h27ut"), null])
+[node name="Grabber" type="Area2D" groups=["Turret"]]
+script = ExtResource("1_cm8b3")
+upgrades = Array[PackedScene]([null, null, null])
 atk_speed = 5.0
 cost = 1
-title = "Cold Plant"
-description = "Slows enemies"
-max_health = 10000
+title = "Grabber"
+description = "Grabs"
+max_health = 1000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -61,7 +58,7 @@ scale_amount_max = 3.0
 modulate = Color(0.464645, 0.626273, 0, 1)
 z_index = 1
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_h2nyj")
+texture = ExtResource("2_pbchp")
 
 [node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
 unique_name_in_owner = true
@@ -73,7 +70,6 @@ focus_mode = 1
 mouse_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("CircleShape2D_hskch")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -82,18 +78,18 @@ wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_cpad0")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_xqlid")]
 unique_name_in_owner = true
 character = NodePath("..")
-shader_material = ExtResource("5_x6bfs")
+shader_material = ExtResource("4_jpcs6")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.553, 0.553)
-texture = ExtResource("6_b70jt")
+scale = Vector2(0.277458, 0.277458)
+texture = ExtResource("5_a1rsv")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_yltu3")
+stream = ExtResource("6_3a73y")
 pitch_scale = 1.1
 
 [node name="Mousecheck" type="Area2D" parent="."]
