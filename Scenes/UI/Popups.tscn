@@ -44,6 +44,7 @@ offset_left = -56.0
 offset_top = -112.0
 offset_right = 54.0
 offset_bottom = -48.0
+mouse_filter = 2
 alignment = 1
 
 [node name="Up3" parent="UI/Build1stats/Upgrades" instance=ExtResource("2_toe2v")]
@@ -53,6 +54,7 @@ size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Build1stats/Upgrades"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 50
 
 [node name="Up1" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]

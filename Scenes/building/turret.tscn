@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cup7eyokmuwhy"]
 
-[ext_resource type="Script" uid="uid://bj7qrardp2pg5" path="res://Scripts/turret.gd" id="1_hskch"]
+[ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/BasicPlant.gd" id="1_0ggxg"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_0ggxg"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_6spbj"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_lfpdx"]
@@ -19,14 +19,14 @@ size = Vector2(90, 90)
 
 [node name="Turret" type="Area2D" groups=["Turret"]]
 input_pickable = false
-script = ExtResource("1_hskch")
+script = ExtResource("1_0ggxg")
 bullet = ExtResource("2_0ggxg")
 upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), ExtResource("4_g53be"), ExtResource("5_x7lha")])
 sdamage = 5
 atk_speed = 1.0
 cost = 1
-description = "Basic seed."
-max_health = 1000
+description = "Small seed."
+max_health = 500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
