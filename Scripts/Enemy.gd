@@ -10,8 +10,10 @@ extends CharacterBody2D
 @export var speed: float = 2.0
 @export var max_health: int = 15
 @export var sdamage: int = 10
-
+@export var slow_debuff: float = 0.5
+var taking_damage: bool = false
 var current_speed: float
+var basic_speed: float
 var attack_distance: float = 50.0
 var current_turret = null
 var attacktime: float
@@ -74,6 +76,18 @@ func take_damage(damage: int):
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		return true
+		
+func SlowDebuff():
+	current_speed = speed * slow_debuff
+	$SlowDebuff.start()
+	
+func PoisonDebuff():
+	if taking_damage == false:
+		taking_damage = true
+		for i in 4:
+			take_damage(randi_range(1,2))
+			await get_tree().create_timer(1).timeout
+		taking_damage = false
 
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
@@ -86,3 +100,8 @@ func _on_attack_timer_timeout() -> void:
 		
 func _walk_again() -> void:
 	current_speed = speed
+
+
+func _on_slow_debuff_timeout() -> void:
+	current_speed = speed
+	$SlowDebuff.stop()

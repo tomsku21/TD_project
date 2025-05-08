@@ -85,5 +85,13 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
+[node name="SlowDebuff" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
+[node name="PoisonDebuff" type="Timer" parent="CharacterBody2D"]
+wait_time = 5.0
+
 [connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/WalkTimer" to="CharacterBody2D" method="_walk_again"]
+[connection signal="timeout" from="CharacterBody2D/SlowDebuff" to="CharacterBody2D" method="_on_slow_debuff_timeout"]
+[connection signal="timeout" from="CharacterBody2D/PoisonDebuff" to="CharacterBody2D" method="_on_poison_debuff_timeout"]
