@@ -20,8 +20,8 @@ bullet = ExtResource("2_a4jgc")
 upgrades = Array[PackedScene]([null, null, null])
 sdamage = 9
 atk_speed = 0.5
-cost = 1
-description = "Young sapling. Higher damage and speed."
+cost = 2
+description = "Young sapling."
 max_health = 1500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

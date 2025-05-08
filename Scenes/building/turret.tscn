@@ -23,7 +23,7 @@ upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), null, null])
 sdamage = 5
 atk_speed = 1.0
 cost = 1
-description = "Your basic seed. Has much potential to evolve."
+description = "Basic seed."
 max_health = 1000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

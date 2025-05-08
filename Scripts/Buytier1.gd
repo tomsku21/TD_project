@@ -21,7 +21,9 @@ func _on_down():
 func _on_mouse_entered():
 	var new_plant = item.instantiate()
 	cost = new_plant.cost
+	%cost.text = str("Cost: ", cost)
 	%TDesc.text = new_plant.description
 	
 func _on_mouse_exit():
+	%cost.text = str("")
 	%TDesc.text = str("")
