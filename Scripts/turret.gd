@@ -12,6 +12,7 @@ extends Area2D
 @export var atk_speed: float
 @export var cost: int
 @export var description: String
+@export var max_health: int
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups

@@ -1,9 +1,8 @@
 extends TextureButton
 
-@export var description: String
 @export var building: PackedScene
 @export var item: PackedScene
-@export var cost: int = 1
+@export var cost: int
 var ghost_node: Node
 
 
@@ -20,7 +19,9 @@ func _on_down():
 		GlobalVariables.show_circles = true
 
 func _on_mouse_entered():
-	%TDesc.text = description
+	var new_plant = item.instantiate()
+	cost = new_plant.cost
+	%TDesc.text = new_plant.description
 	
 func _on_mouse_exit():
 	%TDesc.text = str("")

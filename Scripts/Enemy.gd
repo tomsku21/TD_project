@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 @export var speed: float = 2.0
-@export var health: int = 15
+@export var max_health: int = 15
 @export var sdamage: int = 10
 
 var current_speed: float

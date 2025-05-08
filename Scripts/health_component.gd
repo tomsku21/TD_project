@@ -2,12 +2,13 @@ extends Node
 class_name HealthComponent
 var sprite
 @export var character : Node2D
-@export var MAX_HEALTH :int = 1000
+@export var MAX_HEALTH :int
 @export var health: int
 @export var shader_material: ShaderMaterial
 
 
 func _ready():
+	MAX_HEALTH = character.max_health
 	health = MAX_HEALTH	
 	if get_parent().has_node("AnimatedSprite2D"):
 		sprite = get_parent().get_node("AnimatedSprite2D")

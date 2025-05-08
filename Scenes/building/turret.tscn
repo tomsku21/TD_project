@@ -24,6 +24,7 @@ sdamage = 5
 atk_speed = 1.0
 cost = 1
 description = "Your basic seed. Has much potential to evolve."
+max_health = 1000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

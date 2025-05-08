@@ -22,6 +22,7 @@ sdamage = 9
 atk_speed = 0.5
 cost = 1
 description = "Young sapling. Higher damage and speed."
+max_health = 1500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
