@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_1ebtt"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_nnile"]
-[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="7_rp36r"]
+[ext_resource type="PackedScene" path="res://Scenes/components/mousecheckComponent.tscn" id="7_rp36r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("2_apre2")

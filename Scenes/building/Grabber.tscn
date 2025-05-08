@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_jpcs6"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
-[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="7_pbchp"]
+[ext_resource type="PackedScene" path="res://Scenes/components/mousecheckComponent.tscn" id="7_pbchp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 74.0068
