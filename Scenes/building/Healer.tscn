@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dq8hxtkkv0nsq"]
 
-[ext_resource type="Script" path="res://Scripts/HealerPlant.gd" id="1_d0lby"]
+[ext_resource type="Script" uid="uid://crjftde3aets7" path="res://Scripts/HealerPlant.gd" id="1_d0lby"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_d3xvl"]
 [ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="2_rjmf3"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_rjmf3"]
