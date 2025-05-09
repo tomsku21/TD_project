@@ -876,6 +876,7 @@ _data = [Vector2(102.766, 0.550562), 0.0, 0.0, 0, 0, Vector2(1024, 1), 0.0006480
 point_count = 2
 
 [node name="Main" type="Node2D"]
+position = Vector2(-2, 0)
 metadata/_edit_horizontal_guides_ = [-156.0]
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -9,6 +9,7 @@ var cost: int
 func _process(delta):
 	if plant != null:
 		self.disabled = (GlobalVariables.cost < cost)
+		
 
 func _on_click():
 	GlobalVariables.cost -= cost
