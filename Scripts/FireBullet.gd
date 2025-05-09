@@ -3,7 +3,7 @@ extends Area2D
 var target
 var gun: Marker2D
 var speed: float = 500
-var damage: int = 20
+var damage: float = 20
 var splash_radius: float = 64.0
 
 @onready var sprite_2d: Sprite2D = $Sprite2D

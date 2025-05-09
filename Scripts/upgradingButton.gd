@@ -2,7 +2,7 @@ extends TextureButton
 
 @export var plant: PackedScene
 var description: String
-var damage: int
+var damage: float
 var atk_speed: float
 var cost: int
 

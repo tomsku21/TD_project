@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="1_b83rk"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
 [ext_resource type="PackedScene" uid="uid://cmtl2nh7a1auo" path="res://Scenes/buyt_1.tscn" id="4_7tgkj"]
-[ext_resource type="Texture2D" uid="uid://bttw2e13pyden" path="res://Assets/Towers/Sapling.png" id="5_jevvu"]
+[ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="5_jevvu"]
 [ext_resource type="Texture2D" uid="uid://cpb4hm1v6pycj" path="res://Assets/Towers/Seed.png" id="6_jevvu"]
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="6_w8wei"]
 

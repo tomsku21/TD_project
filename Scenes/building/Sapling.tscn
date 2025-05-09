@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_1xls1"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_5yvm0"]
 [ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_sq620"]
-[ext_resource type="Texture2D" uid="uid://bttw2e13pyden" path="res://Assets/Towers/Sapling.png" id="7_7mvnh"]
+[ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="7_7mvnh"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="7_tcjie"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_k8lsj"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_d63pv"]
@@ -23,12 +23,11 @@ script = ExtResource("1_gjq8m")
 plantimg = ExtResource("7_7mvnh")
 bullet = ExtResource("2_7mvnh")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("4_5yvm0"), ExtResource("5_sq620")])
-sdamage = 5
+sdamage = 5.0
 atk_speed = 1.0
 cost = 1
 title = "Sapling"
 description = "Small sapling."
-max_health = 500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

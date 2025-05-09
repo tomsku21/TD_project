@@ -21,7 +21,6 @@ atk_speed = 5.0
 cost = 1
 title = "Healer plant"
 description = "Healer"
-max_health = 100
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

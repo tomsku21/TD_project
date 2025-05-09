@@ -11,8 +11,8 @@ extends CharacterBody2D
 # Export
 @export var shader_material: ShaderMaterial
 @export var speed: float = 2.0
-@export var max_health: int = 15
-@export var sdamage: int = 10
+@export var max_health: float = 15
+@export var sdamage: float = 10
 @export var slow_debuff: float = 0.5
 
 
@@ -94,7 +94,7 @@ func check_turret():
 				attack_timer.stop()
 				nearest_turret = null
 	
-func take_damage(damage: int):
+func take_damage(damage: float):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
