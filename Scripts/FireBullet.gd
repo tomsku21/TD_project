@@ -25,6 +25,6 @@ func _on_body_entered(body: Node2D) -> void:
 func apply_splash_damage():
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:
-		if position.distance_to(enemy.global_position) <= splash_radius:
+		if global_position.distance_to(enemy.global_position) <= splash_radius:
 			if enemy.has_method("take_damage"):
 				enemy.take_damage(damage)
