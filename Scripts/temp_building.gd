@@ -3,6 +3,9 @@ extends Area2D
 var tilemap: TileMapLayer
 var turret: Node
 var cell
+var spriteobtained: bool
+var new_turret
+
 func _ready() -> void:
 	tilemap = get_tree().get_first_node_in_group("Grass")
 	turret = get_tree().get_first_node_in_group("Turret_node")
@@ -13,11 +16,17 @@ func _process(delta):
 		%Shadow.color = Color(0, 211, 58, 199)
 	else:
 		%Shadow.color = Color.RED
+		
+	if !spriteobtained and GlobalVariables.selected_turret != null:
+		new_turret = GlobalVariables.selected_turret.instantiate()
+		%Sprite2D.texture = new_turret.plantimg
+		spriteobtained = true
+		print(new_turret.plantimg)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
 		if _check_tile_validity() and GlobalVariables.is_mouse_in_Area2D == false and GlobalVariables.cost >= 1:
-			var new_turret = GlobalVariables.selected_turret.instantiate()
+			#var new_turret = GlobalVariables.selected_turret.instantiate()
 			GlobalVariables.cost -= new_turret.cost
 			turret.add_child(new_turret)
 			new_turret.global_position = tilemap.map_to_local(cell)
