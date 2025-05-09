@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_qeyrt"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_g53be"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
-[ext_resource type="PackedScene" uid="uid://7n76e6p4tids" path="res://Scenes/building/FirePlant.tscn" id="5_qketn"]
+[ext_resource type="PackedScene" uid="uid://d2entn05wbug3" path="res://Scenes/building/FirePlant.tscn" id="5_qketn"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_ar33y"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="11_qketn"]
 
@@ -20,12 +20,10 @@ input_pickable = false
 script = ExtResource("1_0ggxg")
 bullet = ExtResource("2_0ggxg")
 upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), ExtResource("4_g53be"), ExtResource("5_qketn")])
-sdamage = 5
 atk_speed = 1.0
 cost = 1
 title = "Seed"
 description = "Small seed."
-max_health = 500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

@@ -73,10 +73,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0cdy2")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_32sg2")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ru6i1")
 }, {
 "duration": 1.0,
@@ -84,7 +84,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtf4t"]
@@ -142,6 +142,7 @@ scale_amount_min = 0.0
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Idle"
 autoplay = "Idle"
+frame_progress = 0.595898
 
 [node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
 unique_name_in_owner = true
