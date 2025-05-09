@@ -18,7 +18,6 @@ atk_speed = 5.0
 cost = 1
 title = "Grabber"
 description = "Grabs"
-max_health = 1000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
