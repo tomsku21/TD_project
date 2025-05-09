@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_o4f5v"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_mavgf"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_tr10u"]
-[ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_pqdxj"]
+[ext_resource type="AudioStream" uid="uid://ct0jf5bpr6lri" path="res://Scripts/fireball-whoosh-1-179125 (mp3cut.net).wav" id="8_hrvv2"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_onsdr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
@@ -93,9 +93,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
 
-[node name="Fireplant" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+[node name="Fireplant" type="Area2D" groups=["Turret"]]
 script = ExtResource("1_hrvv2")
-Attack_effect = NodePath("Attack")
 fire_bullet_scene = ExtResource("2_6ngx4")
 upgrades = Array[PackedScene]([null, null, null])
 sdamage = 2
@@ -180,9 +179,9 @@ scale = Vector2(0.553, 0.553)
 texture = ExtResource("6_tr10u")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_pqdxj")
+stream = ExtResource("8_hrvv2")
 volume_db = 7.0
-pitch_scale = 0.9
+pitch_scale = 0.5
 
 [node name="Mousecheck" parent="." instance=ExtResource("8_onsdr")]
 
