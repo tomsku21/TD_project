@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpb4hm1v6pycj"
-path="res://.godot/imported/Seed.png-be89cc71cd36bfff5f8044250fd366ae.ctex"
+uid="uid://bttw2e13pyden"
+path="res://.godot/imported/Sapling.png-85d93f91bbe35e6495bef6ad4f746746.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Towers/Seed.png"
-dest_files=["res://.godot/imported/Seed.png-be89cc71cd36bfff5f8044250fd366ae.ctex"]
+source_file="res://Assets/Towers/Sapling.png"
+dest_files=["res://.godot/imported/Sapling.png-85d93f91bbe35e6495bef6ad4f746746.ctex"]
 
 [params]
 
