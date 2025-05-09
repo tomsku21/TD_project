@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="1_b83rk"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
 [ext_resource type="PackedScene" path="res://Scenes/buyt_1.tscn" id="4_7tgkj"]
-[ext_resource type="PackedScene" uid="uid://ce88fq1rrdjvu" path="res://Scenes/building/Sapling.tscn" id="6_8wlyu"]
+[ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="5_jevvu"]
 [ext_resource type="Texture2D" uid="uid://cpb4hm1v6pycj" path="res://Assets/Towers/seed.png" id="6_jevvu"]
 [ext_resource type="PackedScene" path="res://Scenes/building/Seed.tscn" id="6_w8wei"]
 
@@ -81,8 +81,7 @@ mouse_filter = 2
 
 [node name="Buysap" parent="buymenu/VBoxContainer/build" instance=ExtResource("4_7tgkj")]
 layout_mode = 2
-texture_normal = ExtResource("6_jevvu")
-item = ExtResource("6_8wlyu")
+texture_normal = ExtResource("5_jevvu")
 
 [node name="Buysed" parent="buymenu/VBoxContainer/build" instance=ExtResource("4_7tgkj")]
 unique_name_in_owner = true
