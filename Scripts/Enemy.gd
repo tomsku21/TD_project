@@ -6,17 +6,22 @@ extends CharacterBody2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 #@onready var health_bar: ProgressBar = %HealthBar
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var audio: Node = $Audio
 
 @export var speed: float = 2.0
-@export var health: int = 15
+@export var max_health: int = 15
 @export var sdamage: int = 10
-
+@export var slow_debuff: float = 0.5
+var taking_damage: bool = false
 var current_speed: float
+var basic_speed: float
 var attack_distance: float = 50.0
 var current_turret = null
 var attacktime: float
 var life_tree: Area2D
-
+var grabbed: bool = false
+var currently_grabbed: bool = false
+var poisoned: bool = false
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
 	speed = speed * randf_range(0.8, 1.2)
@@ -32,6 +37,9 @@ func _physics_process(delta: float) -> void:
 			cpu_particles_2d.emitting = true
 			await get_tree().create_timer(0.1).timeout
 		destroy()
+	if grabbed == true and currently_grabbed == false:
+		await get_tree().create_timer(10).timeout
+		grabbed = false
 
 func destroy():
 	cpu_particles_2d.emitting = true
@@ -70,11 +78,32 @@ func check_turret():
 				nearest_turret = null
 	
 func take_damage(damage: int):
+	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
+	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
+	if poisoned:
+		cpu_particles_2d.scale_amount_max = 0.5
+		cpu_particles_2d.texture = preload("res://Assets/Particles/Skull.png")
+	else:
+		cpu_particles_2d.scale_amount_max = 3.0
+		cpu_particles_2d.texture = null
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		return true
-
+		
+func SlowDebuff():
+	current_speed = speed * slow_debuff
+	$SlowDebuff.start()
+	
+func PoisonDebuff():
+	if taking_damage == false:
+		taking_damage = true
+		poisoned = true
+		for i in 4:
+			take_damage(randi_range(1,2))
+			await get_tree().create_timer(1).timeout
+		taking_damage = false
+		poisoned = false
 func _on_attack_timer_timeout() -> void:
 	if current_turret and current_turret.has_method("take_damage"):
 		#ideally start an animation, where at the end it shoots a projectile/attacks.
@@ -86,3 +115,8 @@ func _on_attack_timer_timeout() -> void:
 		
 func _walk_again() -> void:
 	current_speed = speed
+
+
+func _on_slow_debuff_timeout() -> void:
+	current_speed = speed
+	$SlowDebuff.stop()

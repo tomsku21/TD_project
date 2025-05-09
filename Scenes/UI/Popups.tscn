@@ -23,6 +23,7 @@ corner_radius_bottom_left = 4
 [node name="Popup" type="Control" node_paths=PackedStringArray("Upgrades")]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_toe2v")
 Upgrades = [NodePath("UI/Build1stats/Upgrades/HBoxContainer/Up1"), NodePath("UI/Build1stats/Upgrades/HBoxContainer/Up2"), NodePath("UI/Build1stats/Upgrades/Up3")]
 
@@ -34,6 +35,7 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 241.0
+mouse_filter = 1
 
 [node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
 unique_name_in_owner = true
@@ -42,34 +44,24 @@ offset_left = -56.0
 offset_top = -112.0
 offset_right = 54.0
 offset_bottom = -48.0
+mouse_filter = 2
 alignment = 1
 
 [node name="Up3" parent="UI/Build1stats/Upgrades" instance=ExtResource("2_toe2v")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-description = "Upgrade1 incoming"
-damage = 50
-atk_speed = 2.0
-cost = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Build1stats/Upgrades"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 50
 
 [node name="Up1" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
 layout_mode = 2
-description = "Upgrade 2 incoming"
-damage = 15
-atk_speed = 0.5
-cost = 1
 
 [node name="Up2" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
 layout_mode = 2
-description = "Upgrade 3 incoming"
-damage = 13
-atk_speed = 0.2
-cost = 50
 
 [node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
 custom_minimum_size = Vector2(150, 116)
@@ -85,6 +77,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/BuildPopup"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="Name" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dmg: "
 
 [node name="Desc" type="RichTextLabel" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true

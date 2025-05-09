@@ -1,25 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://cup7eyokmuwhy"]
+[gd_scene load_steps=13 format=3 uid="uid://cup7eyokmuwhy"]
 
-[ext_resource type="Script" uid="uid://bj7qrardp2pg5" path="res://Scripts/turret.gd" id="1_hskch"]
+[ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/BasicPlant.gd" id="1_0ggxg"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_0ggxg"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_6spbj"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_lfpdx"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_6spbj"]
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_qeyrt"]
+[ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_g53be"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_lfpdx"]
+[ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_x7lha"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_ar33y"]
+[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="11_qketn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 48.28
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar33y"]
-size = Vector2(32, 32)
+radius = 100.0
 
 [node name="Turret" type="Area2D" groups=["Turret"]]
 input_pickable = false
-script = ExtResource("1_hskch")
+script = ExtResource("1_0ggxg")
 bullet = ExtResource("2_0ggxg")
-upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), null, null])
+upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), ExtResource("4_g53be"), ExtResource("5_x7lha")])
+sdamage = 5
+atk_speed = 1.0
+cost = 1
+title = "Seed"
+description = "Small seed."
+max_health = 500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -64,24 +70,23 @@ unique_name_in_owner = true
 character = NodePath("..")
 shader_material = ExtResource("2_lfpdx")
 
-[node name="Circle" type="Sprite2D" parent="."]
+[node name="RangeMarker" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.178333, 0.178333)
+scale = Vector2(0.368659, 0.368659)
 texture = ExtResource("5_lfpdx")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_ar33y")
 pitch_scale = 1.1
 
-[node name="Mousecheck" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousecheck"]
-shape = SubResource("RectangleShape2D_ar33y")
+[node name="Mousecheck" parent="." instance=ExtResource("11_qketn")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]

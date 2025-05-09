@@ -1,42 +1,53 @@
 extends Area2D
+class_name SupportTower
 @onready var attack_timer: Timer = $AttackTimer
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
-@onready var circle: Sprite2D = $Circle
+@onready var ARange: Sprite2D = $RangeMarker
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
+@export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
 
+@export_category("Tower Stats")
+@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
+@export var atk_speed: float
+@export var cost: int
+@export var title: String
+@export var description: String
+@export var max_health: int
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
 var damage_taken: int
 var damage_dealt: int
-var atk_speed: float
+
 var kills: int #spawned bullets increase this
-@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
-var enemies: Array[Node2D] = []
+
+var towers: Array[Area2D] = []
 
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
-	atk_speed = %AttackTimer.wait_time
+	%AttackTimer.wait_time = atk_speed
 	$Button.grab_focus()
 
 func _process(delta):
-	print(kills)
 	if GlobalVariables.show_circles:
-		circle.visible = true
+		ARange.visible = true
 	elif clicked:
-		circle.visible = true
-		Popups.showPlant2Info(get_global_transform_with_canvas(), self)
+		ARange.visible = true
+		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
-		circle.visible = false
+		ARange.visible = false
 	
-	if Input.is_action_just_released("click") and !hovered:
+	if Input.is_action_just_released("click") and !hovered and clicked:
 		if $Button.has_focus():
 			$Button.release_focus()
 		else:
 			_on_focus_exited()
+	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
+		print("get unhovered nerd")
+		hovered = false
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -50,27 +61,17 @@ func destroy():
 	queue_free()
 	GlobalVariables.turrets.erase(self)
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and not body in enemies:
-		enemies.append(body)
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Turret") and not area in towers:
+		towers.append(area)
 		if attack_timer.is_stopped():
 			attack_timer.start()
 
-func _on_body_exited(body: Node2D) -> void:
-	if body in enemies:
-		enemies.erase(body)
-		if enemies.is_empty():
+func _on_area_exited(area: Area2D) -> void:
+	if area in towers:
+		towers.erase(area)
+		if towers.is_empty():
 			attack_timer.stop()
-
-func _on_attack_timer_timeout() -> void:
-	if not enemies.is_empty():
-		var target = enemies[0]
-		var new_bullet = bullet.instantiate()
-		add_child(new_bullet)
-		new_bullet.gun = marker_2d
-		new_bullet.target = target
-		new_bullet.damage = sdamage
-	
 
 func upgrade():
 	var new_plant = GlobalVariables.selected_turret.instantiate()
@@ -82,20 +83,36 @@ func upgrade():
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	#circle.visible = true
+	#print("mouse entered")
 	GlobalVariables.is_mouse_in_Area2D = true
 	hovered = true
 
 
 func _on_mouse_exited() -> void:
 	#circle.visible = false
-	GlobalVariables.is_mouse_in_Area2D = false
-	hovered = false
+	if _check_mouseover(): #Ductape fix for exiting when hovering over button
+		GlobalVariables.is_mouse_in_Area2D = false
+		hovered = false
+	else:
+		#print("mouse was still over button, ignore")
+		pass
 
 func _on_focus_entered():
 	clicked = true
 	hovered = true
 
 func _on_focus_exited():
-	print("focus released")
+	print("focus exited?")
 	clicked = false
 	Popups.hideBuildInfo()
+
+#Simple for loop to check if mouse is hovering over a turret. Doing this way so that the code can check other turrets also.
+func _check_mouseover():
+	var turretbuttons = get_tree().get_nodes_in_group("Turretbuttons")
+	for x in turretbuttons:
+		if x.get_global_rect().has_point(get_global_mouse_position()):
+			return false
+		else:
+			continue
+	return true
+	

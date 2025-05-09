@@ -11,24 +11,26 @@ func hideBuildInfo():
 
 func showBuildInfo(sizing, content):
 	if !content == null:
+		lasttower = content
 		setcontent(content)
 		setupgrades(content)
 		var finalpos = sizing.get_origin()
 		%Build1stats.position = finalpos
 		%Build1stats.show()
-		lasttower = content
 		%Upgrades.show()
 
 func setupgrades(content):
 	for i in Upgrades.size():
 		if content.upgrades[i] != null:
-			Upgrades[i].new_tower = content.upgrades[i]
+			Upgrades[i].plant = content.upgrades[i]
 			Upgrades[i].show()
 		else:
 			Upgrades[i].hide()
 		
 
 func setcontent(content):
+	%Name.text = content.title
+	%Name.show()
 	%Desc.hide()
 	%HealthBar.max_value = content.healthcomponent.MAX_HEALTH
 	%HealthBar.value = content.healthcomponent.health
@@ -45,6 +47,7 @@ func upgrade():
 	lasttower.upgrade()
 
 func setupDescription(content):
+	%Name.hide()
 	%Desc.text = str(content.description)
 	%Desc.show()
 	%Dmg.text = str("DMG: ", content.damage)
@@ -57,3 +60,5 @@ func setupDescription(content):
 
 func returnDesc():
 	lasttower.clicked = true
+	lasttower.hovered = false
+	GlobalVariables.is_mouse_in_Area2D = false

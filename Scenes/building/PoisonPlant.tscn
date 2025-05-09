@@ -1,0 +1,194 @@
+[gd_scene load_steps=22 format=3 uid="uid://b6n50uvhrsfbv"]
+
+[ext_resource type="Script" uid="uid://dqufmnixe4s74" path="res://Scripts/poisonPlant.gd" id="1_apre2"]
+[ext_resource type="Texture2D" uid="uid://c7as32ri20qc4" path="res://Assets/Towers/PoisonTurret.png" id="2_apre2"]
+[ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="2_rp36r"]
+[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_8tyrp"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_1ebtt"]
+[ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
+[ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_qtf4t"]
+[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="7_rp36r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
+atlas = ExtResource("2_apre2")
+region = Rect2(0, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtf4t"]
+atlas = ExtResource("2_apre2")
+region = Rect2(46, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv0bi"]
+atlas = ExtResource("2_apre2")
+region = Rect2(92, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2tv7"]
+atlas = ExtResource("2_apre2")
+region = Rect2(138, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnp6p"]
+atlas = ExtResource("2_apre2")
+region = Rect2(184, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6c51"]
+atlas = ExtResource("2_apre2")
+region = Rect2(230, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cdy2"]
+atlas = ExtResource("2_apre2")
+region = Rect2(276, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32sg2"]
+atlas = ExtResource("2_apre2")
+region = Rect2(322, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru6i1"]
+atlas = ExtResource("2_apre2")
+region = Rect2(368, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt02h"]
+atlas = ExtResource("2_apre2")
+region = Rect2(414, 0, 46, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pe2kw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp36r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtf4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv0bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2tv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnp6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6c51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cdy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32sg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru6i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt02h")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtf4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
+radius = 150.0
+
+[node name="PoisonPlant" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+script = ExtResource("1_apre2")
+Attack_effect = NodePath("Attack")
+upgrades = Array[PackedScene]([null, null, null])
+atk_speed = 5.0
+cost = 1
+title = "Poison Plant"
+description = "Poisons enemies, applying a damage over time debuff"
+max_health = 10000
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 6
+emitting = false
+amount = 10
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.0
+scale_amount_max = 3.0
+
+[node name="Attack" type="CPUParticles2D" parent="."]
+z_index = 6
+emitting = false
+amount = 100
+texture = ExtResource("2_rp36r")
+lifetime = 1.1
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 63.01
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+angular_velocity_min = 271.7
+angular_velocity_max = 720.0
+angle_max = 380.0
+scale_amount_min = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pe2kw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
+unique_name_in_owner = true
+visibility_layer = 2
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+focus_mode = 1
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qtf4t")
+flat = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("CircleShape2D_hskch")
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_8tyrp")]
+unique_name_in_owner = true
+character = NodePath("..")
+shader_material = ExtResource("4_1ebtt")
+
+[node name="RangeMarker" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.553, 0.553)
+texture = ExtResource("5_tqlg5")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qtf4t")
+volume_db = 7.0
+pitch_scale = 0.9
+
+[node name="Mousecheck" parent="." instance=ExtResource("7_rp36r")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
