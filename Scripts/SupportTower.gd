@@ -79,6 +79,7 @@ func upgrade():
 	new_plant.global_position = global_position
 	$Button.release_focus()
 	queue_free()
+	GlobalVariables.turrets.erase(self)
 
 func Heal():
 	if healthcomponent.health < healthcomponent.MAX_HEALTH and not is_in_group("Healer"):
