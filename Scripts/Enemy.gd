@@ -126,7 +126,7 @@ func PoisonDebuff():
 		taking_damage = false
 		poisoned = false
 
-func FireDebuff(damage: int):
+func FireDebuff(damage: int, attackerPlant: Area2D):
 	if taking_damage == false:
 		print("BURNING")
 		taking_damage = true
@@ -134,6 +134,7 @@ func FireDebuff(damage: int):
 		for i in 4:
 			var status = take_damage(damage * randf_range(0.8, 0.9))
 			if status:
+				attackerPlant.kills += 1
 				return true
 			await get_tree().create_timer(1).timeout
 		taking_damage = false

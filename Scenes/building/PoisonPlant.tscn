@@ -144,7 +144,7 @@ animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.595898
 
-[node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
+[node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 visibility_layer = 2
 offset_left = -16.0

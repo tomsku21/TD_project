@@ -21,7 +21,8 @@ func _on_body_entered(body: Node2D) -> void:
 			var status = target.take_damage(damage)
 			damage_dealt += damage
 			sprite_2d.visible = false
-			await get_tree().create_timer(1).timeout
 			if status:
+				#print("attemting to increase tower kill count")
 				get_parent().kills += 1
+			await get_tree().create_timer(1).timeout #the purpose of this wait?
 			queue_free()

@@ -5,6 +5,7 @@ var gun: Marker2D
 var speed: float = 500
 var damage: float = 20
 var splash_radius: float = 64.0
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:
@@ -17,9 +18,12 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		print(get_parent())
-		target.take_damage(damage)
-		apply_splash_damage()
+		var status = target.take_damage(damage)
+		call_deferred("apply_splash_damage")
 		sprite_2d.visible = false
+		if status:
+			#print("attemting to increase tower kill count")
+			get_parent().kills += 1
 		await get_tree().create_timer(0.5).timeout
 		queue_free()
 
@@ -32,6 +36,7 @@ func apply_splash_damage():
 
 
 func _apply_fire_debuff(enemy):
-	var status = await enemy.FireDebuff(damage)
-	if status:
-		get_parent().kills += 1
+	#var status = await 
+	enemy.FireDebuff(damage, get_parent())
+	#if status:
+		#get_parent().kills += 1

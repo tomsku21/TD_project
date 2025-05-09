@@ -66,7 +66,7 @@ modulate = Color(0.464645, 0.626273, 0, 1)
 z_index = 1
 texture = ExtResource("4_h27ut")
 
-[node name="Button" type="Button" parent="." groups=["Turretbuttons"]]
+[node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = -16.0
 offset_top = -16.0
