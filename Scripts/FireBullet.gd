@@ -5,7 +5,6 @@ var gun: Marker2D
 var speed: float = 500
 var damage: float = 20
 var splash_radius: float = 64.0
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:
@@ -19,7 +18,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		print(get_parent())
 		target.take_damage(damage)
-		call_deferred("apply_splash_damage")
+		apply_splash_damage()
 		sprite_2d.visible = false
 		await get_tree().create_timer(0.5).timeout
 		queue_free()
