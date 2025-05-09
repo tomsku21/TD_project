@@ -48,7 +48,7 @@ z_index = 10
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_ubio8")
 shader_material = ExtResource("4_haj6g")
-speed = 200.0
+speed = 20.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -3)
