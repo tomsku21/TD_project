@@ -6,20 +6,24 @@ class_name Tower
 @onready var ARange: Sprite2D = $RangeMarker
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
+
+@export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
+@export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
+@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
 @export var atk_speed: float
 @export var cost: int
 @export var title: String #Name of tower
 @export var description: String
-@export var max_health: int
+@export var max_health: float = 1000.0
+
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
-var damage_taken: int
-var damage_dealt: int
+var damage_taken: float
+var damage_dealt: float
 
 var kills: int #spawned bullets increase this
 
@@ -49,7 +53,7 @@ func _process(delta):
 		print("get unhovered nerd")
 		hovered = false
 
-func take_damage(damage: int):
+func take_damage(damage: float):
 	healthcomponent.damage(damage)
 	damage_taken += damage
 	cpu_particles_2d.emitting = true
@@ -83,6 +87,7 @@ func upgrade():
 	new_plant.global_position = global_position
 	$Button.release_focus()
 	queue_free()
+	GlobalVariables.turrets.erase(self)
 
 func Heal():
 	if healthcomponent.health < healthcomponent.MAX_HEALTH:

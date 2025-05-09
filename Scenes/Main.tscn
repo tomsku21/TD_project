@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=18 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
 [ext_resource type="Texture2D" uid="uid://7gl0h6nrxrqd" path="res://Assets/World/Puu.png" id="2_v1gob"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dq5pfe5ho4c80" path="res://Scenes/UI/UI.tscn" id="4_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://cn4txilobppja" path="res://Assets/World/tileSheet.png" id="4_vy5pj"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="6_v1gob"]
+[ext_resource type="Script" path="res://Scripts/random_bullet_spawner.gd" id="9_vy5pj"]
+[ext_resource type="PackedScene" uid="uid://qbmbmuboql3" path="res://Scenes/RandomBullet.tscn" id="10_bmxlf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idj7w"]
 texture = ExtResource("1_r150o")
@@ -940,4 +942,27 @@ angle_max = 540.0
 scale_amount_max = 1.5
 scale_amount_curve = SubResource("Curve_pbw6q")
 
+[node name="RandomBulletSpawner" type="Node" parent="." node_paths=PackedStringArray("markers", "timer")]
+script = ExtResource("9_vy5pj")
+markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
+random_bullet = ExtResource("10_bmxlf")
+timer = NodePath("Timer")
+damage = 20
+
+[node name="Marker2D" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(450, -273)
+
+[node name="Marker2D2" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(-474, -274)
+
+[node name="Marker2D3" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(-477, 265)
+
+[node name="Marker2D4" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(468, 264)
+
+[node name="Timer" type="Timer" parent="RandomBulletSpawner"]
+one_shot = true
+
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="RandomBulletSpawner/Timer" to="RandomBulletSpawner" method="_on_timer_timeout"]

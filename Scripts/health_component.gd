@@ -2,14 +2,14 @@ extends Node
 class_name HealthComponent
 var sprite
 @export var character : Node2D
-@export var MAX_HEALTH :int
-@export var health: int
+@export var MAX_HEALTH :float
+@export var health: float
 @export var shader_material: ShaderMaterial
 
 
 func _ready():
 	MAX_HEALTH = character.max_health
-	health = MAX_HEALTH	
+	health = MAX_HEALTH
 	if get_parent().has_node("AnimatedSprite2D"):
 		sprite = get_parent().get_node("AnimatedSprite2D")
 	elif get_parent().has_node("Sprite2D"):
@@ -24,6 +24,7 @@ func _ready():
 
 func damage(damage):
 	health -= damage
+	print("damage taken: ", damage)
 	shader_handler()
 	if health <= 0:
 		health = 0
@@ -36,6 +37,6 @@ func shader_handler():
 	material.set_shader_parameter("red_tint_amount", 0.7 - health_ratio)
 	for i in 3:
 		material.set_shader_parameter("flash_amount", 0.6)
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.05).timeout
 		material.set_shader_parameter("flash_amount", 0.0)
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.05).timeout

@@ -12,7 +12,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 261.989
 
-[node name="Healer" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+[node name="Healer" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Healer", "Turret"]]
 material = ExtResource("2_rjmf3")
 script = ExtResource("1_d0lby")
 Attack_effect = NodePath("Attack")
@@ -21,7 +21,6 @@ atk_speed = 5.0
 cost = 1
 title = "Healer plant"
 description = "Healer"
-max_health = 100
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -87,6 +86,7 @@ character = NodePath("..")
 shader_material = ExtResource("4_bcjs5")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-9.53674e-07, -9.53674e-07)
 scale = Vector2(0.969979, 0.963729)
 texture = ExtResource("5_oc3se")

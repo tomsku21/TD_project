@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://gcxjuwtrk0nt"]
+
+[ext_resource type="Script" uid="uid://ccku33unvxgfb" path="res://Scripts/FireBullet.gd" id="1_g28uf"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_nt07y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_g28uf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.148438, 0.148438)
+texture = ExtResource("2_nt07y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oduel")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

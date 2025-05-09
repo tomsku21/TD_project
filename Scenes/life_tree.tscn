@@ -5,17 +5,19 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_yb4q4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb4q4"]
-size = Vector2(61, 69)
+size = Vector2(97, 77)
 
 [node name="LifeTree" type="Area2D" groups=["LifeTree"]]
 script = ExtResource("1_883my")
 shader_material = ExtResource("2_yb4q4")
+sdamage = 5
+attackTime = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5jboi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -6.5)
+position = Vector2(19.5, -2.5)
 shape = SubResource("RectangleShape2D_yb4q4")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -26,5 +28,10 @@ offset_right = 27.0
 offset_bottom = -42.0
 value = 100.0
 
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

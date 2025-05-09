@@ -1,5 +1,8 @@
 extends Tower
 
+@export_category("Plant texture for dropshadow")
+@export var plantimg: Texture
+
 func _on_attack_timer_timeout() -> void:
 	if not enemies.is_empty():
 		$Shoot.pitch_scale = randf_range(0.9, 1.2)

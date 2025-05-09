@@ -38,6 +38,7 @@ enemies=""
 Turret=""
 LifeTree=""
 Turretarea="For mouse over checks"
+Healer=""
 
 [input]
 
