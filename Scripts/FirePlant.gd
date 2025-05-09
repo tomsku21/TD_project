@@ -1,5 +1,6 @@
 extends Tower
 
+
 @export var fire_bullet_scene: PackedScene # Assign FireBullet.tscn in the editor
 
 func _ready() -> void:
