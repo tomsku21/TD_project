@@ -69,6 +69,12 @@ character = NodePath("..")
 MAX_HEALTH = 15
 shader_material = ExtResource("4_haj6g")
 
+[node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
+[node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
 emitting = false
 amount = 10
@@ -84,12 +90,6 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
-
-[node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
-one_shot = true
-
-[node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
-one_shot = true
 
 [node name="SlowDebuff" type="Timer" parent="CharacterBody2D"]
 wait_time = 5.0

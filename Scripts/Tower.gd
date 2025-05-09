@@ -15,6 +15,7 @@ class_name Tower
 @export var title: String #Name of tower
 @export var description: String
 @export var max_health: int
+
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
