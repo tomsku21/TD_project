@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		if is_instance_valid(target) and target.has_method("take_damage"):
-			var status = target.take_damage(damage, get_parent())
+			target.take_damage(damage, get_parent())
 			damage_dealt += damage
 			sprite_2d.visible = false
 			await get_tree().create_timer(1).timeout #the purpose of this wait?
