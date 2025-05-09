@@ -36,6 +36,6 @@ func shader_handler():
 	material.set_shader_parameter("red_tint_amount", 0.7 - health_ratio)
 	for i in 3:
 		material.set_shader_parameter("flash_amount", 0.6)
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.05).timeout
 		material.set_shader_parameter("flash_amount", 0.0)
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.05).timeout

@@ -7,11 +7,14 @@ extends CharacterBody2D
 #@onready var health_bar: ProgressBar = %HealthBar
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var audio: Node = $Audio
-
+@export var shader_material: ShaderMaterial
 @export var speed: float = 2.0
 @export var max_health: int = 15
 @export var sdamage: int = 10
 @export var slow_debuff: float = 0.5
+
+var sprite
+var end: bool = false
 var taking_damage: bool = false
 var current_speed: float
 var basic_speed: float
@@ -22,21 +25,31 @@ var life_tree: Area2D
 var grabbed: bool = false
 var currently_grabbed: bool = false
 var poisoned: bool = false
+
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
 	speed = speed * randf_range(0.8, 1.2)
 	current_speed = speed
 
+	if has_node("AnimatedSprite2D"):
+		sprite = get_node("AnimatedSprite2D")
+	elif has_node("Sprite2D"):
+		sprite = get_node("Sprite2D")
+
+	if sprite:
+		sprite.material = shader_material.duplicate()
+		var material = sprite.material as ShaderMaterial
+		material.set_shader_parameter("ice_tint_amount", 0.0)
+
 func _physics_process(delta: float) -> void:
 	check_turret()
 	change_rotation()
-	path.progress += current_speed * delta
+	if end == false:
+		path.progress += current_speed * delta
 	if path.progress_ratio >= 0.99:
-		if life_tree and life_tree.has_method("take_damage"):
-			life_tree.take_damage(sdamage)
-			cpu_particles_2d.emitting = true
-			await get_tree().create_timer(0.1).timeout
-		destroy()
+		if attack_timer.is_stopped():
+			attack_timer.start()
+			end = true
 	if grabbed == true and currently_grabbed == false:
 		await get_tree().create_timer(10).timeout
 		grabbed = false
@@ -92,6 +105,8 @@ func take_damage(damage: int):
 		return true
 		
 func SlowDebuff():
+	var material = sprite.material as ShaderMaterial
+	material.set_shader_parameter("ice_tint_amount", 0.6)
 	current_speed = speed * slow_debuff
 	$SlowDebuff.start()
 	
@@ -104,19 +119,24 @@ func PoisonDebuff():
 			await get_tree().create_timer(1).timeout
 		taking_damage = false
 		poisoned = false
+
 func _on_attack_timer_timeout() -> void:
-	if current_turret and current_turret.has_method("take_damage"):
-		#ideally start an animation, where at the end it shoots a projectile/attacks.
-		#even without animations, needs a short stop for attack.
-		current_speed = 0
-		current_turret.take_damage(sdamage)
-	walk_timer.wait_time = attacktime * 0.25
-	walk_timer.start()
+	if end:
+		if life_tree and life_tree.has_method("take_damage"):
+			life_tree.take_damage(sdamage)
+	else:
+		if current_turret and current_turret.has_method("take_damage"):
+			current_speed = 0
+			current_turret.take_damage(sdamage)
+		walk_timer.wait_time = attacktime * 0.25
+		walk_timer.start()
 		
 func _walk_again() -> void:
 	current_speed = speed
 
 
 func _on_slow_debuff_timeout() -> void:
+	var material = sprite.material as ShaderMaterial
+	material.set_shader_parameter("ice_tint_amount", 0.0)
 	current_speed = speed
 	$SlowDebuff.stop()

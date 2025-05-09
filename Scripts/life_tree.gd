@@ -2,12 +2,20 @@ extends Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var shader_material: ShaderMaterial
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var attack_timer: Timer = $AttackTimer
 
+@export var sdamage: int
+@export var attackTime: float
+var enemies: Array = []
 func _ready() -> void:
+	attack_timer.wait_time = attackTime
 	if sprite_2d:
 		sprite_2d.material = shader_material.duplicate()
 		var material = sprite_2d.material as ShaderMaterial
 		material.set_shader_parameter("red_tint_amount", 0.0)
+
+func _physics_process(delta: float) -> void:
+	pass
 
 func take_damage(damage: int):
 	GlobalVariables.player_hp -= damage
@@ -33,3 +41,22 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	progress_bar.visible = false
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies") and not body in enemies:
+		enemies.append(body)
+		if attack_timer.is_stopped():
+			attack_timer.start()
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body in enemies:
+		enemies.erase(body)
+		if enemies.is_empty():
+			attack_timer.stop()
+
+func _on_attack_timer_timeout() -> void:
+	if not enemies.is_empty():
+		var target = enemies[0]
+		target.take_damage(sdamage)
