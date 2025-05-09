@@ -7,11 +7,12 @@ extends CharacterBody2D
 #@onready var health_bar: ProgressBar = %HealthBar
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var audio: Node = $Audio
-
+@export var shader_material: ShaderMaterial
 @export var speed: float = 2.0
 @export var max_health: int = 15
 @export var sdamage: int = 10
 @export var slow_debuff: float = 0.5
+var sprite
 var taking_damage: bool = false
 var current_speed: float
 var basic_speed: float
@@ -22,10 +23,20 @@ var life_tree: Area2D
 var grabbed: bool = false
 var currently_grabbed: bool = false
 var poisoned: bool = false
+
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
 	speed = speed * randf_range(0.8, 1.2)
 	current_speed = speed
+	if has_node("AnimatedSprite2D"):
+		sprite = get_node("AnimatedSprite2D")
+	elif has_node("Sprite2D"):
+		sprite = get_node("Sprite2D")
+
+	if sprite:
+		sprite.material = shader_material.duplicate()
+		var material = sprite.material as ShaderMaterial
+		material.set_shader_parameter("ice_tint_amount", 0.0)
 
 func _physics_process(delta: float) -> void:
 	check_turret()
@@ -92,6 +103,8 @@ func take_damage(damage: int):
 		return true
 		
 func SlowDebuff():
+	var material = sprite.material as ShaderMaterial
+	material.set_shader_parameter("ice_tint_amount", 0.6)
 	current_speed = speed * slow_debuff
 	$SlowDebuff.start()
 	
@@ -118,5 +131,7 @@ func _walk_again() -> void:
 
 
 func _on_slow_debuff_timeout() -> void:
+	var material = sprite.material as ShaderMaterial
+	material.set_shader_parameter("ice_tint_amount", 0.0)
 	current_speed = speed
 	$SlowDebuff.stop()
