@@ -95,7 +95,7 @@ func check_turret():
 				attack_timer.stop()
 				nearest_turret = null
 	
-func take_damage(damage: float):
+func take_damage(damage: float, attackerPlant: Area2D):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
@@ -107,8 +107,7 @@ func take_damage(damage: float):
 		cpu_particles_2d.texture = null
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
-		return true
-	return false
+		attackerPlant.kills += 1
 		
 func SlowDebuff():
 	var material = sprite.material as ShaderMaterial
@@ -116,12 +115,12 @@ func SlowDebuff():
 	current_speed = speed * slow_debuff
 	$SlowDebuff.start()
 	
-func PoisonDebuff():
+func PoisonDebuff(attackerPlant: Area2D):
 	if taking_damage == false:
 		taking_damage = true
 		poisoned = true
 		for i in 4:
-			take_damage(randi_range(1,2))
+			take_damage(randi_range(1,2), attackerPlant)
 			await get_tree().create_timer(1).timeout
 		taking_damage = false
 		poisoned = false
@@ -132,14 +131,10 @@ func FireDebuff(damage: int, attackerPlant: Area2D):
 		taking_damage = true
 		burning = true
 		for i in 4:
-			var status = take_damage(damage * randf_range(0.8, 0.9))
-			if status:
-				attackerPlant.kills += 1
-				return true
+			var status = take_damage(damage * randf_range(0.8, 0.9), attackerPlant)
 			await get_tree().create_timer(1).timeout
 		taking_damage = false
 		burning = false
-	return false
 
 func _on_attack_timer_timeout() -> void:
 	if end:

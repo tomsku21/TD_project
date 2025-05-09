@@ -18,12 +18,9 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		print(get_parent())
-		var status = target.take_damage(damage)
+		target.take_damage(damage, get_parent())
 		call_deferred("apply_splash_damage")
 		sprite_2d.visible = false
-		if status:
-			#print("attemting to increase tower kill count")
-			get_parent().kills += 1
 		await get_tree().create_timer(0.5).timeout
 		queue_free()
 
@@ -36,7 +33,4 @@ func apply_splash_damage():
 
 
 func _apply_fire_debuff(enemy):
-	#var status = await 
 	enemy.FireDebuff(damage, get_parent())
-	#if status:
-		#get_parent().kills += 1
