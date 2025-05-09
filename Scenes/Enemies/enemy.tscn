@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmnfkxxc82kcv"]
+[gd_scene load_steps=12 format=3 uid="uid://cmnfkxxc82kcv"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_ubio8"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_miwey"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_l8da7"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_haj6g"]
+[ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="5_l8da7"]
 [ext_resource type="AudioStream" uid="uid://c27afwy3dwqvm" path="res://Assets/Sounds/splash small 9.wav" id="5_miwey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
@@ -75,6 +76,7 @@ one_shot = true
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
 emitting = false
 amount = 10
+texture = ExtResource("5_l8da7")
 lifetime = 0.1
 one_shot = true
 explosiveness = 1.0

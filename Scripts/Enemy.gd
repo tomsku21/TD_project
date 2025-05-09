@@ -82,9 +82,11 @@ func take_damage(damage: int):
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
 	if poisoned:
-		cpu_particles_2d.color = Color.GREEN
+		cpu_particles_2d.scale_amount_max = 0.5
+		cpu_particles_2d.texture = preload("res://Assets/Particles/Skull.png")
 	else:
-		cpu_particles_2d.color = Color.WHITE
+		cpu_particles_2d.scale_amount_max = 3.0
+		cpu_particles_2d.texture = null
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		return true

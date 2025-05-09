@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=13 format=3 uid="uid://bfdli3w1fom06"]
 
 [ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
 [ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="2_jsynv"]
 [ext_resource type="PackedScene" uid="uid://qv4gs0heqxmg" path="res://Scenes/building/Grabber.tscn" id="3_h27ut"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
 [ext_resource type="Texture2D" uid="uid://bnb1o5g3ctu5c" path="res://Assets/Plants/Frostie.png" id="4_h27ut"]
+[ext_resource type="Texture2D" uid="uid://c3rcybm2wymw4" path="res://Assets/Particles/wind.png" id="4_x6bfs"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_x6bfs"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_b70jt"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_yltu3"]
@@ -46,9 +47,11 @@ scale_amount_max = 3.0
 z_index = 6
 emitting = false
 amount = 100
-lifetime = 0.44
+texture = ExtResource("4_x6bfs")
+lifetime = 0.69
 one_shot = true
 explosiveness = 1.0
+lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 63.01
 spread = 180.0
@@ -56,7 +59,7 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 150.0
 initial_velocity_max = 150.0
 scale_amount_min = 0.0
-scale_amount_max = 3.0
+scale_amount_max = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.464645, 0.626273, 0, 1)
