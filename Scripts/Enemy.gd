@@ -1,18 +1,22 @@
 extends CharacterBody2D
+# Onready
 @onready var path: PathFollow2D = $".."
 @onready var walk_timer: Timer = $WalkTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
-#@onready var health_bar: ProgressBar = %HealthBar
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var audio: Node = $Audio
+
+# Export
 @export var shader_material: ShaderMaterial
 @export var speed: float = 2.0
 @export var max_health: int = 15
 @export var sdamage: int = 10
 @export var slow_debuff: float = 0.5
 
+
+# Variables
 var sprite
 var end: bool = false
 var taking_damage: bool = false

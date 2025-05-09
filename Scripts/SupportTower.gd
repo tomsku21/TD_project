@@ -32,9 +32,9 @@ func _ready() -> void:
 	$Button.grab_focus()
 
 func _process(delta):
-	#if GlobalVariables.show_circles:
-		#ARange.visible = true
-	if clicked:
+	if GlobalVariables.show_circles:
+		ARange.visible = true
+	elif clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
@@ -48,7 +48,6 @@ func _process(delta):
 	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
 		print("get unhovered nerd")
 		hovered = false
-
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -82,7 +81,7 @@ func upgrade():
 	queue_free()
 
 func Heal():
-	if healthcomponent.health < healthcomponent.MAX_HEALTH:
+	if healthcomponent.health < healthcomponent.MAX_HEALTH and not is_in_group("Healer"):
 		healthcomponent.health += randi_range(10,20)
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
@@ -113,7 +112,7 @@ func _on_focus_exited():
 
 #Simple for loop to check if mouse is hovering over a turret. Doing this way so that the code can check other turrets also.
 func _check_mouseover():
-	var turretbuttons = get_tree().get_nodes_in_group("Turretarea")
+	var turretbuttons = get_tree().get_nodes_in_group("Turretbuttons")
 	for x in turretbuttons:
 		if x.get_global_rect().has_point(get_global_mouse_position()):
 			return false
