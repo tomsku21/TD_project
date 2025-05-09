@@ -47,7 +47,6 @@ scale_amount_min = 0.0
 scale_amount_max = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
 texture = ExtResource("2_tdi3x")
 
 [node name="Button" type="Button" parent="."]

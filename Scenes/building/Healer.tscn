@@ -87,6 +87,7 @@ character = NodePath("..")
 shader_material = ExtResource("4_bcjs5")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-9.53674e-07, -9.53674e-07)
 scale = Vector2(0.969979, 0.963729)
 texture = ExtResource("5_oc3se")
