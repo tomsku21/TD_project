@@ -1,16 +1,53 @@
-[gd_scene load_steps=14 format=3 uid="uid://cup7eyokmuwhy"]
+[gd_scene load_steps=20 format=3 uid="uid://cup7eyokmuwhy"]
 
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/BasicPlant.gd" id="1_gjq8m"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_7mvnh"]
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="3_1xls1"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_5yvm0"]
 [ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_sq620"]
+[ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="7_1xls1"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="7_7mvnh"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="7_tcjie"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_k8lsj"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_d63pv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_efv0f"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="11_oti20"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
+atlas = ExtResource("7_1xls1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq620"]
+atlas = ExtResource("7_1xls1")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyoit"]
+atlas = ExtResource("7_1xls1")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcjie"]
+atlas = ExtResource("7_1xls1")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k8lsj"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_5yvm0")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_sq620")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_tyoit")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_tcjie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xls1"]
 
@@ -45,8 +82,10 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("7_7mvnh")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k8lsj")
+autoplay = "default"
+frame_progress = 0.489767
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
