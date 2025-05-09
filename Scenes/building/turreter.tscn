@@ -17,6 +17,9 @@ radius = 150.0
 script = ExtResource("1_s6nl5")
 bullet = ExtResource("2_a4jgc")
 upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
+upRequirement = {
+"damage_taken": 500.0
+}
 sdamage = 9.0
 atk_speed = 0.5
 cost = 2

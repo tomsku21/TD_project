@@ -5,6 +5,8 @@ var description: String
 var damage: float
 var atk_speed: float
 var cost: int
+var requirement: float
+var new_plant
 
 func _process(delta):
 	if plant != null:
@@ -12,6 +14,8 @@ func _process(delta):
 		
 
 func _on_click():
+	#var dictionary_key = (new_plant.upRequirement.keys()[0])
+	#thisisdumb(dictionary_key)
 	GlobalVariables.cost -= cost
 	GlobalVariables.selected_turret = plant
 	Popups.upgrade()
@@ -24,7 +28,7 @@ func _on_mouse_exited():
 	Popups.returnDesc()
 
 func set_stats():
-	var new_plant = plant.instantiate()
+	new_plant = plant.instantiate()
 	description = new_plant.description
 	damage = new_plant.sdamage
 	atk_speed = new_plant.atk_speed

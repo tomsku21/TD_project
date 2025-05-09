@@ -6,7 +6,10 @@ class_name Tower
 @onready var ARange: Sprite2D = $RangeMarker
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene
+
+@export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
+@export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
 @export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
