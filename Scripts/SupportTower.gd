@@ -112,7 +112,7 @@ func _on_focus_exited():
 
 #Simple for loop to check if mouse is hovering over a turret. Doing this way so that the code can check other turrets also.
 func _check_mouseover():
-	var turretbuttons = get_tree().get_nodes_in_group("Turretbuttons")
+	var turretbuttons = get_tree().get_nodes_in_group("Turretarea")
 	for x in turretbuttons:
 		if x.get_global_rect().has_point(get_global_mouse_position()):
 			return false
