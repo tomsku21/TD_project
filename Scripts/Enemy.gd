@@ -29,6 +29,7 @@ var life_tree: Area2D
 var grabbed: bool = false
 var currently_grabbed: bool = false
 var poisoned: bool = false
+var burning: bool = false
 
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
@@ -107,6 +108,7 @@ func take_damage(damage: float):
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		return true
+	return false
 		
 func SlowDebuff():
 	var material = sprite.material as ShaderMaterial
@@ -123,6 +125,20 @@ func PoisonDebuff():
 			await get_tree().create_timer(1).timeout
 		taking_damage = false
 		poisoned = false
+
+func FireDebuff(damage: int):
+	if taking_damage == false:
+		print("BURNING")
+		taking_damage = true
+		burning = true
+		for i in 4:
+			var status = take_damage(damage * randf_range(0.8, 0.9))
+			if status:
+				return true
+			await get_tree().create_timer(1).timeout
+		taking_damage = false
+		burning = false
+	return false
 
 func _on_attack_timer_timeout() -> void:
 	if end:

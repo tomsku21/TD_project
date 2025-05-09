@@ -11,6 +11,7 @@ var new_plant
 func _process(delta):
 	if plant != null:
 		self.disabled = (GlobalVariables.cost < cost)
+		
 
 func _on_click():
 	#var dictionary_key = (new_plant.upRequirement.keys()[0])

@@ -7,6 +7,7 @@ extends Area2D
 @export var sdamage: int
 @export var attackTime: float
 var enemies: Array = []
+
 func _ready() -> void:
 	attack_timer.wait_time = attackTime
 	if sprite_2d:
