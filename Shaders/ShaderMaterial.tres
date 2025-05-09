@@ -6,3 +6,4 @@
 shader = ExtResource("1_i0ttu")
 shader_parameter/flash_amount = 0.0
 shader_parameter/red_tint_amount = 0.0
+shader_parameter/ice_tint_amount = 0.0
