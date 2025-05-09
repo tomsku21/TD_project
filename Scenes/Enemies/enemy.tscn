@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmnfkxxc82kcv"]
+[gd_scene load_steps=15 format=3 uid="uid://cmnfkxxc82kcv"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_ubio8"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_miwey"]
@@ -6,6 +6,9 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_haj6g"]
 [ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="5_l8da7"]
 [ext_resource type="AudioStream" uid="uid://c27afwy3dwqvm" path="res://Assets/Sounds/splash small 9.wav" id="5_miwey"]
+[ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_haj6g"]
+[ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_u0emo"]
+[ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_tq087"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1f0kj"]
 atlas = ExtResource("2_miwey")
@@ -45,10 +48,15 @@ size = Vector2(20, 9)
 [node name="Enemy" type="PathFollow2D"]
 z_index = 10
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_ubio8")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
+poison = NodePath("Debuff/Poison")
+burn = NodePath("Debuff/Burn")
+slow = NodePath("Debuff/Slow")
+walk_timer = NodePath("Timers/WalkTimer")
+attack_timer = NodePath("Timers/AttackTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -3)
@@ -68,12 +76,6 @@ unique_name_in_owner = true
 character = NodePath("..")
 shader_material = ExtResource("4_haj6g")
 
-[node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
-one_shot = true
-
-[node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
-one_shot = true
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
 emitting = false
 amount = 10
@@ -90,12 +92,6 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="SlowDebuff" type="Timer" parent="CharacterBody2D"]
-wait_time = 5.0
-
-[node name="PoisonDebuff" type="Timer" parent="CharacterBody2D"]
-wait_time = 5.0
-
 [node name="Audio" type="Node" parent="CharacterBody2D"]
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="CharacterBody2D/Audio"]
@@ -103,7 +99,41 @@ stream = ExtResource("5_miwey")
 volume_db = -10.0
 pitch_scale = 0.8
 
-[connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="CharacterBody2D/WalkTimer" to="CharacterBody2D" method="_walk_again"]
-[connection signal="timeout" from="CharacterBody2D/SlowDebuff" to="CharacterBody2D" method="_on_slow_debuff_timeout"]
-[connection signal="timeout" from="CharacterBody2D/PoisonDebuff" to="CharacterBody2D" method="_on_poison_debuff_timeout"]
+[node name="Debuff" type="Node" parent="CharacterBody2D"]
+
+[node name="Poison" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
+script = ExtResource("7_haj6g")
+main_script = NodePath("../..")
+times = 4
+poison_timeout = 1.0
+max_damage = 2.0
+min_damage = 1.0
+
+[node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
+script = ExtResource("8_u0emo")
+main_script = NodePath("../..")
+times = 4
+burn_timeout = 1.0
+max_damage_minus_procent = 20.0
+min_damage_minus_procent = 10.0
+
+[node name="Slow" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script", "timer")]
+script = ExtResource("9_tq087")
+main_script = NodePath("../..")
+timer = NodePath("../../Timers/SlowDebuff")
+slow_debuff = 60.0
+
+[node name="Timers" type="Node" parent="CharacterBody2D"]
+
+[node name="AttackTimer" type="Timer" parent="CharacterBody2D/Timers"]
+one_shot = true
+
+[node name="WalkTimer" type="Timer" parent="CharacterBody2D/Timers"]
+one_shot = true
+
+[node name="SlowDebuff" type="Timer" parent="CharacterBody2D/Timers"]
+wait_time = 5.0
+
+[connection signal="timeout" from="CharacterBody2D/Timers/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/Timers/WalkTimer" to="CharacterBody2D" method="_walk_again"]
+[connection signal="timeout" from="CharacterBody2D/Timers/SlowDebuff" to="CharacterBody2D/Debuff/Slow" method="_on_slow_debuff_timeout"]

@@ -1,0 +1,23 @@
+extends Node
+class_name Burn
+@export var main_script: CharacterBody2D
+
+@export_category("Values")
+@export var times: int
+@export var burn_timeout: float
+## Procent Values go like damge - 20%
+@export_range(0.0,100.0,10.0, "%") var max_damage_minus_procent
+## Procent Values go like damge - 10%
+@export_range(0.0,100.0,10.0, "%") var min_damage_minus_procent
+
+func FireDebuff(damage: int, attackerPlant: Area2D):
+	var max_damage = ((100 - max_damage_minus_procent) * 0.1) * 0.1
+	var min_damage = ((100 - min_damage_minus_procent) * 0.1) * 0.1
+	if main_script.taking_damage == false:
+		main_script.taking_damage = true
+		main_script.burning = true
+		for i in times:
+			var status = main_script.take_damage(damage * randf_range(max_damage, min_damage), attackerPlant)
+			await get_tree().create_timer(burn_timeout).timeout
+		main_script.taking_damage = false
+		main_script.burning = false

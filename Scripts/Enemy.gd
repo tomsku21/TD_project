@@ -1,8 +1,7 @@
 extends CharacterBody2D
+
 # Onready
 @onready var path: PathFollow2D = $".."
-@onready var walk_timer: Timer = $WalkTimer
-@onready var attack_timer: Timer = $AttackTimer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
@@ -13,8 +12,15 @@ extends CharacterBody2D
 @export var speed: float = 2.0
 @export var max_health: float = 15
 @export var sdamage: float = 10
-@export var slow_debuff: float = 0.5
 
+@export_category("Debuff")
+@export var poison: Poison
+@export var burn: Burn
+@export var slow: Slow
+
+@export_category("Timers")
+@export var walk_timer: Timer
+@export var attack_timer: Timer
 
 # Variables
 var sprite
@@ -108,33 +114,6 @@ func take_damage(damage: float, attackerPlant: Area2D):
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		attackerPlant.kills += 1
-		
-func SlowDebuff():
-	var material = sprite.material as ShaderMaterial
-	material.set_shader_parameter("ice_tint_amount", 0.6)
-	current_speed = speed * slow_debuff
-	$SlowDebuff.start()
-	
-func PoisonDebuff(attackerPlant: Area2D):
-	if taking_damage == false:
-		taking_damage = true
-		poisoned = true
-		for i in 4:
-			take_damage(randi_range(1,2), attackerPlant)
-			await get_tree().create_timer(1).timeout
-		taking_damage = false
-		poisoned = false
-
-func FireDebuff(damage: int, attackerPlant: Area2D):
-	if taking_damage == false:
-		print("BURNING")
-		taking_damage = true
-		burning = true
-		for i in 4:
-			var status = take_damage(damage * randf_range(0.8, 0.9), attackerPlant)
-			await get_tree().create_timer(1).timeout
-		taking_damage = false
-		burning = false
 
 func _on_attack_timer_timeout() -> void:
 	if end:
@@ -149,10 +128,3 @@ func _on_attack_timer_timeout() -> void:
 		
 func _walk_again() -> void:
 	current_speed = speed
-
-
-func _on_slow_debuff_timeout() -> void:
-	var material = sprite.material as ShaderMaterial
-	material.set_shader_parameter("ice_tint_amount", 0.0)
-	current_speed = speed
-	$SlowDebuff.stop()

@@ -29,4 +29,4 @@ func apply_splash_damage():
 	for enemy in enemies:
 		if global_position.distance_to(enemy.global_position) <= splash_radius:
 			if enemy.has_method("FireDebuff"):
-				enemy.FireDebuff(damage, get_parent())
+				enemy.burn.FireDebuff(damage, get_parent())

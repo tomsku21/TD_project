@@ -9,4 +9,4 @@ func _on_attack_timer_timeout() -> void:
 		Attack_effect.emitting = true
 		for i in enemies.size():
 			var target = enemies[i]
-			target.PoisonDebuff(self)
+			target.poison.PoisonDebuff(self)

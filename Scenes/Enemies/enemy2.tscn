@@ -1,34 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh14dlu836nuy"]
+[gd_scene load_steps=15 format=3 uid="uid://d035xl34juad7"]
 
 [ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_1cilx"]
 [ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="2_trx3d"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_rvhp7"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_c0b6a"]
+[ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="5_duseo"]
 [ext_resource type="AudioStream" uid="uid://c27afwy3dwqvm" path="res://Assets/Sounds/splash small 9.wav" id="5_trx3d"]
+[ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_q2wnr"]
+[ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_oksxf"]
+[ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_vifs5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1cilx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_duseo"]
 atlas = ExtResource("2_trx3d")
-region = Rect2(270, 152, 90, 76)
+region = Rect2(270, 138, 90, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_trx3d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2wnr"]
 atlas = ExtResource("2_trx3d")
-region = Rect2(360, 152, 90, 76)
+region = Rect2(360, 138, 90, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rvhp7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oksxf"]
 atlas = ExtResource("2_trx3d")
-region = Rect2(450, 152, 90, 76)
+region = Rect2(450, 138, 90, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1cilx")
+"texture": SubResource("AtlasTexture_duseo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_trx3d")
+"texture": SubResource("AtlasTexture_q2wnr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rvhp7")
+"texture": SubResource("AtlasTexture_oksxf")
 }],
 "loop": true,
 "name": &"default",
@@ -41,20 +45,26 @@ size = Vector2(20, 9)
 [node name="Enemy" type="PathFollow2D"]
 z_index = 10
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["enemies"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_1cilx")
 shader_material = ExtResource("4_c0b6a")
 speed = 20.0
+poison = NodePath("Debuff/Poison")
+burn = NodePath("Debuff/Burn")
+slow = NodePath("Debuff/Slow")
+walk_timer = NodePath("Timers/WalkTimer")
+attack_timer = NodePath("Timers/AttackTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -3)
 scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 autoplay = "default"
-frame_progress = 0.557157
+frame_progress = 0.505874
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_287tu")
 
@@ -66,6 +76,7 @@ shader_material = ExtResource("4_c0b6a")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
 emitting = false
 amount = 10
+texture = ExtResource("5_duseo")
 lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
@@ -78,18 +89,6 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="AttackTimer" type="Timer" parent="CharacterBody2D"]
-one_shot = true
-
-[node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
-one_shot = true
-
-[node name="SlowDebuff" type="Timer" parent="CharacterBody2D"]
-wait_time = 5.0
-
-[node name="PoisonDebuff" type="Timer" parent="CharacterBody2D"]
-wait_time = 5.0
-
 [node name="Audio" type="Node" parent="CharacterBody2D"]
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="CharacterBody2D/Audio"]
@@ -97,7 +96,41 @@ stream = ExtResource("5_trx3d")
 volume_db = -10.0
 pitch_scale = 0.8
 
-[connection signal="timeout" from="CharacterBody2D/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="CharacterBody2D/WalkTimer" to="CharacterBody2D" method="_walk_again"]
-[connection signal="timeout" from="CharacterBody2D/SlowDebuff" to="CharacterBody2D" method="_on_slow_debuff_timeout"]
-[connection signal="timeout" from="CharacterBody2D/PoisonDebuff" to="CharacterBody2D" method="_on_poison_debuff_timeout"]
+[node name="Debuff" type="Node" parent="CharacterBody2D"]
+
+[node name="Poison" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
+script = ExtResource("7_q2wnr")
+main_script = NodePath("../..")
+times = 4
+poison_timeout = 1.0
+max_damage = 2.0
+min_damage = 1.0
+
+[node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
+script = ExtResource("8_oksxf")
+main_script = NodePath("../..")
+times = 4
+burn_timeout = 1.0
+max_damage_minus_procent = 20.0
+min_damage_minus_procent = 10.0
+
+[node name="Slow" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script", "timer")]
+script = ExtResource("9_vifs5")
+main_script = NodePath("../..")
+timer = NodePath("../../Timers/SlowDebuff")
+slow_debuff = 60.0
+
+[node name="Timers" type="Node" parent="CharacterBody2D"]
+
+[node name="AttackTimer" type="Timer" parent="CharacterBody2D/Timers"]
+one_shot = true
+
+[node name="WalkTimer" type="Timer" parent="CharacterBody2D/Timers"]
+one_shot = true
+
+[node name="SlowDebuff" type="Timer" parent="CharacterBody2D/Timers"]
+wait_time = 5.0
+
+[connection signal="timeout" from="CharacterBody2D/Timers/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/Timers/WalkTimer" to="CharacterBody2D" method="_walk_again"]
+[connection signal="timeout" from="CharacterBody2D/Timers/SlowDebuff" to="CharacterBody2D/Debuff/Slow" method="_on_slow_debuff_timeout"]
