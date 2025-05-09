@@ -61,7 +61,6 @@ shape = SubResource("RectangleShape2D_287tu")
 [node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("3_rvhp7")]
 unique_name_in_owner = true
 character = NodePath("..")
-MAX_HEALTH = 15
 shader_material = ExtResource("4_c0b6a")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
