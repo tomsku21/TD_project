@@ -32,9 +32,9 @@ func _ready() -> void:
 	$Button.grab_focus()
 
 func _process(delta):
-	#if GlobalVariables.show_circles:
-		#ARange.visible = true
-	if clicked:
+	if GlobalVariables.show_circles:
+		ARange.visible = true
+	elif clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
@@ -48,7 +48,6 @@ func _process(delta):
 	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
 		print("get unhovered nerd")
 		hovered = false
-
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
