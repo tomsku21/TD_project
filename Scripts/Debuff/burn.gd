@@ -6,9 +6,10 @@ class_name Burn
 @export var times: int
 @export var burn_timeout: float
 ## Procent Values go like damge - 20%
-@export_range(10.0,100.0,10.0, "%") var max_damage_minus_procent
+@export_range(10.0,100.0,10.0, "suffix:%") var max_damage_minus_procent
 ## Procent Values go like damge - 10%
-@export_range(10.0,100.0,10.0, "%") var min_damage_minus_procent
+@export_range(10.0,100.0,10.0, "suffix:%") var min_damage_minus_procent
+
 
 
 func FireDebuff(damage: int, attackerPlant: Area2D):
