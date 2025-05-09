@@ -9,17 +9,17 @@ class_name SupportTower
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
 
 @export_category("Tower Stats")
-@export var sdamage: int = 10 #self damage, "s" to not mix with taken damage from enemies
+@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
 @export var atk_speed: float
 @export var cost: int
 @export var title: String
 @export var description: String
-@export var max_health: int
+@export var max_health: float = 500.0
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
-var damage_taken: int
-var damage_dealt: int
+var damage_taken: float
+var damage_dealt: float
 
 var kills: int #spawned bullets increase this
 

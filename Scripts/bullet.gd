@@ -2,8 +2,8 @@ extends Area2D
 var target
 var gun: Marker2D
 var speed: float = 500
-var damage_dealt: int
-var damage: int
+var damage_dealt: float
+var damage: float
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:

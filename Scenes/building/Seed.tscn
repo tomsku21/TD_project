@@ -23,12 +23,11 @@ script = ExtResource("1_tdi3x")
 plantimg = ExtResource("2_tdi3x")
 bullet = ExtResource("2_ll3dy")
 upgrades = Array[PackedScene]([ExtResource("3_tdi3x"), ExtResource("4_bdjjs"), ExtResource("5_if6ya")])
-sdamage = 5
+sdamage = 2.0
 atk_speed = 1.0
 cost = 1
 title = "Seed"
 description = "Small seed."
-max_health = 500
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

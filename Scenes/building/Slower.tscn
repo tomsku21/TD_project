@@ -24,7 +24,6 @@ atk_speed = 5.0
 cost = 1
 title = "Cold Plant"
 description = "Slows enemies"
-max_health = 10000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

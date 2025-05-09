@@ -66,7 +66,6 @@ shape = SubResource("RectangleShape2D_287tu")
 [node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("3_l8da7")]
 unique_name_in_owner = true
 character = NodePath("..")
-MAX_HEALTH = 15
 shader_material = ExtResource("4_haj6g")
 
 [node name="AttackTimer" type="Timer" parent="CharacterBody2D"]

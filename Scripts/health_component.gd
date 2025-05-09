@@ -2,8 +2,8 @@ extends Node
 class_name HealthComponent
 var sprite
 @export var character : Node2D
-@export var MAX_HEALTH :int
-@export var health: int
+@export var MAX_HEALTH :float
+@export var health: float
 @export var shader_material: ShaderMaterial
 
 
@@ -24,6 +24,7 @@ func _ready():
 
 func damage(damage):
 	health -= damage
+	print("damage taken: ", damage)
 	shader_handler()
 	if health <= 0:
 		health = 0

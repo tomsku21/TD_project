@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://7n76e6p4tids"]
+[gd_scene load_steps=22 format=3 uid="uid://d2entn05wbug3"]
 
 [ext_resource type="Script" uid="uid://b2i7qmdkwuqso" path="res://Scripts/FirePlant.gd" id="1_hrvv2"]
-[ext_resource type="PackedScene" uid="uid://gcxjuwtrk0nt" path="res://Scenes/Firebullet.tscn" id="2_6ngx4"]
-[ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="2_hrvv2"]
+[ext_resource type="PackedScene" path="res://Scenes/Firebullet.tscn" id="2_6ngx4"]
 [ext_resource type="Texture2D" uid="uid://c7as32ri20qc4" path="res://Assets/Towers/PoisonTurret.png" id="3_6ngx4"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_o4f5v"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_mavgf"]
@@ -93,17 +92,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
 
-[node name="Fireplant" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+[node name="Fireplant" type="Area2D" groups=["Turret"]]
 script = ExtResource("1_hrvv2")
-Attack_effect = NodePath("Attack")
 fire_bullet_scene = ExtResource("2_6ngx4")
 upgrades = Array[PackedScene]([null, null, null])
-sdamage = 2
-atk_speed = 0.6
-cost = 1
+sdamage = 0.5
+atk_speed = 0.15
+cost = 5
 title = "Fire Plant"
 description = "Rapidly Burns enemies"
-max_health = 10000
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -120,27 +117,6 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
-
-[node name="Attack" type="CPUParticles2D" parent="."]
-z_index = 6
-emitting = false
-amount = 100
-texture = ExtResource("2_hrvv2")
-lifetime = 1.1
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-lifetime_randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 63.01
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 150.0
-initial_velocity_max = 150.0
-angular_velocity_min = 271.7
-angular_velocity_max = 720.0
-angle_max = 380.0
-scale_amount_min = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pe2kw")
