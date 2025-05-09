@@ -19,7 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		print(get_parent())
 		target.take_damage(damage, get_parent())
-		call_deferred("apply_splash_damage")
+		apply_splash_damage()
 		sprite_2d.visible = false
 		await get_tree().create_timer(0.5).timeout
 		queue_free()
@@ -29,8 +29,4 @@ func apply_splash_damage():
 	for enemy in enemies:
 		if global_position.distance_to(enemy.global_position) <= splash_radius:
 			if enemy.has_method("FireDebuff"):
-				call_deferred("_apply_fire_debuff", enemy)
-
-
-func _apply_fire_debuff(enemy):
-	enemy.FireDebuff(damage, get_parent())
+				enemy.FireDebuff(damage, get_parent())
