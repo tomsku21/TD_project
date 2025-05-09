@@ -14,7 +14,7 @@ func PoisonDebuff(attackerPlant: Area2D):
 		if main_script.taking_damage == false:
 			main_script.taking_damage = true
 			main_script.poisoned = true
-			for i in times:
+			for i in range(times):
 				main_script.take_damage(randi_range(max_damage,min_damage), attackerPlant)
 				await get_tree().create_timer(poison_timeout).timeout
 			main_script.taking_damage = false

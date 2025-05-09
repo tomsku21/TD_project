@@ -19,7 +19,7 @@ func FireDebuff(damage: int, attackerPlant: Area2D):
 		if main_script.taking_damage == false:
 			main_script.taking_damage = true
 			main_script.burning = true
-			for i in times:
+			for i in range(times):
 				main_script.take_damage(damage * randf_range(max_damage, min_damage), attackerPlant)
 				await get_tree().create_timer(burn_timeout).timeout
 			main_script.taking_damage = false

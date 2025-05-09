@@ -916,7 +916,7 @@ position = Vector2(-433, 104)
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("3_kln2b")
-rounds = [1, 20]
+rounds = [10, 20]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 
