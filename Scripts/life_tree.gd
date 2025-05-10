@@ -60,4 +60,4 @@ func _on_body_exited(body: Node2D) -> void:
 func _on_attack_timer_timeout() -> void:
 	if not enemies.is_empty():
 		var target = enemies[0]
-		target.take_damage(sdamage)
+		target.take_damage(sdamage, null)

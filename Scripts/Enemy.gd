@@ -113,7 +113,8 @@ func take_damage(damage: float, attackerPlant: Area2D):
 		cpu_particles_2d.texture = null
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
-		attackerPlant.kills += 1
+		if attackerPlant != null:
+			attackerPlant.kills += 1
 
 func _on_attack_timer_timeout() -> void:
 	if end:

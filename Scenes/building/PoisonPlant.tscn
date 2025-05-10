@@ -139,6 +139,7 @@ angle_max = 380.0
 scale_amount_min = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Idle"
 autoplay = "Idle"
