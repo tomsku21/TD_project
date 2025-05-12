@@ -53,17 +53,21 @@ func _ready():
 		material.set_shader_parameter("ice_tint_amount", 0.0)
 
 func _physics_process(delta: float) -> void:
-	check_turret()
-	change_rotation()
 	if end == false:
 		path.progress += current_speed * delta
 	if path.progress_ratio >= 0.99:
 		if attack_timer.is_stopped():
 			attack_timer.start()
 			end = true
+	else:
+		check_turret()
 	if grabbed == true and currently_grabbed == false:
 		await get_tree().create_timer(10).timeout
 		grabbed = false
+	if life_tree == null:
+		life_tree = get_tree().get_first_node_in_group("LifeTree")
+
+	change_rotation()
 
 func destroy():
 	cpu_particles_2d.emitting = true

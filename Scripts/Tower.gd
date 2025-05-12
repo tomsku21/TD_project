@@ -36,8 +36,8 @@ func _ready() -> void:
 	$Button.grab_focus()
 
 func _process(delta):
-	#if GlobalVariables.show_circles:
-		#ARange.visible = true
+	if turret == null:
+		turret = get_tree().get_first_node_in_group("Turret_node")
 	if clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
