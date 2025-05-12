@@ -1,31 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbcw7mc8khvub"]
+[gd_scene load_steps=12 format=3 uid="uid://cbcw7mc8khvub"]
 
+[ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scenes/MainMenu.gd" id="1_8saeu"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="2_8saeu"]
+[ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="5_df05h"]
+
+[sub_resource type="Gradient" id="Gradient_8um5k"]
+offsets = PackedFloat32Array(0, 0.461039, 0.967532)
+colors = PackedColorArray(0.566406, 0.539718, 0.139389, 1, 0.613878, 0.773438, 0.262848, 1, 0.561279, 0.816406, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xim88"]
+gradient = SubResource("Gradient_8um5k")
+fill_from = Vector2(0.587156, 1)
+fill_to = Vector2(0.536697, 0)
+
+[sub_resource type="Curve" id="Curve_koqhg"]
+_limits = [0.550562, 1.0, 102.766, 1024.0]
+_data = [Vector2(102.766, 0.550562), 0.0, 0.0, 0, 0, Vector2(1024, 1), 0.000648085, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghw46"]
+bg_color = Color(0.128906, 0.128906, 0.128906, 0.501961)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ghw46"]
 font = ExtResource("1_853f1")
-font_size = 30
+font_size = 47
 font_color = Color(0, 0.78125, 0.140381, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.490196)
 shadow_offset = Vector2(2, 1.5)
 
+[sub_resource type="Animation" id="Animation_df05h"]
+resource_name = "Settings_open"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8um5k"]
+_data = {
+&"Settings_open": SubResource("Animation_df05h")
+}
+
 [node name="MainMenu" type="Node2D"]
 
-[node name="Canvas" type="CanvasLayer" parent="."]
+[node name="Canvas" type="CanvasLayer" parent="." node_paths=PackedStringArray("masterVolumeSlider", "musicVolumeSlider", "sfxVolumeSlider")]
+script = ExtResource("1_8saeu")
+masterVolumeSlider = NodePath("Settings/Panel/GridContainer/MasterVolumeS")
+musicVolumeSlider = NodePath("Settings/Panel/GridContainer/MusicVolumeS")
+sfxVolumeSlider = NodePath("Settings/Panel/GridContainer/SFXVolumeS")
+
+[node name="PanelContainer" type="PanelContainer" parent="Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="TextureRect" parent="Canvas/PanelContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_xim88")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Canvas"]
+position = Vector2(0, 460)
+amount = 50
+texture = ExtResource("5_df05h")
+lifetime = 17.0
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(0, 300)
+direction = Vector2(1, 1)
+gravity = Vector2(10, 0)
+angular_velocity_min = 5.0
+angular_velocity_max = 45.0
+angle_max = 540.0
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_koqhg")
 
 [node name="Settings" type="Control" parent="Canvas"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -429.0
-offset_top = 91.0
-offset_right = -389.0
-offset_bottom = 131.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -37,11 +97,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -360.0
-offset_top = -280.5
-offset_right = 360.0
-offset_bottom = 280.5
+offset_top = -280.0
+offset_right = 329.0
+offset_bottom = 302.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ghw46")
 
 [node name="Label" type="Label" parent="Canvas/Settings/Panel"]
 layout_mode = 1
@@ -52,6 +113,11 @@ offset_left = -325.5
 offset_right = 325.5
 offset_bottom = 126.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.780392, 0.141176, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("1_853f1")
 theme_override_font_sizes/font_size = 110
 text = "Settings"
@@ -74,14 +140,14 @@ size_flags_horizontal = 4
 theme_override_constants/v_separation = 25
 metadata/_edit_use_anchors_ = true
 
-[node name="Master Volume" type="Label" parent="Canvas/Settings/Panel/GridContainer"]
+[node name="MasterVolume" type="Label" parent="Canvas/Settings/Panel/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_853f1")
 theme_override_font_sizes/font_size = 56
 text = "Master Volume"
 horizontal_alignment = 1
 
-[node name="Master Volume Slider" type="HSlider" parent="Canvas/Settings/Panel/GridContainer"]
+[node name="MasterVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -94,7 +160,7 @@ theme_override_font_sizes/font_size = 56
 text = "Music Volume"
 horizontal_alignment = 1
 
-[node name="Music Volume Slider" type="HSlider" parent="Canvas/Settings/Panel/GridContainer"]
+[node name="MusicVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -107,49 +173,102 @@ theme_override_font_sizes/font_size = 56
 text = "SFX Volume"
 horizontal_alignment = 1
 
-[node name="SFX Volume Slider" type="HSlider" parent="Canvas/Settings/Panel/GridContainer"]
+[node name="SFXVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
 step = 0.05
 
+[node name="Back" type="TextureButton" parent="Canvas/Settings/Panel" groups=["main_menu"]]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -100.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+texture_normal = ExtResource("2_8saeu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Canvas/Settings/Panel/Back"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -14.0
+offset_right = 34.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+label_settings = SubResource("LabelSettings_ghw46")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="MainMenu" type="Control" parent="Canvas"]
+unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = -460.0
+offset_right = 810.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="Canvas/MainMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 532.5
-offset_top = 75.0
-offset_right = 1047.5
-offset_bottom = 187.0
+offset_left = -257.5
+offset_right = 257.5
+offset_bottom = 112.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.0341034, 0.582031, 0.133226, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/font = ExtResource("1_853f1")
 theme_override_font_sizes/font_size = 124
 text = "ForesTD"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Canvas/MainMenu"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 41.0
-offset_top = 533.0
-offset_right = 251.0
-offset_bottom = 813.0
+offset_left = -178.0
+offset_top = -520.0
+offset_right = 178.0
+offset_bottom = -159.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="Start" type="TextureButton" parent="Canvas/MainMenu/VBoxContainer"]
+[node name="Start" type="TextureButton" parent="Canvas/MainMenu/VBoxContainer" groups=["main_menu"]]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -158,16 +277,25 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="Canvas/MainMenu/VBoxContainer/Start"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 100.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = -14.0
+offset_right = 71.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "New Game"
 label_settings = SubResource("LabelSettings_ghw46")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Options" type="TextureButton" parent="Canvas/MainMenu/VBoxContainer"]
+[node name="Options" type="TextureButton" parent="Canvas/MainMenu/VBoxContainer" groups=["main_menu"]]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -176,16 +304,25 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="Canvas/MainMenu/VBoxContainer/Options"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 100.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -14.0
+offset_right = 61.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Options"
 label_settings = SubResource("LabelSettings_ghw46")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Quit" type="TextureButton" parent="Canvas/MainMenu/VBoxContainer"]
+[node name="Quit" type="TextureButton" parent="Canvas/MainMenu/VBoxContainer" groups=["main_menu"]]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -194,11 +331,25 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="Canvas/MainMenu/VBoxContainer/Quit"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 100.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -14.0
+offset_right = 34.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Quit"
 label_settings = SubResource("LabelSettings_ghw46")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas"]
+libraries = {
+&"": SubResource("AnimationLibrary_8um5k")
+}

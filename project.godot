@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TD"
-run/main_scene="uid://cphipn7xke1j8"
+run/main_scene="uid://cbcw7mc8khvub"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 GlobalVariables="*res://Scripts/GlobalVariables.gd"
 Popups="*res://Scenes/UI/Popups.tscn"
-Ui="*res://Scenes/UI/UI.tscn"
 
 [debug]
 
@@ -40,6 +39,8 @@ Turret=""
 LifeTree=""
 Turretarea="For mouse over checks"
 Healer=""
+main_menu="Group for menubuttons"
+volumer=""
 
 [input]
 

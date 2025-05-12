@@ -61,6 +61,9 @@ func _process(delta: float) -> void:
 			animationPlayer.play("Game Over")
 			played = true
 
+func _on_exit_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 func _on_new_game_pressed() -> void:
 	if GlobalVariables.game_over:
