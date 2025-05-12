@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=24 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="1_7tgkj"]
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/ui.gd" id="1_8wlyu"]
-[ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/bank.gd" id="1_b83rk"]
+[ext_resource type="Script" path="res://Scripts/bank.gd" id="1_b83rk"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
 [ext_resource type="PackedScene" uid="uid://cmtl2nh7a1auo" path="res://Scenes/buyt_1.tscn" id="4_7tgkj"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="5_jevvu"]
@@ -336,9 +336,38 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector2(0, -926)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../../Pause/Panel:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -926)]
+}
+
+[sub_resource type="Animation" id="Animation_thdbn"]
+resource_name = "Exit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Pause/Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 2, 0.517632),
+"update": 0,
+"values": [Vector2(0, -926), Vector2(0, 0), Vector2(0, 926)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqsl3"]
 _data = {
+&"Exit": SubResource("Animation_thdbn"),
 &"Game Over": SubResource("Animation_8wlyu"),
 &"New Game": SubResource("Animation_u6hof"),
 &"PauseMenu": SubResource("Animation_nqsl3"),
@@ -358,12 +387,12 @@ texture = ExtResource("1_7tgkj")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u6hof"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thdbn"]
+bg_color = Color(0.140447, 0.140447, 0.140447, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wlyu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8wei"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thdbn"]
-bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "masterVolumeSlider", "musicVolumeSlider", "sfxVolumeSlider")]
 process_mode = 3
@@ -535,6 +564,7 @@ text = "Exit
 "
 
 [node name="Settings" type="Panel" parent="Pause"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -603,6 +633,17 @@ size_flags_vertical = 1
 max_value = 1.0
 step = 0.05
 
+[node name="Panel" type="Panel" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -926.0
+offset_bottom = -926.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_thdbn")
+
 [node name="GameOver" type="Panel" parent="."]
 visible = false
 anchors_preset = 15
@@ -660,8 +701,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 926.0
-offset_bottom = 926.0
+offset_top = -926.0
+offset_bottom = -926.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_thdbn")
