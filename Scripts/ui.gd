@@ -1,9 +1,11 @@
 extends CanvasLayer
 @export var bankPanel: Panel
 @export var buyMenuPanel: Panel
-@export var gameOverPanel: Panel
 @export var animationPlayer: AnimationPlayer
 
+@export_category("Game Over")
+@export var gameOverPanel: Panel
+@export var overVBoxContainer: VBoxContainer
 @export_category("Pause Menu")
 @export var pausePanel: Panel
 @export var vboxContainer: VBoxContainer
@@ -27,11 +29,8 @@ func _ready() -> void:
 	masterVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
 	musicVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
 	sfxVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
-	bankPanel.visible = true
-	buyMenuPanel.visible = true
-	pausePanel.visible = false
-	gameOverPanel.visible = false
-	settingsPanel.visible = false
+	defaultPanels(false)
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false:
 		if in_settings:
@@ -65,9 +64,32 @@ func _process(delta: float) -> void:
 
 func _on_new_game_pressed() -> void:
 	if GlobalVariables.game_over:
+		animationPlayer.play("New Game")
+		await _wait_until_half_animation()
 		get_tree().reload_current_scene()
 		GlobalVariables.reset()
+		defaultPanels(true)
+		await _wait_until_animation_finish()
+		defaultPanels(false)
 
+func defaultPanels(reset: bool) -> void:
+	bankPanel.visible = true
+	buyMenuPanel.visible = true
+	pausePanel.visible = false
+	settingsPanel.visible = false
+	if reset:
+		overVBoxContainer.visible = false
+	else:
+		gameOverPanel.visible = false
+		overVBoxContainer.visible = true
+
+func _wait_until_half_animation() -> void:
+	while animationPlayer.current_animation_position < animationPlayer.current_animation_length / 2:
+		await get_tree().process_frame
+
+func _wait_until_animation_finish() -> void:
+	while animationPlayer.current_animation_position < animationPlayer.current_animation_length:
+		await get_tree().process_frame
 
 func _on_resume_pressed() -> void:
 	bankPanel.visible = !bankPanel.visible
