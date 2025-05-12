@@ -15,9 +15,6 @@ func _ready() -> void:
 		var material = sprite_2d.material as ShaderMaterial
 		material.set_shader_parameter("red_tint_amount", 0.0)
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func take_damage(damage: int):
 	GlobalVariables.player_hp -= damage
 	shader_handler()

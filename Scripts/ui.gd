@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 			settingsPanel.visible = false
 			pausePanel.visible = !pausePanel.visible
 			get_tree().paused = !get_tree().paused
-			animationPlayer.speed_scale = 2.0
+			animationPlayer.speed_scale = 5.0
 			if animationPlayer.is_playing():
 				animationPlayer.stop()
 				animationPlayer.play("PauseMenu")

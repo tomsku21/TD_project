@@ -11,6 +11,8 @@ func _ready():
 
 func _process(delta):
 	self.disabled = (GlobalVariables.cost < cost)
+	if ghost_node == null:
+		ghost_node = get_tree().get_first_node_in_group("Ghost")
 
 func _on_down():
 	#instantiate building under cursor, that has code to stay under your pointer.
