@@ -147,7 +147,7 @@ theme_override_font_sizes/font_size = 56
 text = "Master Volume"
 horizontal_alignment = 1
 
-[node name="MasterVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
+[node name="MasterVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["Volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -160,7 +160,7 @@ theme_override_font_sizes/font_size = 56
 text = "Music Volume"
 horizontal_alignment = 1
 
-[node name="MusicVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
+[node name="MusicVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["Volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -173,7 +173,7 @@ theme_override_font_sizes/font_size = 56
 text = "SFX Volume"
 horizontal_alignment = 1
 
-[node name="SFXVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
+[node name="SFXVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["Volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0

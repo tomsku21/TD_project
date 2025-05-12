@@ -40,7 +40,7 @@ LifeTree=""
 Turretarea="For mouse over checks"
 Healer=""
 main_menu="Group for menubuttons"
-volumer=""
+Volumer=""
 
 [input]
 
