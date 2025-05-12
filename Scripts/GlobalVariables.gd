@@ -1,5 +1,8 @@
 extends Node
 
+@export var game_state: bool = true
+var started: bool = false
+var game_over: bool = false
 var enemy_count: int
 var spawned_enemies: int
 var turrets: Array = []
@@ -21,4 +24,11 @@ func _input(event: InputEvent) -> void:
 			Input.set_custom_mouse_cursor(clicked_cursor)
 		else:
 			Input.set_custom_mouse_cursor(normal_cursor)
-	
+
+func reset():
+	enemy_count = 0
+	spawned_enemies = 0
+	game_state = true
+	player_hp = MAX_HP
+	game_over = false
+	cost = 0

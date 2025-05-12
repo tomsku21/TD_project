@@ -48,7 +48,7 @@ z_index = 10
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_1cilx")
 shader_material = ExtResource("4_c0b6a")
-speed = 20.0
+speed = 500.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")
 slow = NodePath("Debuff/Slow")

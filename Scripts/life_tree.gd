@@ -23,6 +23,8 @@ func take_damage(damage: int):
 	shader_handler()
 	progress_bar.value = GlobalVariables.player_hp / 10
 	if GlobalVariables.player_hp <= 0:
+		GlobalVariables.game_state = false
+		GlobalVariables.game_over = true
 		queue_free()
 
 func shader_handler():
