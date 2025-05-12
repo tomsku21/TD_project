@@ -88,6 +88,7 @@ texture = ExtResource("5_a1rsv")
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_3a73y")
 pitch_scale = 1.1
+bus = &"SFX"
 
 [node name="Mousecheck" parent="." instance=ExtResource("7_pbchp")]
 

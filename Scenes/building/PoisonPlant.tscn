@@ -181,6 +181,7 @@ texture = ExtResource("5_tqlg5")
 stream = ExtResource("7_qtf4t")
 volume_db = 7.0
 pitch_scale = 0.9
+bus = &"SFX"
 
 [node name="Mousecheck" parent="." instance=ExtResource("7_rp36r")]
 
