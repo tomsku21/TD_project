@@ -48,6 +48,8 @@ func _process(delta):
 	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
 		print("get unhovered nerd")
 		hovered = false
+	if is_in_group("MoneyMaker") and attack_timer.is_stopped():
+		attack_timer.start()
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
@@ -62,7 +64,7 @@ func destroy():
 	GlobalVariables.turrets.erase(self)
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Turret") and not area in towers:
+	if area.is_in_group("Turret") and not is_in_group("MoneyMaker") and not area in towers:
 		towers.append(area)
 		if attack_timer.is_stopped():
 			attack_timer.start()

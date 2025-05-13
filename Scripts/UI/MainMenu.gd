@@ -13,9 +13,6 @@ func _ready():
 	%Settings.visible = false
 	register_interacts()
 	setup_volumes()
-	masterVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
-	musicVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
-	sfxVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
 
 func setup_volumes():
 	masterIndex = AudioServer.get_bus_index("Master")

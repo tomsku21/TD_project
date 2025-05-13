@@ -1,14 +1,31 @@
-[gd_scene load_steps=24 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=25 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="1_7tgkj"]
-[ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/ui.gd" id="1_8wlyu"]
-[ext_resource type="Script" path="res://Scripts/bank.gd" id="1_b83rk"]
+[ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_8wlyu"]
+[ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/UI/bank.gd" id="1_b83rk"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_oqha6"]
-[ext_resource type="PackedScene" uid="uid://cmtl2nh7a1auo" path="res://Scenes/buyt_1.tscn" id="4_7tgkj"]
+[ext_resource type="PackedScene" path="res://Scenes/buyt_1.tscn" id="4_7tgkj"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="5_jevvu"]
 [ext_resource type="Texture2D" uid="uid://cpb4hm1v6pycj" path="res://Assets/Towers/seed.png" id="6_jevvu"]
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="6_w8wei"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="8_w8wei"]
+[ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="9_y85ht"]
+
+[sub_resource type="Animation" id="Animation_thdbn"]
+resource_name = "Exit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Pause/Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 2, 0.517632),
+"update": 0,
+"values": [Vector2(0, -926), Vector2(0, 0), Vector2(0, 926)]
+}
 
 [sub_resource type="Animation" id="Animation_8wlyu"]
 resource_name = "Game Over"
@@ -349,22 +366,6 @@ tracks/13/keys = {
 "values": [Vector2(0, -926)]
 }
 
-[sub_resource type="Animation" id="Animation_thdbn"]
-resource_name = "Exit"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Pause/Panel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 2, 0.517632),
-"update": 0,
-"values": [Vector2(0, -926), Vector2(0, 0), Vector2(0, 926)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqsl3"]
 _data = {
 &"Exit": SubResource("Animation_thdbn"),
@@ -454,7 +455,6 @@ text = "300"
 vertical_alignment = 1
 
 [node name="buymenu" type="Panel" parent="."]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -491,6 +491,13 @@ layout_mode = 2
 texture_normal = ExtResource("6_jevvu")
 item = ExtResource("6_w8wei")
 
+[node name="BuyMoneyMaker" parent="buymenu/VBoxContainer/build" instance=ExtResource("4_7tgkj")]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("6_jevvu")
+item = ExtResource("9_y85ht")
+cost = 5
+
 [node name="cost" type="Label" parent="buymenu/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -505,6 +512,7 @@ theme_override_font_sizes/normal_font_size = 18
 text = "Replace this text u dummy"
 
 [node name="Pause" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -564,7 +572,6 @@ text = "Exit
 "
 
 [node name="Settings" type="Panel" parent="Pause"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -632,6 +639,16 @@ layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
 step = 0.05
+
+[node name="Back" type="Button" parent="Pause/Settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.290196, 0.8, 0, 1)
+theme_override_fonts/font = ExtResource("8_w8wei")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y85ht")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nqsl3")
+text = "Back"
+flat = true
 
 [node name="Panel" type="Panel" parent="Pause"]
 layout_mode = 1
@@ -713,5 +730,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_thdbn")
 [connection signal="value_changed" from="Pause/Settings/VBoxContainer/GridContainer/Master Volume Slider" to="." method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="Pause/Settings/VBoxContainer/GridContainer/Music Volume Slider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Pause/Settings/VBoxContainer/GridContainer/SFX Volume Slider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="Pause/Settings/VBoxContainer/GridContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/HBoxContainer/NewGame" to="." method="_on_new_game_pressed"]

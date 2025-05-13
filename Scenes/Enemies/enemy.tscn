@@ -53,6 +53,7 @@ script = ExtResource("1_ubio8")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
 sdamage = 100.0
+attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")
 slow = NodePath("Debuff/Slow")
