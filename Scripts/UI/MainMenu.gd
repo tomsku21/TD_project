@@ -56,6 +56,7 @@ func _on_value_changed(value, _name) -> void:
 	match _name:
 		"MasterVolumeS":
 			AudioServer.set_bus_volume_db(masterIndex, linear_to_db(value))
+			print("change mastervol to: ", value)
 		"MusicVolumeS":
 			AudioServer.set_bus_volume_db(musicIndex, linear_to_db(value))
 		"SFXVolumeS":

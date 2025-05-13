@@ -12,9 +12,6 @@ extends CanvasLayer
 
 @export_category("Settings")
 @export var settingsPanel: Panel
-@export var masterVolumeSlider: Slider
-@export var musicVolumeSlider: Slider
-@export var sfxVolumeSlider: Slider
 
 var played = false
 var in_settings: bool = false
@@ -22,14 +19,13 @@ var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
 var startGame: bool = false
+
 func _ready() -> void:
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
-	
-	masterVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
-	musicVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
-	sfxVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
+	connect_interacts()
+
 	
 	defaultPanels(false)
 
@@ -130,17 +126,32 @@ func _on_settings_pressed() -> void:
 	settingsPanel.visible = !settingsPanel.visible
 	in_settings = true
 
-
-func _on_master_volume_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(masterIndex, linear_to_db(value))
-
-
-func _on_music_volume_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(musicIndex, linear_to_db(value))
+func connect_interacts() -> void:
+	var sliders = get_tree().get_nodes_in_group("Setting_volume")
+	for slider in sliders: #connect audio sliders to value changed signal and connect their values to their respective Audioserver indexes.
+		slider.value_changed.connect(_on_value_changed.bind(slider.name))
+		slider.visibility_changed.connect(_on_visibility_changed.bind(slider.name, slider))
 
 
-func _on_sfx_volume_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(sfxIndex, linear_to_db(value))
+func _on_visibility_changed(_name: String, slider) -> void:
+	match _name:
+		"MasterVolumeS":
+			slider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
+			print("mastervolume: ", slider.value)
+		"MusicVolumeS":
+			slider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
+		"SFXVolumeS":
+			slider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
+
+func _on_value_changed(value: float, _name: String) -> void:
+	match _name:
+		"MasterVolumeS":
+			AudioServer.set_bus_volume_db(masterIndex, linear_to_db(value))
+			print("Change ui mastervol to: ", value)
+		"MusicVolumeS":
+			AudioServer.set_bus_volume_db(musicIndex, linear_to_db(value))
+		"SFXVolumeS":
+			AudioServer.set_bus_volume_db(sfxIndex, linear_to_db(value))
 
 
 func _on_back_pressed() -> void:
