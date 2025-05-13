@@ -1,12 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbcw7mc8khvub"]
+[gd_scene load_steps=12 format=3 uid="uid://cbcw7mc8khvub"]
 
-[ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scripts/UI/MainMenu.gd" id="1_8saeu"]
+[ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scenes/MainMenu.gd" id="1_8saeu"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="2_8saeu"]
-[ext_resource type="Texture2D" uid="uid://c2absv078qcje" path="res://Assets/UI/Button.png" id="5_8um5k"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="5_df05h"]
-[ext_resource type="Texture2D" uid="uid://b00cck3a5m678" path="res://Assets/UI/Button2.png" id="6_xim88"]
-[ext_resource type="Texture2D" uid="uid://d2devqpodjpw" path="res://Assets/UI/Button3.png" id="7_xim88"]
 
 [sub_resource type="Gradient" id="Gradient_8um5k"]
 offsets = PackedFloat32Array(0, 0.461039, 0.967532)
@@ -28,6 +25,7 @@ bg_color = Color(0.128906, 0.128906, 0.128906, 0.501961)
 [sub_resource type="LabelSettings" id="LabelSettings_ghw46"]
 font = ExtResource("1_853f1")
 font_size = 47
+font_color = Color(0, 0.78125, 0.140381, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.490196)
 shadow_offset = Vector2(2, 1.5)
@@ -42,12 +40,8 @@ _data = {
 
 [node name="MainMenu" type="Node2D"]
 
-[node name="Canvas" type="CanvasLayer" parent="." node_paths=PackedStringArray("masterVolumeSlider", "musicVolumeSlider", "sfxVolumeSlider", "best_score")]
+[node name="Canvas" type="CanvasLayer" parent="."]
 script = ExtResource("1_8saeu")
-masterVolumeSlider = NodePath("Settings/Panel/GridContainer/MasterVolumeS")
-musicVolumeSlider = NodePath("Settings/Panel/GridContainer/MusicVolumeS")
-sfxVolumeSlider = NodePath("Settings/Panel/GridContainer/SFXVolumeS")
-best_score = NodePath("Best Score")
 
 [node name="PanelContainer" type="PanelContainer" parent="Canvas"]
 anchors_preset = 15
@@ -154,7 +148,7 @@ theme_override_font_sizes/font_size = 56
 text = "Master Volume"
 horizontal_alignment = 1
 
-[node name="MasterVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
+[node name="MasterVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["Volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -167,7 +161,7 @@ theme_override_font_sizes/font_size = 56
 text = "Music Volume"
 horizontal_alignment = 1
 
-[node name="MusicVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
+[node name="MusicVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["Volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -180,7 +174,7 @@ theme_override_font_sizes/font_size = 56
 text = "SFX Volume"
 horizontal_alignment = 1
 
-[node name="SFXVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["volumer"]]
+[node name="SFXVolumeS" type="HSlider" parent="Canvas/Settings/Panel/GridContainer" groups=["Volumer"]]
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -279,9 +273,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("5_8um5k")
-texture_pressed = ExtResource("6_xim88")
-texture_hover = ExtResource("7_xim88")
+texture_normal = ExtResource("2_8saeu")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -308,9 +300,7 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("5_8um5k")
-texture_pressed = ExtResource("6_xim88")
-texture_hover = ExtResource("7_xim88")
+texture_normal = ExtResource("2_8saeu")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -337,9 +327,7 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("5_8um5k")
-texture_pressed = ExtResource("6_xim88")
-texture_hover = ExtResource("7_xim88")
+texture_normal = ExtResource("2_8saeu")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -366,8 +354,3 @@ metadata/_edit_lock_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_8um5k")
 }
-
-[node name="Best Score" type="Label" parent="Canvas"]
-offset_right = 262.0
-offset_bottom = 107.0
-theme_override_font_sizes/font_size = 106
