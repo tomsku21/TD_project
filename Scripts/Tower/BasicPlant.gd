@@ -12,4 +12,4 @@ func _on_attack_timer_timeout() -> void:
 		add_child(new_bullet)
 		new_bullet.gun = marker_2d
 		new_bullet.target = target
-		new_bullet.damage = stats["sdamage"]
+		new_bullet.damage = stats["Damage"]

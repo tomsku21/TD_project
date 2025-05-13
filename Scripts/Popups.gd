@@ -33,9 +33,9 @@ func setcontent(content):
 	%Name.text = content.title
 	%HealthBar.max_value = content.healthcomponent.MAX_HEALTH
 	%HealthBar.value = content.healthcomponent.health
-	%Dmg.text = str("DMG: ", content.stats["sdamage"])
-	%AtkSpeed.text = str("ATKSpeed: ", content.stats["atk_speed"])
-	%Kills.text = str("Kills: ", content.stats["kills"])
+	%Dmg.text = str("DMG: ", content.stats["Damage"])
+	%AtkSpeed.text = str("ATKSpeed: ", content.stats["Atk Speed"])
+	%Kills.text = str("Kills: ", content.stats["Kills"])
 	%BuildPopup.show()
 	%UpPopup.hide()
 
@@ -49,8 +49,8 @@ func setupDescription(content):
 	#todo:
 	#dmg & atkspeed from stats{} dict.
 	%UDesc.text = str(content.description)
-	%UDmg.text = str(content.DMGText, content.damage)
-	%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
+	%UDmg.text = str(content.stats.find_key(content.stats["Damage"]),": ", content.stats["Damage"])
+	#%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
 	%UCost.text = str("Costs: ", content.cost)
 	%URequirement.text = str(content.upgrade, ": ", content.cur_req, "/", content.requirement)
 	%URequirement.visible = content.requirement

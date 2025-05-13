@@ -12,7 +12,7 @@ class_name SupportTower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var stats: Dictionary = {"sdamage" : 10, "atk_speed" : 1.0, "damage_taken" : 0.0, "health_restored" : 0.0, "kills" : 0, "Mony_made" : 0}
+@export var stats: Dictionary = {"Damage" : 10, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Health Restored" : 0.0, "Kills" : 0, "Money Made" : 0}
 #@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
 #@export var atk_speed: float
 @export var cost: int
@@ -33,7 +33,7 @@ var towers: Array[Area2D] = []
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
-	%AttackTimer.wait_time = stats["atk_speed"]
+	%AttackTimer.wait_time = stats["Atk Speed"]
 	$Button.grab_focus()
 
 func _process(delta):
@@ -58,7 +58,7 @@ func _process(delta):
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
-	stats["damage_taken"] += damage
+	stats["Damage Taken"] += damage
 	cpu_particles_2d.emitting = true
 
 func destroy():
@@ -91,7 +91,7 @@ func upgrade():
 func Heal(restoration, healer):
 	if healthcomponent.health < healthcomponent.MAX_HEALTH and not is_in_group("Healer"):
 		healthcomponent.health += restoration
-		healer.stats["health_restored"] += restoration
+		healer.stats["Health Restored"] += restoration
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:

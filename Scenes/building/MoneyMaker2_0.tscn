@@ -20,7 +20,7 @@ Attack_effect = NodePath("Attack")
 plantimg = ExtResource("3_t34s4")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Mony_made": 10
+"Money Made": 10
 }
 cost = 5
 title = "Money Maker"
