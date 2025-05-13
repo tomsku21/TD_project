@@ -48,6 +48,7 @@ func _on_mouse_exited():
 	Popups.returnDesc()
 
 
+#create a stats {} dict here. way to check if certain named key exists?
 func set_stats():
 	new_plant = plant.instantiate()
 	description = new_plant.description

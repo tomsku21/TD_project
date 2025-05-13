@@ -46,6 +46,8 @@ func upgrade():
 	lasttower.upgrade()
 
 func setupDescription(content):
+	#todo:
+	#dmg & atkspeed from stats{} dict.
 	%UDesc.text = str(content.description)
 	%UDmg.text = str(content.DMGText, content.damage)
 	%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
