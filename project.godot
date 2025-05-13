@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalVariables="*res://Scripts/GlobalVariables.gd"
 Popups="*res://Scenes/UI/Popups.tscn"
-Ui="*res://Scenes/UI/UI.tscn"
+Ui="*res://Scripts/UI.tscn"
 
 [debug]
 
@@ -41,6 +41,7 @@ LifeTree=""
 Turretarea="For mouse over checks"
 Healer=""
 main_menu="Group for menubuttons"
+Volumer=""
 volumer=""
 MoneyMaker=""
 
