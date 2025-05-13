@@ -1,9 +1,5 @@
 extends Node
 
-@export var masterVolumeSlider: Slider
-@export var musicVolumeSlider: Slider
-@export var sfxVolumeSlider: Slider
-
 var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
@@ -19,9 +15,7 @@ func setup_volumes():
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
-	masterVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
-	musicVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
-	sfxVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
+
 
 func register_interacts():
 	var buttons = get_tree().get_nodes_in_group("main_menu")
@@ -29,8 +23,15 @@ func register_interacts():
 		print("registering button: ", button.name)
 		button.pressed.connect(_on_button_pressed.bind(button.name))
 	var sliders = get_tree().get_nodes_in_group("Volumer")
-	for slider in sliders:
+	for slider in sliders: #connect audio sliders to value changed signal and connect their values to their respective Audioserver indexes.
 		slider.value_changed.connect(_on_value_changed.bind(slider.name))
+		match slider.name:
+			"MasterVolumeS":
+				slider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
+			"MusicVolumeS":
+				slider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
+			"SFXVolumeS":
+				slider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
 
 func _on_button_pressed(_name):
 	match _name:

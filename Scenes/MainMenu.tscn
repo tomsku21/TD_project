@@ -40,11 +40,8 @@ _data = {
 
 [node name="MainMenu" type="Node2D"]
 
-[node name="Canvas" type="CanvasLayer" parent="." node_paths=PackedStringArray("masterVolumeSlider", "musicVolumeSlider", "sfxVolumeSlider")]
+[node name="Canvas" type="CanvasLayer" parent="."]
 script = ExtResource("1_8saeu")
-masterVolumeSlider = NodePath("Settings/Panel/GridContainer/MasterVolumeS")
-musicVolumeSlider = NodePath("Settings/Panel/GridContainer/MusicVolumeS")
-sfxVolumeSlider = NodePath("Settings/Panel/GridContainer/SFXVolumeS")
 
 [node name="PanelContainer" type="PanelContainer" parent="Canvas"]
 anchors_preset = 15
