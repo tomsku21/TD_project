@@ -64,6 +64,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 116)
 layout_mode = 1
 offset_left = 80.0
@@ -82,17 +83,6 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Dmg: "
-
-[node name="Desc" type="RichTextLabel" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(130, 10)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 14
-text = "Lorem lapsum"
-fit_content = true
-scroll_active = false
 
 [node name="HealthBar" parent="UI/Build1stats/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
 unique_name_in_owner = true
@@ -115,7 +105,49 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Kills:"
 
-[node name="Cost" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+[node name="UpPopup" type="PanelContainer" parent="UI/Build1stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 116)
+layout_mode = 1
+offset_left = 80.0
+offset_top = -66.0
+offset_right = 230.0
+offset_bottom = 50.0
+pivot_offset = Vector2(70, 0)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/UpPopup"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UDesc" type="RichTextLabel" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 10)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "Lorem lapsum"
+fit_content = true
+scroll_active = false
+
+[node name="UDmg" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dmg: "
+
+[node name="UAtkSpeed" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AtkSpeed: "
+
+[node name="UCost" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cost:"
+
+[node name="URequirement" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cost:"

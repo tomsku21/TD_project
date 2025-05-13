@@ -4,7 +4,6 @@ var lasttower: Area2D
 
 func _enter_tree():
 	%Build1stats.hide()
-	%Desc.text = str("")
 
 func hideBuildInfo():
 	%Build1stats.hide()
@@ -23,6 +22,7 @@ func setupgrades(content):
 	for i in Upgrades.size():
 		if content.upgrades[i] != null:
 			Upgrades[i].plant = content.upgrades[i]
+			Upgrades[i].set_stats()
 			Upgrades[i].show()
 		else:
 			Upgrades[i].hide()
@@ -30,16 +30,14 @@ func setupgrades(content):
 
 func setcontent(content):
 	%Name.text = content.title
-	%Name.show()
-	%Desc.hide()
 	%HealthBar.max_value = content.healthcomponent.MAX_HEALTH
 	%HealthBar.value = content.healthcomponent.health
-	%HealthBar.show()
 	%Dmg.text = str("DMG: ", content.sdamage)
 	%AtkSpeed.text = str("ATKSpeed: ", content.atk_speed)
 	%Kills.text = str("Kills: ", content.kills)
-	%Kills.show()
-	%Cost.hide()
+	%BuildPopup.show()
+	%UpPopup.hide()
+
 
 
 #The middle manager.
@@ -47,16 +45,15 @@ func upgrade():
 	lasttower.upgrade()
 
 func setupDescription(content):
-	%Name.hide()
-	%Desc.text = str(content.description)
-	%Desc.show()
-	%Dmg.text = str("DMG: ", content.damage)
-	%AtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
-	%HealthBar.hide()
-	%Kills.hide()
-	%Cost.text = str("Costs: ", content.cost)
-	%Cost.show()
+	%UDesc.text = str(content.description)
+	%UDmg.text = str("DMG: ", content.damage)
+	%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
+	%UCost.text = str("Costs: ", content.cost)
+	#%URequirement.text = str(content.upgrade, ": ", content.cur_req, "/", content.requirement)
+	%URequirement.visible = content.requirement
 	lasttower.clicked = false
+	%BuildPopup.hide()
+	%UpPopup.show()
 
 func returnDesc():
 	lasttower.clicked = true
