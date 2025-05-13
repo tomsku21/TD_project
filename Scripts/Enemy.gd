@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var speed: float = 2.0
 @export var max_health: float = 15
 @export var sdamage: float = 10
-
+@export var attack_distance: float = 50.0
 @export_category("Debuff")
 @export var poison: Poison
 @export var burn: Burn
@@ -28,7 +28,6 @@ var end: bool = false
 var taking_damage: bool = false
 var current_speed: float
 var basic_speed: float
-var attack_distance: float = 50.0
 var current_turret = null
 var attacktime: float
 var life_tree: Area2D

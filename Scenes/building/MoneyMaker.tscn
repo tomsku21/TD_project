@@ -1,23 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://qv4gs0heqxmg"]
+[gd_scene load_steps=10 format=3 uid="uid://c4a83ta4dopyd"]
 
-[ext_resource type="Script" uid="uid://bl2pfumkmdjyk" path="res://Scripts/Tower/grabber.gd" id="1_cm8b3"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_pbchp"]
-[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_xqlid"]
-[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_jpcs6"]
-[ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
-[ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
-[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="7_pbchp"]
+[ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="1_xqq4q"]
+[ext_resource type="Script" uid="uid://dl0yuylwcsyqc" path="res://Scripts/Tower/money_maker.gd" id="2_xqq4q"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_h86t1"]
+[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_h5qwq"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_gldyh"]
+[ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_40f82"]
+[ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_8uxj8"]
+[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_w283m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 74.0068
+radius = 31.5159
 
-[node name="Grabber" type="Area2D" groups=["Turret"]]
-script = ExtResource("1_cm8b3")
+[node name="MoneyMaker" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["MoneyMaker", "Turret"]]
+material = ExtResource("1_xqq4q")
+script = ExtResource("2_xqq4q")
+money = 1
+Attack_effect = NodePath("Attack")
+plantimg = ExtResource("3_h86t1")
 upgrades = Array[PackedScene]([null, null, null])
-atk_speed = 5.0
-cost = 1
-title = "Grabber"
-description = "Grabs"
+atk_speed = 20.0
+cost = 5
+title = "Money Maker"
+description = "Money"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -38,10 +43,11 @@ scale_amount_max = 3.0
 [node name="Attack" type="CPUParticles2D" parent="."]
 z_index = 6
 emitting = false
-amount = 100
-lifetime = 0.44
+amount = 300
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 63.01
 spread = 180.0
@@ -55,7 +61,7 @@ scale_amount_max = 3.0
 modulate = Color(0.464645, 0.626273, 0, 1)
 z_index = 1
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_pbchp")
+texture = ExtResource("3_h86t1")
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
@@ -67,6 +73,7 @@ focus_mode = 1
 mouse_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("CircleShape2D_hskch")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -75,25 +82,24 @@ wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_xqlid")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_h5qwq")]
 unique_name_in_owner = true
 character = NodePath("..")
-shader_material = ExtResource("4_jpcs6")
+shader_material = ExtResource("5_gldyh")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.277458, 0.277458)
-texture = ExtResource("5_a1rsv")
+scale = Vector2(0.0336491, 0.0334323)
+texture = ExtResource("6_40f82")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_3a73y")
+stream = ExtResource("7_8uxj8")
 pitch_scale = 1.1
 bus = &"SFX"
 
-[node name="Mousecheck" parent="." instance=ExtResource("7_pbchp")]
+[node name="Mousecheck" parent="." instance=ExtResource("8_w283m")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]

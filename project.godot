@@ -41,7 +41,8 @@ LifeTree=""
 Turretarea="For mouse over checks"
 Healer=""
 main_menu="Group for menubuttons"
-Volumer=""
+volumer=""
+MoneyMaker=""
 
 [input]
 
