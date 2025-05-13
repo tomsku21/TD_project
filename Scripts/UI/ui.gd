@@ -68,9 +68,13 @@ func _process(delta: float) -> void:
 
 func _on_exit_pressed() -> void:
 	animationPlayer.speed_scale = 1.0
-	animationPlayer.play("Exit")
+	if gameOverPanel.visible:
+		animationPlayer.play("New Game")
+	else:
+		animationPlayer.play("Exit")
 	await _wait_until_half_animation()
 	vboxContainer.visible = false
+	overVBoxContainer.visible = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 	await _wait_until_animation_finish()
@@ -78,6 +82,7 @@ func _on_exit_pressed() -> void:
 	buyMenuPanel.visible = false
 	pausePanel.visible = false
 	settingsPanel.visible = false
+	gameOverPanel.visible = false
 	GlobalVariables.in_mainMenu = true
 	startGame = false
 	GlobalVariables.reset()
