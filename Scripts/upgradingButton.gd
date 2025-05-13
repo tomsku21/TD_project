@@ -2,6 +2,7 @@ extends TextureButton
 
 @export var plant: PackedScene
 var description: String
+var DMGText: String
 var damage: float
 var atk_speed: float
 var cost: int
@@ -41,6 +42,7 @@ func _on_mouse_exited():
 func set_stats():
 	new_plant = plant.instantiate()
 	description = new_plant.description
+	DMGText = new_plant.DMGText
 	damage = new_plant.stats["sdamage"]
 	atk_speed = new_plant.stats["atk_speed"]
 	cost = new_plant.cost

@@ -12,12 +12,13 @@ class_name SupportTower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var stats: Dictionary = {"sdamage" : 10, "atk_speed" : 1.0, "damage_taken" : 0.0, "health_restored" : 0.0, "kills" : 0}
+@export var stats: Dictionary = {"sdamage" : 10, "atk_speed" : 1.0, "damage_taken" : 0.0, "health_restored" : 0.0, "kills" : 0, "Mony_made" : 0}
 #@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
 #@export var atk_speed: float
 @export var cost: int
 @export var title: String
 @export var description: String
+@export var DMGText: String
 @export var max_health: float = 500.0
 var turret
 var clicked: bool = false #for popups

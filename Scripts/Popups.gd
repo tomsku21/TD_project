@@ -47,7 +47,7 @@ func upgrade():
 
 func setupDescription(content):
 	%UDesc.text = str(content.description)
-	%UDmg.text = str("DMG: ", content.damage)
+	%UDmg.text = str(content.DMGText, content.damage)
 	%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
 	%UCost.text = str("Costs: ", content.cost)
 	%URequirement.text = str(content.upgrade, ": ", content.cur_req, "/", content.requirement)

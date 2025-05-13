@@ -8,3 +8,4 @@ extends SupportTower
 func _on_attack_timer_timeout() -> void:
 	Attack_effect.emitting = true
 	GlobalVariables.cost += money
+	stats["Mony_made"] += money

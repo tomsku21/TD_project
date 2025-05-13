@@ -18,6 +18,7 @@ class_name Tower
 @export var cost: int
 @export var title: String #Name of tower
 @export var description: String
+@export var DMGText: String
 @export var max_health: float = 1000.0
 
 var turret
