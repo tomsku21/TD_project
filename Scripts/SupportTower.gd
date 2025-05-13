@@ -12,8 +12,9 @@ class_name SupportTower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
-@export var atk_speed: float
+@export var stats: Dictionary = {"sdamage" : 10, "atk_speed" : 1.0, "damage_taken" : 0.0, "health_restored" : 0.0, "kills" : 0}
+#@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
+#@export var atk_speed: float
 @export var cost: int
 @export var title: String
 @export var description: String
@@ -21,17 +22,17 @@ class_name SupportTower
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
-var damage_taken: float
-var damage_dealt: float
+#var damage_taken: float
+#var damage_dealt: float
 
-var kills: int #spawned bullets increase this
+#var kills: int #spawned bullets increase this
 
 var towers: Array[Area2D] = []
 
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
-	%AttackTimer.wait_time = atk_speed
+	%AttackTimer.wait_time = stats["atk_speed"]
 	$Button.grab_focus()
 
 func _process(delta):
@@ -56,7 +57,7 @@ func _process(delta):
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
-	damage_taken += damage
+	stats["damage_taken"] += damage
 	cpu_particles_2d.emitting = true
 
 

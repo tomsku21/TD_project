@@ -8,5 +8,5 @@ func _on_attack_timer_timeout() -> void:
 			var target = towers[i]
 			await get_tree().create_timer(5).timeout
 			if target != null:
-				target.Heal()
+				target.Heal(randi_range(10, 20), self)
 		Attack_effect.emitting = true

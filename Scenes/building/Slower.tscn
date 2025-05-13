@@ -20,7 +20,6 @@ radius = 150.0
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([ExtResource("2_jsynv"), ExtResource("3_h27ut"), null])
-atk_speed = 5.0
 cost = 1
 title = "Cold Plant"
 description = "Slows enemies"

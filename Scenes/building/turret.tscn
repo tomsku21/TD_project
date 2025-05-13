@@ -20,7 +20,6 @@ input_pickable = false
 script = ExtResource("1_0ggxg")
 bullet = ExtResource("2_0ggxg")
 upgrades = Array[PackedScene]([ExtResource("3_qeyrt"), ExtResource("4_g53be"), ExtResource("5_qketn")])
-atk_speed = 1.0
 cost = 1
 title = "Seed"
 description = "Small seed."

@@ -19,7 +19,6 @@ money = 1
 Attack_effect = NodePath("Attack")
 plantimg = ExtResource("3_h86t1")
 upgrades = Array[PackedScene]([null, null, null])
-atk_speed = 20.0
 cost = 5
 title = "Money Maker"
 description = "Money"

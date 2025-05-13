@@ -20,8 +20,6 @@ upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
 "damage_taken": 500.0
 }
-sdamage = 9.0
-atk_speed = 0.5
 cost = 2
 title = "Sapling"
 description = "A young sapling"

@@ -12,8 +12,9 @@ class_name Tower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
-@export var atk_speed: float
+@export var stats: Dictionary = {"sdamage" : 10, "atk_speed" : 1.0, "damage_taken" : 0.0, "damage_dealt" : 0.0, "kills" : 0}
+#@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
+#@export var atk_speed: float
 @export var cost: int
 @export var title: String #Name of tower
 @export var description: String
@@ -22,17 +23,17 @@ class_name Tower
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
-var damage_taken: float
-var damage_dealt: float
+#var damage_taken: float
+#var damage_dealt: float
 
-var kills: int #spawned bullets increase this
+#var kills: int #spawned bullets increase this
 
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
-	%AttackTimer.wait_time = atk_speed
+	%AttackTimer.wait_time = stats["atk_speed"]
 	$Button.grab_focus()
 
 func _process(delta):
@@ -55,7 +56,7 @@ func _process(delta):
 
 func take_damage(damage: float):
 	healthcomponent.damage(damage)
-	damage_taken += damage
+	stats["damage_taken"] += damage
 	cpu_particles_2d.emitting = true
 
 
@@ -89,9 +90,10 @@ func upgrade():
 	queue_free()
 	GlobalVariables.turrets.erase(self)
 
-func Heal():
+func Heal(restoration, healer):
 	if healthcomponent.health < healthcomponent.MAX_HEALTH:
-		healthcomponent.health += randi_range(10,20)
+		healthcomponent.health += restoration
+		healer.stats["health_restored"] += restoration
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:

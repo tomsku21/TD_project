@@ -108,6 +108,7 @@ func take_damage(damage: float, attackerPlant: Area2D):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
+	attackerPlant.stats["damage_dealt"]
 	if poisoned:
 		cpu_particles_2d.scale_amount_max = 0.5
 		cpu_particles_2d.texture = preload("res://Assets/Particles/Skull.png")
@@ -117,7 +118,7 @@ func take_damage(damage: float, attackerPlant: Area2D):
 	cpu_particles_2d.emitting = true
 	if healthcomponent.health <= 0:
 		if attackerPlant != null:
-			attackerPlant.kills += 1
+			attackerPlant.stats["kills"] += 1
 
 func _on_attack_timer_timeout() -> void:
 	if end:
