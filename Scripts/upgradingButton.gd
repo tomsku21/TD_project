@@ -13,12 +13,15 @@ var current_plant
 var hovered
 
 func _process(delta):
-	if plant != null:
-		self.disabled = (GlobalVariables.cost < cost)
 	if hovered:
 		Popups.setupDescription(self)
 		if new_plant.upRequirement:
 			cur_req = current_plant.stats[upgrade]
+	if plant != null:
+		if cur_req >= requirement or new_plant.upRequirement == null:
+			self.disabled = (GlobalVariables.cost < cost)
+		else:
+			self.disabled = true
 
 func _on_click():
 	GlobalVariables.cost -= cost

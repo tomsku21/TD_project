@@ -62,9 +62,9 @@ func take_damage(damage: float):
 
 func destroy():
 	cpu_particles_2d.emitting = true
+	GlobalVariables.turrets.erase(self)
 	await get_tree().create_timer(0.1).timeout
 	queue_free()
-	GlobalVariables.turrets.erase(self)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and not body in enemies:

@@ -23,6 +23,7 @@ upRequirement = {
 cost = 2
 title = "Sapling"
 description = "A young sapling"
+max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

@@ -222,6 +222,9 @@ fire_bullet_scene = ExtResource("2_6ngx4")
 animation = NodePath("AnimatedSprite2D")
 attack_frame = 8
 upgrades = Array[PackedScene]([null, null, null])
+upRequirement = {
+"damage_dealt": 800.0
+}
 cost = 5
 title = "Fire Plant"
 description = "Rapidly Burns enemies"

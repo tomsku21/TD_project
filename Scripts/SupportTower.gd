@@ -63,9 +63,10 @@ func take_damage(damage: int):
 
 func destroy():
 	cpu_particles_2d.emitting = true
+	GlobalVariables.turrets.erase(self)
 	await get_tree().create_timer(0.1).timeout
 	queue_free()
-	GlobalVariables.turrets.erase(self)
+
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Turret") and not is_in_group("MoneyMaker") and not area in towers:
@@ -87,9 +88,10 @@ func upgrade():
 	queue_free()
 	GlobalVariables.turrets.erase(self)
 
-func Heal():
+func Heal(restoration, healer):
 	if healthcomponent.health < healthcomponent.MAX_HEALTH and not is_in_group("Healer"):
-		healthcomponent.health += randi_range(10,20)
+		healthcomponent.health += restoration
+		healer.stats["health_restored"] += restoration
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
