@@ -1,6 +1,6 @@
 extends Node
 
-@export var game_state: bool = true
+var game_state: bool = false
 var started: bool = false
 var game_over: bool = false
 var enemy_count: int
@@ -14,7 +14,7 @@ var max_rounds: int = 1
 var selected_turret
 var is_mouse_in_Area2D = false
 var show_circles = false
-
+var in_mainMenu: bool = true
 var normal_cursor = load("res://Assets/cursor/normal.png")
 var clicked_cursor = load("res://Assets/cursor/clicked.png")
 

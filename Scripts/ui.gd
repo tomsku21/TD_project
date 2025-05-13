@@ -15,12 +15,13 @@ extends CanvasLayer
 @export var masterVolumeSlider: Slider
 @export var musicVolumeSlider: Slider
 @export var sfxVolumeSlider: Slider
+
 var played = false
 var in_settings: bool = false
 var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
-
+var startGame: bool = false
 func _ready() -> void:
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
@@ -29,10 +30,18 @@ func _ready() -> void:
 	masterVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(masterIndex))
 	musicVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(musicIndex))
 	sfxVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(sfxIndex))
+	
 	defaultPanels(false)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false:
+	if GlobalVariables.in_mainMenu:
+		bankPanel.visible = false
+		buyMenuPanel.visible = false
+	elif not GlobalVariables.in_mainMenu and startGame == false:
+		bankPanel.visible = true
+		buyMenuPanel.visible = true
+		startGame = true
+	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
 		if in_settings:
 			vboxContainer.visible = true
 			settingsPanel.visible = false
@@ -62,11 +71,26 @@ func _process(delta: float) -> void:
 			played = true
 
 func _on_exit_pressed() -> void:
+	animationPlayer.speed_scale = 1.0
+	animationPlayer.play("Exit")
+	await _wait_until_half_animation()
+	vboxContainer.visible = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	await _wait_until_animation_finish()
+	bankPanel.visible = false
+	buyMenuPanel.visible = false
+	pausePanel.visible = false
+	settingsPanel.visible = false
+	GlobalVariables.in_mainMenu = true
+	startGame = false
+	GlobalVariables.reset()
+	GlobalVariables.game_state = false
+	GlobalVariables.started = false
 
 func _on_new_game_pressed() -> void:
 	if GlobalVariables.game_over:
+		animationPlayer.speed_scale = 1.0
 		animationPlayer.play("New Game")
 		await _wait_until_half_animation()
 		get_tree().reload_current_scene()
