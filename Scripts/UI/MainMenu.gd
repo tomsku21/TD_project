@@ -3,12 +3,13 @@ extends Node
 @export var masterVolumeSlider: Slider
 @export var musicVolumeSlider: Slider
 @export var sfxVolumeSlider: Slider
-
+@export var best_score: Label
 var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
 
 func _ready():
+	best_score.text = str(GlobalVariables.best_round)
 	%MainMenu.visible = true
 	%Settings.visible = false
 	register_interacts()

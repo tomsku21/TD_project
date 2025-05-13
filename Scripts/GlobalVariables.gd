@@ -10,6 +10,7 @@ var player_hp: float = 1000.0
 var MAX_HP: float = 1000.0
 var cost: int = 0
 var current_round: int = 0
+var best_round: int
 var max_rounds: int = 1
 var selected_turret
 var is_mouse_in_Area2D = false
@@ -17,6 +18,9 @@ var show_circles = false
 var in_mainMenu: bool = true
 var normal_cursor = load("res://Assets/cursor/normal.png")
 var clicked_cursor = load("res://Assets/cursor/clicked.png")
+
+func _ready() -> void:
+	load_game()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -26,9 +30,39 @@ func _input(event: InputEvent) -> void:
 			Input.set_custom_mouse_cursor(normal_cursor)
 
 func reset():
+	save_game()
 	enemy_count = 0
 	spawned_enemies = 0
 	game_state = true
 	player_hp = MAX_HP
 	game_over = false
 	cost = 0
+	current_round = 0
+
+func save_game(path: String = "user://save.json"):
+	var save_data = {
+		"round": current_round
+	}
+	
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file:
+		print("Saving to file: ", file.get_path())
+		file.store_string(JSON.stringify(save_data, "\t"))
+		file.close()
+	else:
+		print("Failed to open file for writing")
+
+func load_game(path: String = "user://save.json"):
+	if not FileAccess.file_exists(path):
+		print("Save file not found:", path)
+	
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file:
+		var json_text = file.get_as_text()
+		file.close()
+		
+		var data = JSON.parse_string(json_text)
+		if typeof(data) == TYPE_DICTIONARY:
+			if data.has("round"):
+				var round_data = data["round"]
+				best_round = round_data
