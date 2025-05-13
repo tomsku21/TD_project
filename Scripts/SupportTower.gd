@@ -60,13 +60,11 @@ func take_damage(damage: int):
 	stats["damage_taken"] += damage
 	cpu_particles_2d.emitting = true
 
-
 func destroy():
 	cpu_particles_2d.emitting = true
 	GlobalVariables.turrets.erase(self)
 	await get_tree().create_timer(0.1).timeout
 	queue_free()
-
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Turret") and not is_in_group("MoneyMaker") and not area in towers:
@@ -76,6 +74,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_area_exited(area: Area2D) -> void:
 	if area in towers:
+		print("tower left area?")
 		towers.erase(area)
 		if towers.is_empty():
 			attack_timer.stop()

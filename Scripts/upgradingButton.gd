@@ -1,6 +1,7 @@
 extends TextureButton
 
 @export var plant: PackedScene
+#put these to a dictionary
 var description: String
 var damage: float
 var atk_speed: float
@@ -13,10 +14,18 @@ var current_plant
 var hovered
 
 func _process(delta):
+	if current_plant and new_plant.upRequirement:
+		%UProgress.max_value = requirement
+		%UProgress.value = cur_req
+	else:
+		%UProgress.max_value = 100
+		%UProgress.value = 100
+	
 	if hovered:
 		Popups.setupDescription(self)
 		if new_plant.upRequirement:
 			cur_req = current_plant.stats[upgrade]
+
 	if plant != null:
 		if cur_req >= requirement or new_plant.upRequirement == null:
 			self.disabled = (GlobalVariables.cost < cost)
