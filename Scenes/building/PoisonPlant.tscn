@@ -96,7 +96,6 @@ radius = 150.0
 script = ExtResource("1_apre2")
 Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])
-atk_speed = 5.0
 cost = 1
 title = "Poison Plant"
 description = "Poisons enemies, applying a damage over time debuff"

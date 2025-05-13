@@ -9,11 +9,19 @@ var requirement: float
 var upgrade: String
 var cur_req: float
 var new_plant
+var current_plant
+var hovered
 
 func _process(delta):
+	if hovered:
+		Popups.setupDescription(self)
+		if new_plant.upRequirement:
+			cur_req = current_plant.stats[upgrade]
 	if plant != null:
-		self.disabled = (GlobalVariables.cost < cost)
-		
+		if cur_req >= requirement or new_plant.upRequirement == null:
+			self.disabled = (GlobalVariables.cost < cost)
+		else:
+			self.disabled = true
 
 func _on_click():
 	GlobalVariables.cost -= cost
@@ -21,21 +29,25 @@ func _on_click():
 	Popups.upgrade()
 
 func _on_mouse_entered():
-	Popups.setupDescription(self)
+	#Popups.setupDescription(self)
+	hovered = true
+	
 
 func _on_mouse_exited():
+	hovered = false
 	Popups.returnDesc()
+
 
 func set_stats():
 	new_plant = plant.instantiate()
 	description = new_plant.description
-	damage = new_plant.sdamage
-	atk_speed = new_plant.atk_speed
+	damage = new_plant.stats["sdamage"]
+	atk_speed = new_plant.stats["atk_speed"]
 	cost = new_plant.cost
-	#if new_plant.upRequirement:
-		#upgrade = (new_plant.upRequirement.keys()[0])
-		#requirement = new_plant.upRequirement[upgrade]
-		#cur_req = new_plant.str_to_var(upgrade)
+	if new_plant.upRequirement:
+		upgrade = (new_plant.upRequirement.keys()[0])
+		requirement = new_plant.upRequirement[upgrade]
+		cur_req = current_plant.stats[upgrade]
 		
 		
 		

@@ -22,6 +22,7 @@ func setupgrades(content):
 	for i in Upgrades.size():
 		if content.upgrades[i] != null:
 			Upgrades[i].plant = content.upgrades[i]
+			Upgrades[i].current_plant = lasttower
 			Upgrades[i].set_stats()
 			Upgrades[i].show()
 		else:
@@ -32,9 +33,9 @@ func setcontent(content):
 	%Name.text = content.title
 	%HealthBar.max_value = content.healthcomponent.MAX_HEALTH
 	%HealthBar.value = content.healthcomponent.health
-	%Dmg.text = str("DMG: ", content.sdamage)
-	%AtkSpeed.text = str("ATKSpeed: ", content.atk_speed)
-	%Kills.text = str("Kills: ", content.kills)
+	%Dmg.text = str("DMG: ", content.stats["sdamage"])
+	%AtkSpeed.text = str("ATKSpeed: ", content.stats["atk_speed"])
+	%Kills.text = str("Kills: ", content.stats["kills"])
 	%BuildPopup.show()
 	%UpPopup.hide()
 
@@ -49,7 +50,7 @@ func setupDescription(content):
 	%UDmg.text = str("DMG: ", content.damage)
 	%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
 	%UCost.text = str("Costs: ", content.cost)
-	#%URequirement.text = str(content.upgrade, ": ", content.cur_req, "/", content.requirement)
+	%URequirement.text = str(content.upgrade, ": ", content.cur_req, "/", content.requirement)
 	%URequirement.visible = content.requirement
 	lasttower.clicked = false
 	%BuildPopup.hide()

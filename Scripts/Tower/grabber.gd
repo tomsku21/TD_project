@@ -14,5 +14,5 @@ func _on_attack_timer_timeout() -> void:
 		await get_tree().create_timer(10).timeout
 		var restored_enemy = grabbed.pop_front()
 		path.add_child(restored_enemy)
-		target.get_child(0).take_damage(sdamage, self)
+		target.get_child(0).take_damage(stats["sdamage"], self)
 		target.get_child(0).currently_grabbed = false
