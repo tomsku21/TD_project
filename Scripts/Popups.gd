@@ -1,6 +1,7 @@
 extends Control
 @export var Upgrades: Array[Node] #Feels like a dumb way to do this, but should work
 var lasttower: Area2D
+var finalpos
 
 func _enter_tree():
 	%Build1stats.hide()
@@ -13,7 +14,7 @@ func showBuildInfo(sizing, content):
 		lasttower = content
 		setcontent(content)
 		setupgrades(content)
-		var finalpos = sizing.get_origin()
+		finalpos = sizing.get_origin()
 		%Build1stats.position = finalpos
 		%Build1stats.show()
 		%Upgrades.show()
@@ -73,6 +74,7 @@ func setupDescription(content):
 	lasttower.clicked = false
 	%BuildPopup.hide()
 	%UpPopup.show()
+	%Build1stats.position = finalpos
 
 func returnDesc():
 	lasttower.clicked = true

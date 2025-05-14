@@ -11,7 +11,7 @@ var cur_req: float
 var req_dict: Dictionary
 var new_plant
 var current_plant
-var hovered
+var hovered = false
 
 func _process(delta):
 	if current_plant and req_dict:
