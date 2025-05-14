@@ -7,6 +7,7 @@ extends Node
 	1: preload("res://Scenes/Enemies/enemy.tscn"),
 	2: preload("res://Scenes/Enemies/enemy2.tscn"),
 	3: preload("res://Scenes/Enemies/enemy3.tscn"),
+	4: preload("res://Scenes/Enemies/enemy3.tscn"),
 }
 
 @export var rounds := []
