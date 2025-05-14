@@ -1,6 +1,6 @@
 extends HBoxContainer
 
 
-func _process(delta):
+func _process(_delta):
 	$BankM.text = str(GlobalVariables.cost, " $")
 	

@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area == target:
 		if is_instance_valid(target) and target.has_method("take_damage"):
-			var status = target.take_damage(damage)
+			target.take_damage(damage)
 			sprite_2d.visible = false
 			await get_tree().create_timer(1).timeout
 			queue_free()

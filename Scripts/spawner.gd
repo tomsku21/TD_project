@@ -19,7 +19,7 @@ func _ready() -> void:
 		spawned_per_type.resize(rounds[0].size())
 		spawned_per_type.fill(0)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if GlobalVariables.game_state:
 		if GlobalVariables.started == false:
 			spawn_timer.start()

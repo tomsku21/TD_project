@@ -39,7 +39,7 @@ func _ready() -> void:
 	$Button.grab_focus()
 	print("something??")
 
-func _process(delta):
+func _process(_delta):
 	if turret == null:
 		turret = get_tree().get_first_node_in_group("Turret_node")
 	if clicked:

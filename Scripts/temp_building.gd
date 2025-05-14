@@ -10,7 +10,7 @@ func _ready() -> void:
 	tilemap = get_tree().get_first_node_in_group("Grass")
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	
-func _process(delta):
+func _process(_delta):
 	if _check_tile_validity() and GlobalVariables.is_mouse_in_Area2D == false:
 		%Shadow.color = Color(0, 211, 58, 199)
 	else:

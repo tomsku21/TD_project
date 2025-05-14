@@ -6,7 +6,7 @@ extends Node
 var target
 var selected_spawner: Marker2D
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if timer.is_stopped() and not GlobalVariables.turrets.is_empty():
 		target = GlobalVariables.turrets.pick_random()
 		timer.wait_time = randf_range(1,10)
