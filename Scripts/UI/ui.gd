@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 		bankPanel.visible = true
 		buyMenuPanel.visible = true
 		startGame = true
-	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
+	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu and not animationPlayer.is_playing():
 		if in_settings:
 			vboxContainer.visible = true
 			settingsPanel.visible = false

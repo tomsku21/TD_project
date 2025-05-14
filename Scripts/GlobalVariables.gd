@@ -9,7 +9,6 @@ var enemy_count: int:
 			enemy_count = value
 		else:
 			enemy_count = 0
-#var spawned_enemies: int
 var turrets: Array = []
 var player_hp: float = 1000.0
 var MAX_HP: float = 1000.0
@@ -37,7 +36,6 @@ func _input(event: InputEvent) -> void:
 func reset():
 	save_game()
 	enemy_count = 0
-	#spawned_enemies = 0
 	game_state = true
 	player_hp = MAX_HP
 	game_over = false
