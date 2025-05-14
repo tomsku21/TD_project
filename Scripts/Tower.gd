@@ -45,6 +45,7 @@ func _process(_delta):
 	if clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
+		print("tower info showing")
 	else:
 		ARange.visible = false
 	
