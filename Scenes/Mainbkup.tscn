@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://dix30o4abr42v"]
+
+[ext_resource type="Script" uid="uid://besdl3kjeuv0v" path="res://Scripts/player.gd" id="1_7xbqi"]
+[ext_resource type="TileSet" uid="uid://bt5hmyta063ff" path="res://Assets/World/Testingtileset.tres" id="2_75dgk"]
+[ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="7_psfxe"]
+[ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="8_66571"]
+[ext_resource type="Script" uid="uid://bc43w6gak7pc7" path="res://Scripts/random_bullet_spawner.gd" id="9_lfxfr"]
+[ext_resource type="PackedScene" uid="uid://qbmbmuboql3" path="res://Scenes/RandomBullet.tscn" id="10_hcifn"]
+
+[sub_resource type="Curve" id="Curve_pbw6q"]
+_limits = [0.550562, 1.0, 102.766, 1024.0]
+_data = [Vector2(102.766, 0.550562), 0.0, 0.0, 0, 0, Vector2(1024, 1), 0.000648085, 0.0, 0, 0]
+point_count = 2
+
+[node name="Main" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-156.0]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.645, 1.645)
+limit_left = -700
+limit_top = -400
+limit_right = 700
+limit_bottom = 400
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("1_7xbqi")
+SPEED = 200.0
+
+[node name="TileMap" type="Node" parent="."]
+
+[node name="Land" type="TileMapLayer" parent="TileMap"]
+tile_set = ExtResource("2_75dgk")
+
+[node name="Road" type="TileMapLayer" parent="TileMap"]
+tile_set = ExtResource("2_75dgk")
+
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawn_timer", "path")]
+script = ExtResource("7_psfxe")
+spawn_timer = NodePath("SpawnTimer")
+path = NodePath("")
+rounds = [[0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [1, 20, 20, 10, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]]
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+
+[node name="Turrets" type="Node" parent="." groups=["Turret_node"]]
+
+[node name="Ghost" type="Node" parent="Turrets" groups=["Ghost"]]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 9
+position = Vector2(-1190, 0)
+amount = 100
+texture = ExtResource("8_66571")
+lifetime = 17.0
+preprocess = 20.0
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(0, 600)
+direction = Vector2(49.87, 0)
+gravity = Vector2(10, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = 77.84
+angular_velocity_max = 116.76
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_pbw6q")
+
+[node name="RandomBulletSpawner" type="Node" parent="." node_paths=PackedStringArray("markers", "timer")]
+script = ExtResource("9_lfxfr")
+markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
+random_bullet = ExtResource("10_hcifn")
+timer = NodePath("Timer")
+damage = 20
+
+[node name="Marker2D" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(450, -273)
+
+[node name="Marker2D2" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(-474, -274)
+
+[node name="Marker2D3" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(-477, 265)
+
+[node name="Marker2D4" type="Marker2D" parent="RandomBulletSpawner"]
+position = Vector2(468, 264)
+
+[node name="Timer" type="Timer" parent="RandomBulletSpawner"]
+one_shot = true
+
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="RandomBulletSpawner/Timer" to="RandomBulletSpawner" method="_on_timer_timeout"]

@@ -27,7 +27,7 @@ func shoot(target: Node2D) -> void:
 		add_child(fire_bullet)
 		fire_bullet.target = target
 		fire_bullet.gun = marker_2d # Assuming Marker2D is used as the gun position, adjust if named differently
-		fire_bullet.damage = stats["sdamage"] # Use tower's exported sdamage for fire_bullet damage
+		fire_bullet.damage = stats["Damage"] # Use tower's exported sdamage for fire_bullet damage
 		fire_bullet.splash_radius = 64.0 # Match Firebullet.gd's splash radius, adjustable via export if needed
 		await get_tree().create_timer(0.1).timeout
 		animation.play("Idle")
