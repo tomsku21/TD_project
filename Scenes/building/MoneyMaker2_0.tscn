@@ -22,7 +22,7 @@ upRequirement = {
 "Money Made": 10
 }
 stats = {
-"Atk Speed": 2.0,
+"Atk Speed": 25.0,
 "Damage Taken": 0.0,
 "Income": 2,
 "Money Made": 0

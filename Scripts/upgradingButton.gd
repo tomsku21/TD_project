@@ -61,6 +61,9 @@ func set_stats():
 		cur_req = current_plant.stats[upgrade]
 	else:
 		req_dict.clear()
+		upgrade = ""
+		requirement = 0
+		cur_req = 0
 	new_plant.queue_free()
 		
 		

@@ -12,13 +12,12 @@ class_name Tower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var stats: Dictionary = {"Damage" : 10, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0}
+@export var stats: Dictionary = {"Damage" : 10, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0, "Regeneration" : 0.0, "Regen Time": 1.0}
 #@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
 #@export var atk_speed: float
 @export var cost: int
 @export var title: String #Name of tower
 @export var description: String
-@export var DMGText: String
 @export var max_health: float = 1000.0
 
 var turret
@@ -36,6 +35,7 @@ func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
+	%RegenTimer.wait_time = stats["Regen Time"]
 	$Button.grab_focus()
 	print("something??")
 
@@ -83,7 +83,10 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	pass
-	
+
+func _on_regen_timer_timeout() -> void:
+	if healthcomponent.health < healthcomponent.MAX_HEALTH:
+		healthcomponent.health += stats["Regeneration"]
 
 func upgrade():
 	var new_plant = GlobalVariables.selected_turret.instantiate()
