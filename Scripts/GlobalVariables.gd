@@ -9,14 +9,13 @@ var enemy_count: int:
 			enemy_count = value
 		else:
 			enemy_count = 0
-#var spawned_enemies: int
 var turrets: Array = []
 var player_hp: float = 1000.0
 var MAX_HP: float = 1000.0
 var cost: int = 0
 var current_round: int = 0
 var best_round: int
-var max_rounds: int = 9
+var max_rounds: int = 15
 var selected_turret
 var is_mouse_in_Area2D = false
 var show_circles = false
@@ -37,7 +36,6 @@ func _input(event: InputEvent) -> void:
 func reset():
 	save_game()
 	enemy_count = 0
-	#spawned_enemies = 0
 	game_state = true
 	player_hp = MAX_HP
 	game_over = false
