@@ -8,12 +8,13 @@ var cost: int
 var requirement: float
 var upgrade: String
 var cur_req: float
+var req_dict: Dictionary
 var new_plant
 var current_plant
 var hovered
 
 func _process(delta):
-	if current_plant and new_plant.upRequirement:
+	if current_plant and req_dict:
 		%UProgress.max_value = requirement
 		%UProgress.value = cur_req
 	else:
@@ -22,11 +23,11 @@ func _process(delta):
 	
 	if hovered:
 		Popups.setupDescription(self)
-		if new_plant.upRequirement:
+		if req_dict:
 			cur_req = current_plant.stats[upgrade]
 
 	if plant != null:
-		if cur_req >= requirement or new_plant.upRequirement == null:
+		if cur_req >= requirement or req_dict == null:
 			self.disabled = (GlobalVariables.cost < cost)
 		else:
 			self.disabled = true
@@ -52,10 +53,15 @@ func set_stats():
 	description = new_plant.description
 	stats = new_plant.stats
 	cost = new_plant.cost
+	
 	if new_plant.upRequirement:
-		upgrade = (new_plant.upRequirement.keys()[0])
-		requirement = new_plant.upRequirement[upgrade]
+		req_dict = new_plant.upRequirement
+		upgrade = (req_dict.keys()[0])
+		requirement = req_dict[upgrade]
 		cur_req = current_plant.stats[upgrade]
+	else:
+		req_dict.clear()
+	new_plant.queue_free()
 		
 		
 		

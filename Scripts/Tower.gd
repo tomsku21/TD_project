@@ -36,6 +36,7 @@ func _ready() -> void:
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	$Button.grab_focus()
+	print("something??")
 
 func _process(delta):
 	if turret == null:
