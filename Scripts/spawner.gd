@@ -3,9 +3,10 @@ extends Node
 @export var spawn_timer: Timer
 @export var path: Path2D
 @export var enemys: Dictionary = {
-	# Bossi menisi 0: preload
-	0: preload("res://Scenes/Enemies/enemy.tscn"),
-	1: preload("res://Scenes/Enemies/enemy2.tscn"),
+	0: preload("res://Scenes/Enemies/Boss.tscn"),
+	1: preload("res://Scenes/Enemies/enemy.tscn"),
+	2: preload("res://Scenes/Enemies/enemy2.tscn"),
+	3: preload("res://Scenes/Enemies/enemy3.tscn"),
 }
 
 @export var rounds := []
@@ -35,9 +36,10 @@ func _physics_process(_delta: float) -> void:
 				if GlobalVariables.enemy_count == 0:
 					current_type_index = 0
 					spawned_per_type.fill(0)
-					if GlobalVariables.current_round < GlobalVariables.max_rounds:
+					if GlobalVariables.current_round <= GlobalVariables.max_rounds:
 						GlobalVariables.cost += 3
-						GlobalVariables.current_round += 1
+						if GlobalVariables.current_round != GlobalVariables.max_rounds:
+							GlobalVariables.current_round += 1
 						if GlobalVariables.current_round < rounds.size():
 							spawned_per_type.resize(rounds[GlobalVariables.current_round].size())
 							spawned_per_type.fill(0)
