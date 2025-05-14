@@ -917,9 +917,11 @@ tile_set = SubResource("TileSet_c1w88")
 [node name="LifeTree" parent="TileMap" instance=ExtResource("3_pbw6q")]
 position = Vector2(-433, 104)
 
-[node name="Spawner" type="Node" parent="."]
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawn_timer", "path")]
 script = ExtResource("3_kln2b")
-rounds = [10, 20]
+spawn_timer = NodePath("SpawnTimer")
+path = NodePath("../TileMap/Road/Path2D")
+rounds = [[10, 5], [5, 20]]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 
