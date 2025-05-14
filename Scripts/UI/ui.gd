@@ -2,7 +2,7 @@ extends CanvasLayer
 @export var bankPanel: Panel
 @export var buyMenuPanel: Panel
 @export var animationPlayer: AnimationPlayer
-
+@export var current_round: Label
 @export_category("Game Over")
 @export var gameOverPanel: Panel
 @export var overVBoxContainer: VBoxContainer
@@ -12,6 +12,7 @@ extends CanvasLayer
 
 @export_category("Settings")
 @export var settingsPanel: Panel
+@export var v_sync: CheckButton
 
 var played = false
 var in_settings: bool = false
@@ -25,11 +26,14 @@ func _ready() -> void:
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
 	connect_interacts()
-
 	
 	defaultPanels(false)
 
 func _process(_delta: float) -> void:
+	if current_round != null:
+		current_round.text = str("Current Round: ", GlobalVariables.current_round + 1)
+	else:
+		push_warning("current_round Label is not assigned!")
 	if GlobalVariables.in_mainMenu:
 		bankPanel.visible = false
 		buyMenuPanel.visible = false
@@ -163,3 +167,10 @@ func _on_back_pressed() -> void:
 	vboxContainer.visible = true
 	settingsPanel.visible = false
 	in_settings = false
+
+
+func _on_v_sync_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)

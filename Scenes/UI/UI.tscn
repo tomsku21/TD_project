@@ -395,12 +395,13 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8wei"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel")]
 process_mode = 3
 script = ExtResource("1_8wlyu")
 bankPanel = NodePath("Bank")
 buyMenuPanel = NodePath("buymenu")
 animationPlayer = NodePath("AnimationPlayer")
+current_round = NodePath("Round")
 gameOverPanel = NodePath("GameOver")
 overVBoxContainer = NodePath("GameOver/VBoxContainer")
 pausePanel = NodePath("Pause")
@@ -414,6 +415,14 @@ libraries = {
 }
 playback_auto_capture_transition_type = 1
 playback_auto_capture_ease_type = 2
+
+[node name="Round" type="Label" parent="."]
+offset_right = 290.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("8_w8wei")
+theme_override_font_sizes/font_size = 36
+text = "Current Round: "
+vertical_alignment = 1
 
 [node name="Bank" type="Panel" parent="."]
 anchors_preset = 1
@@ -516,7 +525,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -636,6 +644,15 @@ size_flags_vertical = 1
 max_value = 1.0
 step = 0.05
 
+[node name="V-Sync" type="CheckButton" parent="Pause/Settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.82
+theme_override_font_sizes/font_size = 36
+text = "V-Sync"
+icon_alignment = 1
+
 [node name="Back" type="Button" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.290196, 0.8, 0, 1)
@@ -726,6 +743,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_thdbn")
 [connection signal="value_changed" from="Pause/Settings/VBoxContainer/GridContainer/Master Volume Slider" to="." method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="Pause/Settings/VBoxContainer/GridContainer/Music Volume Slider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Pause/Settings/VBoxContainer/GridContainer/SFX Volume Slider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="toggled" from="Pause/Settings/VBoxContainer/GridContainer/V-Sync" to="." method="_on_v_sync_toggled"]
 [connection signal="pressed" from="Pause/Settings/VBoxContainer/GridContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/HBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
