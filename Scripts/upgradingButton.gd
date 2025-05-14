@@ -2,20 +2,19 @@ extends TextureButton
 
 @export var plant: PackedScene
 #put these to a dictionary
+var stats : Dictionary
 var description: String
-var DMGText: String
-var damage: float
-var atk_speed: float
 var cost: int
 var requirement: float
 var upgrade: String
 var cur_req: float
+var req_dict: Dictionary
 var new_plant
 var current_plant
 var hovered
 
-func _process(_delta):
-	if current_plant and new_plant.upRequirement:
+func _process(delta):
+	if current_plant and req_dict:
 		%UProgress.max_value = requirement
 		%UProgress.value = cur_req
 	else:
@@ -24,11 +23,11 @@ func _process(_delta):
 	
 	if hovered:
 		Popups.setupDescription(self)
-		if new_plant.upRequirement:
+		if req_dict:
 			cur_req = current_plant.stats[upgrade]
 
 	if plant != null:
-		if cur_req >= requirement or new_plant.upRequirement == null:
+		if cur_req >= requirement or req_dict == null:
 			self.disabled = (GlobalVariables.cost < cost)
 		else:
 			self.disabled = true
@@ -48,17 +47,21 @@ func _on_mouse_exited():
 	Popups.returnDesc()
 
 
+#create a stats {} dict here. way to check if certain named key exists?
 func set_stats():
 	new_plant = plant.instantiate()
 	description = new_plant.description
-	DMGText = new_plant.DMGText
-	damage = new_plant.stats["sdamage"]
-	atk_speed = new_plant.stats["atk_speed"]
+	stats = new_plant.stats
 	cost = new_plant.cost
+	
 	if new_plant.upRequirement:
-		upgrade = (new_plant.upRequirement.keys()[0])
-		requirement = new_plant.upRequirement[upgrade]
+		req_dict = new_plant.upRequirement
+		upgrade = (req_dict.keys()[0])
+		requirement = req_dict[upgrade]
 		cur_req = current_plant.stats[upgrade]
+	else:
+		req_dict.clear()
+	new_plant.queue_free()
 		
 		
 		

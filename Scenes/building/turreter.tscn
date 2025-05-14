@@ -18,7 +18,7 @@ script = ExtResource("1_s6nl5")
 bullet = ExtResource("2_a4jgc")
 upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
-"damage_taken": 500.0
+"Damage Taken": 500.0
 }
 cost = 2
 title = "Sapling"

@@ -33,9 +33,21 @@ func setcontent(content):
 	%Name.text = content.title
 	%HealthBar.max_value = content.healthcomponent.MAX_HEALTH
 	%HealthBar.value = content.healthcomponent.health
-	%Dmg.text = str("DMG: ", content.stats["sdamage"])
-	%AtkSpeed.text = str("ATKSpeed: ", content.stats["atk_speed"])
-	%Kills.text = str("Kills: ", content.stats["kills"])
+	#doing this through if elses doesn't feel great, but works without problems, no need to fix
+	if content.stats.has("Damage"):
+		%Dmg.text = str("Damage: ", content.stats["Damage"])
+	elif content.stats.has("Healing"):
+		%Dmg.text = str("Healing: ", content.stats["Healing"])
+	elif content.stats.has("Income"):
+		%Dmg.text = str("Income: ", content.stats["Income"])
+	
+	%AtkSpeed.text = str("ATKSpeed: ", content.stats["Atk Speed"])
+	if content.stats.has("Kills"):
+		%Kills.text = str("Kills: ", content.stats["Kills"])
+	elif content.stats.has("Health Restored"):
+		%Kills.text = str("Health Restored: ", content.stats["Health Restored"])
+	elif content.stats.has("Money Made"):
+		%Kills.text = str("Money Made: ", content.stats["Money Made"])
 	%BuildPopup.show()
 	%UpPopup.hide()
 
@@ -47,8 +59,14 @@ func upgrade():
 
 func setupDescription(content):
 	%UDesc.text = str(content.description)
-	%UDmg.text = str(content.DMGText, content.damage)
-	%UAtkSpeed.text = str("AtkSpeed: ", content.atk_speed)
+	#This does not feel good, make better if there is a way.
+	if content.stats.has("Damage"):
+		%UDmg.text = str("Damage: ", content.stats["Damage"])
+	elif content.stats.has("Healing"):
+		%UDmg.text = str("Healing: ", content.stats["Healing"])
+	elif content.stats.has("Income"):
+		%UDmg.text = str("Income: ", content.stats["Income"])
+	%UAtkSpeed.text = str("ATKSpeed: ", content.stats["Atk Speed"])
 	%UCost.text = str("Costs: ", content.cost)
 	%URequirement.text = str(content.upgrade, ": ", content.cur_req, "/", content.requirement)
 	%URequirement.visible = content.requirement
