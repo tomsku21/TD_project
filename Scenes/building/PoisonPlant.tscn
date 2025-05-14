@@ -96,6 +96,18 @@ radius = 150.0
 script = ExtResource("1_apre2")
 Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])
+upRequirement = {
+"Damage Dealt": 50.0
+}
+stats = {
+"Atk Speed": 1.5,
+"Damage": 3,
+"Damage Dealt": 0.0,
+"Damage Taken": 0.0,
+"Kills": 0,
+"Regen Time": 0.8,
+"Regeneration": 5.0
+}
 cost = 1
 title = "Poison Plant"
 description = "Poisons enemies, applying a damage over time debuff"
@@ -184,6 +196,10 @@ bus = &"SFX"
 
 [node name="Mousecheck" parent="." instance=ExtResource("7_rp36r")]
 
+[node name="RegenTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
@@ -193,3 +209,4 @@ bus = &"SFX"
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

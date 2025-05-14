@@ -1,8 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=11 format=3 uid="uid://bfdli3w1fom06"]
 
 [ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
-[ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="2_jsynv"]
-[ext_resource type="PackedScene" uid="uid://qv4gs0heqxmg" path="res://Scenes/building/Grabber.tscn" id="3_h27ut"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
 [ext_resource type="Texture2D" uid="uid://bnb1o5g3ctu5c" path="res://Assets/Plants/Frostie.png" id="4_h27ut"]
 [ext_resource type="Texture2D" uid="uid://c3rcybm2wymw4" path="res://Assets/Particles/wind.png" id="4_x6bfs"]
@@ -19,7 +17,19 @@ radius = 150.0
 [node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")
-upgrades = Array[PackedScene]([ExtResource("2_jsynv"), ExtResource("3_h27ut"), null])
+upgrades = Array[PackedScene]([null, null, null])
+upRequirement = {
+"Damage Taken": 50.0
+}
+stats = {
+"Atk Speed": 1.5,
+"Damage": 2,
+"Damage Dealt": 0.0,
+"Damage Taken": 0.0,
+"Kills": 0,
+"Regen Time": 0.8,
+"Regeneration": 5.0
+}
 cost = 1
 title = "Cold Plant"
 description = "Slows enemies"
@@ -103,6 +113,10 @@ bus = &"SFX"
 
 [node name="Mousecheck" parent="." instance=ExtResource("9_h2nyj")]
 
+[node name="RegenTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
@@ -112,3 +126,4 @@ bus = &"SFX"
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

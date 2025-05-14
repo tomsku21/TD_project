@@ -4,7 +4,12 @@ var game_state: bool = false
 var started: bool = false
 var game_over: bool = false
 var enemy_count: int
-var spawned_enemies: int
+var spawned_enemies: int:
+	set(value):
+		if value >= 0:
+			spawned_enemies = value
+		else:
+			spawned_enemies = 0
 var turrets: Array = []
 var player_hp: float = 1000.0
 var MAX_HP: float = 1000.0

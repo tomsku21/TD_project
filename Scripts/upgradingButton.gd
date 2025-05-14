@@ -11,7 +11,7 @@ var cur_req: float
 var req_dict: Dictionary
 var new_plant
 var current_plant
-var hovered
+var hovered = false
 
 func _process(delta):
 	if current_plant and req_dict:
@@ -61,6 +61,9 @@ func set_stats():
 		cur_req = current_plant.stats[upgrade]
 	else:
 		req_dict.clear()
+		upgrade = ""
+		requirement = 0
+		cur_req = 0
 	new_plant.queue_free()
 		
 		
