@@ -27,6 +27,6 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			zoom_level += 0.1
 
-		zoom_level = clamp(zoom_level, 1.0, 3.0)
+		zoom_level = clamp(zoom_level, 1.5, 4.0)
 
 		zoom = Vector2(zoom_level, zoom_level)
