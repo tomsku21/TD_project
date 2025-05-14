@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	defaultPanels(false)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if GlobalVariables.in_mainMenu:
 		bankPanel.visible = false
 		buyMenuPanel.visible = false

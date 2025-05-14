@@ -14,7 +14,7 @@ var new_plant
 var current_plant
 var hovered
 
-func _process(delta):
+func _process(_delta):
 	if current_plant and new_plant.upRequirement:
 		%UProgress.max_value = requirement
 		%UProgress.value = cur_req

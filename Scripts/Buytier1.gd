@@ -9,7 +9,7 @@ func _ready():
 	ghost_node = get_tree().get_first_node_in_group("Ghost")
 	%TDesc.text = str("")
 
-func _process(delta):
+func _process(_delta):
 	self.disabled = (GlobalVariables.cost < cost)
 	if ghost_node == null:
 		ghost_node = get_tree().get_first_node_in_group("Ghost")

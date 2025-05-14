@@ -37,7 +37,7 @@ func _ready() -> void:
 	%AttackTimer.wait_time = stats["atk_speed"]
 	$Button.grab_focus()
 
-func _process(delta):
+func _process(_delta):
 	if turret == null:
 		turret = get_tree().get_first_node_in_group("Turret_node")
 	if clicked:

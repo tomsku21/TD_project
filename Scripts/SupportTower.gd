@@ -36,7 +36,7 @@ func _ready() -> void:
 	%AttackTimer.wait_time = stats["atk_speed"]
 	$Button.grab_focus()
 
-func _process(delta):
+func _process(_delta):
 	if GlobalVariables.show_circles:
 		ARange.visible = true
 	elif clicked:
