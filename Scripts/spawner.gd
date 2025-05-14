@@ -1,40 +1,60 @@
 extends Node
 
-@onready var spawn_timer: Timer = $SpawnTimer
-
-@onready var path: Path2D = $"../TileMap/Road/Path2D"
-
+@export var spawn_timer: Timer
+@export var path: Path2D
 @export var enemys: Dictionary = {
+	# Bossi menisi 0: preload
 	0: preload("res://Scenes/Enemies/enemy.tscn"),
-	1: preload("res://Scenes/Enemies/enemy2.tscn")
+	1: preload("res://Scenes/Enemies/enemy2.tscn"),
 }
 
 @export var rounds := []
 
-var time: float
+var spawned_per_type: Array = []
+var current_type_index: int = 0
 
 func _ready() -> void:
 	GlobalVariables.cost += 100
+	if rounds.size() > 0:
+		spawned_per_type.resize(rounds[0].size())
+		spawned_per_type.fill(0)
 
 func _physics_process(delta: float) -> void:
 	if GlobalVariables.game_state:
 		if GlobalVariables.started == false:
 			spawn_timer.start()
 			GlobalVariables.started = true
-		elif GlobalVariables.spawned_enemies >= rounds[GlobalVariables.current_round]:
-			spawn_timer.stop()
-			if GlobalVariables.enemy_count == 0:
-				GlobalVariables.spawned_enemies = 0
-				if GlobalVariables.current_round < GlobalVariables.max_rounds:
-					GlobalVariables.cost += 3
-					GlobalVariables.current_round += 1
-				spawn_timer.start()
+		else:
+			var all_spawned = true
+			for type_index in rounds[GlobalVariables.current_round].size():
+				if spawned_per_type[type_index] < rounds[GlobalVariables.current_round][type_index]:
+					all_spawned = false
+					break
+			if all_spawned:
+				spawn_timer.stop()
+				if GlobalVariables.enemy_count == 0:
+					current_type_index = 0
+					spawned_per_type.fill(0)
+					if GlobalVariables.current_round < GlobalVariables.max_rounds:
+						GlobalVariables.cost += 3
+						GlobalVariables.current_round += 1
+						if GlobalVariables.current_round < rounds.size():
+							spawned_per_type.resize(rounds[GlobalVariables.current_round].size())
+							spawned_per_type.fill(0)
+					spawn_timer.start()
 	else:
 		spawn_timer.stop()
 		GlobalVariables.started = false
 
 func _on_timer_timeout() -> void:
-	var new_enemy = enemys[GlobalVariables.current_round].instantiate()
-	path.add_child(new_enemy)
-	GlobalVariables.enemy_count += 1
-	GlobalVariables.spawned_enemies += 1
+	var round_data = rounds[GlobalVariables.current_round]
+	while current_type_index < round_data.size():
+		if spawned_per_type[current_type_index] < round_data[current_type_index]:
+			if current_type_index in enemys:
+				var new_enemy = enemys[current_type_index].instantiate()
+				path.add_child(new_enemy)
+				GlobalVariables.enemy_count += 1
+				spawned_per_type[current_type_index] += 1
+			break
+		else:
+			current_type_index += 1
