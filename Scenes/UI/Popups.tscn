@@ -65,6 +65,7 @@ layout_mode = 2
 
 [node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(150, 116)
 layout_mode = 1
 offset_left = 80.0
@@ -107,6 +108,7 @@ text = "Kills:"
 
 [node name="UpPopup" type="PanelContainer" parent="UI/Build1stats"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(150, 116)
 layout_mode = 1
 offset_left = 80.0

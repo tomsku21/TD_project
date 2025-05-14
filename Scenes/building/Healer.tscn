@@ -19,12 +19,9 @@ Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])
 stats = {
 "Atk Speed": 1.0,
-"Damage": 0,
 "Damage Taken": 0.0,
 "Healing": 10.0,
-"Health Restored": 0.0,
-"Kills": 0,
-"Money Made": 0
+"Health Restored": 0.0
 }
 cost = 1
 title = "Healer plant"

@@ -2,8 +2,7 @@ extends TextureButton
 
 @export var plant: PackedScene
 #put these to a dictionary
-var stats : Dictionary = {"Damage" : 0.0, "Atk Speed" : 0.0, "Damage Taken" : 0.0, 
-"Health Restored" : 0.0, "Kills" : 0, "Money Made" : 0}
+var stats : Dictionary
 var description: String
 var cost: int
 var requirement: float
@@ -51,15 +50,7 @@ func _on_mouse_exited():
 func set_stats():
 	new_plant = plant.instantiate()
 	description = new_plant.description
-	print(new_plant.description)
-	if new_plant.stats["Damage"] > 0:
-		stats["Damage"] = new_plant.stats["Damage"]
-	elif new_plant.stats["Healing"] != null:
-		stats["Healing"] = new_plant.stats["Healing"]
-	elif new_plant.stats["Income"] != null:
-		stats["Income"] = new_plant.stats["Income"]
-		stats["Money Made"] = new_plant.stats["Money Made"]
-	stats["Atk Speed"] = new_plant.stats["Atk Speed"]
+	stats = new_plant.stats
 	cost = new_plant.cost
 	if new_plant.upRequirement:
 		upgrade = (new_plant.upRequirement.keys()[0])

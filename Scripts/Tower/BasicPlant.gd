@@ -4,6 +4,7 @@ extends Tower
 @export var plantimg: Texture
 
 func _on_attack_timer_timeout() -> void:
+	print("damage dealt: ", stats["Damage Dealt"])
 	if not enemies.is_empty():
 		$Shoot.pitch_scale = randf_range(0.9, 1.2)
 		$Shoot.play()

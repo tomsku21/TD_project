@@ -15,12 +15,17 @@ radius = 31.5159
 [node name="MoneyMaker2_0" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["MoneyMaker", "Turret"]]
 material = ExtResource("1_0sp5g")
 script = ExtResource("2_xhcmm")
-money = 2
 Attack_effect = NodePath("Attack")
 plantimg = ExtResource("3_t34s4")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Money Made": 10
+}
+stats = {
+"Atk Speed": 2.0,
+"Damage Taken": 0.0,
+"Income": 2,
+"Money Made": 0
 }
 cost = 5
 title = "Money Maker"

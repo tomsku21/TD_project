@@ -63,6 +63,7 @@ upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("4_5yvm0"), E
 cost = 1
 title = "Sapling"
 description = "Small sapling."
+max_health = 10000.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
