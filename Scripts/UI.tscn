@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://1ci7pw8ioxp8"]
+[gd_scene load_steps=25 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="2_kfnqa"]
 [ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/UI/bank.gd" id="3_niwxr"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_xidl6"]
-[ext_resource type="PackedScene" path="res://Scenes/buyt_1.tscn" id="5_xkw3u"]
+[ext_resource type="PackedScene" uid="uid://cmtl2nh7a1auo" path="res://Scenes/buyt_1.tscn" id="5_xkw3u"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="6_3uf0e"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="7_o7qfm"]
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="8_cjk0b"]
@@ -501,6 +501,7 @@ item = ExtResource("8_cjk0b")
 
 [node name="BuyMoneyMaker" parent="buymenu/VBoxContainer/build" instance=ExtResource("5_xkw3u")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("7_o7qfm")
 item = ExtResource("9_tiitt")

@@ -14,12 +14,13 @@ radius = 31.5159
 
 [node name="MoneyMaker2_0" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["MoneyMaker", "Turret"]]
 material = ExtResource("1_0sp5g")
+collision_layer = 2
 script = ExtResource("2_xhcmm")
 Attack_effect = NodePath("Attack")
 plantimg = ExtResource("3_t34s4")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Money Made": 10
+"Money Made": 12
 }
 stats = {
 "Atk Speed": 25.0,
@@ -28,8 +29,8 @@ stats = {
 "Money Made": 0
 }
 cost = 5
-title = "Money Maker"
-description = "Money"
+title = "Money tree"
+description = "Generates high income"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

@@ -55,6 +55,7 @@ animations = [{
 radius = 100.0
 
 [node name="Sapling" type="Area2D" groups=["Turret"]]
+collision_layer = 2
 input_pickable = false
 script = ExtResource("1_gjq8m")
 plantimg = ExtResource("7_7mvnh")

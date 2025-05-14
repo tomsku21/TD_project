@@ -15,6 +15,7 @@
 radius = 150.0
 
 [node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+collision_layer = 2
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])

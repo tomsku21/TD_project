@@ -217,6 +217,7 @@ animations = [{
 radius = 150.0
 
 [node name="Fireplant" type="Area2D" node_paths=PackedStringArray("animation") groups=["Turret"]]
+collision_layer = 2
 script = ExtResource("1_hrvv2")
 fire_bullet_scene = ExtResource("2_6ngx4")
 animation = NodePath("AnimatedSprite2D")

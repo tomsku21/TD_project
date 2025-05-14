@@ -93,6 +93,7 @@ animations = [{
 radius = 150.0
 
 [node name="PoisonPlant" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+collision_layer = 2
 script = ExtResource("1_apre2")
 Attack_effect = NodePath("Attack")
 upgrades = Array[PackedScene]([null, null, null])

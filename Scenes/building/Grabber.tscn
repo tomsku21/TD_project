@@ -12,10 +12,11 @@
 radius = 74.0068
 
 [node name="Grabber" type="Area2D" groups=["Turret"]]
+collision_layer = 2
 script = ExtResource("1_cm8b3")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Kills": 1
+"Kills": 10
 }
 stats = {
 "Atk Speed": 1.0,
@@ -26,9 +27,9 @@ stats = {
 "Regen Time": 1.0,
 "Regeneration": 5.0
 }
-cost = 1
-title = "Grabber"
-description = "Grabs"
+cost = 5
+title = "Flytrap"
+description = "Devours enemies whole"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
