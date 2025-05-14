@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_yb4q4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb4q4"]
-size = Vector2(97, 77)
+size = Vector2(108, 104)
 
 [node name="LifeTree" type="Area2D" groups=["LifeTree"]]
 script = ExtResource("1_883my")
@@ -17,7 +17,7 @@ attackTime = 2.0
 texture = ExtResource("2_5jboi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(19.5, -2.5)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_yb4q4")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
