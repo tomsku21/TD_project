@@ -37,7 +37,6 @@ func _ready() -> void:
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	%RegenTimer.wait_time = stats["Regen Time"]
 	$Button.grab_focus()
-	print("something??")
 
 func _process(_delta):
 	if turret == null:
@@ -45,7 +44,6 @@ func _process(_delta):
 	if clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
-		print("tower info showing")
 	else:
 		ARange.visible = false
 	

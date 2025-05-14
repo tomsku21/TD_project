@@ -15,7 +15,7 @@ radius = 74.0068
 script = ExtResource("1_cm8b3")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Kills": 25
+"Kills": 1
 }
 stats = {
 "Atk Speed": 1.0,

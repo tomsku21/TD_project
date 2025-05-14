@@ -1,7 +1,7 @@
 extends Tower
 @export var grabbed: Array = []
 var path
-func _ready() -> void:
+func _enter_tree() -> void:
 	path = get_tree().get_first_node_in_group("Path")
 
 func _on_attack_timer_timeout() -> void:
