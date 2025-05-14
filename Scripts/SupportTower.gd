@@ -29,14 +29,12 @@ var hovered: bool = false #more for popups
 #var kills: int #spawned bullets increase this
 
 var towers: Array[Area2D] = []
-
 func _ready() -> void:
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
-	print("something???")
 	$Button.grab_focus()
-	print("TESTIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+
 
 func _process(_delta):
 	if GlobalVariables.show_circles:
