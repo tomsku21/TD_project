@@ -10,7 +10,7 @@ var spriteobtained: bool
 var new_turret
 
 func _ready() -> void:
-	tilemap = get_tree().get_first_node_in_group("Grass")
+	tilemap = get_tree().get_first_node_in_group("Tile_data")
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	
 func _process(_delta):
@@ -41,21 +41,15 @@ func _check_tile_validity():
 		cell = tilemap.local_to_map(tilemap.to_local(world_pos)) #update to check right and left tiles also....
 		var tile_data = tilemap.get_cell_tile_data(cell)
 		if tile_data:
-			var tile_type = tile_data.get_custom_data("Place")
+			#var tile_type = tile_data.get_custom_data("Place")
 			return _tower_borders_check(cell)
 		return false
 
 #improve this later
 func _tower_borders_check(cell):
 	var borders: Dictionary
-	borders["bottom_left"] = cell
-	borders["bottom_left"].x -= 1
-	borders["top_right"] = cell
-	borders["top_right"].x += 1
-	#borders["top_right"].y -= 1
-	print("cell", cell)
-	print("top_right", borders["top_right"])
-	print("bottom_left", borders["bottom_left"])
+	borders["bottom_left"] = cell + Vector2i(-1, 0)
+	borders["top_right"] = cell + Vector2i(1, -1)
 	for i in borders:
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
 		if tile_data:

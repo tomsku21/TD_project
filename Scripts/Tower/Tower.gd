@@ -28,16 +28,14 @@ var cell: Vector2i
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
-	tilemap = get_tree().get_first_node_in_group("Grass")
+	tilemap = get_tree().get_first_node_in_group("Tile_data")
 	stats = stats.duplicate()
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	%RegenTimer.wait_time = stats["Regen Time"]
 	$Button.grab_focus()
-	cell = tilemap.local_to_map(global_position)
-	_tower_borders_check(false)
-	
+	_tower_borders_check.call_deferred(false)
 
 func _process(_delta):
 	if turret == null:
@@ -131,19 +129,25 @@ func _check_mouseover():
 
 #improve this later
 func _tower_borders_check(change: bool):
+	var tile
+	if change:
+		tile = 7
+	else:
+		tile = 8
+	cell = tilemap.local_to_map(tilemap.to_local(global_position))
 	var borders: Dictionary
-	borders["bottom_left"] = cell
-	borders["bottom_left"].x -= 1
-	borders["top_right"] = cell
-	borders["top_right"].x += 1
-	#borders["top_right"].y -= 1
-	print("cell", cell)
-	print("top_right", borders["top_right"])
-	print("bottom_left", borders["bottom_left"])
+	borders["current_pos"] = cell
+	borders["bottom_right"] = cell + Vector2i(1, 0)
+	borders["bottom_left"] = cell + Vector2i(-1, 0)
+	borders["top_right"] = cell + Vector2i(1, -1)
+	borders["top_middle"] = cell + Vector2i(0, -1)
+	borders["top_left"] = cell + Vector2i(-1, -1)
 	for i in borders:
+		print(i, borders.get(i))
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		var custom_tile_data = tile_data.get_custom_data("Place")
-		print("tile data before: ", custom_tile_data)
-		custom_tile_data = change
-		print("tile data after:", tile_data.get_custom_data("Place"))
+		print("tile data before:", tile_data)
+		tilemap.set_cell(borders.get(i), 0, Vector2i(tile, 5))
+		print("tile", tile)
+		tile_data = tilemap.get_cell_tile_data(borders.get(i))
+		print("tile data after:", tile_data)
 		continue
