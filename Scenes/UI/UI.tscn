@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
-[ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="2_kfnqa"]
+[ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
 [ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/UI/bank.gd" id="3_niwxr"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_xidl6"]
+[ext_resource type="Texture2D" uid="uid://cbhu7dg13s7vu" path="res://Assets/UI/Money.png" id="4_y85ht"]
 [ext_resource type="PackedScene" uid="uid://bb283l2wen4n2" path="res://Scenes/buyt_1.tscn" id="5_xkw3u"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="6_3uf0e"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="7_o7qfm"]
@@ -429,11 +429,10 @@ _data = {
 }
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jevvu"]
-texture = ExtResource("2_kfnqa")
-axis_stretch_vertical = 1
+texture = ExtResource("2_y85ht")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7tgkj"]
-texture = ExtResource("2_kfnqa")
+texture = ExtResource("2_y85ht")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y85ht"]
 
@@ -500,7 +499,7 @@ script = ExtResource("3_niwxr")
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("4_xidl6")
+texture = ExtResource("4_y85ht")
 expand_mode = 1
 
 [node name="BankM" type="RichTextLabel" parent="Bank/HBoxContainer"]
@@ -800,6 +799,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lotke")
 
 [node name="Button" type="Button" parent="NextRound"]

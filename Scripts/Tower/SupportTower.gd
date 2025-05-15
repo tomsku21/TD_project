@@ -51,7 +51,7 @@ func _process(_delta):
 	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
 		print("get unhovered nerd")
 		hovered = false
-	if is_in_group("MoneyMaker") and attack_timer.is_stopped():
+	if is_in_group("MoneyMaker") and attack_timer.is_stopped() and GlobalVariables.game_state:
 		attack_timer.start()
 
 func take_damage(damage: int):
