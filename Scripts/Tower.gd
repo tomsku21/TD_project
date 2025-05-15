@@ -3,6 +3,7 @@ class_name Tower
 @onready var attack_timer: Timer = $AttackTimer
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var healthcomponent: HealthComponent = %HealthComponent
+@onready var hitbox: HitboxComponent = %HitboxComponent
 @onready var ARange: Sprite2D = $RangeMarker
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var bullet: PackedScene

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://k6ufqb7xdej0"]
+[gd_scene load_steps=15 format=3 uid="uid://k6ufqb7xdej0"]
 
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_ll3dy"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_bdjjs"]
 [ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="6_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="7_j8fsv"]
+[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="7_ll3dy"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_1gr70"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_h62y5"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_ctpcp"]
@@ -18,12 +19,14 @@
 radius = 100.0
 
 [node name="Flower" type="Area2D" groups=["Turret"]]
+y_sort_enabled = true
 collision_layer = 2
 input_pickable = false
 script = ExtResource("1_tdi3x")
 plantimg = ExtResource("2_tdi3x")
 bullet = ExtResource("2_ll3dy")
 upgrades = Array[PackedScene]([ExtResource("3_tdi3x"), ExtResource("4_bdjjs"), ExtResource("6_tdi3x")])
+upRequirement = null
 stats = {
 "Atk Speed": 1.0,
 "Damage": 5,
@@ -36,6 +39,7 @@ stats = {
 cost = 1
 title = "Seed"
 description = "Small seed."
+max_health = null
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -55,6 +59,7 @@ scale_amount_max = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tdi3x")
+offset = Vector2(0, -15)
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
@@ -64,9 +69,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -21.0
-offset_top = -21.0
+offset_top = -35.0
 offset_right = 21.0
-offset_bottom = 21.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
@@ -74,7 +79,11 @@ mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yd0mu")
 flat = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_ll3dy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_hskch")
 
 [node name="AttackTimer" type="Timer" parent="."]
