@@ -3,6 +3,7 @@ extends CanvasLayer
 @export var buyMenuPanel: Panel
 @export var animationPlayer: AnimationPlayer
 @export var current_round: Label
+@export var shop_buton: TextureButton
 @export_category("Game Over")
 @export var gameOverPanel: Panel
 @export var overVBoxContainer: VBoxContainer
@@ -22,7 +23,7 @@ var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
 var startGame: bool = false
-
+var shop_hide: bool = false
 func _ready() -> void:
 	SignalBus.NextRound.connect(_next_round)
 	masterIndex = AudioServer.get_bus_index("Master")
@@ -44,24 +45,25 @@ func _process(_delta: float) -> void:
 		bankPanel.visible = true
 		buyMenuPanel.visible = true
 		startGame = true
-	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu and not animationPlayer.is_playing():
-		if in_settings:
-			vboxContainer.visible = true
-			settingsPanel.visible = false
-			in_settings = false
-		else:
-			bankPanel.visible = !bankPanel.visible
-			buyMenuPanel.visible = !buyMenuPanel.visible
-			vboxContainer.visible = true
-			settingsPanel.visible = false
-			pausePanel.visible = !pausePanel.visible
-			get_tree().paused = !get_tree().paused
-			animationPlayer.speed_scale = 5.0
-			if animationPlayer.is_playing():
-				animationPlayer.stop()
-				animationPlayer.play("PauseMenu")
+	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
+		if not animationPlayer.current_animation == "Exit" and not animationPlayer.current_animation == "Shop" and not animationPlayer.current_animation == "Shop2":
+			if in_settings:
+				vboxContainer.visible = true
+				settingsPanel.visible = false
+				in_settings = false
 			else:
-				animationPlayer.play("PauseMenu")
+				bankPanel.visible = !bankPanel.visible
+				buyMenuPanel.visible = !buyMenuPanel.visible
+				vboxContainer.visible = true
+				settingsPanel.visible = false
+				pausePanel.visible = !pausePanel.visible
+				get_tree().paused = !get_tree().paused
+				animationPlayer.speed_scale = 5.0
+				if animationPlayer.is_playing():
+					animationPlayer.stop()
+					animationPlayer.play("PauseMenu")
+				else:
+					animationPlayer.play("PauseMenu")
 
 	if GlobalVariables.game_over == true:
 		bankPanel.visible = false
@@ -95,6 +97,10 @@ func _on_exit_pressed() -> void:
 	GlobalVariables.reset()
 	GlobalVariables.game_state = false
 	GlobalVariables.started = false
+	shop_buton.texture_normal = preload("res://Assets/UI/ArrowDown.png")
+	animationPlayer.speed_scale = 6.0
+	animationPlayer.play("Shop2")
+	shop_hide = false
 
 func _on_new_game_pressed() -> void:
 	if GlobalVariables.game_over:
@@ -179,3 +185,16 @@ func _next_round():
 func _on_button_pressed() -> void:
 	nextRoundPanel.visible = false
 	GlobalVariables.game_state = true
+
+
+func _on_shop_button_pressed() -> void:
+	if not animationPlayer.is_playing():
+		animationPlayer.speed_scale = 1.0
+		if shop_hide:
+			shop_buton.texture_normal = preload("res://Assets/UI/ArrowDown.png")
+			animationPlayer.play("Shop2")
+			shop_hide = false
+		else:
+			shop_buton.texture_normal = preload("res://Assets/UI/ArrowUp.png")
+			animationPlayer.play("Shop")
+			shop_hide = true

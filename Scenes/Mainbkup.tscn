@@ -54,11 +54,11 @@ tile_map_data = PackedByteArray("AAAtAPX/AAAHAAMAAAAsAPX/AAAHAAMAAAArAPX/AAAHAAM
 tile_set = ExtResource("2_75dgk")
 
 [node name="Path2D" type="Path2D" parent="TileMap/Road" groups=["Path"]]
-z_index = 10
+z_index = 8
 curve = SubResource("Curve2D_w6syb")
 
 [node name="Path2D2" type="Path2D" parent="TileMap/Road" groups=["Path"]]
-z_index = 10
+z_index = 8
 position = Vector2(-1540, 316)
 curve = SubResource("Curve2D_141lr")
 
@@ -82,7 +82,7 @@ position = Vector2(264, 8)
 script = ExtResource("7_psfxe")
 spawn_timer = NodePath("SpawnTimer")
 paths = [NodePath("../TileMap/Road/Path2D"), NodePath("../TileMap/Road/Path2D2")]
-rounds = [[0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [1, 20, 20, 10, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]]
+rounds = [[0, 10, 5, 5, 5], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [1, 20, 20, 10, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 
@@ -92,7 +92,7 @@ rounds = [[0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 12
-position = Vector2(-723, 0)
+position = Vector2(-1190, 0)
 amount = 100
 texture = ExtResource("8_66571")
 lifetime = 17.0

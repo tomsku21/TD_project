@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 # Onready
 @onready var path: PathFollow2D = $".."
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var healthcomponent: HealthComponent = %HealthComponent
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
-@onready var audio: Node = $Audio
+@export_category("Components")
+@export var animated_sprite_2d: AnimatedSprite2D
+@export var healthcomponent: HealthComponent
+@export var cpu_particles_2d: CPUParticles2D
+@export var audio: Node
 
 # Export
 @export var shader_material: ShaderMaterial

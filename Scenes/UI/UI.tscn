@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=33 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbhu7dg13s7vu" path="res://Assets/UI/Money.png" id="4_y85ht"]
 [ext_resource type="PackedScene" uid="uid://bb283l2wen4n2" path="res://Scenes/buyt_1.tscn" id="5_xkw3u"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="6_3uf0e"]
+[ext_resource type="Texture2D" uid="uid://3bveehniy4a6" path="res://Assets/UI/ArrowDown.png" id="6_nqsl3"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="7_o7qfm"]
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="8_cjk0b"]
 [ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="9_tiitt"]
@@ -417,6 +418,48 @@ tracks/15/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../../buymenu:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1264, 737)]
+}
+
+[sub_resource type="Animation" id="Animation_o3jj0"]
+resource_name = "Shop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../buymenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.435275, 0.420448),
+"update": 0,
+"values": [Vector2(1264, 737), Vector2(1264, 920)]
+}
+
+[sub_resource type="Animation" id="Animation_jeqmb"]
+resource_name = "Shop2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../buymenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.435275, 1),
+"update": 0,
+"values": [Vector2(1264, 920), Vector2(1264, 737)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqsl3"]
 _data = {
@@ -425,7 +468,9 @@ _data = {
 &"New Game": SubResource("Animation_u6hof"),
 &"NextRound": SubResource("Animation_lotke"),
 &"PauseMenu": SubResource("Animation_nqsl3"),
-&"RESET": SubResource("Animation_y85ht")
+&"RESET": SubResource("Animation_y85ht"),
+&"Shop": SubResource("Animation_o3jj0"),
+&"Shop2": SubResource("Animation_jeqmb")
 }
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jevvu"]
@@ -433,6 +478,11 @@ texture = ExtResource("2_y85ht")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7tgkj"]
 texture = ExtResource("2_y85ht")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6hof"]
+bg_color = Color(0.321569, 0.305882, 0.184314, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y85ht"]
 
@@ -453,13 +503,14 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_niwxr"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "nextRoundPanel")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "nextRoundPanel")]
 process_mode = 3
 script = ExtResource("1_lotke")
 bankPanel = NodePath("Bank")
 buyMenuPanel = NodePath("buymenu")
 animationPlayer = NodePath("AnimationPlayer")
 current_round = NodePath("Bank/Label")
+shop_buton = NodePath("buymenu/Panel/Shop_button")
 gameOverPanel = NodePath("GameOver")
 overVBoxContainer = NodePath("GameOver/VBoxContainer")
 pausePanel = NodePath("Pause")
@@ -536,6 +587,26 @@ grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7tgkj")
+
+[node name="Panel" type="Panel" parent="buymenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.5
+offset_top = -39.0
+offset_right = 60.5
+offset_bottom = 1.0
+grow_horizontal = 2
+pivot_offset = Vector2(60, 40)
+theme_override_styles/panel = SubResource("StyleBoxFlat_u6hof")
+
+[node name="Shop_button" type="TextureButton" parent="buymenu/Panel"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 40.0
+texture_normal = ExtResource("6_nqsl3")
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="buymenu"]
 layout_mode = 2
@@ -825,6 +896,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_niwxr")
 text = "Start Round"
 flat = true
 
+[connection signal="pressed" from="buymenu/Panel/Shop_button" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
