@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbcw7mc8khvub"]
+[gd_scene load_steps=18 format=3 uid="uid://cbcw7mc8khvub"]
 
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_853f1"]
 [ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scripts/UI/MainMenu.gd" id="1_xim88"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dix30o4abr42v" path="res://Scenes/Mainbkup.tscn" id="2_koqhg"]
 [ext_resource type="Texture2D" uid="uid://c2absv078qcje" path="res://Assets/UI/Button.png" id="5_8um5k"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="5_df05h"]
+[ext_resource type="Theme" uid="uid://c6gcax5qoo0q2" path="res://Assets/StyleBox/OptionButtonTheme.tres" id="5_loo7a"]
 [ext_resource type="Texture2D" uid="uid://b00cck3a5m678" path="res://Assets/UI/Button2.png" id="6_xim88"]
 [ext_resource type="Texture2D" uid="uid://d2devqpodjpw" path="res://Assets/UI/Button3.png" id="7_xim88"]
 [ext_resource type="TileSet" uid="uid://bt5hmyta063ff" path="res://Assets/World/Testingtileset.tres" id="9_cmrfp"]
@@ -83,7 +84,6 @@ scale_amount_curve = SubResource("Curve_koqhg")
 
 [node name="Settings" type="Control" parent="Canvas"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,7 +107,7 @@ anchor_bottom = 0.5
 offset_left = -360.0
 offset_top = -280.0
 offset_right = 329.0
-offset_bottom = 302.0
+offset_bottom = 358.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ghw46")
@@ -150,6 +150,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MasterVolume" type="Label" parent="Canvas/Settings/Panel/GridContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_853f1")
 theme_override_font_sizes/font_size = 56
 text = "Master Volume"
@@ -163,6 +164,7 @@ step = 0.05
 
 [node name="Music Volume" type="Label" parent="Canvas/Settings/Panel/GridContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_853f1")
 theme_override_font_sizes/font_size = 56
 text = "Music Volume"
@@ -176,6 +178,7 @@ step = 0.05
 
 [node name="SFX Volume" type="Label" parent="Canvas/Settings/Panel/GridContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_853f1")
 theme_override_font_sizes/font_size = 56
 text = "SFX Volume"
@@ -189,6 +192,8 @@ step = 0.05
 
 [node name="OptionButton" type="OptionButton" parent="Canvas/Settings/Panel/GridContainer"]
 layout_mode = 2
+theme = ExtResource("5_loo7a")
+theme_override_font_sizes/font_size = 26
 selected = 0
 item_count = 2
 popup/item_0/text = "Windowed"
@@ -235,6 +240,7 @@ metadata/_edit_lock_ = true
 
 [node name="MainMenu" type="Control" parent="Canvas"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=37 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="8_cjk0b"]
 [ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="9_tiitt"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="10_2t8xk"]
+[ext_resource type="Theme" uid="uid://c6gcax5qoo0q2" path="res://Assets/StyleBox/OptionButtonTheme.tres" id="12_jeqmb"]
+[ext_resource type="StyleBox" uid="uid://by7ymvcotcsu4" path="res://Assets/StyleBox/OptionButton_Normal.tres" id="12_u6hof"]
+[ext_resource type="StyleBox" uid="uid://b7di2ecwwb1pw" path="res://Assets/StyleBox/OptionButton_Hover.tres" id="14_2yjmo"]
+[ext_resource type="StyleBox" uid="uid://n4v3tfoenhvi" path="res://Assets/StyleBox/OptionButton_Pressed.tres" id="15_813c4"]
 
 [sub_resource type="Animation" id="Animation_thdbn"]
 resource_name = "Exit"
@@ -748,6 +752,7 @@ theme_override_constants/v_separation = 25
 
 [node name="Master Volume" type="Label" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("10_2t8xk")
 theme_override_font_sizes/font_size = 56
 text = "Master Volume"
@@ -761,6 +766,7 @@ step = 0.05
 
 [node name="Music Volume" type="Label" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("10_2t8xk")
 theme_override_font_sizes/font_size = 56
 text = "Music Volume"
@@ -774,6 +780,7 @@ step = 0.05
 
 [node name="SFX Volume" type="Label" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("10_2t8xk")
 theme_override_font_sizes/font_size = 56
 text = "SFX Volume"
@@ -787,6 +794,14 @@ step = 0.05
 
 [node name="OptionButton" type="OptionButton" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
+theme = ExtResource("12_jeqmb")
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("10_2t8xk")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = ExtResource("12_u6hof")
+theme_override_styles/hover = ExtResource("14_2yjmo")
+theme_override_styles/pressed = ExtResource("15_813c4")
+theme_override_styles/normal = ExtResource("12_u6hof")
 selected = 0
 item_count = 2
 popup/item_0/text = "Windowed"
@@ -797,6 +812,7 @@ popup/item_1/id = 1
 [node name="Back" type="Button" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.290196, 0.8, 0, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("10_2t8xk")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y85ht")

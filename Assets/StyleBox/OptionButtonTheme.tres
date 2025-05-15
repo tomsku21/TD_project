@@ -1,0 +1,92 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://c6gcax5qoo0q2"]
+
+[ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_j0ots"]
+[ext_resource type="Texture2D" uid="uid://3bveehniy4a6" path="res://Assets/UI/ArrowDown.png" id="2_4n0ww"]
+[ext_resource type="StyleBox" uid="uid://by7ymvcotcsu4" path="res://Assets/StyleBox/OptionButton_Normal.tres" id="3_haopy"]
+[ext_resource type="StyleBox" uid="uid://b7di2ecwwb1pw" path="res://Assets/StyleBox/OptionButton_Hover.tres" id="4_wugsq"]
+[ext_resource type="StyleBox" uid="uid://n4v3tfoenhvi" path="res://Assets/StyleBox/OptionButton_Pressed.tres" id="5_ht1wp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipeco"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp2s0"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi6yn"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jicr"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxmt3"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[resource]
+OptionButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+OptionButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+OptionButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_outline_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+OptionButton/constants/arrow_margin = 4
+OptionButton/constants/h_separation = 4
+OptionButton/constants/modulate_arrow = 0
+OptionButton/constants/outline_size = 20
+OptionButton/font_sizes/font_size = 36
+OptionButton/fonts/font = ExtResource("1_j0ots")
+OptionButton/icons/arrow = ExtResource("2_4n0ww")
+OptionButton/styles/disabled = SubResource("StyleBoxFlat_ipeco")
+OptionButton/styles/disabled_mirrored = SubResource("StyleBoxFlat_hp2s0")
+OptionButton/styles/focus = ExtResource("3_haopy")
+OptionButton/styles/hover = ExtResource("4_wugsq")
+OptionButton/styles/hover_mirrored = SubResource("StyleBoxFlat_mi6yn")
+OptionButton/styles/normal = ExtResource("3_haopy")
+OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_6jicr")
+OptionButton/styles/pressed = ExtResource("5_ht1wp")
+OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_xxmt3")
