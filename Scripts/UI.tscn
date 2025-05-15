@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=29 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="2_kfnqa"]
 [ext_resource type="Script" uid="uid://b77h4d8blumve" path="res://Scripts/UI/bank.gd" id="3_niwxr"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_xidl6"]
-[ext_resource type="PackedScene" uid="uid://cmtl2nh7a1auo" path="res://Scenes/buyt_1.tscn" id="5_xkw3u"]
+[ext_resource type="PackedScene" path="res://Scenes/buyt_1.tscn" id="5_xkw3u"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="6_3uf0e"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="7_o7qfm"]
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="8_cjk0b"]
@@ -365,12 +365,65 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector2(0, -926)]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../../NextRound/Button:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../../NextRound/Button:theme_override_font_sizes/font_size")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_lotke"]
+resource_name = "NextRound"
+length = 1.0667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../NextRound/Button:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../NextRound/Button:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 0.766667, 1.0667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1, 80, 70]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqsl3"]
 _data = {
 &"Exit": SubResource("Animation_thdbn"),
 &"Game Over": SubResource("Animation_8wlyu"),
 &"New Game": SubResource("Animation_u6hof"),
+&"NextRound": SubResource("Animation_lotke"),
 &"PauseMenu": SubResource("Animation_nqsl3"),
 &"RESET": SubResource("Animation_y85ht")
 }
@@ -395,7 +448,13 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8wei"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lotke"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfnqa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_niwxr"]
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "nextRoundPanel")]
 process_mode = 3
 script = ExtResource("1_lotke")
 bankPanel = NodePath("Bank")
@@ -407,6 +466,7 @@ overVBoxContainer = NodePath("GameOver/VBoxContainer")
 pausePanel = NodePath("Pause")
 vboxContainer = NodePath("Pause/VBoxContainer")
 settingsPanel = NodePath("Pause/Settings")
+nextRoundPanel = NodePath("NextRound")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameOver/VBoxContainer")
@@ -649,15 +709,6 @@ size_flags_vertical = 1
 max_value = 1.0
 step = 0.05
 
-[node name="V-Sync" type="CheckButton" parent="Pause/Settings/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.82
-theme_override_font_sizes/font_size = 36
-text = "V-Sync"
-icon_alignment = 1
-
 [node name="Back" type="Button" parent="Pause/Settings/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.290196, 0.8, 0, 1)
@@ -742,9 +793,38 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_thdbn")
 
+[node name="NextRound" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lotke")
+
+[node name="Button" type="Button" parent="NextRound"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.0
+offset_top = 16.0
+offset_right = 203.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_hover_color = Color(0, 0.654902, 0, 1)
+theme_override_fonts/font = ExtResource("10_2t8xk")
+theme_override_font_sizes/font_size = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kfnqa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_niwxr")
+text = "Next Round"
+flat = true
+
 [connection signal="pressed" from="Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Pause/Settings/VBoxContainer/GridContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="GameOver/VBoxContainer/HBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="NextRound/Button" to="." method="_on_button_pressed"]

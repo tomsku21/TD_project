@@ -1,7 +1,6 @@
 extends Node
-
 @export var spawn_timer: Timer
-@export var path: Path2D
+@export var paths: Array[Path2D] = []
 @export var enemys: Dictionary = {
 	0: preload("res://Scenes/Enemies/Boss.tscn"),
 	1: preload("res://Scenes/Enemies/enemy.tscn"),
@@ -44,7 +43,9 @@ func _physics_process(_delta: float) -> void:
 						if GlobalVariables.current_round < rounds.size():
 							spawned_per_type.resize(rounds[GlobalVariables.current_round].size())
 							spawned_per_type.fill(0)
-					spawn_timer.start()
+							GlobalVariables.game_state = false
+							GlobalVariables.started = false
+							SignalBus.NextRound.emit()
 	else:
 		spawn_timer.stop()
 		GlobalVariables.started = false
@@ -55,7 +56,7 @@ func _on_timer_timeout() -> void:
 		if spawned_per_type[current_type_index] < round_data[current_type_index]:
 			if current_type_index in enemys:
 				var new_enemy = enemys[current_type_index].instantiate()
-				path.add_child(new_enemy)
+				paths.pick_random().add_child(new_enemy)
 				GlobalVariables.enemy_count += 1
 				spawned_per_type[current_type_index] += 1
 			break
