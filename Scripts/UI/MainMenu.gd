@@ -46,6 +46,7 @@ func _on_button_pressed(_name):
 			#change to happen through animations.
 			%Settings.visible = false
 			%MainMenu.visible = true
+			GlobalVariables.save_game()
 		"Start":
 			#Change later to open stage select panel, if you make multiple layouts, 
 			#otherwise just push player to main scene.
