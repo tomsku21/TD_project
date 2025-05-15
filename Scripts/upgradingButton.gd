@@ -13,7 +13,7 @@ var new_plant
 var current_plant
 var hovered = false
 
-func _process(delta):
+func _process(_delta):
 	if current_plant and req_dict:
 		%UProgress.max_value = requirement
 		%UProgress.value = cur_req
