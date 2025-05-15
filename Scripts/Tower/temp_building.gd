@@ -53,9 +53,6 @@ func _tower_borders_check(cell):
 	borders["top_right"] = cell
 	borders["top_right"].x += 1
 	#borders["top_right"].y -= 1
-	print("cell", cell)
-	print("top_right", borders["top_right"])
-	print("bottom_left", borders["bottom_left"])
 	for i in borders:
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
 		if tile_data:
