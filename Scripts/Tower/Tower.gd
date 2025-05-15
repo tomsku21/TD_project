@@ -1,4 +1,4 @@
-extends Node2D
+extends AnimatedSprite2D
 class_name Tower
 @export_category("Components")
 @export var attack_timer: Timer

@@ -1,19 +1,100 @@
-[gd_scene load_steps=10 format=3 uid="uid://benincu8whxp1"]
+[gd_scene load_steps=22 format=3 uid="uid://benincu8whxp1"]
 
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_csl5t"]
+[ext_resource type="Texture2D" uid="uid://c7as32ri20qc4" path="res://Assets/Towers/PoisonTurret.png" id="1_ec3bi"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="4_aiiqu"]
 [ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="4_csl5t"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="5_s1to6"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="6_knowi"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="7_r8k8u"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_y8xh1"]
-[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="9_riyj4"]
+[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="9_7ww7k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(0, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtf4t"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(46, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv0bi"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(92, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2tv7"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(138, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnp6p"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(184, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6c51"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(230, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cdy2"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(276, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32sg2"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(322, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru6i1"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(368, 0, 46, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt02h"]
+atlas = ExtResource("1_ec3bi")
+region = Rect2(414, 0, 46, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aiiqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp36r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtf4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv0bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2tv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnp6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6c51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cdy2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_32sg2")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ru6i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt02h")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
 
-[node name="Tank" type="Area2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
-collision_layer = 2
+[node name="Tank" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+sprite_frames = SubResource("SpriteFrames_aiiqu")
+animation = &"Idle"
+offset = Vector2(0, -15)
 script = ExtResource("1_csl5t")
 plantimg = ExtResource("4_aiiqu")
 attack_timer = NodePath("AttackTimer")
@@ -55,24 +136,15 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.207031, 0.207031, 1)
-z_index = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_aiiqu")
-
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -17.5
+offset_top = -22.0
+offset_right = 17.5
+offset_bottom = 3.0
 focus_mode = 1
 mouse_filter = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("CircleShape2D_hskch")
+flat = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -80,13 +152,15 @@ wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_s1to6")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("5_s1to6")]
 unique_name_in_owner = true
+sprite = NodePath("..")
 character = NodePath("..")
 shader_material = ExtResource("6_knowi")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(0, -12)
 scale = Vector2(0.553, 0.553)
 texture = ExtResource("7_r8k8u")
 
@@ -95,19 +169,23 @@ stream = ExtResource("8_y8xh1")
 pitch_scale = 1.1
 bus = &"SFX"
 
-[node name="Mousecheck" parent="." instance=ExtResource("9_riyj4")]
-
 [node name="RegenTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
+position = Vector2(0, -12)
+script = ExtResource("9_7ww7k")
+tower = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_hskch")
+
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="body_entered" from="Range" to="Range" method="_on_body_entered"]
+[connection signal="body_exited" from="Range" to="Range" method="_on_body_exited"]

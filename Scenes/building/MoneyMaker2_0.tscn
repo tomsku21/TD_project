@@ -1,20 +1,60 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgj1na8hxrgn7"]
+[gd_scene load_steps=16 format=3 uid="uid://bgj1na8hxrgn7"]
 
 [ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="1_0sp5g"]
+[ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="2_t34s4"]
 [ext_resource type="Script" uid="uid://dl0yuylwcsyqc" path="res://Scripts/Tower/money_maker.gd" id="2_xhcmm"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_t34s4"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_rdhkp"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_evk8j"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_laq1o"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_osaf0"]
-[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_ttcok"]
+[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="9_xhcmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
+atlas = ExtResource("2_t34s4")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq620"]
+atlas = ExtResource("2_t34s4")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyoit"]
+atlas = ExtResource("2_t34s4")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcjie"]
+atlas = ExtResource("2_t34s4")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdhkp"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_5yvm0")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_sq620")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_tyoit")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_tcjie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 31.5159
+radius = 9.26
 
-[node name="MoneyMaker2_0" type="Area2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["MoneyMaker", "Turret"]]
+[node name="MoneyMaker2_0" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["MoneyMaker", "Turret"]]
 material = ExtResource("1_0sp5g")
-collision_layer = 2
+sprite_frames = SubResource("SpriteFrames_rdhkp")
+frame = 2
+frame_progress = 0.281841
+offset = Vector2(0, -15)
 script = ExtResource("2_xhcmm")
 Attack_effect = NodePath("Attack")
 plantimg = ExtResource("3_t34s4")
@@ -70,24 +110,15 @@ initial_velocity_max = 150.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.464645, 0.626273, 0, 1)
-z_index = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_t34s4")
-
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -17.5
+offset_top = -22.0
+offset_right = 17.5
+offset_bottom = 3.0
 focus_mode = 1
 mouse_filter = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("CircleShape2D_hskch")
+flat = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -95,12 +126,14 @@ wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_rdhkp")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_rdhkp")]
 unique_name_in_owner = true
+sprite = NodePath("..")
 character = NodePath("..")
 shader_material = ExtResource("5_evk8j")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
 scale = Vector2(0.0336491, 0.0334323)
 texture = ExtResource("6_laq1o")
 
@@ -109,14 +142,18 @@ stream = ExtResource("7_osaf0")
 pitch_scale = 1.1
 bus = &"SFX"
 
-[node name="Mousecheck" parent="." instance=ExtResource("8_ttcok")]
+[node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
+position = Vector2(0, -12)
+script = ExtResource("9_xhcmm")
+tower = NodePath("..")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_hskch")
+
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
+[connection signal="body_entered" from="Range" to="Range" method="_on_body_entered"]
+[connection signal="body_exited" from="Range" to="Range" method="_on_body_exited"]
