@@ -86,7 +86,9 @@ rounds = [[0, 10, 5, 5, 5], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 
-[node name="Turrets" type="Node" parent="." groups=["Turret_node"]]
+[node name="Turrets" type="Node2D" parent="." groups=["Turret_node"]]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Ghost" type="Node" parent="Turrets" groups=["Ghost"]]
 

@@ -1,6 +1,6 @@
 extends Control
 @export var Upgrades: Array[Node] #Feels like a dumb way to do this, but should work
-var lasttower: Area2D
+var lasttower: Tower
 
 func _enter_tree():
 	%Build1stats.hide()

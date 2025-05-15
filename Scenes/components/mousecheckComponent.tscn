@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://132gq3ifppgg"]
+[gd_scene load_steps=3 format=3 uid="uid://132gq3ifppgg"]
+
+[ext_resource type="Script" uid="uid://dwmlrm84fh6g6" path="res://Scripts/mousecheck_component.gd" id="1_68els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4jgc"]
-size = Vector2(80.5, 80.5)
+size = Vector2(47.5, 47.5)
 
 [node name="Mousecheck" type="Area2D"]
+script = ExtResource("1_68els")
 
 [node name="AreaCheck" type="Control" parent="." groups=["Turretarea"]]
 layout_mode = 3
@@ -12,13 +15,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.25
-offset_top = -40.25
-offset_right = 40.25
-offset_bottom = 40.25
+offset_left = -23.75
+offset_top = -23.75
+offset_right = 23.75
+offset_bottom = 23.75
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a4jgc")
+
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_entered"]

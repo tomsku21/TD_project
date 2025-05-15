@@ -1,6 +1,6 @@
 extends Node
 class_name HealthComponent
-var sprite
+@export var sprite: AnimatedSprite2D
 @export var character : Node2D
 @export var MAX_HEALTH :float
 @export var health: float
@@ -12,8 +12,6 @@ func _ready():
 	health = MAX_HEALTH
 	if get_parent().has_node("AnimatedSprite2D"):
 		sprite = get_parent().get_node("AnimatedSprite2D")
-	elif get_parent().has_node("Sprite2D"):
-		sprite = get_parent().get_node("Sprite2D")
 	else:
 		push_warning("HealthComponent: Sprite node not found!")
 

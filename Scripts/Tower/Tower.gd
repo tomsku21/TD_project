@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 class_name Tower
 @export_category("Components")
 @export var attack_timer: Timer
@@ -22,17 +22,22 @@ class_name Tower
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
-
+var tilemap: TileMapLayer
+var cell: Vector2i
 
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
+	tilemap = get_tree().get_first_node_in_group("Grass")
 	stats = stats.duplicate()
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	%RegenTimer.wait_time = stats["Regen Time"]
 	$Button.grab_focus()
+	cell = tilemap.local_to_map(global_position)
+	_tower_borders_check(false)
+	
 
 func _process(_delta):
 	if turret == null:
@@ -48,9 +53,9 @@ func _process(_delta):
 			$Button.release_focus()
 		else:
 			_on_focus_exited()
-	if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
-		print("get unhovered nerd")
-		hovered = false
+	#if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
+		#print("get unhovered nerd")
+		#hovered = false
 
 func take_damage(damage: float):
 	healthcomponent.damage(damage)
@@ -62,19 +67,20 @@ func destroy():
 	cpu_particles_2d.emitting = true
 	GlobalVariables.turrets.erase(self)
 	await get_tree().create_timer(0.1).timeout
+	_tower_borders_check(true)
 	queue_free()
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and not body in enemies:
-		enemies.append(body)
-		if attack_timer.is_stopped():
-			attack_timer.start()
-
-func _on_body_exited(body: Node2D) -> void:
-	if body in enemies:
-		enemies.erase(body)
-		if enemies.is_empty():
-			attack_timer.stop()
+#func _on_body_entered(body: Node2D) -> void:
+	#if body.is_in_group("enemies") and not body in enemies:
+		#enemies.append(body)
+		#if attack_timer.is_stopped():
+			#attack_timer.start()
+#
+#func _on_body_exited(body: Node2D) -> void:
+	#if body in enemies:
+		#enemies.erase(body)
+		#if enemies.is_empty():
+			#attack_timer.stop()
 
 func _on_attack_timer_timeout() -> void:
 	pass
@@ -98,17 +104,11 @@ func Heal(restoration, healer):
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
-	GlobalVariables.is_mouse_in_Area2D = true
 	hovered = true
 
 
 func _on_mouse_exited() -> void:
-	#circle.visible = false
-	if _check_mouseover(): #Ductape fix for exiting when hovering over button
-		GlobalVariables.is_mouse_in_Area2D = false
-		hovered = false
-	else:
-		pass
+	hovered = false
 
 func _on_focus_entered():
 	clicked = true
@@ -128,4 +128,22 @@ func _check_mouseover():
 		else:
 			continue
 	return true
-	
+
+#improve this later
+func _tower_borders_check(change: bool):
+	var borders: Dictionary
+	borders["bottom_left"] = cell
+	borders["bottom_left"].x -= 1
+	borders["top_right"] = cell
+	borders["top_right"].x += 1
+	#borders["top_right"].y -= 1
+	print("cell", cell)
+	print("top_right", borders["top_right"])
+	print("bottom_left", borders["bottom_left"])
+	for i in borders:
+		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
+		var custom_tile_data = tile_data.get_custom_data("Place")
+		print("tile data before: ", custom_tile_data)
+		custom_tile_data = change
+		print("tile data after:", tile_data.get_custom_data("Place"))
+		continue

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://pjc4slgtno24"]
+[gd_scene load_steps=18 format=3 uid="uid://pjc4slgtno24"]
 
+[ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="1_52i1a"]
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_s6nl5"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_a4jgc"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_006wr"]
@@ -9,12 +10,49 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_52i1a"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_a4jgc"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_006wr"]
+[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="10_tya3y"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
+atlas = ExtResource("1_52i1a")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq620"]
+atlas = ExtResource("1_52i1a")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyoit"]
+atlas = ExtResource("1_52i1a")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcjie"]
+atlas = ExtResource("1_52i1a")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_476cd"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_5yvm0")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_sq620")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_tyoit")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_tcjie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52i1a"]
 radius = 150.0
 
-[node name="Turreter" type="Area2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
-collision_layer = 2
+[node name="Turreter" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+sprite_frames = SubResource("SpriteFrames_476cd")
 script = ExtResource("1_s6nl5")
 plantimg = ExtResource("3_006wr")
 bullet = ExtResource("2_a4jgc")
@@ -57,12 +95,6 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.207031, 0.207031, 1)
-z_index = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_006wr")
-
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = -16.0
@@ -72,18 +104,15 @@ offset_bottom = 16.0
 focus_mode = 1
 mouse_filter = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("CircleShape2D_hskch")
-
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_6ytof")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_6ytof")]
 unique_name_in_owner = true
+sprite = NodePath("..")
 character = NodePath("..")
 shader_material = ExtResource("5_tya3y")
 
@@ -103,8 +132,15 @@ bus = &"SFX"
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
+position = Vector2(0, -15)
+collision_layer = 2
+script = ExtResource("10_tya3y")
+tower = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_52i1a")
+
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
@@ -113,3 +149,5 @@ autostart = true
 [connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="body_entered" from="HitboxComponent" to="HitboxComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="HitboxComponent" to="HitboxComponent" method="_on_body_exited"]
