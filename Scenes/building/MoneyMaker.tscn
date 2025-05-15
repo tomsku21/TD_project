@@ -13,18 +13,23 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 31.5159
 
-[node name="MoneyMaker" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["MoneyMaker", "Turret"]]
+[node name="MoneyMaker" type="Area2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["MoneyMaker", "Turret"]]
 material = ExtResource("1_xqq4q")
 collision_layer = 2
 script = ExtResource("2_xqq4q")
 Attack_effect = NodePath("Attack")
 plantimg = ExtResource("3_h86t1")
+attack_timer = NodePath("AttackTimer")
+marker_2d = NodePath("Marker2D")
+healthcomponent = NodePath("HealthComponent")
+ARange = NodePath("RangeMarker")
+cpu_particles_2d = NodePath("CPUParticles2D")
 upgrades = Array[PackedScene]([ExtResource("4_m0ghu"), null, null])
 upRequirement = {
-"Damage Taken": 1500.0
+"Damage Taken": 500.0
 }
 stats = {
-"Atk Speed": 5.0,
+"Atk Speed": 30.0,
 "Damage Taken": 0.0,
 "Income": 1,
 "Money Made": 0

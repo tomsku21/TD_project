@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmtl2nh7a1auo"]
+[gd_scene load_steps=5 format=3 uid="uid://bb283l2wen4n2"]
 
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="1_h5t3w"]
-[ext_resource type="Script" uid="uid://cwm6jndskd1gp" path="res://Scripts/Buytier1.gd" id="2_oa3ay"]
+[ext_resource type="Script" uid="uid://cwm6jndskd1gp" path="res://Scripts/UI/Buytier1.gd" id="2_oa3ay"]
 [ext_resource type="PackedScene" uid="uid://ciep7eg1iuuew" path="res://Scenes/building/temp_building.tscn" id="3_amfrt"]
 [ext_resource type="PackedScene" uid="uid://cup7eyokmuwhy" path="res://Scenes/building/Sapling.tscn" id="4_gpmsl"]
 

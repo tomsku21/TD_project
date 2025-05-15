@@ -1,12 +1,11 @@
 extends Area2D
 class_name Tower
-@onready var attack_timer: Timer = $AttackTimer
-@onready var marker_2d: Marker2D = $Marker2D
-@onready var healthcomponent: HealthComponent = %HealthComponent
-@onready var hitbox: HitboxComponent = %HitboxComponent
-@onready var ARange: Sprite2D = $RangeMarker
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
-@export var bullet: PackedScene
+@export_category("Components")
+@export var attack_timer: Timer
+@export var marker_2d: Marker2D
+@export var healthcomponent: HealthComponent
+@export var ARange: Sprite2D
+@export var cpu_particles_2d: CPUParticles2D
 
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>

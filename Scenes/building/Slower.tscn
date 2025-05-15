@@ -14,10 +14,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
 
-[node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect") groups=["Turret"]]
+[node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
 collision_layer = 2
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")
+attack_timer = NodePath("AttackTimer")
+marker_2d = NodePath("Marker2D")
+healthcomponent = NodePath("HealthComponent")
+ARange = NodePath("RangeMarker")
+cpu_particles_2d = NodePath("CPUParticles2D")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Taken": 50.0
