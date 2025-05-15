@@ -42,7 +42,7 @@ func _on_button_pressed(_name):
 		"Start":
 			#Change later to open stage select panel, if you make multiple layouts, 
 			#otherwise just push player to main scene.
-			get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+			get_tree().change_scene_to_file("res://Scenes/Mainbkup.tscn")
 			GlobalVariables.in_mainMenu = false
 			GlobalVariables.game_state = true
 		"Options":
