@@ -47,8 +47,13 @@ func reset():
 	current_round = 0
 
 func save_game(path: String = "user://save.json"):
+	var round
+	if current_round > best_round:
+		round = current_round
+	else:
+		round = best_round
 	var save_data = {
-		"round": current_round,
+		"round": round,
 		"fullscreen": fullscreen
 	}
 	

@@ -40,6 +40,7 @@ func _physics_process(_delta: float) -> void:
 						GlobalVariables.cost += 3
 						if GlobalVariables.current_round != GlobalVariables.max_rounds:
 							GlobalVariables.current_round += 1
+							GlobalVariables.save_game()
 						if GlobalVariables.current_round < rounds.size():
 							spawned_per_type.resize(rounds[GlobalVariables.current_round].size())
 							spawned_per_type.fill(0)
