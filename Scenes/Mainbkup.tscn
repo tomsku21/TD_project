@@ -92,7 +92,7 @@ rounds = [[0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 12
-position = Vector2(-1190, 0)
+position = Vector2(-723, 0)
 amount = 100
 texture = ExtResource("8_66571")
 lifetime = 17.0
@@ -117,16 +117,16 @@ timer = NodePath("Timer")
 damage = 20
 
 [node name="Marker2D" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(450, -273)
+position = Vector2(703, -325)
 
 [node name="Marker2D2" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(-474, -274)
+position = Vector2(-705, -341)
 
 [node name="Marker2D3" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(-477, 265)
+position = Vector2(-683, 445)
 
 [node name="Marker2D4" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(468, 264)
+position = Vector2(700, 444)
 
 [node name="Timer" type="Timer" parent="RandomBulletSpawner"]
 one_shot = true
