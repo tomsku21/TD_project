@@ -12,7 +12,9 @@ extends CanvasLayer
 
 @export_category("Settings")
 @export var settingsPanel: Panel
-@export var v_sync: CheckButton
+
+@export_category("Next Round")
+@export var nextRoundPanel: Panel
 
 var played = false
 var in_settings: bool = false
@@ -22,6 +24,7 @@ var sfxIndex: int
 var startGame: bool = false
 
 func _ready() -> void:
+	SignalBus.NextRound.connect(_next_round)
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
@@ -168,9 +171,11 @@ func _on_back_pressed() -> void:
 	settingsPanel.visible = false
 	in_settings = false
 
+func _next_round():
+	nextRoundPanel.visible = true
+	animationPlayer.play("NextRound")
 
-func _on_v_sync_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-	else:
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+func _on_button_pressed() -> void:
+	nextRoundPanel.visible = false
+	GlobalVariables.game_state = true

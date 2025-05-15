@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cphipn7xke1j8"]
+[gd_scene load_steps=19 format=4 uid="uid://cphipn7xke1j8"]
 
 [ext_resource type="Script" uid="uid://besdl3kjeuv0v" path="res://Scripts/player.gd" id="1_4kpch"]
 [ext_resource type="Texture2D" uid="uid://dcpdo5u34f68d" path="res://Assets/World/Sprite.png" id="1_r150o"]
@@ -870,6 +870,12 @@ _data = {
 }
 point_count = 12
 
+[sub_resource type="Curve2D" id="Curve2D_bmxlf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 428, 223, 0, 0, 0, 0, 429, 128, 0, 0, 0, 0, 83, 124, 0, 0, 0, 0, 83, 32, 0, 0, 0, 0, 424, 27, 0, 0, 0, 0, 429, -162, 0, 0, 0, 0, -432, -163, 0, 0, 0, 0, -429, 24, 0, 0, 0, 0, -83, 30, 0, 0, 0, 0, -80, 127, 0, 0, 0, 0, -414, 127)
+}
+point_count = 11
+
 [sub_resource type="Curve" id="Curve_pbw6q"]
 _limits = [0.550562, 1.0, 102.766, 1024.0]
 _data = [Vector2(102.766, 0.550562), 0.0, 0.0, 0, 0, Vector2(1024, 1), 0.000648085, 0.0, 0, 0]
@@ -899,6 +905,9 @@ tile_set = SubResource("TileSet_c1w88")
 [node name="Path2D" type="Path2D" parent="TileMap/Road" groups=["Path"]]
 curve = SubResource("Curve2D_r150o")
 
+[node name="Path2D2" type="Path2D" parent="TileMap/Road" groups=["Path"]]
+curve = SubResource("Curve2D_bmxlf")
+
 [node name="Road2" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAbAPn/BAAHAAQAAAAaAPz/BAAHAAQAAAAZAP3/BAAHAAQAAAAaAAEABAAHAAQAAAAUAAIABAAHAAQAAAASAAEABAAHAAQAAAANAAIABAAHAAQAAAAJAAEABAAHAAQAAAAFAAQABAAHAAQAAAAFAAcABAAHAAQAAAAEAAcABAAHAAQAAAAGAAIABAAHAAQAAAAIAAgABAAHAAQAAAANAAcABAAHAAQAAAAPAAgABAAHAAQAAAAVAAcABAAHAAQAAAAZAAgABAAHAAQAAAAaAAcABAAHAAQAAAAaAAsABAAHAAQAAAAbAA4ABAAHAAQAAAAZAA0ABAAHAAQAAAAWAA4ABAAHAAQAAAARAA0ABAAHAAQAAAAQAA4ABAAHAAQAAAANAA4ABAAHAAQAAAALAA0ABAAHAAQAAAAIAA4ABAAHAAQAAAAFAA0ABAAHAAQAAAACAA4ABAAHAAQAAAD//w4ABAAHAAQAAAD//w0ABAAHAAQAAAD7/w0ABAAHAAQAAAD5/w0ABAAHAAQAAAD0/w4ABAAHAAQAAADx/w0ABAAHAAQAAADu/w4ABAAHAAQAAADq/w0ABAAHAAQAAADo/w4ABAAHAAQAAADl/w0ABAAHAAQAAADo/wcABAAHAAQAAADq/wgABAAHAAQAAADs/wcABAAHAAQAAADv/wgABAAHAAQAAADw/wcABAAHAAQAAAD0/wgABAAHAAQAAAD2/wgABAAHAAQAAAD5/wcABAAHAAQAAAD7/wgABAAHAAQAAAD5/wUABAAHAAQAAAD7/wQABAAHAAQAAAD5/wIABAAHAAQAAAD6/wMABAAHAAQAAAD2/wEABAAHAAQAAAD0/wIABAAHAAQAAADv/wEABAAHAAQAAADs/wIABAAHAAQAAADo/wEABAAHAAQAAADm/wIABAAHAAQAAADk////BAAHAAQAAADk/wAABAAHAAQAAADm//7/BAAHAAQAAADm//v/BAAHAAQAAADk//n/BAAHAAQAAADl//f/BAAHAAQAAADm//X/BAAHAAQAAADr//b/BAAHAAQAAADv//X/BAAHAAQAAADy//b/BAAHAAQAAAD2//X/BAAHAAQAAAACAPX/BAAHAAQAAAAEAPb/BAAHAAQAAAAKAPX/BAAHAAQAAAANAPb/BAAHAAQAAAAWAPX/BAAHAAQAAAAXAPb/BAAHAAQAAAAbAPX/BAAHAAQAAAA=")
@@ -917,10 +926,10 @@ tile_set = SubResource("TileSet_c1w88")
 [node name="LifeTree" parent="TileMap" instance=ExtResource("3_pbw6q")]
 position = Vector2(-433, 104)
 
-[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawn_timer", "path")]
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawn_timer", "paths") groups=["Spawner"]]
 script = ExtResource("3_kln2b")
 spawn_timer = NodePath("SpawnTimer")
-path = NodePath("../TileMap/Road/Path2D")
+paths = [NodePath("../TileMap/Road/Path2D"), NodePath("../TileMap/Road/Path2D2")]
 rounds = [[0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [1, 20, 20, 10, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]

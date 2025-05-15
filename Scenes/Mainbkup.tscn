@@ -57,10 +57,9 @@ tile_set = ExtResource("2_75dgk")
 [node name="LifeTree" parent="TileMap" instance=ExtResource("3_141lr")]
 position = Vector2(264, 8)
 
-[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawn_timer", "path")]
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("7_psfxe")
 spawn_timer = NodePath("SpawnTimer")
-path = NodePath("../TileMap/Road/Path2D")
 rounds = [[0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [1, 20, 20, 10, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]]
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
