@@ -65,7 +65,7 @@ func destroy():
 	cpu_particles_2d.emitting = true
 	GlobalVariables.turrets.erase(self)
 	await get_tree().create_timer(0.1).timeout
-	#_tower_borders_check(true)
+	_tower_borders_check(true)
 	queue_free()
 
 #func _on_body_entered(body: Node2D) -> void:
@@ -129,19 +129,25 @@ func _check_mouseover():
 
 #improve this later
 func _tower_borders_check(change: bool):
+	var tile
+	if change:
+		tile = 7
+	else:
+		tile = 8
 	cell = tilemap.local_to_map(tilemap.to_local(global_position))
 	var borders: Dictionary
-	borders["bottom_left"] = cell
-	borders["bottom_left"].x -= 1
-	borders["top_right"] = cell
-	borders["top_right"].x += 1
-	#borders["top_right"].y -= 1
-	print("cell", cell)
-	print("top_right", borders["top_right"])
-	print("bottom_left", borders["bottom_left"])
+	borders["current_pos"] = cell
+	borders["bottom_right"] = cell + Vector2i(1, 0)
+	borders["bottom_left"] = cell + Vector2i(-1, 0)
+	borders["top_right"] = cell + Vector2i(1, -1)
+	borders["top_middle"] = cell + Vector2i(0, -1)
+	borders["top_left"] = cell + Vector2i(-1, -1)
 	for i in borders:
+		print(i, borders.get(i))
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		#var custom_tile_data = tile_data.get_custom_data("Place")
-		print("tile data before: ", tile_data.get_custom_data("Place"))
-		print("tile data after:", tile_data.get_custom_data("Place"))
+		print("tile data before:", tile_data)
+		tilemap.set_cell(borders.get(i), 0, Vector2i(tile, 5))
+		print("tile", tile)
+		tile_data = tilemap.get_cell_tile_data(borders.get(i))
+		print("tile data after:", tile_data)
 		continue
