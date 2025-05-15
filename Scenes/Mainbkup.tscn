@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dix30o4abr42v"]
+[gd_scene load_steps=12 format=4 uid="uid://dix30o4abr42v"]
 
 [ext_resource type="Script" uid="uid://besdl3kjeuv0v" path="res://Scripts/player.gd" id="1_7xbqi"]
 [ext_resource type="TileSet" uid="uid://bt5hmyta063ff" path="res://Assets/World/Testingtileset.tres" id="2_75dgk"]
@@ -24,6 +24,10 @@ point_count = 13
 _limits = [0.550562, 1.0, 102.766, 1024.0]
 _data = [Vector2(102.766, 0.550562), 0.0, 0.0, 0, 0, Vector2(1024, 1), 0.000648085, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_141lr"]
+cull_mode = 1
+polygon = PackedVector2Array(-853.618, 507.334, -273.34, -124.254, -859.349, -126.653)
 
 [node name="Main" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-156.0]
@@ -126,6 +130,23 @@ position = Vector2(468, 264)
 
 [node name="Timer" type="Timer" parent="RandomBulletSpawner"]
 one_shot = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(-901, 0)
+rotation = -1.17187
+energy = 0.19
+range_layer_max = 2
+shadow_enabled = true
+shadow_filter = 2
+height = 1.0
+max_distance = 16384.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 3
+z_index = -6
+position = Vector2(146, -220)
+rotation = 0.00273147
+occluder = SubResource("OccluderPolygon2D_141lr")
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="RandomBulletSpawner/Timer" to="RandomBulletSpawner" method="_on_timer_timeout"]

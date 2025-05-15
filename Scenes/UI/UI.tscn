@@ -493,6 +493,7 @@ offset_top = 49.0
 offset_right = 329.0
 offset_bottom = 89.0
 mouse_filter = 2
+theme_override_constants/separation = 10
 script = ExtResource("3_niwxr")
 
 [node name="TextureRect" type="TextureRect" parent="Bank/HBoxContainer"]
@@ -506,7 +507,8 @@ expand_mode = 1
 custom_minimum_size = Vector2(89.48, 0)
 layout_mode = 2
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 26
+theme_override_fonts/normal_font = ExtResource("10_2t8xk")
+theme_override_font_sizes/normal_font_size = 31
 text = "300"
 vertical_alignment = 1
 
@@ -569,6 +571,7 @@ cost = 5
 [node name="cost" type="Label" parent="buymenu/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_2t8xk")
 theme_override_font_sizes/font_size = 18
 
 [node name="TDesc" type="RichTextLabel" parent="buymenu/VBoxContainer"]
@@ -576,6 +579,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(291.34, 32)
 layout_mode = 2
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("10_2t8xk")
 theme_override_font_sizes/normal_font_size = 18
 text = "Replace this text u dummy"
 
