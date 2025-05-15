@@ -13,8 +13,7 @@ class_name Tower
 
 @export_category("Tower Stats")
 @export var stats: Dictionary = {"Damage" : 10, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0, "Regeneration" : 0.0, "Regen Time": 1.0}
-#@export var sdamage: float = 10 #self damage, "s" to not mix with taken damage from enemies
-#@export var atk_speed: float
+
 @export var cost: int
 @export var title: String #Name of tower
 @export var description: String
@@ -23,10 +22,7 @@ class_name Tower
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
-#var damage_taken: float
-#var damage_dealt: float
 
-#var kills: int #spawned bullets increase this
 
 var enemies: Array[Node2D] = []
 
@@ -102,8 +98,6 @@ func Heal(restoration, healer):
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
-	#circle.visible = true
-	#print("mouse entered")
 	GlobalVariables.is_mouse_in_Area2D = true
 	hovered = true
 
@@ -114,7 +108,6 @@ func _on_mouse_exited() -> void:
 		GlobalVariables.is_mouse_in_Area2D = false
 		hovered = false
 	else:
-		#print("mouse was still over button, ignore")
 		pass
 
 func _on_focus_entered():
