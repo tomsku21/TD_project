@@ -31,6 +31,7 @@ func _ready() -> void:
 	else:
 		screen_button.select(0)
 	SignalBus.NextRound.connect(_next_round)
+	SignalBus.Settings.connect(_setting_changed)
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
@@ -214,3 +215,11 @@ func _on_option_button_item_selected(index: int) -> void:
 		1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			GlobalVariables.fullscreen = true
+	SignalBus.Settings.emit(index)
+
+func _setting_changed(index: int):
+	match index:
+		0:
+			screen_button.select(0)
+		1:
+			screen_button.select(1)

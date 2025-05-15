@@ -7,6 +7,7 @@ var musicIndex: int
 var sfxIndex: int
 
 func _ready():
+	SignalBus.Settings.connect(_setting_changed)
 	if GlobalVariables.fullscreen:
 		screen_button.select(1)
 	else:
@@ -77,3 +78,11 @@ func _on_option_button_item_selected(index: int) -> void:
 		1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			GlobalVariables.fullscreen = true
+	SignalBus.Settings.emit(index)
+
+func _setting_changed(index: int):
+	match index:
+		0:
+			screen_button.select(0)
+		1:
+			screen_button.select(1)
