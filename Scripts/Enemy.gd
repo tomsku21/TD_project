@@ -104,7 +104,7 @@ func check_turret():
 				attack_timer.stop()
 				nearest_turret = null
 	
-func take_damage(damage: float, attackerPlant: Area2D):
+func take_damage(damage: float, attackerPlant: Tower):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)

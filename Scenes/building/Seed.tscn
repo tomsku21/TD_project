@@ -1,25 +1,43 @@
-[gd_scene load_steps=14 format=3 uid="uid://k6ufqb7xdej0"]
+[gd_scene load_steps=17 format=3 uid="uid://k6ufqb7xdej0"]
 
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_ll3dy"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="2_tdi3x"]
-[ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="3_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_bdjjs"]
+[ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="4_ll3dy"]
 [ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="6_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="7_j8fsv"]
+[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="7_ll3dy"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_1gr70"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_h62y5"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_ctpcp"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="11_vc7cu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll3dy"]
+atlas = ExtResource("2_tdi3x")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yd0mu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll3dy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yd0mu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 100.0
 
-[node name="Flower" type="Area2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
-collision_layer = 2
-input_pickable = false
+[node name="Flower" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_yd0mu")
+offset = Vector2(0, -15)
 script = ExtResource("1_tdi3x")
 plantimg = ExtResource("2_tdi3x")
 bullet = ExtResource("2_ll3dy")
@@ -28,7 +46,7 @@ marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
-upgrades = Array[PackedScene]([ExtResource("3_tdi3x"), ExtResource("4_bdjjs"), ExtResource("6_tdi3x")])
+upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_tdi3x")])
 stats = {
 "Atk Speed": 1.0,
 "Damage": 5,
@@ -58,9 +76,6 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_tdi3x")
-
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 anchors_preset = 8
@@ -68,10 +83,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = -21.0
-offset_right = 21.0
-offset_bottom = 21.0
+offset_left = -37.5
+offset_top = -42.0
+offset_right = -2.5
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
@@ -79,16 +94,16 @@ mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yd0mu")
 flat = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_hskch")
+[node name="Mousecheck" parent="." instance=ExtResource("11_vc7cu")]
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("7_j8fsv")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("7_j8fsv")]
 unique_name_in_owner = true
+sprite = NodePath("..")
 character = NodePath("..")
 shader_material = ExtResource("8_1gr70")
 
@@ -102,19 +117,24 @@ stream = ExtResource("10_ctpcp")
 pitch_scale = 1.1
 bus = &"SFX"
 
-[node name="Mousecheck" parent="." instance=ExtResource("11_vc7cu")]
-
 [node name="RegenTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
+position = Vector2(0, -15)
+collision_layer = 2
+script = ExtResource("7_ll3dy")
+tower = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_hskch")
+
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="body_entered" from="Range" to="Range" method="_on_body_entered"]
+[connection signal="body_exited" from="Range" to="Range" method="_on_body_exited"]

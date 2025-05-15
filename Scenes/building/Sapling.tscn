@@ -54,9 +54,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 100.0
 
-[node name="Sapling" type="Area2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
-collision_layer = 2
-input_pickable = false
+[node name="Sapling" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+sprite_frames = SubResource("SpriteFrames_k8lsj")
+offset = Vector2(0, -15)
 script = ExtResource("1_gjq8m")
 plantimg = ExtResource("7_7mvnh")
 bullet = ExtResource("2_7mvnh")
@@ -95,36 +95,30 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_k8lsj")
-autoplay = "default"
-frame_progress = 0.489767
-
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -17.5
+offset_top = -22.0
+offset_right = 17.5
+offset_bottom = 3.0
 focus_mode = 1
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1xls1")
 flat = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_hskch")
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("7_tcjie")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("7_tcjie")]
 unique_name_in_owner = true
+sprite = NodePath("..")
 character = NodePath("..")
 shader_material = ExtResource("8_k8lsj")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
 scale = Vector2(0.368659, 0.368659)
 texture = ExtResource("9_d63pv")
 
@@ -139,8 +133,12 @@ bus = &"SFX"
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="Range" type="Area2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_hskch")
+
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]

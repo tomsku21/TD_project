@@ -63,7 +63,6 @@ one_shot = true
 [node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("3_aynp6")]
 unique_name_in_owner = true
 character = NodePath("..")
-MAX_HEALTH = 15
 shader_material = ExtResource("4_f1qqd")
 
 [node name="WalkTimer" type="Timer" parent="CharacterBody2D"]
