@@ -1,11 +1,16 @@
 extends Node
 
 @export var gameScene: PackedScene
+@export var screen_button: OptionButton
 var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
 
 func _ready():
+	if GlobalVariables.fullscreen:
+		screen_button.select(1)
+	else:
+		screen_button.select(0)
 	%MainMenu.visible = true
 	%Settings.visible = false
 	setup_volumes()
@@ -62,3 +67,13 @@ func _on_value_changed(value, _name) -> void:
 			AudioServer.set_bus_volume_db(musicIndex, linear_to_db(value))
 		"SFXVolumeS":
 			AudioServer.set_bus_volume_db(sfxIndex, linear_to_db(value))
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	match index:
+		0: 
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			GlobalVariables.fullscreen = false
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			GlobalVariables.fullscreen = true

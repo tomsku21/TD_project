@@ -13,6 +13,7 @@ extends CanvasLayer
 
 @export_category("Settings")
 @export var settingsPanel: Panel
+@export var screen_button: OptionButton
 
 @export_category("Next Round")
 @export var nextRoundPanel: Panel
@@ -25,6 +26,10 @@ var sfxIndex: int
 var startGame: bool = false
 var shop_hide: bool = false
 func _ready() -> void:
+	if GlobalVariables.fullscreen:
+		screen_button.select(1)
+	else:
+		screen_button.select(0)
 	SignalBus.NextRound.connect(_next_round)
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
@@ -205,7 +210,7 @@ func _on_option_button_item_selected(index: int) -> void:
 	match index:
 		0: 
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			print("Windowed")
+			GlobalVariables.fullscreen = false
 		1:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			print("Fullscreen")
+			GlobalVariables.fullscreen = true

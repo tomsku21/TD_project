@@ -503,7 +503,7 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_niwxr"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "nextRoundPanel")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "screen_button", "nextRoundPanel")]
 process_mode = 3
 script = ExtResource("1_lotke")
 bankPanel = NodePath("Bank")
@@ -516,6 +516,7 @@ overVBoxContainer = NodePath("GameOver/VBoxContainer")
 pausePanel = NodePath("Pause")
 vboxContainer = NodePath("Pause/VBoxContainer")
 settingsPanel = NodePath("Pause/Settings")
+screen_button = NodePath("Pause/Settings/VBoxContainer/GridContainer/OptionButton")
 nextRoundPanel = NodePath("NextRound")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
