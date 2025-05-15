@@ -1,7 +1,7 @@
 extends Area2D
 class_name HitboxComponent
 
-@export var tower: Tower
+@export var tower: Node2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and not body in tower.enemies:

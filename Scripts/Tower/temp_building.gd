@@ -48,8 +48,10 @@ func _check_tile_validity():
 #improve this later
 func _tower_borders_check(cell):
 	var borders: Dictionary
+	borders["bottom_right"] = cell + Vector2i(1, 0)
 	borders["bottom_left"] = cell + Vector2i(-1, 0)
 	borders["top_right"] = cell + Vector2i(1, -1)
+	borders["top_left"] = cell + Vector2i(-1, -1)
 	for i in borders:
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
 		if tile_data:

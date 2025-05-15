@@ -53,6 +53,7 @@ radius = 150.0
 
 [node name="Turreter" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
 sprite_frames = SubResource("SpriteFrames_476cd")
+offset = Vector2(0, -15)
 script = ExtResource("1_s6nl5")
 plantimg = ExtResource("3_006wr")
 bullet = ExtResource("2_a4jgc")
@@ -97,10 +98,10 @@ scale_amount_max = 3.0
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -17.5
+offset_top = -22.0
+offset_right = 17.5
+offset_bottom = 3.0
 focus_mode = 1
 mouse_filter = 1
 
@@ -117,7 +118,7 @@ character = NodePath("..")
 shader_material = ExtResource("5_tya3y")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(0, -15)
 scale = Vector2(0.553, 0.553)
 texture = ExtResource("6_52i1a")
 
@@ -132,13 +133,13 @@ bus = &"SFX"
 unique_name_in_owner = true
 autostart = true
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -15)
-collision_layer = 2
+[node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
+position = Vector2(0, -12)
 script = ExtResource("10_tya3y")
 tower = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_52i1a")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
@@ -149,5 +150,5 @@ shape = SubResource("CircleShape2D_52i1a")
 [connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
-[connection signal="body_entered" from="HitboxComponent" to="HitboxComponent" method="_on_body_entered"]
-[connection signal="body_exited" from="HitboxComponent" to="HitboxComponent" method="_on_body_exited"]
+[connection signal="body_entered" from="Range" to="Range" method="_on_body_entered"]
+[connection signal="body_exited" from="Range" to="Range" method="_on_body_exited"]

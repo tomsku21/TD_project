@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=13 format=3 uid="uid://bfdli3w1fom06"]
 
 [ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
@@ -7,15 +7,31 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_x6bfs"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_b70jt"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_yltu3"]
-[ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="9_h2nyj"]
+[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_h27ut"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2nyj"]
+atlas = ExtResource("4_h27ut")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpad0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2nyj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpad0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
 
-[node name="Slower" type="Area2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
-collision_layer = 2
+[node name="Slower" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+sprite_frames = SubResource("SpriteFrames_cpad0")
+offset = Vector2(0, -15)
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")
 attack_timer = NodePath("AttackTimer")
@@ -76,25 +92,16 @@ angular_velocity_max = 261.82
 scale_amount_min = 0.0
 scale_amount_max = 1.5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.464645, 0.626273, 0, 1)
-z_index = 1
-texture = ExtResource("4_h27ut")
-
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -17.5
+offset_top = -22.0
+offset_right = 17.5
+offset_bottom = 3.0
 focus_mode = 1
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cpad0")
 flat = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("CircleShape2D_hskch")
 
 [node name="AttackTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -102,13 +109,15 @@ wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_cpad0")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_cpad0")]
 unique_name_in_owner = true
+sprite = NodePath("..")
 character = NodePath("..")
 shader_material = ExtResource("5_x6bfs")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(0, -12)
 scale = Vector2(0.553, 0.553)
 texture = ExtResource("6_b70jt")
 
@@ -117,19 +126,23 @@ stream = ExtResource("7_yltu3")
 pitch_scale = 1.1
 bus = &"SFX"
 
-[node name="Mousecheck" parent="." instance=ExtResource("9_h2nyj")]
-
 [node name="RegenTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
+position = Vector2(0, -12)
+script = ExtResource("8_h27ut")
+tower = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_hskch")
+
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="mouse_entered" from="Mousecheck" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Mousecheck" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="body_entered" from="Range" to="Range" method="_on_body_entered"]
+[connection signal="body_exited" from="Range" to="Range" method="_on_body_exited"]
