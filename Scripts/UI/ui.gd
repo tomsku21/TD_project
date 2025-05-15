@@ -48,6 +48,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
 		if not animationPlayer.current_animation == "Exit" and not animationPlayer.current_animation == "Shop" and not animationPlayer.current_animation == "Shop2":
 			if in_settings:
+				GlobalVariables.save_game()
 				vboxContainer.visible = true
 				settingsPanel.visible = false
 				in_settings = false
@@ -150,7 +151,6 @@ func connect_interacts() -> void:
 		slider.value_changed.connect(_on_value_changed.bind(slider.name))
 		slider.visibility_changed.connect(_on_visibility_changed.bind(slider.name, slider))
 
-
 func _on_visibility_changed(_name: String, slider) -> void:
 	match _name:
 		"MasterVolumeS":
@@ -173,6 +173,7 @@ func _on_value_changed(value: float, _name: String) -> void:
 
 
 func _on_back_pressed() -> void:
+	GlobalVariables.save_game()
 	vboxContainer.visible = true
 	settingsPanel.visible = false
 	in_settings = false
@@ -198,3 +199,13 @@ func _on_shop_button_pressed() -> void:
 			shop_buton.texture_normal = preload("res://Assets/UI/ArrowUp.png")
 			animationPlayer.play("Shop")
 			shop_hide = true
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	match index:
+		0: 
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			print("Windowed")
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			print("Fullscreen")
