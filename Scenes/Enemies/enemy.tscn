@@ -47,8 +47,12 @@ size = Vector2(20, 9)
 
 [node name="Enemy" type="PathFollow2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_ubio8")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+healthcomponent = NodePath("HealthComponent")
+cpu_particles_2d = NodePath("CPUParticles2D")
+audio = NodePath("Audio")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
 attack_distance = 100.0

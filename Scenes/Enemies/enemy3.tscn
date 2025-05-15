@@ -10,29 +10,29 @@
 [ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_db6ly"]
 [ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_o5ypr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_duseo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5nno"]
 atlas = ExtResource("3_txdwu")
-region = Rect2(270, 138, 90, 69)
+region = Rect2(540, 96, 90, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2wnr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvyr5"]
 atlas = ExtResource("3_txdwu")
-region = Rect2(360, 138, 90, 69)
+region = Rect2(630, 96, 90, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oksxf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_txdwu"]
 atlas = ExtResource("3_txdwu")
-region = Rect2(450, 138, 90, 69)
+region = Rect2(720, 96, 90, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_duseo")
+"texture": SubResource("AtlasTexture_i5nno")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q2wnr")
+"texture": SubResource("AtlasTexture_xvyr5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oksxf")
+"texture": SubResource("AtlasTexture_txdwu")
 }],
 "loop": true,
 "name": &"default",
@@ -44,8 +44,12 @@ size = Vector2(20, 9)
 
 [node name="Enemy" type="PathFollow2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_i5nno")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+healthcomponent = NodePath("HealthComponent")
+cpu_particles_2d = NodePath("CPUParticles2D")
+audio = NodePath("Audio")
 shader_material = ExtResource("2_xvyr5")
 speed = 20.0
 poison = NodePath("Debuff/Poison")
@@ -55,7 +59,7 @@ walk_timer = NodePath("Timers/WalkTimer")
 attack_timer = NodePath("Timers/AttackTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(0, -3)
+position = Vector2(0, -11)
 scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 autoplay = "default"

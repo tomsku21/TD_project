@@ -22,9 +22,13 @@ var show_circles = false
 var in_mainMenu: bool = true
 var normal_cursor = load("res://Assets/cursor/normal.png")
 var clicked_cursor = load("res://Assets/cursor/clicked.png")
-
+var fullscreen: bool = false
 func _ready() -> void:
 	load_game()
+	if GlobalVariables.fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -44,7 +48,8 @@ func reset():
 
 func save_game(path: String = "user://save.json"):
 	var save_data = {
-		"round": current_round
+		"round": current_round,
+		"fullscreen": fullscreen
 	}
 	
 	var file = FileAccess.open(path, FileAccess.WRITE)
@@ -69,3 +74,6 @@ func load_game(path: String = "user://save.json"):
 			if data.has("round"):
 				var round_data = data["round"]
 				best_round = round_data
+			if data.has("fullscreen"):
+				var screen_data = data["fullscreen"]
+				fullscreen = screen_data

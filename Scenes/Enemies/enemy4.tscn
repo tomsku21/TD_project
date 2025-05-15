@@ -1,38 +1,38 @@
-[gd_scene load_steps=15 format=3 uid="uid://dokkhr01lrrg6"]
+[gd_scene load_steps=15 format=3 uid="uid://1sfoyqucyyff"]
 
-[ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_ha1q6"]
-[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_ho2oa"]
-[ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="3_bq1cs"]
-[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_tpyyq"]
-[ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="5_60rhp"]
-[ext_resource type="AudioStream" uid="uid://c27afwy3dwqvm" path="res://Assets/Sounds/splash small 9.wav" id="6_nn51h"]
-[ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_p48vb"]
-[ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_tdoqu"]
-[ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_t4luf"]
+[ext_resource type="Script" uid="uid://du3u44on1bq8k" path="res://Scripts/Enemy.gd" id="1_f8rc3"]
+[ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="2_airl3"]
+[ext_resource type="Texture2D" uid="uid://cow57jupqj173" path="res://Assets/Ants/Ants.png" id="3_mld87"]
+[ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_3j04q"]
+[ext_resource type="Texture2D" uid="uid://butr2h112q04q" path="res://Assets/Particles/Skull.png" id="5_8h5ik"]
+[ext_resource type="AudioStream" uid="uid://c27afwy3dwqvm" path="res://Assets/Sounds/splash small 9.wav" id="6_tas21"]
+[ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_ncwte"]
+[ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_20jvr"]
+[ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_yc70b"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_duseo"]
-atlas = ExtResource("3_bq1cs")
-region = Rect2(270, 138, 90, 69)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8rc3"]
+atlas = ExtResource("3_mld87")
+region = Rect2(810, 138, 90, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2wnr"]
-atlas = ExtResource("3_bq1cs")
-region = Rect2(360, 138, 90, 69)
+[sub_resource type="AtlasTexture" id="AtlasTexture_airl3"]
+atlas = ExtResource("3_mld87")
+region = Rect2(900, 138, 90, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oksxf"]
-atlas = ExtResource("3_bq1cs")
-region = Rect2(450, 138, 90, 69)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mld87"]
+atlas = ExtResource("3_mld87")
+region = Rect2(990, 138, 90, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_duseo")
+"texture": SubResource("AtlasTexture_f8rc3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q2wnr")
+"texture": SubResource("AtlasTexture_airl3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oksxf")
+"texture": SubResource("AtlasTexture_mld87")
 }],
 "loop": true,
 "name": &"default",
@@ -42,19 +42,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
 size = Vector2(20, 9)
 
-[node name="Boss" type="PathFollow2D"]
-z_index = 10
+[node name="Enemy" type="PathFollow2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
-script = ExtResource("1_ha1q6")
+script = ExtResource("1_f8rc3")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 healthcomponent = NodePath("HealthComponent")
 cpu_particles_2d = NodePath("CPUParticles2D")
 audio = NodePath("Audio")
-shader_material = ExtResource("2_ho2oa")
-speed = 10.0
-max_health = 2000.0
-sdamage = 50.0
+shader_material = ExtResource("2_airl3")
+speed = 20.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")
 slow = NodePath("Debuff/Slow")
@@ -63,7 +60,7 @@ attack_timer = NodePath("Timers/AttackTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -3)
-scale = Vector2(1.088, 1.088)
+scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 autoplay = "default"
 frame_progress = 0.505874
@@ -74,15 +71,15 @@ visible = false
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_287tu")
 
-[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("4_tpyyq")]
+[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("4_3j04q")]
 unique_name_in_owner = true
 character = NodePath("..")
-shader_material = ExtResource("2_ho2oa")
+shader_material = ExtResource("2_airl3")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
 emitting = false
 amount = 10
-texture = ExtResource("5_60rhp")
+texture = ExtResource("5_8h5ik")
 lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
@@ -98,7 +95,7 @@ scale_amount_max = 3.0
 [node name="Audio" type="Node" parent="CharacterBody2D"]
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="CharacterBody2D/Audio"]
-stream = ExtResource("6_nn51h")
+stream = ExtResource("6_tas21")
 volume_db = -10.0
 pitch_scale = 0.8
 bus = &"SFX"
@@ -106,7 +103,7 @@ bus = &"SFX"
 [node name="Debuff" type="Node" parent="CharacterBody2D"]
 
 [node name="Poison" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
-script = ExtResource("7_p48vb")
+script = ExtResource("7_ncwte")
 main_script = NodePath("../..")
 times = 4
 poison_timeout = 1.0
@@ -114,7 +111,7 @@ max_damage = 2.0
 min_damage = 1.0
 
 [node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
-script = ExtResource("8_tdoqu")
+script = ExtResource("8_20jvr")
 main_script = NodePath("../..")
 times = 4
 burn_timeout = 1.0
@@ -122,7 +119,7 @@ max_damage_minus_procent = 20.0
 min_damage_minus_procent = 10.0
 
 [node name="Slow" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script", "timer")]
-script = ExtResource("9_t4luf")
+script = ExtResource("9_yc70b")
 main_script = NodePath("../..")
 timer = NodePath("../../Timers/SlowDebuff")
 slow_debuff = 60.0

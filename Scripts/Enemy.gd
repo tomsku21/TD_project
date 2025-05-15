@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 # Onready
 @onready var path: PathFollow2D = $".."
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var healthcomponent: HealthComponent = %HealthComponent
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
-@onready var audio: Node = $Audio
+@export_category("Components")
+@export var animated_sprite_2d: AnimatedSprite2D
+@export var healthcomponent: HealthComponent
+@export var cpu_particles_2d: CPUParticles2D
+@export var audio: Node
 
 # Export
 @export var shader_material: ShaderMaterial
@@ -108,7 +109,8 @@ func take_damage(damage: float, attackerPlant: Tower):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
 	audio.get_node("Hit").play()
 	healthcomponent.damage(damage)
-	attackerPlant.stats["Damage Dealt"] += damage
+	if attackerPlant != null:
+		attackerPlant.stats["Damage Dealt"] += damage
 	if poisoned:
 		cpu_particles_2d.scale_amount_max = 0.5
 		cpu_particles_2d.texture = preload("res://Assets/Particles/Skull.png")
