@@ -3,6 +3,8 @@ extends Tower
 @export_category("Plant texture for dropshadow")
 @export var plantimg: Texture
 
+@export var bullet: PackedScene
+
 func _on_attack_timer_timeout() -> void:
 	print("damage dealt: ", stats["Damage Dealt"])
 	if not enemies.is_empty():

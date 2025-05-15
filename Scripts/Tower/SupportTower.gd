@@ -6,7 +6,6 @@ class_name SupportTower
 @export var healthcomponent: HealthComponent
 @export var ARange: Sprite2D
 @export var cpu_particles_2d: CPUParticles2D
-@export var bullet: PackedScene
 
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>

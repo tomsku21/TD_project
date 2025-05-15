@@ -54,12 +54,17 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 100.0
 
-[node name="Sapling" type="Area2D" groups=["Turret"]]
+[node name="Sapling" type="Area2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
 collision_layer = 2
 input_pickable = false
 script = ExtResource("1_gjq8m")
 plantimg = ExtResource("7_7mvnh")
 bullet = ExtResource("2_7mvnh")
+attack_timer = NodePath("AttackTimer")
+marker_2d = NodePath("Marker2D")
+healthcomponent = NodePath("HealthComponent")
+ARange = NodePath("RangeMarker")
+cpu_particles_2d = NodePath("CPUParticles2D")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_7mvnh"), ExtResource("6_1xls1")])
 stats = {
 "Atk Speed": 0.8,

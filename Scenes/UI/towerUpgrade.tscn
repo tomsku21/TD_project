@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0ns6e7ra5xib"]
 
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="1_ff82d"]
-[ext_resource type="Script" uid="uid://ol8yu84krmdy" path="res://Scripts/upgradingButton.gd" id="2_ninox"]
+[ext_resource type="Script" uid="uid://ol8yu84krmdy" path="res://Scripts/UI/upgradingButton.gd" id="2_ninox"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff82d"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 0.631373)
