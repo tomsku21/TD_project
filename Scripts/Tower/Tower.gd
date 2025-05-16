@@ -6,6 +6,7 @@ class_name Tower
 @export var healthcomponent: HealthComponent
 @export var ARange: Sprite2D
 @export var cpu_particles_2d: CPUParticles2D
+@export var upgrade_cpu_2d: CPUParticles2D
 
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
@@ -55,6 +56,18 @@ func _process(_delta):
 				_on_focus_exited()
 		if up_forgiveness and !hovered:
 			up_forgiveness = false
+
+	for i in upgrades:
+		if i != null:
+			var new_plant = i.instantiate()
+			if new_plant.upRequirement:
+				var req_dict = new_plant.upRequirement
+				var upgrade_ = (req_dict.keys()[0])
+				var requirement = req_dict[upgrade_]
+				var cur_req = stats[upgrade_]
+				if cur_req >= requirement or req_dict == null:
+					upgrade_cpu_2d.emitting = true
+			new_plant.queue_free()
 
 func take_damage(damage: float):
 	healthcomponent.damage(damage)

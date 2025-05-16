@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://codeqdi0dlyw"]
+
+[ext_resource type="Script" uid="uid://d15nobs3uuxeb" path="res://addons/postfx/nodes/PostFX.gd" id="1_il3r7"]
+[ext_resource type="Script" uid="uid://bvbw3ejkm2bck" path="res://addons/postfx/scripts/FXBase.gd" id="2_exgrb"]
+[ext_resource type="Script" uid="uid://cqqc7s7kp8uem" path="res://addons/postfx/effects/VignetteFX.gd" id="3_v0vpi"]
+
+[sub_resource type="Resource" id="Resource_il3r7"]
+script = ExtResource("3_v0vpi")
+intensity = 0.1
+color = Color(0, 0, 0, 1)
+enabled = true
+metadata/_custom_type_script = "uid://cqqc7s7kp8uem"
+
+[node name="PostFX" type="CanvasLayer"]
+script = ExtResource("1_il3r7")
+effects = Array[ExtResource("2_exgrb")]([SubResource("Resource_il3r7")])
+always_update = true
+metadata/_custom_type_script = "uid://d15nobs3uuxeb"

@@ -581,7 +581,6 @@ text = "Current Round: 1"
 vertical_alignment = 1
 
 [node name="buymenu" type="Panel" parent="."]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -662,6 +661,7 @@ theme_override_font_sizes/normal_font_size = 18
 text = "Replace this text u dummy"
 
 [node name="Pause" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4a83ta4dopyd"]
+[gd_scene load_steps=18 format=3 uid="uid://c4a83ta4dopyd"]
 
 [ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="1_xqq4q"]
 [ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="2_h86t1"]
@@ -9,7 +9,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_gldyh"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_40f82"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_8uxj8"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
 atlas = ExtResource("2_h86t1")
@@ -49,7 +49,12 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gldyh"]
 
-[node name="MoneyMaker" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["MoneyMaker", "Turret"]]
+[sub_resource type="Curve" id="Curve_h86t1"]
+_limits = [0.550562, 2.0, 0.85567, 2.0]
+_data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
+point_count = 2
+
+[node name="MoneyMaker" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["MoneyMaker", "Turret"]]
 z_index = 1
 material = ExtResource("1_xqq4q")
 sprite_frames = SubResource("SpriteFrames_gldyh")
@@ -62,6 +67,7 @@ marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
+upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([ExtResource("4_m0ghu"), null, null])
 upRequirement = {
 "Damage Taken": 500.0
@@ -150,6 +156,21 @@ script = ExtResource("11_h5qwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_gldyh")
+
+[node name="Upgrade" type="CPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 100
+lifetime = 2.5
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 27.07
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_h86t1")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d2entn05wbug3"]
+[gd_scene load_steps=42 format=3 uid="uid://d2entn05wbug3"]
 
 [ext_resource type="Script" uid="uid://b2i7qmdkwuqso" path="res://Scripts/Tower/FirePlant.gd" id="1_hrvv2"]
 [ext_resource type="PackedScene" uid="uid://gcxjuwtrk0nt" path="res://Scenes/Firebullet.tscn" id="2_6ngx4"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_tr10u"]
 [ext_resource type="AudioStream" uid="uid://ct0jf5bpr6lri" path="res://Assets/Sounds/fireball-whoosh-1-179125 (mp3cut.net).wav" id="8_hrvv2"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_j7pcx"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_hrvv2"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_hrvv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrvv2"]
 atlas = ExtResource("3_j7pcx")
@@ -212,6 +212,11 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Curve" id="Curve_hrvv2"]
+_limits = [0.550562, 2.0, 0.85567, 2.0]
+_data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
+point_count = 2
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtf4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
@@ -219,7 +224,7 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ngx4"]
 
-[node name="Fireplant" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+[node name="Fireplant" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Attack"
@@ -232,6 +237,7 @@ marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
+upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Dealt": 10.0
@@ -265,6 +271,21 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
+[node name="Upgrade" type="CPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 100
+lifetime = 2.5
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 27.07
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_hrvv2")
+
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 visibility_layer = 2
@@ -282,6 +303,7 @@ unique_name_in_owner = true
 wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -19)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_o4f5v")]
 unique_name_in_owner = true
