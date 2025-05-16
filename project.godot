@@ -31,7 +31,6 @@ settings/stdout/print_fps=true
 window/size/viewport_width=1620
 window/size/viewport_height=920
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
 mouse_cursor/custom_image="uid://c82n8gwglomqn"
 
 [global_group]
@@ -47,6 +46,7 @@ MoneyMaker=""
 Volumer=""
 Spawner=""
 Tile_data=""
+world_border=""
 
 [input]
 

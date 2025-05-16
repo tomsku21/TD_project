@@ -43,6 +43,14 @@ position_smoothing_speed = 8.0
 script = ExtResource("1_7xbqi")
 SPEED = 200.0
 
+[node name="worldborders" type="Control" parent="Camera2D" groups=["world_border"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -705.0
+offset_top = -339.0
+offset_right = 670.0
+offset_bottom = 384.0
+
 [node name="TileMap" type="Node" parent="."]
 
 [node name="Land" type="TileMapLayer" parent="TileMap" groups=["Grass"]]
