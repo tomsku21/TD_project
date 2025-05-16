@@ -68,18 +68,6 @@ func destroy():
 	_tower_borders_check(true)
 	queue_free()
 
-#func _on_body_entered(body: Node2D) -> void:
-	#if body.is_in_group("enemies") and not body in enemies:
-		#enemies.append(body)
-		#if attack_timer.is_stopped():
-			#attack_timer.start()
-#
-#func _on_body_exited(body: Node2D) -> void:
-	#if body in enemies:
-		#enemies.erase(body)
-		#if enemies.is_empty():
-			#attack_timer.stop()
-
 func _on_attack_timer_timeout() -> void:
 	pass
 
@@ -103,10 +91,12 @@ func Heal(restoration, healer):
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	hovered = true
+	print("mouse entered")
 
 
 func _on_mouse_exited() -> void:
 	hovered = false
+	print("mouse exited")
 
 func _on_focus_entered():
 	clicked = true
@@ -145,9 +135,9 @@ func _tower_borders_check(change: bool):
 	for i in borders:
 		print(i, borders.get(i))
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		print("tile data before:", tile_data)
+		#print("tile data before:", tile_data)
 		tilemap.set_cell(borders.get(i), 0, Vector2i(tile, 5))
-		print("tile", tile)
+		#print("tile", tile)
 		tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		print("tile data after:", tile_data)
+		#print("tile data after:", tile_data)
 		continue

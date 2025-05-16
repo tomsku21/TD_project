@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	if area == target:
+	if area.tower == target:
 		if is_instance_valid(target) and target.has_method("take_damage"):
 			target.take_damage(damage)
 			sprite_2d.visible = false
