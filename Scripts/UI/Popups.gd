@@ -1,6 +1,7 @@
 extends Control
 @export var Upgrades: Array[Node] #Feels like a dumb way to do this, but should work
 var lasttower: AnimatedSprite2D
+var adjustment: float
 
 func _enter_tree():
 	%Build1stats.hide()
@@ -28,7 +29,6 @@ func showBuildInfo(sizing, content):
 		%Upgrades.show()
 
 func setupgrades(content):
-	print("set upgrades??")
 	for i in Upgrades.size():
 		if content.upgrades[i] != null:
 			Upgrades[i].plant = content.upgrades[i]
@@ -88,7 +88,7 @@ func setupDescription(content):
 	var dimensions = lasttower.get_global_transform_with_canvas()
 	var finalpos = dimensions.get_origin()
 	%Build1stats.position = finalpos
-	#check_overlap(%UpPopup)
+	
 
 func sellDescription():
 	%SName.text = lasttower.title
@@ -105,16 +105,3 @@ func returnDesc():
 	lasttower.clicked = true
 	lasttower.hovered = false
 	GlobalVariables.is_mouse_in_Area2D = false
-
-#func check_overlap(panel):
-	#var world_border = get_tree().get_first_node_in_group("world_border")
-	#world_border = world_border.get_global_rect()
-	#var panel_rect = panel.get_global_rect()
-	#var overlap_bottom = 0
-	#print("panel positions", panel_rect)
-	#print("plant position", lasttower.global_position)
-	#print("border positions", world_border)
-	##if !world_border.has_point(panel_rect.size):
-		##print("overlapping")
-	##overlap_bottom = panel.position.y + panel_rect.y - world_border.size.y
-	#print("overlap: ", overlap_bottom)
