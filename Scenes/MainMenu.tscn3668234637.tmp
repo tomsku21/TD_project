@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cbcw7mc8khvub"]
+[gd_scene load_steps=20 format=4 uid="uid://cbcw7mc8khvub"]
 
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_853f1"]
 [ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scripts/UI/MainMenu.gd" id="1_xim88"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://d2devqpodjpw" path="res://Assets/UI/Button3.png" id="7_xim88"]
 [ext_resource type="TileSet" uid="uid://bt5hmyta063ff" path="res://Assets/World/Testingtileset.tres" id="9_cmrfp"]
 [ext_resource type="Script" uid="uid://dod8jevde2bbc" path="res://Scripts/MainMenuSpawner.gd" id="11_if7li"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_if7li"]
 
 [sub_resource type="Gradient" id="Gradient_8um5k"]
 offsets = PackedFloat32Array(0, 0.461039, 0.967532)
@@ -66,7 +64,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_if7li")
 
 [node name="Panel" type="TextureRect" parent="Canvas/PanelContainer"]
 visible = false
@@ -267,7 +264,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Canvas/MainMenu"]
-visible = false
 modulate = Color(1, 1, 1, 0.172549)
 layout_mode = 1
 anchors_preset = 5
@@ -430,4 +426,3 @@ path = NodePath("../Path2D")
 [node name="Timer" type="Timer" parent="Spawner"]
 
 [connection signal="item_selected" from="Canvas/Settings/Panel/GridContainer/OptionButton" to="Canvas" method="_on_option_button_item_selected"]
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
