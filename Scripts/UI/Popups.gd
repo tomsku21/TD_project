@@ -11,6 +11,14 @@ func hideBuildInfo():
 func showBuildInfo(sizing, content):
 	if !content == null:
 		lasttower = content
+		if lasttower.global_position.x > 550:
+			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
+			%UpPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
+			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
+		else:
+			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
+			%UpPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
+			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
 		%Sell.tower = lasttower
 		setcontent(content)
 		setupgrades(content)
@@ -18,9 +26,9 @@ func showBuildInfo(sizing, content):
 		%Build1stats.position = finalpos
 		%Build1stats.show()
 		%Upgrades.show()
-		check_overlap(%UpPopup)
 
 func setupgrades(content):
+	print("set upgrades??")
 	for i in Upgrades.size():
 		if content.upgrades[i] != null:
 			Upgrades[i].plant = content.upgrades[i]
@@ -80,6 +88,7 @@ func setupDescription(content):
 	var dimensions = lasttower.get_global_transform_with_canvas()
 	var finalpos = dimensions.get_origin()
 	%Build1stats.position = finalpos
+	#check_overlap(%UpPopup)
 
 func sellDescription():
 	%SName.text = lasttower.title
@@ -97,10 +106,15 @@ func returnDesc():
 	lasttower.hovered = false
 	GlobalVariables.is_mouse_in_Area2D = false
 
-func check_overlap(panel):
-	var screen_rect = get_viewport_rect()
-	var panel_rect = panel.get_global_rect()
-	var overlap_bottom = 0
-	overlap_bottom = panel_rect.position.y + panel_rect.size.y - screen_rect.size.y
-	print("screen size: ", screen_rect, " panel size: ", panel_rect)
-	print("overlap", overlap_bottom)
+#func check_overlap(panel):
+	#var world_border = get_tree().get_first_node_in_group("world_border")
+	#world_border = world_border.get_global_rect()
+	#var panel_rect = panel.get_global_rect()
+	#var overlap_bottom = 0
+	#print("panel positions", panel_rect)
+	#print("plant position", lasttower.global_position)
+	#print("border positions", world_border)
+	##if !world_border.has_point(panel_rect.size):
+		##print("overlapping")
+	##overlap_bottom = panel.position.y + panel_rect.y - world_border.size.y
+	#print("overlap: ", overlap_bottom)
