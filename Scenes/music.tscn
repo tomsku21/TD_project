@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcmjq7i70e6e2"]
+
+[ext_resource type="AudioStream" uid="uid://g2dmljbutwsp" path="res://Assets/Sounds/bit-beats-6-5-171021.mp3" id="1_fbmny"]
+
+[node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_fbmny")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

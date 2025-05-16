@@ -9,7 +9,7 @@ class_name Poison
 @export_range(0.0,50.0,1.0, "int") var max_damage
 @export_range(0.0,50.0,1.0, "int") var min_damage
 
-func PoisonDebuff(attackerPlant: Area2D):
+func PoisonDebuff(attackerPlant: Node2D):
 	if main_script != null:
 		if main_script.taking_damage == false:
 			main_script.taking_damage = true

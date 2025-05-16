@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://benincu8whxp1"]
+[gd_scene load_steps=25 format=3 uid="uid://benincu8whxp1"]
 
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_csl5t"]
 [ext_resource type="Texture2D" uid="uid://c7as32ri20qc4" path="res://Assets/Towers/PoisonTurret.png" id="1_ec3bi"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="7_r8k8u"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="8_y8xh1"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="9_7ww7k"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="10_ec3bi"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="10_ec3bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("1_ec3bi")
@@ -94,7 +94,12 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ww7k"]
 
-[node name="Tank" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+[sub_resource type="Curve" id="Curve_ec3bi"]
+_limits = [0.550562, 2.0, 0.85567, 2.0]
+_data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
+point_count = 2
+
+[node name="Tank" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_aiiqu")
 animation = &"Idle"
@@ -106,6 +111,7 @@ marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
+upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([ExtResource("4_csl5t"), null, null])
 upRequirement = {
 "Damage Taken": 500.0
@@ -195,6 +201,21 @@ script = ExtResource("10_ec3bi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_7ww7k")
+
+[node name="Upgrade" type="CPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 100
+lifetime = 2.5
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 27.07
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_ec3bi")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]

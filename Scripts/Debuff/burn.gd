@@ -12,7 +12,7 @@ class_name Burn
 
 
 
-func FireDebuff(damage: int, attackerPlant: Area2D):
+func FireDebuff(damage: int, attackerPlant: Node2D):
 	if main_script:
 		var max_damage = ((100 - max_damage_minus_procent) * 0.1) * 0.1
 		var min_damage = ((100 - min_damage_minus_procent) * 0.1) * 0.1

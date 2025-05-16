@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6n50uvhrsfbv"]
+[gd_scene load_steps=25 format=3 uid="uid://b6n50uvhrsfbv"]
 
 [ext_resource type="Script" uid="uid://dqufmnixe4s74" path="res://Scripts/Tower/poisonPlant.gd" id="1_apre2"]
 [ext_resource type="Texture2D" uid="uid://c7as32ri20qc4" path="res://Assets/Towers/PoisonTurret.png" id="2_apre2"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
 [ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_qtf4t"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_qtf4t"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("2_apre2")
@@ -88,6 +88,11 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="Curve" id="Curve_xv0bi"]
+_limits = [0.550562, 2.0, 0.85567, 2.0]
+_data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
+point_count = 2
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtf4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
@@ -95,7 +100,7 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2tv7"]
 
-[node name="PoisonPlant" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+[node name="PoisonPlant" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Idle"
@@ -107,6 +112,7 @@ marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
+upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Dealt": 50.0
@@ -160,6 +166,21 @@ angular_velocity_min = 271.7
 angular_velocity_max = 720.0
 angle_max = 380.0
 scale_amount_min = 0.0
+
+[node name="Upgrade" type="CPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 100
+lifetime = 2.5
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 27.07
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_curve = SubResource("Curve_xv0bi")
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
