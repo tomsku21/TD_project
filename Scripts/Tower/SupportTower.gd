@@ -76,6 +76,10 @@ func take_damage(damage: int):
 	healthcomponent.damage(damage)
 	stats["Damage Taken"] += damage
 	cpu_particles_2d.emitting = true
+	
+func sell():
+	GlobalVariables.cost += round(cost * 0.75)
+	destroy()
 
 func destroy():
 	cpu_particles_2d.emitting = true
