@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2n6impoyuneo"]
+[gd_scene load_steps=8 format=3 uid="uid://c2n6impoyuneo"]
 
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/UI/Popups.gd" id="1_toe2v"]
 [ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
+[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_tpfus"]
+[ext_resource type="Script" uid="uid://ca1xmy6lpcndc" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
+[ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="3_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
@@ -36,6 +39,20 @@ anchors_preset = 0
 offset_right = 241.0
 mouse_filter = 1
 
+[node name="Sell" type="TextureButton" parent="UI/Build1stats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_left = -15.0
+offset_top = 20.0
+offset_right = 15.0
+offset_bottom = 50.0
+focus_mode = 0
+texture_normal = ExtResource("2_tpfus")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_04xwt")
+
 [node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
 unique_name_in_owner = true
 layout_mode = 0
@@ -62,93 +79,203 @@ layout_mode = 2
 [node name="Up2" parent="UI/Build1stats/Upgrades/HBoxContainer" instance=ExtResource("2_toe2v")]
 layout_mode = 2
 
-[node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats"]
+[node name="UpTabs" type="Control" parent="UI/Build1stats"]
+unique_name_in_owner = true
+layout_mode = 2
+anchors_preset = 0
+
+[node name="BuildPopup" type="PanelContainer" parent="UI/Build1stats/UpTabs"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(150, 116)
+layout_direction = 2
 layout_mode = 1
-offset_left = 80.0
-offset_top = -66.0
-offset_right = 230.0
-offset_bottom = 50.0
+offset_left = 70.0
+offset_top = -125.0
+offset_right = 220.0
+offset_bottom = 18.0
 pivot_offset = Vector2(70, 0)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/BuildPopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/UpTabs/BuildPopup"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Name" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+[node name="Name" type="RichTextLabel" parent="UI/Build1stats/UpTabs/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Dmg: "
+fit_content = true
+scroll_active = false
 
-[node name="HealthBar" parent="UI/Build1stats/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
+[node name="HealthBar" parent="UI/Build1stats/UpTabs/BuildPopup/VBoxContainer" instance=ExtResource("3_dtbqr")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Dmg" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+[node name="Dmg" type="RichTextLabel" parent="UI/Build1stats/UpTabs/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Dmg: "
+fit_content = true
+scroll_active = false
 
-[node name="AtkSpeed" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+[node name="AtkSpeed" type="RichTextLabel" parent="UI/Build1stats/UpTabs/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "AtkSpeed: "
+fit_content = true
+scroll_active = false
 
-[node name="Kills" type="Label" parent="UI/Build1stats/BuildPopup/VBoxContainer"]
+[node name="Kills" type="RichTextLabel" parent="UI/Build1stats/UpTabs/BuildPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Kills:"
+fit_content = true
+scroll_active = false
 
-[node name="UpPopup" type="PanelContainer" parent="UI/Build1stats"]
+[node name="UpPopup" type="PanelContainer" parent="UI/Build1stats/UpTabs"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(150, 116)
+layout_direction = 2
 layout_mode = 1
-offset_left = 80.0
-offset_top = -66.0
-offset_right = 230.0
-offset_bottom = 50.0
+offset_left = 70.0
+offset_top = -125.0
+offset_right = 220.0
+offset_bottom = 23.0
 pivot_offset = Vector2(70, 0)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/UpPopup"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/UpTabs/UpPopup"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="UDesc" type="RichTextLabel" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+[node name="UDesc" type="RichTextLabel" parent="UI/Build1stats/UpTabs/UpPopup/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(130, 10)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 14
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Lorem lapsum"
 fit_content = true
 scroll_active = false
 
-[node name="UDmg" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+[node name="UDmg" type="RichTextLabel" parent="UI/Build1stats/UpTabs/UpPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Dmg: "
+fit_content = true
+scroll_active = false
 
-[node name="UAtkSpeed" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+[node name="UAtkSpeed" type="RichTextLabel" parent="UI/Build1stats/UpTabs/UpPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "AtkSpeed: "
+fit_content = true
+scroll_active = false
 
-[node name="UCost" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+[node name="UCost" type="RichTextLabel" parent="UI/Build1stats/UpTabs/UpPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Cost:"
+fit_content = true
+scroll_active = false
 
-[node name="URequirement" type="Label" parent="UI/Build1stats/UpPopup/VBoxContainer"]
+[node name="URequirement" type="RichTextLabel" parent="UI/Build1stats/UpTabs/UpPopup/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
 text = "Cost:"
+fit_content = true
+scroll_active = false
+
+[node name="SellPopup" type="PanelContainer" parent="UI/Build1stats/UpTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 116)
+layout_direction = 2
+layout_mode = 0
+offset_left = 70.0
+offset_top = -125.0
+offset_right = 220.0
+offset_bottom = 18.0
+pivot_offset = Vector2(70, 0)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Build1stats/UpTabs/SellPopup"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SName" type="RichTextLabel" parent="UI/Build1stats/UpTabs/SellPopup/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
+text = "Name: "
+fit_content = true
+scroll_active = false
+
+[node name="Info" type="RichTextLabel" parent="UI/Build1stats/UpTabs/SellPopup/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
+text = "Sell this plant for some money back"
+fit_content = true
+scroll_active = false
+
+[node name="SCost" type="RichTextLabel" parent="UI/Build1stats/UpTabs/SellPopup/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 23)
+layout_direction = 2
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_5v7bk")
+theme_override_font_sizes/normal_font_size = 22
+text = "Kills:"
+fit_content = true
+scroll_active = false
+
+[connection signal="mouse_entered" from="UI/Build1stats/Sell" to="UI/Build1stats/Sell" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Build1stats/Sell" to="UI/Build1stats/Sell" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/Build1stats/Sell" to="UI/Build1stats/Sell" method="on_pressed"]

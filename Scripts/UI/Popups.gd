@@ -11,12 +11,14 @@ func hideBuildInfo():
 func showBuildInfo(sizing, content):
 	if !content == null:
 		lasttower = content
+		%Sell.tower = lasttower
 		setcontent(content)
 		setupgrades(content)
 		var finalpos = sizing.get_origin()
 		%Build1stats.position = finalpos
 		%Build1stats.show()
 		%Upgrades.show()
+		check_overlap(%UpPopup)
 
 func setupgrades(content):
 	for i in Upgrades.size():
@@ -50,6 +52,7 @@ func setcontent(content):
 		%Kills.text = str("Money Made: ", content.stats["Money Made"])
 	%BuildPopup.show()
 	%UpPopup.hide()
+	%SellPopup.hide()
 
 
 
@@ -72,7 +75,19 @@ func setupDescription(content):
 	%URequirement.visible = content.requirement
 	lasttower.clicked = false
 	%BuildPopup.hide()
+	%SellPopup.hide()
 	%UpPopup.show()
+	var dimensions = lasttower.get_global_transform_with_canvas()
+	var finalpos = dimensions.get_origin()
+	%Build1stats.position = finalpos
+
+func sellDescription():
+	%SName.text = lasttower.title
+	%SCost.text = str("Cost: ", round(lasttower.cost * 0.75))
+	lasttower.clicked = false
+	%BuildPopup.hide()
+	%UpPopup.hide()
+	%SellPopup.show()
 	var dimensions = lasttower.get_global_transform_with_canvas()
 	var finalpos = dimensions.get_origin()
 	%Build1stats.position = finalpos
@@ -81,3 +96,11 @@ func returnDesc():
 	lasttower.clicked = true
 	lasttower.hovered = false
 	GlobalVariables.is_mouse_in_Area2D = false
+
+func check_overlap(panel):
+	var screen_rect = get_viewport_rect()
+	var panel_rect = panel.get_global_rect()
+	var overlap_bottom = 0
+	overlap_bottom = panel_rect.position.y + panel_rect.size.y - screen_rect.size.y
+	print("screen size: ", screen_rect, " panel size: ", panel_rect)
+	print("overlap", overlap_bottom)
