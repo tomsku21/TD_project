@@ -22,6 +22,7 @@ Popups="*res://Scenes/UI/Popups.tscn"
 Ui="*res://Scenes/UI/UI.tscn"
 SignalBus="*res://Scripts/SignalBus.gd"
 Music="*res://Scenes/music.tscn"
+PostFx="*res://Scenes/post_fx.tscn"
 
 [debug]
 
@@ -35,6 +36,10 @@ window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 mouse_cursor/custom_image="uid://c82n8gwglomqn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/postfx/plugin.cfg")
 
 [global_group]
 

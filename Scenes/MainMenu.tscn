@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=4 uid="uid://cbcw7mc8khvub"]
+[gd_scene load_steps=20 format=4 uid="uid://cbcw7mc8khvub"]
 
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_853f1"]
 [ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scripts/UI/MainMenu.gd" id="1_xim88"]
-[ext_resource type="Texture2D" uid="uid://dvq6hmserkeiw" path="res://Assets/UI/panel.png" id="2_8saeu"]
 [ext_resource type="PackedScene" uid="uid://dix30o4abr42v" path="res://Scenes/Mainbkup.tscn" id="2_koqhg"]
 [ext_resource type="Texture2D" uid="uid://c2absv078qcje" path="res://Assets/UI/Button.png" id="5_8um5k"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="5_df05h"]
@@ -142,7 +141,7 @@ anchor_bottom = 0.5
 offset_left = -360.0
 offset_top = -280.0
 offset_right = 329.0
-offset_bottom = 358.0
+offset_bottom = 388.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ghw46")
@@ -244,13 +243,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -125.0
-offset_top = -100.0
-offset_right = 125.0
+offset_left = -124.5
+offset_top = -112.0
+offset_right = 125.5
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
-texture_normal = ExtResource("2_8saeu")
+texture_normal = ExtResource("5_8um5k")
+texture_pressed = ExtResource("6_xim88")
+texture_hover = ExtResource("7_xim88")
 ignore_texture_size = true
 stretch_mode = 0
 

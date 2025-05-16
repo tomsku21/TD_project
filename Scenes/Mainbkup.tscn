@@ -141,10 +141,12 @@ one_shot = true
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(-901, 0)
 rotation = -1.17187
-energy = 0.19
+energy = 0.37
 range_layer_max = 2
 shadow_enabled = true
+shadow_color = Color(0.197937, 0.197937, 0.197937, 1)
 shadow_filter = 2
+shadow_filter_smooth = 4.3
 height = 1.0
 max_distance = 16384.0
 
