@@ -1,6 +1,6 @@
 extends Control
 @export var Upgrades: Array[Node] #Feels like a dumb way to do this, but should work
-var lasttower: Tower
+var lasttower: AnimatedSprite2D
 
 func _enter_tree():
 	%Build1stats.hide()

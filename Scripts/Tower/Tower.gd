@@ -22,6 +22,7 @@ class_name Tower
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
+var up_forgiveness : bool = true #haha...
 var tilemap: TileMapLayer
 var cell: Vector2i
 
@@ -46,14 +47,14 @@ func _process(_delta):
 	else:
 		ARange.visible = false
 	
-	if Input.is_action_just_released("click") and !hovered and clicked:
-		if $Button.has_focus():
-			$Button.release_focus()
-		else:
-			_on_focus_exited()
-	#if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
-		#print("get unhovered nerd")
-		#hovered = false
+	if Input.is_action_just_released("click"):
+		if !hovered and clicked and !up_forgiveness:
+			if $Button.has_focus():
+				$Button.release_focus()
+			else:
+				_on_focus_exited()
+		if up_forgiveness and !hovered:
+			up_forgiveness = false
 
 func take_damage(damage: float):
 	healthcomponent.damage(damage)
@@ -100,22 +101,13 @@ func _on_mouse_exited() -> void:
 
 func _on_focus_entered():
 	clicked = true
-	hovered = true
+	#hovered = true
 
 func _on_focus_exited():
 	print("focus exited?")
 	clicked = false
 	Popups.hideBuildInfo()
 
-#Simple for loop to check if mouse is hovering over a turret. Doing this way so that the code can check other turrets also.
-func _check_mouseover():
-	var turretarea = get_tree().get_nodes_in_group("Turretarea")
-	for x in turretarea:
-		if x.get_global_rect().has_point(get_global_mouse_position()):
-			return false
-		else:
-			continue
-	return true
 
 #improve this later
 func _tower_borders_check(change: bool):

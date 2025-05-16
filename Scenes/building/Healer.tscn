@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_bcjs5"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_oc3se"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_rxxsh"]
-[ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_oc3se"]
+[ext_resource type="Script" uid="uid://c6la3fhppqvsy" path="res://Scripts/Tower/support_range.gd" id="8_bcjs5"]
 [ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_bcjs5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
@@ -53,13 +53,14 @@ radius = 261.989
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oc3se"]
 
-[node name="Healer" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Healer", "Turret"]]
+[node name="Healer" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "heal_range", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Healer", "Turret"]]
 z_index = 1
 material = ExtResource("2_rjmf3")
 sprite_frames = SubResource("SpriteFrames_oc3se")
 offset = Vector2(0, -15)
 script = ExtResource("1_d0lby")
 Attack_effect = NodePath("Attack")
+heal_range = NodePath("Range")
 attack_timer = NodePath("AttackTimer")
 marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
@@ -67,7 +68,7 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Taken": 2500.0
+"Damage Taken": 1.0
 }
 stats = {
 "Atk Speed": 1.0,
@@ -149,8 +150,9 @@ bus = &"SFX"
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
 position = Vector2(0, -12)
+collision_mask = 4
 input_pickable = false
-script = ExtResource("8_oc3se")
+script = ExtResource("8_bcjs5")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
@@ -170,5 +172,5 @@ shape = SubResource("CircleShape2D_oc3se")
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="body_entered" from="Range" to="Range" method="_on_body_entered"]
-[connection signal="body_exited" from="Range" to="Range" method="_on_body_exited"]
+[connection signal="area_entered" from="Range" to="Range" method="_on_area_entered"]
+[connection signal="area_exited" from="Range" to="Range" method="_on_area_exited"]
