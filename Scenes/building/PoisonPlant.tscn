@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6n50uvhrsfbv"]
+[gd_scene load_steps=24 format=3 uid="uid://b6n50uvhrsfbv"]
 
 [ext_resource type="Script" uid="uid://dqufmnixe4s74" path="res://Scripts/Tower/poisonPlant.gd" id="1_apre2"]
 [ext_resource type="Texture2D" uid="uid://c7as32ri20qc4" path="res://Assets/Towers/PoisonTurret.png" id="2_apre2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
 [ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_qtf4t"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_qtf4t"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("2_apre2")
@@ -92,7 +93,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 150.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2tv7"]
+
 [node name="PoisonPlant" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Idle"
 offset = Vector2(0, -15)
@@ -160,10 +164,10 @@ scale_amount_min = 0.0
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 visibility_layer = 2
-offset_left = -17.5
-offset_top = -22.0
-offset_right = 17.5
-offset_bottom = 3.0
+offset_left = -17.0
+offset_top = -33.0
+offset_right = 18.0
+offset_bottom = 10.0
 focus_mode = 1
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qtf4t")
@@ -182,6 +186,7 @@ character = NodePath("..")
 shader_material = ExtResource("4_1ebtt")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(0, -12)
 scale = Vector2(0.553, 0.553)
 texture = ExtResource("5_tqlg5")
@@ -198,11 +203,21 @@ autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
 position = Vector2(0, -12)
+input_pickable = false
 script = ExtResource("8_qtf4t")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_hskch")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+input_pickable = false
+script = ExtResource("9_xv0bi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_d2tv7")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]

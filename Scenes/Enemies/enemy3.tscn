@@ -71,8 +71,9 @@ visible = false
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_287tu")
 
-[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("4_103ka")]
+[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_103ka")]
 unique_name_in_owner = true
+sprite = NodePath("../AnimatedSprite2D")
 character = NodePath("..")
 shader_material = ExtResource("2_xvyr5")
 

@@ -1,16 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://k6ufqb7xdej0"]
+[gd_scene load_steps=18 format=3 uid="uid://k6ufqb7xdej0"]
 
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_ll3dy"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="2_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_bdjjs"]
-[ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/turreter.tscn" id="4_ll3dy"]
-[ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="6_tdi3x"]
+[ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="4_ll3dy"]
+[ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_tdi3x"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="7_j8fsv"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="7_ll3dy"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_1gr70"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_h62y5"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_ctpcp"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_ll3dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ll3dy"]
 atlas = ExtResource("2_tdi3x")
@@ -32,9 +33,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 100.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdi3x"]
+
 [node name="Flower" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
 z_index = 1
-y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_yd0mu")
 offset = Vector2(0, -15)
 script = ExtResource("1_tdi3x")
@@ -45,7 +47,7 @@ marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
-upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_tdi3x")])
+upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("5_tdi3x")])
 stats = {
 "Atk Speed": 1.0,
 "Damage": 5,
@@ -82,10 +84,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -42.0
-offset_right = -2.5
-offset_bottom = -17.0
+offset_left = -37.0
+offset_top = -53.0
+offset_right = -2.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
@@ -106,6 +108,7 @@ shader_material = ExtResource("8_1gr70")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 visible = false
+z_index = -1
 scale = Vector2(0.368659, 0.368659)
 texture = ExtResource("9_h62y5")
 
@@ -121,11 +124,21 @@ autostart = true
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
 position = Vector2(0, -15)
 collision_layer = 2
+input_pickable = false
 script = ExtResource("7_ll3dy")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_hskch")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+input_pickable = false
+script = ExtResource("12_ll3dy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_tdi3x")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]

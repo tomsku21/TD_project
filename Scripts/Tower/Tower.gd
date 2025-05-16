@@ -22,6 +22,7 @@ class_name Tower
 var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
+var up_forgiveness : bool = true #haha...
 var tilemap: TileMapLayer
 var cell: Vector2i
 
@@ -46,14 +47,14 @@ func _process(_delta):
 	else:
 		ARange.visible = false
 	
-	if Input.is_action_just_released("click") and !hovered and clicked:
-		if $Button.has_focus():
-			$Button.release_focus()
-		else:
-			_on_focus_exited()
-	#if !GlobalVariables.is_mouse_in_Area2D and hovered: #For when you upgrade a building
-		#print("get unhovered nerd")
-		#hovered = false
+	if Input.is_action_just_released("click"):
+		if !hovered and clicked and !up_forgiveness:
+			if $Button.has_focus():
+				$Button.release_focus()
+			else:
+				_on_focus_exited()
+		if up_forgiveness and !hovered:
+			up_forgiveness = false
 
 func take_damage(damage: float):
 	healthcomponent.damage(damage)
@@ -67,18 +68,6 @@ func destroy():
 	await get_tree().create_timer(0.1).timeout
 	_tower_borders_check(true)
 	queue_free()
-
-#func _on_body_entered(body: Node2D) -> void:
-	#if body.is_in_group("enemies") and not body in enemies:
-		#enemies.append(body)
-		#if attack_timer.is_stopped():
-			#attack_timer.start()
-#
-#func _on_body_exited(body: Node2D) -> void:
-	#if body in enemies:
-		#enemies.erase(body)
-		#if enemies.is_empty():
-			#attack_timer.stop()
 
 func _on_attack_timer_timeout() -> void:
 	pass
@@ -103,29 +92,22 @@ func Heal(restoration, healer):
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	hovered = true
+	print("mouse entered")
 
 
 func _on_mouse_exited() -> void:
 	hovered = false
+	print("mouse exited")
 
 func _on_focus_entered():
 	clicked = true
-	hovered = true
+	#hovered = true
 
 func _on_focus_exited():
 	print("focus exited?")
 	clicked = false
 	Popups.hideBuildInfo()
 
-#Simple for loop to check if mouse is hovering over a turret. Doing this way so that the code can check other turrets also.
-func _check_mouseover():
-	var turretarea = get_tree().get_nodes_in_group("Turretarea")
-	for x in turretarea:
-		if x.get_global_rect().has_point(get_global_mouse_position()):
-			return false
-		else:
-			continue
-	return true
 
 #improve this later
 func _tower_borders_check(change: bool):
@@ -145,9 +127,9 @@ func _tower_borders_check(change: bool):
 	for i in borders:
 		print(i, borders.get(i))
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		print("tile data before:", tile_data)
+		#print("tile data before:", tile_data)
 		tilemap.set_cell(borders.get(i), 0, Vector2i(tile, 5))
-		print("tile", tile)
+		#print("tile", tile)
 		tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		print("tile data after:", tile_data)
+		#print("tile data after:", tile_data)
 		continue

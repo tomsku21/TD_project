@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Enemy
 # Onready
 @onready var path: PathFollow2D = $".."
 @export_category("Components")

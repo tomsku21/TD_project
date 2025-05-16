@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://qv4gs0heqxmg"]
+[gd_scene load_steps=40 format=3 uid="uid://qv4gs0heqxmg"]
 
 [ext_resource type="Script" uid="uid://bl2pfumkmdjyk" path="res://Scripts/Tower/grabber.gd" id="1_cm8b3"]
 [ext_resource type="Texture2D" uid="uid://csldq6cwhmobi" path="res://Assets/Towers/FirePlant.png" id="1_pbchp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="7_xqlid"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="8_xqlid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrvv2"]
 atlas = ExtResource("1_pbchp")
@@ -215,7 +216,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
 radius = 74.0068
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpcs6"]
+
 [node name="Grabber" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d") groups=["Turret"]]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_jpcs6")
 animation = &"Attack"
 offset = Vector2(0, -15)
@@ -276,10 +280,10 @@ scale_amount_max = 3.0
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = -17.5
-offset_top = -22.0
-offset_right = 17.5
-offset_bottom = 3.0
+offset_left = -17.0
+offset_top = -33.0
+offset_right = 18.0
+offset_bottom = 10.0
 focus_mode = 1
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbchp")
@@ -299,6 +303,7 @@ shader_material = ExtResource("4_jpcs6")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 visible = false
+z_index = -1
 scale = Vector2(0.277458, 0.277458)
 texture = ExtResource("5_a1rsv")
 
@@ -313,12 +318,22 @@ autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
 position = Vector2(0, -12)
+input_pickable = false
 script = ExtResource("7_xqlid")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_hskch")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+input_pickable = false
+script = ExtResource("8_xqlid")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_jpcs6")
 
 [connection signal="focus_entered" from="Button" to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
