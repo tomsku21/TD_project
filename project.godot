@@ -22,7 +22,6 @@ Popups="*res://Scenes/UI/Popups.tscn"
 Ui="*res://Scenes/UI/UI.tscn"
 SignalBus="*res://Scripts/SignalBus.gd"
 Music="*res://Scenes/music.tscn"
-PostFx="*res://Scenes/post_fx.tscn"
 
 [debug]
 

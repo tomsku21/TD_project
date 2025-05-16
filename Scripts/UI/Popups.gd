@@ -85,7 +85,6 @@ func setupDescription(content):
 	%BuildPopup.hide()
 	%SellPopup.hide()
 	%UpPopup.show()
-	#check_overlap(%UpPopup)
 	var dimensions = lasttower.get_global_transform_with_canvas()
 	var finalpos = dimensions.get_origin()
 	%Build1stats.position = finalpos
@@ -106,19 +105,3 @@ func returnDesc():
 	lasttower.clicked = true
 	lasttower.hovered = false
 	GlobalVariables.is_mouse_in_Area2D = false
-
-#func check_overlap(panel):
-	#var panel_rect = panel.get_global_rect()
-	#var overlap_bottom = 0
-#
-	##if !world_border.has_point(panel_rect.size):
-		##print("overlapping")
-	#overlap_bottom = panel.size.y + lasttower.global_position.y
-	#if overlap_bottom > 550:
-		#adjustment = panel.size.y - overlap_bottom
-		#%UpPopup.position.y = 0 + adjustment
-		#print(adjustment)
-	#else:
-		#%UpPopup.position.y = -125
-	#
-	#print("overlap: ", overlap_bottom)
