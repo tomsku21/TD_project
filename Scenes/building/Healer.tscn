@@ -7,8 +7,8 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_bcjs5"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_oc3se"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_rxxsh"]
-[ext_resource type="Script" uid="uid://c6la3fhppqvsy" path="res://Scripts/Tower/support_range.gd" id="8_bcjs5"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_bcjs5"]
+[ext_resource type="Script" path="res://Scripts/Tower/support_range.gd" id="8_bcjs5"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_bcjs5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
 atlas = ExtResource("2_bcjs5")
