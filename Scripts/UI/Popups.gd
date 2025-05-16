@@ -112,7 +112,7 @@ func returnDesc():
 	#var panel_rect = panel.get_global_rect()
 	#var overlap_bottom = 0
 	#print("panel positions", panel_rect)
-	#print("plant position owo", lasttower.global_position)
+	#print("plant position", lasttower.global_position)
 	#print("border positions", world_border)
 	##if !world_border.has_point(panel_rect.size):
 		##print("overlapping")
