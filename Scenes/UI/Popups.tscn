@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/UI/Popups.gd" id="1_toe2v"]
 [ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_tpfus"]
-[ext_resource type="Script" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
+[ext_resource type="Script" uid="uid://ca1xmy6lpcndc" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="3_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 

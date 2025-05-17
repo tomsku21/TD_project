@@ -84,7 +84,6 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("5_tdi3x")])
-upRequirement = null
 stats = {
 "Atk Speed": 1.0,
 "Damage": 5,
@@ -97,7 +96,7 @@ stats = {
 cost = 1
 title = "Seed"
 description = "Small seed."
-max_health = null
+max_health = 100.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -142,6 +141,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 sprite = NodePath("..")
 character = NodePath("..")
+MAX_HEALTH = 100.0
 shader_material = ExtResource("8_1gr70")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]

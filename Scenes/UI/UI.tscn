@@ -532,7 +532,6 @@ playback_auto_capture_transition_type = 1
 playback_auto_capture_ease_type = 2
 
 [node name="Bank" type="Panel" parent="."]
-visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
