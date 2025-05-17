@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://pjc4slgtno24"]
 
-[ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="1_52i1a"]
+[ext_resource type="Texture2D" uid="uid://d4k70hroxlwbb" path="res://Assets/Towers/Pineshooter.png" id="1_3h8hu"]
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_s6nl5"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_a4jgc"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_006wr"]
@@ -11,42 +11,48 @@
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_a4jgc"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_006wr"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="10_tya3y"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_476cd"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_476cd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
-atlas = ExtResource("1_52i1a")
-region = Rect2(0, 0, 40, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h56vq"]
+atlas = ExtResource("1_3h8hu")
+region = Rect2(0, 0, 48, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq620"]
-atlas = ExtResource("1_52i1a")
-region = Rect2(40, 0, 40, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4wqs"]
+atlas = ExtResource("1_3h8hu")
+region = Rect2(48, 0, 48, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyoit"]
-atlas = ExtResource("1_52i1a")
-region = Rect2(80, 0, 40, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qypv"]
+atlas = ExtResource("1_3h8hu")
+region = Rect2(96, 0, 48, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tcjie"]
-atlas = ExtResource("1_52i1a")
-region = Rect2(120, 0, 40, 40)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddlgr"]
+atlas = ExtResource("1_3h8hu")
+region = Rect2(144, 0, 48, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_476cd"]
 animations = [{
 "frames": [{
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_5yvm0")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h56vq")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_sq620")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4wqs")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_tyoit")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qypv")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_tcjie")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddlgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qypv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4wqs")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"Idle",
+"speed": 4.0
 }]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_476cd"]
@@ -64,6 +70,9 @@ point_count = 2
 [node name="Turreter" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_476cd")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.232407
 offset = Vector2(0, -15)
 script = ExtResource("1_s6nl5")
 plantimg = ExtResource("3_006wr")
@@ -79,8 +88,8 @@ upRequirement = {
 "Damage Dealt": 150.0
 }
 stats = {
-"Atk Speed": 0.4,
-"Damage": 12,
+"Atk Speed": 0.3,
+"Damage": 5,
 "Damage Dealt": 0.0,
 "Damage Taken": 0.0,
 "Kills": 0,
@@ -88,8 +97,8 @@ stats = {
 "Regeneration": 5.0
 }
 cost = 2
-title = "Kuusi"
-description = "A fast shooting cornifer tree"
+title = "Pine"
+description = "A fast shooting pine tree"
 max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
