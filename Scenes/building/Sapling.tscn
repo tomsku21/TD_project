@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_gjq8m"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_7mvnh"]
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/PineShooter.tscn" id="3_1xls1"]
-[ext_resource type="PackedScene" uid="uid://benincu8whxp1" path="res://Scenes/building/Tank.tscn" id="6_1xls1"]
+[ext_resource type="PackedScene" uid="uid://benincu8whxp1" path="res://Scenes/building/Oak.tscn" id="6_1xls1"]
 [ext_resource type="PackedScene" uid="uid://qv4gs0heqxmg" path="res://Scenes/building/Grabber.tscn" id="6_7mvnh"]
 [ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="7_1xls1"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="7_7mvnh"]
@@ -112,7 +112,7 @@ unique_name_in_owner = true
 offset_left = -17.0
 offset_top = -33.0
 offset_right = 18.0
-offset_bottom = 10.0
+offset_bottom = 4.0
 focus_mode = 1
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1xls1")
