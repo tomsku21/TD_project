@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2xsi3rsgoydg" path="res://Scripts/Tower/BasicPlant.gd" id="1_gjq8m"]
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_7mvnh"]
 [ext_resource type="PackedScene" uid="uid://pjc4slgtno24" path="res://Scenes/building/PineShooter.tscn" id="3_1xls1"]
-[ext_resource type="PackedScene" uid="uid://benincu8whxp1" path="res://Scenes/building/Oak.tscn" id="6_1xls1"]
+[ext_resource type="PackedScene" uid="uid://dsowf4k545x0t" path="res://Scenes/building/Tank.tscn" id="6_1xls1"]
 [ext_resource type="PackedScene" uid="uid://qv4gs0heqxmg" path="res://Scenes/building/Grabber.tscn" id="6_7mvnh"]
 [ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="7_1xls1"]
 [ext_resource type="Texture2D" uid="uid://dps2jodsgdscb" path="res://Assets/Towers/Sapling.png" id="7_7mvnh"]
@@ -76,7 +76,6 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_7mvnh"), ExtResource("6_1xls1")])
-upRequirement = null
 stats = {
 "Atk Speed": 0.8,
 "Damage": 8,
@@ -89,7 +88,7 @@ stats = {
 cost = 1
 title = "Sapling"
 description = "Small sapling."
-max_health = null
+max_health = 100.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -127,6 +126,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 sprite = NodePath("..")
 character = NodePath("..")
+MAX_HEALTH = 100.0
 shader_material = ExtResource("8_k8lsj")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]

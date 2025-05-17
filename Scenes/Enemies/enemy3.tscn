@@ -12,15 +12,15 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5nno"]
 atlas = ExtResource("3_txdwu")
-region = Rect2(540, 96, 90, 96)
+region = Rect2(540, 138, 90, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvyr5"]
 atlas = ExtResource("3_txdwu")
-region = Rect2(630, 96, 90, 96)
+region = Rect2(630, 138, 90, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_txdwu"]
 atlas = ExtResource("3_txdwu")
-region = Rect2(720, 96, 90, 96)
+region = Rect2(720, 138, 90, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
 animations = [{
@@ -59,7 +59,7 @@ walk_timer = NodePath("Timers/WalkTimer")
 attack_timer = NodePath("Timers/AttackTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(0, -11)
+position = Vector2(0, -4)
 scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 autoplay = "default"
