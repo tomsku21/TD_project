@@ -1,28 +1,55 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfdli3w1fom06"]
+[gd_scene load_steps=19 format=3 uid="uid://bfdli3w1fom06"]
 
 [ext_resource type="Script" uid="uid://bdectwgi12gap" path="res://Scripts/slower.gd" id="1_6jtdp"]
+[ext_resource type="Texture2D" uid="uid://ryuawg2cxo02" path="res://Assets/Towers/Frostiesheet.png" id="1_h2nyj"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_cpad0"]
-[ext_resource type="Texture2D" uid="uid://bnb1o5g3ctu5c" path="res://Assets/Plants/Frostie.png" id="4_h27ut"]
 [ext_resource type="Texture2D" uid="uid://c3rcybm2wymw4" path="res://Assets/Particles/wind.png" id="4_x6bfs"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_x6bfs"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_b70jt"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_yltu3"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_h27ut"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_h2nyj"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_h2nyj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2nyj"]
-atlas = ExtResource("4_h27ut")
-region = Rect2(0, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpad0"]
+atlas = ExtResource("1_h2nyj")
+region = Rect2(0, 0, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6bfs"]
+atlas = ExtResource("1_h2nyj")
+region = Rect2(48, 0, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b70jt"]
+atlas = ExtResource("1_h2nyj")
+region = Rect2(96, 0, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yltu3"]
+atlas = ExtResource("1_h2nyj")
+region = Rect2(144, 0, 48, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cpad0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h2nyj")
+"texture": SubResource("AtlasTexture_cpad0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6bfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b70jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yltu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b70jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6bfs")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"Idle",
+"speed": 3.0
 }]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpad0"]
@@ -40,6 +67,10 @@ point_count = 2
 [node name="Slower" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_cpad0")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 5
+frame_progress = 0.272377
 offset = Vector2(0, -15)
 script = ExtResource("1_6jtdp")
 Attack_effect = NodePath("Attack")

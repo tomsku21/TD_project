@@ -13,10 +13,10 @@ void fragment() {
     float wave_pos = wave_progress * wave_speed;
     float wave = smoothstep(wave_pos - wave_thickness, wave_pos, dist);
     wave *= smoothstep(wave_pos, wave_pos + wave_thickness, dist);
-    
+
     // Green healing color with fade
     float alpha = (1.0 - wave_progress) * wave * 0.8;
     vec3 heal_color = vec3(0.2, 1.0, 0.4) * wave * wave_intensity;
-    
+
     COLOR = vec4(heal_color, alpha);
 }
