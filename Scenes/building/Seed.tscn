@@ -84,7 +84,6 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("5_tdi3x")])
-upRequirement = null
 stats = {
 "Atk Speed": 1.0,
 "Damage": 5,
