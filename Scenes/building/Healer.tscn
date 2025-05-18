@@ -1,45 +1,94 @@
-[gd_scene load_steps=19 format=3 uid="uid://dq8hxtkkv0nsq"]
+[gd_scene load_steps=26 format=3 uid="uid://dq8hxtkkv0nsq"]
 
 [ext_resource type="Script" uid="uid://crjftde3aets7" path="res://Scripts/Tower/HealerPlant.gd" id="1_d0lby"]
-[ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="2_bcjs5"]
+[ext_resource type="Texture2D" uid="uid://bnentvlhe7lw3" path="res://Assets/Towers/Healer.png" id="2_bcjs5"]
 [ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="2_rjmf3"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="3_rjmf3"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_bcjs5"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_oc3se"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_rxxsh"]
-[ext_resource type="Script" path="res://Scripts/Tower/support_range.gd" id="8_bcjs5"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_bcjs5"]
+[ext_resource type="Script" uid="uid://c6la3fhppqvsy" path="res://Scripts/Tower/support_range.gd" id="8_bcjs5"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_bcjs5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc3se"]
 atlas = ExtResource("2_bcjs5")
-region = Rect2(0, 0, 40, 40)
+region = Rect2(0, 0, 64, 53)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq620"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxxsh"]
 atlas = ExtResource("2_bcjs5")
-region = Rect2(40, 0, 40, 40)
+region = Rect2(64, 0, 64, 53)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyoit"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxka8"]
 atlas = ExtResource("2_bcjs5")
-region = Rect2(80, 0, 40, 40)
+region = Rect2(128, 0, 64, 53)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tcjie"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh0vv"]
 atlas = ExtResource("2_bcjs5")
-region = Rect2(120, 0, 40, 40)
+region = Rect2(192, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1c2s"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(256, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0qkv"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(320, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3q3r"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(384, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjxdn"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(448, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpeh7"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(512, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_376vj"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(576, 0, 64, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr28w"]
+atlas = ExtResource("2_bcjs5")
+region = Rect2(640, 0, 64, 53)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oc3se"]
 animations = [{
 "frames": [{
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_5yvm0")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc3se")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_sq620")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxxsh")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_tyoit")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxka8")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_tcjie")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh0vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1c2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0qkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3q3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjxdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpeh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_376vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr28w")
 }],
 "loop": true,
 "name": &"default",
@@ -62,6 +111,8 @@ radius = 261.989
 z_index = 1
 material = ExtResource("2_rjmf3")
 sprite_frames = SubResource("SpriteFrames_oc3se")
+autoplay = "default"
+frame_progress = 0.833063
 offset = Vector2(0, -15)
 script = ExtResource("1_d0lby")
 Attack_effect = NodePath("Attack")
@@ -106,18 +157,19 @@ scale_amount_max = 3.0
 [node name="Attack" type="CPUParticles2D" parent="."]
 z_index = 6
 emitting = false
-amount = 300
+amount = 600
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+randomness = 1.0
 lifetime_randomness = 1.0
 emission_shape = 1
-emission_sphere_radius = 63.01
+emission_sphere_radius = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 150.0
 initial_velocity_max = 150.0
-scale_amount_min = 0.0
+scale_amount_min = 3.0
 scale_amount_max = 3.0
 
 [node name="Upgrade" type="CPUParticles2D" parent="."]
