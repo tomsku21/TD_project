@@ -113,6 +113,9 @@ func Heal(restoration, healer):
 	if healthcomponent.health < healthcomponent.MAX_HEALTH and not is_in_group("Healer"):
 		healthcomponent.health += restoration
 		healer.stats["Health Restored"] += restoration
+		return true
+	else:
+		return false
 
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
