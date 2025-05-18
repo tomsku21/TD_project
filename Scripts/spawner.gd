@@ -57,7 +57,9 @@ func _on_timer_timeout() -> void:
 		if spawned_per_type[current_type_index] < round_data[current_type_index]:
 			if current_type_index in enemys:
 				var new_enemy = enemys[current_type_index].instantiate()
-				paths.pick_random().add_child(new_enemy)
+				var path = paths.pick_random()
+				new_enemy.get_child(0).path = path
+				path.add_child(new_enemy)
 				GlobalVariables.enemy_count += 1
 				spawned_per_type[current_type_index] += 1
 			break
