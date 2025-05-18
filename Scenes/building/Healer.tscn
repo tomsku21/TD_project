@@ -112,7 +112,7 @@ z_index = 1
 material = ExtResource("2_rjmf3")
 sprite_frames = SubResource("SpriteFrames_oc3se")
 autoplay = "default"
-frame_progress = 0.833063
+frame_progress = 0.89359
 offset = Vector2(0, -15)
 script = ExtResource("1_d0lby")
 Attack_effect = NodePath("Attack")
@@ -171,6 +171,7 @@ initial_velocity_min = 150.0
 initial_velocity_max = 150.0
 scale_amount_min = 3.0
 scale_amount_max = 3.0
+color = Color(0.388235, 0.698039, 0.180392, 1)
 
 [node name="Upgrade" type="CPUParticles2D" parent="."]
 position = Vector2(0, -12)
