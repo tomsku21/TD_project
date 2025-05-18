@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://df1hpvlkssvjs" path="res://Scenes/bullet.tscn" id="2_ll3dy"]
 [ext_resource type="PackedScene" uid="uid://bfdli3w1fom06" path="res://Scenes/building/Slower.tscn" id="4_bdjjs"]
 [ext_resource type="PackedScene" uid="uid://b6n50uvhrsfbv" path="res://Scenes/building/PoisonPlant.tscn" id="4_ll3dy"]
-[ext_resource type="PackedScene" uid="uid://dq8hxtkkv0nsq" path="res://Scenes/building/Healer.tscn" id="5_tdi3x"]
+[ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="6_ll3dy"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="7_j8fsv"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="7_ll3dy"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_1gr70"]
@@ -83,7 +83,7 @@ healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
-upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("5_tdi3x")])
+upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
 stats = {
 "Atk Speed": 1.0,
 "Damage": 5,

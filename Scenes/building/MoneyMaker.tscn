@@ -1,51 +1,58 @@
 [gd_scene load_steps=18 format=3 uid="uid://c4a83ta4dopyd"]
 
 [ext_resource type="Material" uid="uid://dmfe7jhka1l33" path="res://Shaders/Healing.tres" id="1_xqq4q"]
-[ext_resource type="Texture2D" uid="uid://dodmqrnpal57" path="res://Assets/Towers/Saplingsheet.png" id="2_h86t1"]
+[ext_resource type="Texture2D" uid="uid://dvsadtt3o5y8y" path="res://Assets/Towers/bonsai.png" id="2_h86t1"]
 [ext_resource type="Script" uid="uid://dl0yuylwcsyqc" path="res://Scripts/Tower/money_maker.gd" id="2_xqq4q"]
 [ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="3_h86t1"]
 [ext_resource type="PackedScene" uid="uid://bgnj8h1jyuasx" path="res://Scenes/components/health_component.tscn" id="4_h5qwq"]
-[ext_resource type="PackedScene" uid="uid://bgj1na8hxrgn7" path="res://Scenes/building/MoneyMaker2_0.tscn" id="4_m0ghu"]
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_gldyh"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_40f82"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_8uxj8"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5qwq"]
 atlas = ExtResource("2_h86t1")
-region = Rect2(0, 0, 40, 40)
+region = Rect2(0, 0, 48, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq620"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_40f82"]
 atlas = ExtResource("2_h86t1")
-region = Rect2(40, 0, 40, 40)
+region = Rect2(96, 0, 48, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyoit"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gldyh"]
 atlas = ExtResource("2_h86t1")
-region = Rect2(80, 0, 40, 40)
+region = Rect2(48, 0, 48, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tcjie"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uxj8"]
 atlas = ExtResource("2_h86t1")
-region = Rect2(120, 0, 40, 40)
+region = Rect2(144, 0, 48, 42)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gldyh"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_w283m"]
 animations = [{
 "frames": [{
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_5yvm0")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5qwq")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_sq620")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40f82")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_tyoit")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gldyh")
 }, {
-"duration": 2.5,
-"texture": SubResource("AtlasTexture_tcjie")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40f82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uxj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40f82")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"Idle",
+"speed": 2.0
 }]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h86t1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gldyh"]
 
@@ -57,7 +64,11 @@ point_count = 2
 [node name="MoneyMaker" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["MoneyMaker", "Turret"]]
 z_index = 1
 material = ExtResource("1_xqq4q")
-sprite_frames = SubResource("SpriteFrames_gldyh")
+sprite_frames = SubResource("SpriteFrames_w283m")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.251644
 offset = Vector2(0, -15)
 script = ExtResource("2_xqq4q")
 Attack_effect = NodePath("Attack")
@@ -68,9 +79,9 @@ healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
-upgrades = Array[PackedScene]([ExtResource("4_m0ghu"), null, null])
+upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Taken": 500.0
+"Damage Taken": 10.0
 }
 stats = {
 "Atk Speed": 30.0,
@@ -123,6 +134,7 @@ offset_right = 18.0
 offset_bottom = 10.0
 focus_mode = 1
 mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h86t1")
 flat = true
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -149,6 +161,7 @@ pitch_scale = 1.1
 bus = &"SFX"
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 0
 input_pickable = false
