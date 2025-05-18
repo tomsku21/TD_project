@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 # Onready
-@onready var path: PathFollow2D = $".."
+@onready var pathfollow: PathFollow2D = $".."
 @export_category("Components")
 @export var animated_sprite_2d: AnimatedSprite2D
 @export var healthcomponent: HealthComponent
@@ -36,6 +36,7 @@ var grabbed: bool = false
 var currently_grabbed: bool = false
 var poisoned: bool = false
 var burning: bool = false
+var path : Path2D
 
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
@@ -54,8 +55,8 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if end == false:
-		path.progress += current_speed * delta
-	if path.progress_ratio >= 0.99:
+		pathfollow.progress += current_speed * delta
+	if pathfollow.progress_ratio >= 0.99:
 		if attack_timer.is_stopped():
 			attack_timer.start()
 			end = true
@@ -72,11 +73,11 @@ func _physics_process(delta: float) -> void:
 func destroy():
 	cpu_particles_2d.emitting = true
 	await get_tree().create_timer(0.1).timeout
-	path.queue_free()
+	pathfollow.queue_free()
 	GlobalVariables.enemy_count -= 1
 
 func change_rotation():
-	var rot_deg = path.rotation_degrees
+	var rot_deg = pathfollow.rotation_degrees
 	if rot_deg > 160 and rot_deg < 190 or rot_deg < -160 and rot_deg > -190:
 		animated_sprite_2d.flip_v = true
 	else:
