@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d2entn05wbug3"]
+[gd_scene load_steps=45 format=3 uid="uid://d2entn05wbug3"]
 
 [ext_resource type="Script" uid="uid://b2i7qmdkwuqso" path="res://Scripts/Tower/FirePlant.gd" id="1_hrvv2"]
 [ext_resource type="PackedScene" uid="uid://gcxjuwtrk0nt" path="res://Scenes/Firebullet.tscn" id="2_6ngx4"]
@@ -12,111 +12,123 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrvv2"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(0, 43, 45, 43)
+region = Rect2(0, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ngx4"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(45, 43, 45, 43)
+region = Rect2(45, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4f5v"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(90, 43, 45, 43)
+region = Rect2(90, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mavgf"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(135, 43, 45, 43)
+region = Rect2(135, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr10u"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(180, 43, 45, 43)
+region = Rect2(180, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqdxj"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(225, 43, 45, 43)
+region = Rect2(225, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onsdr"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(270, 43, 45, 43)
+region = Rect2(270, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vq5on"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(315, 43, 45, 43)
+region = Rect2(315, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ek17e"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(360, 43, 45, 43)
+region = Rect2(360, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmkh3"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(405, 43, 45, 43)
+region = Rect2(405, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lor1m"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(0, 0, 45, 43)
+region = Rect2(450, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2052t"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(45, 0, 45, 43)
+region = Rect2(495, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_360kj"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(90, 0, 45, 43)
+region = Rect2(540, 42, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2lrdb"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(135, 0, 45, 43)
+region = Rect2(0, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4u72w"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(180, 0, 45, 43)
+region = Rect2(45, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yk767"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(225, 0, 45, 43)
+region = Rect2(90, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3fad"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(270, 0, 45, 43)
+region = Rect2(135, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alb3v"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(315, 0, 45, 43)
+region = Rect2(180, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35b3y"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(360, 0, 45, 43)
+region = Rect2(225, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ot3if"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(405, 0, 45, 43)
+region = Rect2(270, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oklko"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(450, 0, 45, 43)
+region = Rect2(315, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_po403"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(495, 0, 45, 43)
+region = Rect2(360, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhnrx"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(540, 0, 45, 43)
+region = Rect2(405, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5pgj"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(585, 0, 45, 43)
+region = Rect2(450, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5gil"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(630, 0, 45, 43)
+region = Rect2(495, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_flqm3"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(675, 0, 45, 43)
+region = Rect2(540, 0, 45, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xo8i"]
 atlas = ExtResource("3_j7pcx")
-region = Rect2(720, 0, 45, 43)
+region = Rect2(585, 0, 45, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1v3f"]
+atlas = ExtResource("3_j7pcx")
+region = Rect2(630, 0, 45, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asn4w"]
+atlas = ExtResource("3_j7pcx")
+region = Rect2(675, 0, 45, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i328a"]
+atlas = ExtResource("3_j7pcx")
+region = Rect2(720, 0, 45, 42)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pe2kw"]
 animations = [{
@@ -150,12 +162,7 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rmkh3")
-}],
-"loop": true,
-"name": &"Attack",
-"speed": 9.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lor1m")
 }, {
@@ -164,7 +171,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_360kj")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 9.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2lrdb")
 }, {
@@ -206,6 +218,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6xo8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1v3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asn4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i328a")
 }],
 "loop": true,
 "name": &"Idle",
@@ -228,10 +249,11 @@ radius = 150.0
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Attack"
+frame_progress = 0.774431
 offset = Vector2(0, -15)
 script = ExtResource("1_hrvv2")
 fire_bullet_scene = ExtResource("2_6ngx4")
-attack_frame = 8
+attack_frame = 10
 attack_timer = NodePath("AttackTimer")
 marker_2d = NodePath("Marker2D")
 healthcomponent = NodePath("HealthComponent")

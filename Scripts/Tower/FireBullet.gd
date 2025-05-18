@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		print(get_parent())
-		await target.take_damage(damage, get_parent())
+		#await target.take_damage(damage, get_parent())
 		apply_splash_damage()
 		sprite_2d.visible = false
 		await get_tree().create_timer(0.5).timeout
