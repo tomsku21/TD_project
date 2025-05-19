@@ -113,6 +113,7 @@ func upgrade():
 func Heal(restoration, healer):
 	if healthcomponent.health < healthcomponent.MAX_HEALTH and not is_in_group("Healer"):
 		healthcomponent.health += restoration
+		healthcomponent.shader_handler(false)
 		healer.stats["Health Restored"] += restoration
 		return true
 	else:
