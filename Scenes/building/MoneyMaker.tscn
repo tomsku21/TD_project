@@ -80,7 +80,7 @@ upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_h5qwq")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Taken": 10.0
+"Rounds Survived": 3
 }
 stats = {
 "Atk Speed": 30.0,

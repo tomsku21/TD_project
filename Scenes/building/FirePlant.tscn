@@ -265,15 +265,6 @@ upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Dealt": 10.0
 }
-stats = {
-"Atk Speed": 2.5,
-"Damage": 20,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 1.0,
-"Regeneration": 5.0
-}
 cost = 5
 title = "Fire Plant"
 description = "Rapidly Burns enemies"

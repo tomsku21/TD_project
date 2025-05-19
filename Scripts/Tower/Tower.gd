@@ -14,7 +14,7 @@ class_name Tower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var stats: Dictionary = {"Damage" : 10.0, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0, "Regeneration" : 0.0, "Regen Time": 1.0}
+@export var stats: Dictionary = {"Damage" : 10.0, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0, "Regeneration" : 0.0, "Regen Time": 1.0, "Rounds Survived": 0}
 
 @export var cost: int
 @export var title: String #Name of tower
@@ -31,6 +31,7 @@ var cell: Vector2i
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
+	SignalBus.NextRound.connect(_next_round)
 	tilemap = get_tree().get_first_node_in_group("Tile_data")
 	stats = stats.duplicate()
 	turret = get_tree().get_first_node_in_group("Turret_node")
@@ -85,6 +86,9 @@ func destroy():
 	await get_tree().create_timer(0.1).timeout
 	_tower_borders_check(true)
 	queue_free()
+
+func _next_round():
+	stats["Rounds Survived"] += 1
 
 func _on_attack_timer_timeout() -> void:
 	pass

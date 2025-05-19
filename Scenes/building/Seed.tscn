@@ -84,15 +84,6 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_bdjjs")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
-stats = {
-"Atk Speed": 1.0,
-"Damage": 5,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 0.8,
-"Regeneration": 3.5
-}
 cost = 1
 title = "Seed"
 description = "Small seed."

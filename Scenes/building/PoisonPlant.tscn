@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
 [ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_qtf4t"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_qtf4t"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("2_apre2")
@@ -104,7 +104,6 @@ radius = 150.0
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Idle"
-autoplay = "Idle"
 offset = Vector2(0, -15)
 script = ExtResource("1_apre2")
 Attack_effect = NodePath("Attack")
@@ -118,15 +117,6 @@ plantimg = SubResource("AtlasTexture_rp36r")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Dealt": 50.0
-}
-stats = {
-"Atk Speed": 0.5,
-"Damage": 2.0,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 0.8,
-"Regeneration": 5.0
 }
 cost = 1
 title = "Poison Plant"

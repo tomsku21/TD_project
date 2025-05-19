@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_a4jgc"]
 [ext_resource type="PackedScene" uid="uid://132gq3ifppgg" path="res://Scenes/components/mousecheckComponent.tscn" id="8_006wr"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="10_tya3y"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_476cd"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_476cd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h56vq"]
 atlas = ExtResource("1_3h8hu")
@@ -86,19 +86,10 @@ upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
 "Damage Dealt": 150.0
 }
-stats = {
-"Atk Speed": 0.2,
-"Damage": 7.5,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 1.0,
-"Regeneration": 5.0
-}
 cost = 2
 title = "Pine"
 description = "A fast shooting pine tree"
-max_health = 800.0
+max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
