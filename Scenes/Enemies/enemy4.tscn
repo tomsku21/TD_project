@@ -43,6 +43,7 @@ animations = [{
 size = Vector2(20, 9)
 
 [node name="Enemy" type="PathFollow2D"]
+z_index = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_f8rc3")
