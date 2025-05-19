@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bbiu76ddv22ph" path="res://Assets/UI/sell_normal.png" id="2_21bj3"]
 [ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
 [ext_resource type="Texture2D" uid="uid://dlb0tbwdliuod" path="res://Assets/UI/sell_pressed.png" id="3_1sqdb"]
-[ext_resource type="Script" uid="uid://ca1xmy6lpcndc" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
+[ext_resource type="Script" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="3_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
 [ext_resource type="Texture2D" uid="uid://phjyhbfjdxem" path="res://Assets/UI/sell_hover.png" id="4_bc06v"]
