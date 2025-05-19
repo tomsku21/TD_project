@@ -103,7 +103,7 @@ rounds = [[0, 10, 5, 5, 5], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0], [0, 10, 5, 0, 0]
 z_index = 1
 y_sort_enabled = true
 
-[node name="Ghost" type="Node" parent="Turrets" groups=["Ghost"]]
+[node name="Ghost" type="Node2D" parent="Turrets" groups=["Ghost"]]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 12

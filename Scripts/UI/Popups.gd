@@ -15,11 +15,11 @@ func showBuildInfo(sizing, content):
 		if lasttower.global_position.x > 550:
 			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
 			%UpPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
-			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
+			%SellPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
 		else:
 			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
 			%UpPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
-			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
+			%SellPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
 		%Sell.tower = lasttower
 		setcontent(content)
 		setupgrades(content)
