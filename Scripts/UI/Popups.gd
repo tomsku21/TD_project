@@ -92,7 +92,7 @@ func setupDescription(content):
 
 func sellDescription():
 	%SName.text = lasttower.title
-	%SCost.text = str("Cost: ", round(lasttower.cost * 0.75))
+	%SCost.text = str("Sell for: ", int(round(lasttower.cost * 0.75)), " $")
 	lasttower.clicked = false
 	%BuildPopup.hide()
 	%UpPopup.hide()

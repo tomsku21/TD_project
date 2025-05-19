@@ -18,7 +18,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="build1" type="TextureButton"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 focus_mode = 0
 texture_normal = ExtResource("1_ff82d")
 ignore_texture_size = true

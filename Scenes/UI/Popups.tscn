@@ -43,12 +43,12 @@ mouse_filter = 1
 
 [node name="Sell" type="TextureButton" parent="UI/Build1stats"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_left = -15.0
+offset_left = -20.0
 offset_top = 20.0
-offset_right = 15.0
-offset_bottom = 50.0
+offset_right = 20.0
+offset_bottom = 60.0
 focus_mode = 0
 texture_normal = ExtResource("2_21bj3")
 texture_pressed = ExtResource("3_1sqdb")
@@ -60,11 +60,11 @@ script = ExtResource("3_04xwt")
 
 [node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -56.0
+layout_mode = 1
+offset_left = -65.0
 offset_top = -112.0
-offset_right = 54.0
-offset_bottom = -48.0
+offset_right = 65.0
+offset_bottom = -28.0
 mouse_filter = 2
 alignment = 1
 
@@ -256,17 +256,6 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_5v7bk")
 theme_override_font_sizes/normal_font_size = 22
 text = "Name: "
-fit_content = true
-scroll_active = false
-
-[node name="Info" type="RichTextLabel" parent="UI/Build1stats/UpTabs/SellPopup/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 23)
-layout_direction = 2
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_5v7bk")
-theme_override_font_sizes/normal_font_size = 22
-text = "Sell this plant for some money back"
 fit_content = true
 scroll_active = false
 
