@@ -55,7 +55,7 @@ func _process(_delta: float) -> void:
 		buyMenuPanel.visible = true
 		startGame = true
 	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
-		if not animationPlayer.current_animation == "Exit" and not animationPlayer.current_animation == "Shop" and not animationPlayer.current_animation == "Shop2":
+		if not animationPlayer.current_animation == "Controls" and not animationPlayer.current_animation == "Exit" and not animationPlayer.current_animation == "Shop" and not animationPlayer.current_animation == "Shop2":
 			if in_settings:
 				GlobalVariables.save_game()
 				vboxContainer.visible = true

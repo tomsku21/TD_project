@@ -55,6 +55,7 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 audio = NodePath("Audio")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
+max_health = 100.0
 attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")

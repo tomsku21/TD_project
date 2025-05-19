@@ -29,7 +29,14 @@ z_index = 1
 offset = Vector2(0, -15)
 
 [node name="Range" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.369, 0.369)
+texture = ExtResource("3_jbymx")
+
+[node name="RangeMarker" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -15)
+scale = Vector2(0.368659, 0.368659)
 texture = ExtResource("3_jbymx")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

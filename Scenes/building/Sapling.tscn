@@ -77,8 +77,8 @@ upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = ExtResource("7_7mvnh")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_1xls1"), ExtResource("6_7mvnh")])
 stats = {
-"Atk Speed": 0.8,
-"Damage": 8,
+"Atk Speed": 1.0,
+"Damage": 10.0,
 "Damage Dealt": 0.0,
 "Damage Taken": 0.0,
 "Kills": 0,
@@ -88,7 +88,7 @@ stats = {
 cost = 1
 title = "Sapling"
 description = "Small sapling."
-max_health = 100.0
+max_health = 750.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -126,7 +126,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 sprite = NodePath("..")
 character = NodePath("..")
-MAX_HEALTH = 100.0
+MAX_HEALTH = 750.0
 shader_material = ExtResource("8_k8lsj")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
