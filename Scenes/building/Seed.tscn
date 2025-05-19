@@ -75,7 +75,6 @@ autoplay = "Idle"
 frame_progress = 0.269907
 offset = Vector2(0, -15)
 script = ExtResource("1_tdi3x")
-plantimg = SubResource("AtlasTexture_bdjjs")
 bullet = ExtResource("2_ll3dy")
 attack_timer = NodePath("AttackTimer")
 marker_2d = NodePath("Marker2D")
@@ -83,6 +82,7 @@ healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
+plantimg = SubResource("AtlasTexture_bdjjs")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
 stats = {
 "Atk Speed": 1.0,

@@ -32,6 +32,11 @@ func _process(_delta):
 		else:
 			self.disabled = true
 
+func _on_visibility_changed():
+	var new_plant = plant.instantiate()
+	texture_normal = new_plant.plantimg
+	new_plant.queue_free()
+
 func _on_click():
 	GlobalVariables.cost -= cost
 	GlobalVariables.selected_turret = plant

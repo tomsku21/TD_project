@@ -260,6 +260,7 @@ healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
+plantimg = SubResource("AtlasTexture_hrvv2")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Dealt": 10.0

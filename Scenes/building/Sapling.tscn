@@ -67,7 +67,6 @@ z_index = 1
 sprite_frames = SubResource("SpriteFrames_k8lsj")
 offset = Vector2(0, -15)
 script = ExtResource("1_gjq8m")
-plantimg = ExtResource("7_7mvnh")
 bullet = ExtResource("2_7mvnh")
 attack_timer = NodePath("AttackTimer")
 marker_2d = NodePath("Marker2D")
@@ -75,6 +74,7 @@ healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
+plantimg = ExtResource("7_7mvnh")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_1xls1"), ExtResource("6_7mvnh")])
 stats = {
 "Atk Speed": 0.8,

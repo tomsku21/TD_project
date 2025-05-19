@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2n6impoyuneo"]
+[gd_scene load_steps=10 format=3 uid="uid://c2n6impoyuneo"]
 
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/UI/Popups.gd" id="1_toe2v"]
+[ext_resource type="Texture2D" uid="uid://bbiu76ddv22ph" path="res://Assets/UI/sell_normal.png" id="2_21bj3"]
 [ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_tpfus"]
-[ext_resource type="Script" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
+[ext_resource type="Texture2D" uid="uid://dlb0tbwdliuod" path="res://Assets/UI/sell_pressed.png" id="3_1sqdb"]
+[ext_resource type="Script" uid="uid://ca1xmy6lpcndc" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="3_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
+[ext_resource type="Texture2D" uid="uid://phjyhbfjdxem" path="res://Assets/UI/sell_hover.png" id="4_bc06v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
 content_margin_left = 10.0
@@ -41,25 +43,28 @@ mouse_filter = 1
 
 [node name="Sell" type="TextureButton" parent="UI/Build1stats"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_left = -15.0
+offset_left = -20.0
 offset_top = 20.0
-offset_right = 15.0
-offset_bottom = 50.0
+offset_right = 20.0
+offset_bottom = 60.0
 focus_mode = 0
-texture_normal = ExtResource("2_tpfus")
+texture_normal = ExtResource("2_21bj3")
+texture_pressed = ExtResource("3_1sqdb")
+texture_hover = ExtResource("4_bc06v")
+texture_focused = ExtResource("3_1sqdb")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_04xwt")
 
 [node name="Upgrades" type="VBoxContainer" parent="UI/Build1stats"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -56.0
+layout_mode = 1
+offset_left = -65.0
 offset_top = -112.0
-offset_right = 54.0
-offset_bottom = -48.0
+offset_right = 65.0
+offset_bottom = -28.0
 mouse_filter = 2
 alignment = 1
 
@@ -251,17 +256,6 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_5v7bk")
 theme_override_font_sizes/normal_font_size = 22
 text = "Name: "
-fit_content = true
-scroll_active = false
-
-[node name="Info" type="RichTextLabel" parent="UI/Build1stats/UpTabs/SellPopup/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 23)
-layout_direction = 2
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("3_5v7bk")
-theme_override_font_sizes/normal_font_size = 22
-text = "Sell this plant for some money back"
 fit_content = true
 scroll_active = false
 

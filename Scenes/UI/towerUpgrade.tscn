@@ -4,21 +4,21 @@
 [ext_resource type="Script" uid="uid://ol8yu84krmdy" path="res://Scripts/UI/upgradingButton.gd" id="2_ninox"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff82d"]
-bg_color = Color(0.117647, 0.117647, 0.117647, 0.631373)
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.254902)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ninox"]
-bg_color = Color(0.129412, 0.866667, 0, 0.384314)
+bg_color = Color(0.513726, 0.980392, 0.0509804, 0.392157)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="build1" type="TextureButton"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(40, 40)
 focus_mode = 0
 texture_normal = ExtResource("1_ff82d")
 ignore_texture_size = true
@@ -43,3 +43,4 @@ show_percentage = false
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_click"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

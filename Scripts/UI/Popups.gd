@@ -15,11 +15,11 @@ func showBuildInfo(sizing, content):
 		if lasttower.global_position.x > 550:
 			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
 			%UpPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
-			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
+			%SellPopup.set_layout_direction(Control.LAYOUT_DIRECTION_RTL)
 		else:
 			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
 			%UpPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
-			%BuildPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
+			%SellPopup.set_layout_direction(Control.LAYOUT_DIRECTION_LTR)
 		%Sell.tower = lasttower
 		setcontent(content)
 		setupgrades(content)
@@ -92,7 +92,7 @@ func setupDescription(content):
 
 func sellDescription():
 	%SName.text = lasttower.title
-	%SCost.text = str("Cost: ", round(lasttower.cost * 0.75))
+	%SCost.text = str("Sell for: ", int(round(lasttower.cost * 0.75)), " $")
 	lasttower.clicked = false
 	%BuildPopup.hide()
 	%UpPopup.hide()

@@ -9,6 +9,7 @@
 size = Vector2(31, 32)
 
 [node name="TempBuilding" type="Area2D"]
+z_index = 1
 input_pickable = false
 script = ExtResource("1_t3tqr")
 dropshadow_good = ExtResource("2_jbymx")
