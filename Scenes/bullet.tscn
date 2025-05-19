@@ -1,17 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://df1hpvlkssvjs"]
 
 [ext_resource type="Script" uid="uid://con6sh1y2dkf2" path="res://Scripts/Tower/bullet.gd" id="1_oduel"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_ycag2"]
+[ext_resource type="Texture2D" uid="uid://bu4xhfii4b08f" path="res://Assets/Particles/leaf_bullet.png" id="2_oduel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
+size = Vector2(34, 49)
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ycag2")
+scale = Vector2(5, 5)
+texture = ExtResource("2_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_oduel")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
