@@ -113,8 +113,8 @@ script = ExtResource("7_haj6g")
 main_script = NodePath("../..")
 times = 4
 poison_timeout = 1.0
-max_damage = 2.0
-min_damage = 1.0
+max_damage = 5.0
+min_damage = 2.0
 
 [node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
 script = ExtResource("8_u0emo")

@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_gldyh"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_40f82"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_8uxj8"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h5qwq"]
 atlas = ExtResource("2_h86t1")
@@ -83,7 +83,7 @@ upRequirement = {
 "Rounds Survived": 3
 }
 stats = {
-"Atk Speed": 30.0,
+"Atk Speed": 20.0,
 "Damage Taken": 0.0,
 "Income": 1,
 "Money Made": 0
@@ -91,6 +91,7 @@ stats = {
 cost = 5
 title = "Bonsai tree"
 description = "Generates low income"
+max_health = 200.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

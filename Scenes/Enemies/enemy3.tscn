@@ -130,6 +130,7 @@ slow_debuff = 60.0
 [node name="Timers" type="Node" parent="CharacterBody2D"]
 
 [node name="AttackTimer" type="Timer" parent="CharacterBody2D/Timers"]
+wait_time = 2.5
 one_shot = true
 
 [node name="WalkTimer" type="Timer" parent="CharacterBody2D/Timers"]
