@@ -369,15 +369,6 @@ upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Kills": 1
 }
-stats = {
-"Atk Speed": 20.0,
-"Damage": 20,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 1.0,
-"Regeneration": 5.0
-}
 cost = 5
 title = "Flytrap"
 description = "Devours enemies whole"

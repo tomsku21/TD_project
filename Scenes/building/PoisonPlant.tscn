@@ -118,15 +118,6 @@ upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Dealt": 50.0
 }
-stats = {
-"Atk Speed": 1.5,
-"Damage": 3,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 0.8,
-"Regeneration": 5.0
-}
 cost = 1
 title = "Poison Plant"
 description = "Poisons enemies, applying a damage over time debuff"

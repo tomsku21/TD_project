@@ -76,15 +76,6 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = ExtResource("7_7mvnh")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_1xls1"), ExtResource("6_7mvnh")])
-stats = {
-"Atk Speed": 0.8,
-"Damage": 8,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 1.0,
-"Regeneration": 5.0
-}
 cost = 1
 title = "Sapling"
 description = "Small sapling."

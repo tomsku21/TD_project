@@ -86,15 +86,6 @@ upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
 "Damage Dealt": 150.0
 }
-stats = {
-"Atk Speed": 0.3,
-"Damage": 5,
-"Damage Dealt": 0.0,
-"Damage Taken": 0.0,
-"Kills": 0,
-"Regen Time": 1.0,
-"Regeneration": 5.0
-}
 cost = 2
 title = "Pine"
 description = "A fast shooting pine tree"

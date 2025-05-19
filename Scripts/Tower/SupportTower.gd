@@ -14,7 +14,7 @@ class_name SupportTower
 @export var upRequirement: Dictionary #Null if no extra requirements
 
 @export_category("Tower Stats")
-@export var stats: Dictionary = {"Atk Speed" : 1.0, "Damage Taken" : 0.0}
+@export var stats: Dictionary = {"Atk Speed" : 1.0, "Damage Taken" : 0.0, "Rounds Survived" : 0}
 
 @export var cost: int
 @export var title: String
@@ -31,6 +31,7 @@ var cell: Vector2i
 
 var towers: Array[Area2D] = []
 func _ready() -> void:
+	SignalBus.NextRound.connect(_next_round)
 	tilemap = get_tree().get_first_node_in_group("Tile_data")
 	stats = stats.duplicate()
 	turret = get_tree().get_first_node_in_group("Turret_node")
@@ -101,6 +102,9 @@ func destroy():
 		#towers.erase(area)
 		#if towers.is_empty():
 			#attack_timer.stop()
+
+func _next_round():
+	stats["Rounds Survived"] += 1
 
 func upgrade():
 	var new_plant = GlobalVariables.selected_turret.instantiate()
