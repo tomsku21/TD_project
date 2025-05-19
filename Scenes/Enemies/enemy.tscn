@@ -55,6 +55,7 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 audio = NodePath("Audio")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
+max_health = 100.0
 attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")
@@ -112,8 +113,8 @@ script = ExtResource("7_haj6g")
 main_script = NodePath("../..")
 times = 4
 poison_timeout = 1.0
-max_damage = 2.0
-min_damage = 1.0
+max_damage = 5.0
+min_damage = 2.0
 
 [node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
 script = ExtResource("8_u0emo")

@@ -51,7 +51,9 @@ healthcomponent = NodePath("HealthComponent")
 cpu_particles_2d = NodePath("CPUParticles2D")
 audio = NodePath("Audio")
 shader_material = ExtResource("2_xvyr5")
-speed = 20.0
+speed = 50.0
+max_health = 150.0
+attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")
 slow = NodePath("Debuff/Slow")
@@ -128,6 +130,7 @@ slow_debuff = 60.0
 [node name="Timers" type="Node" parent="CharacterBody2D"]
 
 [node name="AttackTimer" type="Timer" parent="CharacterBody2D/Timers"]
+wait_time = 2.5
 one_shot = true
 
 [node name="WalkTimer" type="Timer" parent="CharacterBody2D/Timers"]

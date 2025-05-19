@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_d63pv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_efv0f"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="13_1xls1"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="13_5yvm0"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="13_5yvm0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
 atlas = ExtResource("7_1xls1")
@@ -76,10 +76,20 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = ExtResource("7_7mvnh")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_1xls1"), ExtResource("6_7mvnh")])
+stats = {
+"Atk Speed": 1.0,
+"Damage": 10.0,
+"Damage Dealt": 0.0,
+"Damage Taken": 0.0,
+"Kills": 0,
+"Regen Time": 1.0,
+"Regeneration": 1.0,
+"Rounds Survived": 0
+}
 cost = 1
 title = "Sapling"
 description = "Small sapling."
-max_health = 100.0
+max_health = 750.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
