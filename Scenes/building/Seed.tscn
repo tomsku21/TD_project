@@ -11,7 +11,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_1gr70"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_h62y5"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_ctpcp"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_ll3dy"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_ll3dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdjjs"]
 atlas = ExtResource("1_yd0mu")

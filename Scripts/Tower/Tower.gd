@@ -8,8 +8,9 @@ class_name Tower
 @export var cpu_particles_2d: CPUParticles2D
 @export var upgrade_cpu_2d: CPUParticles2D
 @export var plantimg: Texture #for dropshadow
-@export var bullet_sprite: AtlasTexture
+@export var bullet_sprite: Texture
 @export var bullet_sprite_rotation: float
+@export var bullet_scale: float
 
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
