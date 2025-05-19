@@ -13,3 +13,7 @@ func _on_attack_timer_timeout() -> void:
 		new_bullet.gun = marker_2d
 		new_bullet.target = target
 		new_bullet.damage = stats["Damage"]
+		if bullet_sprite != null:
+			new_bullet.sprite_2d.texture = bullet_sprite
+		if bullet_sprite_rotation > 0:
+			new_bullet.sprite_2d.rotation = deg_to_rad(bullet_sprite_rotation)

@@ -5,11 +5,16 @@ var speed: float = 500
 var damage_dealt: float
 var damage: float
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
+func _ready() -> void:
+	scale = Vector2(0,0)
 func _physics_process(delta: float) -> void:
 	if target:
 		var direction = gun.global_position.direction_to(target.global_position)
 		position += direction * speed * delta
+		look_at(global_position + direction)
+		scale += Vector2(15, 15) * delta
+		scale.x = clamp(scale.x, 0.0, 1.0)
+		scale.y = clamp(scale.y, 0.0, 1.0)
 	else:
 		queue_free()
 

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_tr10u"]
 [ext_resource type="AudioStream" uid="uid://ct0jf5bpr6lri" path="res://Assets/Sounds/fireball-whoosh-1-179125 (mp3cut.net).wav" id="8_hrvv2"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_j7pcx"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_hrvv2"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_hrvv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrvv2"]
 atlas = ExtResource("3_j7pcx")
@@ -317,7 +317,7 @@ unique_name_in_owner = true
 wait_time = 0.5
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -19)
+position = Vector2(0, -23)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_o4f5v")]
 unique_name_in_owner = true
