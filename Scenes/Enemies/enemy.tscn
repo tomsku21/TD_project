@@ -119,10 +119,10 @@ min_damage = 2.0
 [node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
 script = ExtResource("8_u0emo")
 main_script = NodePath("../..")
-times = 4
+times = 10
 burn_timeout = 1.0
-max_damage_minus_procent = 20.0
-min_damage_minus_procent = 10.0
+max_damage_minus_procent = 50.0
+min_damage_minus_procent = 30.0
 
 [node name="Slow" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script", "timer")]
 script = ExtResource("9_tq087")

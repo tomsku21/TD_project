@@ -131,6 +131,7 @@ stats = {
 cost = 1
 title = "Poison Plant"
 description = "Poisons enemies, applying a damage over time debuff"
+max_health = 500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
