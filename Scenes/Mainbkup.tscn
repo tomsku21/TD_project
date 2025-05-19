@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://dix30o4abr42v"]
+[gd_scene load_steps=14 format=4 uid="uid://dix30o4abr42v"]
 
 [ext_resource type="Script" uid="uid://besdl3kjeuv0v" path="res://Scripts/player.gd" id="1_7xbqi"]
 [ext_resource type="TileSet" uid="uid://bt5hmyta063ff" path="res://Assets/World/Testingtileset.tres" id="2_75dgk"]
 [ext_resource type="PackedScene" uid="uid://cxlu7iv3kho3" path="res://Scenes/life_tree.tscn" id="3_141lr"]
+[ext_resource type="Script" uid="uid://d15nobs3uuxeb" path="res://addons/postfx/nodes/PostFX.gd" id="6_w6syb"]
+[ext_resource type="Script" uid="uid://bvbw3ejkm2bck" path="res://addons/postfx/scripts/FXBase.gd" id="7_5wjl5"]
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="7_psfxe"]
+[ext_resource type="Script" uid="uid://cqqc7s7kp8uem" path="res://addons/postfx/effects/VignetteFX.gd" id="8_7xbqi"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="8_66571"]
-[ext_resource type="Script" uid="uid://bc43w6gak7pc7" path="res://Scripts/random_bullet_spawner.gd" id="9_lfxfr"]
-[ext_resource type="PackedScene" uid="uid://qbmbmuboql3" path="res://Scenes/RandomBullet.tscn" id="10_hcifn"]
 
 [sub_resource type="Curve2D" id="Curve2D_w6syb"]
 _data = {
@@ -28,6 +29,13 @@ point_count = 2
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_141lr"]
 cull_mode = 1
 polygon = PackedVector2Array(-853.618, 507.334, -273.34, -124.254, -859.349, -126.653)
+
+[sub_resource type="Resource" id="Resource_mpf2s"]
+script = ExtResource("8_7xbqi")
+intensity = 0.05
+color = Color(0, 0, 0, 1)
+enabled = true
+metadata/_custom_type_script = "uid://cqqc7s7kp8uem"
 
 [node name="Main" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-156.0]
@@ -123,28 +131,6 @@ angular_velocity_max = 116.76
 scale_amount_max = 1.5
 scale_amount_curve = SubResource("Curve_pbw6q")
 
-[node name="RandomBulletSpawner" type="Node" parent="." node_paths=PackedStringArray("markers", "timer")]
-script = ExtResource("9_lfxfr")
-markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
-random_bullet = ExtResource("10_hcifn")
-timer = NodePath("Timer")
-damage = 20
-
-[node name="Marker2D" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(703, -325)
-
-[node name="Marker2D2" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(-705, -341)
-
-[node name="Marker2D3" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(-683, 445)
-
-[node name="Marker2D4" type="Marker2D" parent="RandomBulletSpawner"]
-position = Vector2(700, 444)
-
-[node name="Timer" type="Timer" parent="RandomBulletSpawner"]
-one_shot = true
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(-901, 0)
 rotation = -1.17187
@@ -164,5 +150,9 @@ position = Vector2(146, -220)
 rotation = 0.00273147
 occluder = SubResource("OccluderPolygon2D_141lr")
 
+[node name="PostFX" type="CanvasLayer" parent="."]
+script = ExtResource("6_w6syb")
+effects = Array[ExtResource("7_5wjl5")]([SubResource("Resource_mpf2s")])
+metadata/_custom_type_script = "uid://d15nobs3uuxeb"
+
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
-[connection signal="timeout" from="RandomBulletSpawner/Timer" to="RandomBulletSpawner" method="_on_timer_timeout"]

@@ -10,11 +10,6 @@ class_name HealthComponent
 func _ready():
 	MAX_HEALTH = character.max_health
 	health = MAX_HEALTH
-	#if get_parent().has_node("AnimatedSprite2D"):
-		#sprite = get_parent().get_node("AnimatedSprite2D")
-	#else:
-		#push_warning("HealthComponent: Sprite node not found!")
-
 	if sprite:
 		sprite.material = shader_material.duplicate()
 		var material = sprite.material as ShaderMaterial

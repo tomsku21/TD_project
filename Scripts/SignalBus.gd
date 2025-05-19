@@ -4,3 +4,5 @@ extends Node
 signal NextRound
 @warning_ignore("unused_signal")
 signal Settings
+@warning_ignore("unused_signal")
+signal Controls

@@ -4,6 +4,7 @@ extends CanvasLayer
 @export var animationPlayer: AnimationPlayer
 @export var current_round: Label
 @export var shop_buton: TextureButton
+@export var controls: Panel
 @export_category("Game Over")
 @export var gameOverPanel: Panel
 @export var overVBoxContainer: VBoxContainer
@@ -25,6 +26,7 @@ var musicIndex: int
 var sfxIndex: int
 var startGame: bool = false
 var shop_hide: bool = false
+var show_controls: bool = true
 func _ready() -> void:
 	if GlobalVariables.fullscreen:
 		screen_button.select(1)
@@ -32,6 +34,7 @@ func _ready() -> void:
 		screen_button.select(0)
 	SignalBus.NextRound.connect(_next_round)
 	SignalBus.Settings.connect(_setting_changed)
+	SignalBus.Controls.connect(_controls)
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
@@ -125,6 +128,7 @@ func defaultPanels(reset: bool) -> void:
 	buyMenuPanel.visible = true
 	pausePanel.visible = false
 	settingsPanel.visible = false
+	controls.visible = false
 	if reset:
 		overVBoxContainer.visible = false
 	else:
@@ -223,3 +227,11 @@ func _setting_changed(index: int):
 			screen_button.select(0)
 		1:
 			screen_button.select(1)
+
+func _controls():
+	if show_controls:
+		controls.visible = true
+		animationPlayer.play("Controls")
+		await get_tree().create_timer(10).timeout
+		controls.visible = false
+		show_controls = false

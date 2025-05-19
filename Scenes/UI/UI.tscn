@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=41 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
@@ -15,6 +15,8 @@
 [ext_resource type="StyleBox" uid="uid://by7ymvcotcsu4" path="res://Assets/StyleBox/OptionButton_Normal.tres" id="12_u6hof"]
 [ext_resource type="StyleBox" uid="uid://b7di2ecwwb1pw" path="res://Assets/StyleBox/OptionButton_Hover.tres" id="14_2yjmo"]
 [ext_resource type="StyleBox" uid="uid://n4v3tfoenhvi" path="res://Assets/StyleBox/OptionButton_Pressed.tres" id="15_813c4"]
+[ext_resource type="Texture2D" uid="uid://fa43hn0u88yl" path="res://Assets/UI/WASD.png" id="16_813c4"]
+[ext_resource type="Texture2D" uid="uid://ce8jy34r2y31j" path="res://Assets/UI/Mouse.png" id="17_jlkmm"]
 
 [sub_resource type="Animation" id="Animation_thdbn"]
 resource_name = "Exit"
@@ -434,6 +436,30 @@ tracks/16/keys = {
 "update": 0,
 "values": [Vector2(1264, 737)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../../Controls:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(661.5, 402)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../../Controls:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 
 [sub_resource type="Animation" id="Animation_o3jj0"]
 resource_name = "Shop"
@@ -465,8 +491,37 @@ tracks/0/keys = {
 "values": [Vector2(1264, 920), Vector2(1264, 737)]
 }
 
+[sub_resource type="Animation" id="Animation_813c4"]
+resource_name = "Controls"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Controls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(661.5, 402), Vector2(661.5, 402), Vector2(0, 804)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Controls:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqsl3"]
 _data = {
+&"Controls": SubResource("Animation_813c4"),
 &"Exit": SubResource("Animation_thdbn"),
 &"Game Over": SubResource("Animation_8wlyu"),
 &"New Game": SubResource("Animation_u6hof"),
@@ -507,7 +562,9 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_niwxr"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "screen_button", "nextRoundPanel")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_462t7"]
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "controls", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "screen_button", "nextRoundPanel")]
 process_mode = 3
 script = ExtResource("1_lotke")
 bankPanel = NodePath("Bank")
@@ -515,6 +572,7 @@ buyMenuPanel = NodePath("buymenu")
 animationPlayer = NodePath("AnimationPlayer")
 current_round = NodePath("Bank/Label")
 shop_buton = NodePath("buymenu/Panel/Shop_button")
+controls = NodePath("Controls")
 gameOverPanel = NodePath("GameOver")
 overVBoxContainer = NodePath("GameOver/VBoxContainer")
 pausePanel = NodePath("Pause")
@@ -920,6 +978,39 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_kfnqa")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_niwxr")
 text = "Start Round"
 flat = true
+
+[node name="Controls" type="Panel" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -116.0
+offset_right = 297.0
+grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(148.5, 58)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_462t7")
+
+[node name="TextureRect" type="TextureRect" parent="Controls"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 189.0
+offset_bottom = 116.0
+texture = ExtResource("16_813c4")
+
+[node name="TextureRect2" type="TextureRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -51.0
+offset_bottom = 51.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("17_jlkmm")
 
 [connection signal="pressed" from="buymenu/Panel/Shop_button" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
