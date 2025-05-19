@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_jpcs6"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
-[ext_resource type="Script" path="res://Scripts/Tower/grabAttack.gd" id="7_xqlid"]
+[ext_resource type="Script" uid="uid://c3hvi7b4mxhtq" path="res://Scripts/Tower/grabAttack.gd" id="7_xqlid"]
 [ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="8_xqlid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqlid"]
@@ -364,6 +364,7 @@ healthcomponent = NodePath("HealthComponent")
 ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
+plantimg = SubResource("AtlasTexture_lnkkg")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Kills": 1

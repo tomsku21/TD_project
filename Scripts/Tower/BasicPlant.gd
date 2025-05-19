@@ -1,8 +1,5 @@
 extends Tower
 
-@export_category("Plant texture for dropshadow")
-@export var plantimg: Texture
-
 @export var bullet: PackedScene
 
 func _on_attack_timer_timeout() -> void:
