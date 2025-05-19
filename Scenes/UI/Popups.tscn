@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2n6impoyuneo"]
+[gd_scene load_steps=10 format=3 uid="uid://c2n6impoyuneo"]
 
 [ext_resource type="Script" uid="uid://d1e0c4v5r5udn" path="res://Scripts/UI/Popups.gd" id="1_toe2v"]
+[ext_resource type="Texture2D" uid="uid://bbiu76ddv22ph" path="res://Assets/UI/sell_normal.png" id="2_21bj3"]
 [ext_resource type="PackedScene" uid="uid://b0ns6e7ra5xib" path="res://Scenes/UI/towerUpgrade.tscn" id="2_toe2v"]
-[ext_resource type="Texture2D" uid="uid://csw2nao8cbgsv" path="res://icon.svg" id="2_tpfus"]
+[ext_resource type="Texture2D" uid="uid://dlb0tbwdliuod" path="res://Assets/UI/sell_pressed.png" id="3_1sqdb"]
 [ext_resource type="Script" uid="uid://ca1xmy6lpcndc" path="res://Scripts/UI/sell.gd" id="3_04xwt"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="3_5v7bk"]
 [ext_resource type="PackedScene" uid="uid://b57m53b57hd7h" path="res://Scenes/components/health_bar.tscn" id="3_dtbqr"]
+[ext_resource type="Texture2D" uid="uid://phjyhbfjdxem" path="res://Assets/UI/sell_hover.png" id="4_bc06v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu1q3"]
 content_margin_left = 10.0
@@ -48,7 +50,10 @@ offset_top = 20.0
 offset_right = 15.0
 offset_bottom = 50.0
 focus_mode = 0
-texture_normal = ExtResource("2_tpfus")
+texture_normal = ExtResource("2_21bj3")
+texture_pressed = ExtResource("3_1sqdb")
+texture_hover = ExtResource("4_bc06v")
+texture_focused = ExtResource("3_1sqdb")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_04xwt")
