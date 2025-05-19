@@ -72,9 +72,9 @@ func _physics_process(delta: float) -> void:
 
 func destroy():
 	cpu_particles_2d.emitting = true
-	await get_tree().create_timer(0.1).timeout
-	pathfollow.queue_free()
-	GlobalVariables.enemy_count -= 1
+	if cpu_particles_2d.emitting == false:
+		pathfollow.queue_free()
+		GlobalVariables.enemy_count -= 1
 
 func change_rotation():
 	var rot_deg = pathfollow.rotation_degrees

@@ -14,7 +14,7 @@ var enemy_count: int
 func _ready() -> void:
 	spawn_timer.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for enemy in enemies:
 		if enemy.progress_ratio >= 0.99:
 			enemies.erase(enemy)

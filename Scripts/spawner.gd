@@ -25,6 +25,7 @@ func _physics_process(_delta: float) -> void:
 		if GlobalVariables.started == false:
 			spawn_timer.start()
 			GlobalVariables.started = true
+			SignalBus.Controls.emit()
 		else:
 			var all_spawned = true
 			for type_index in rounds[GlobalVariables.current_round].size():
@@ -36,6 +37,7 @@ func _physics_process(_delta: float) -> void:
 				if GlobalVariables.enemy_count == 0:
 					current_type_index = 0
 					spawned_per_type.fill(0)
+					SignalBus.NextRound.emit()
 					if GlobalVariables.current_round <= GlobalVariables.max_rounds:
 						GlobalVariables.cost += 3
 						if GlobalVariables.current_round != GlobalVariables.max_rounds:
@@ -46,7 +48,6 @@ func _physics_process(_delta: float) -> void:
 							spawned_per_type.fill(0)
 							GlobalVariables.game_state = false
 							GlobalVariables.started = false
-							SignalBus.NextRound.emit()
 	else:
 		spawn_timer.stop()
 		GlobalVariables.started = false
