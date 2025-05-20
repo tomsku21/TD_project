@@ -31,8 +31,10 @@ var show_controls: bool = true
 
 #speed buttons stuff
 var current_button: TextureButton = null
+var current_speed: float = 1.0
 
 func _ready() -> void:
+	_speed_change(current_speed, %Normal)
 	if GlobalVariables.fullscreen:
 		screen_button.select(1)
 	else:
@@ -53,14 +55,14 @@ func _process(_delta: float) -> void:
 	else:
 		push_warning("current_round Label is not assigned!")
 	if GlobalVariables.in_mainMenu:
-		_speed_change(1.0, %Normal)
+		Engine.time_scale = 1.0
 		bankPanel.visible = false
 		buyMenuPanel.visible = false
 		speedPanel.visible = false
 	elif not GlobalVariables.in_mainMenu and startGame == false:
 		bankPanel.visible = true
 		buyMenuPanel.visible = true
-		_speed_change(2.0, %SpeedHigh)
+		#_speed_change(current_speed, current_button)
 		speedPanel.visible = true
 		startGame = true
 	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
@@ -71,7 +73,12 @@ func _process(_delta: float) -> void:
 				settingsPanel.visible = false
 				in_settings = false
 			else:
-				_speed_change(1.0, %Normal)
+				if get_tree().paused:
+					print("back to normal", current_speed)
+					_speed_change(current_speed, current_button)
+				else:
+					print("change game speed")
+					Engine.time_scale = 1.0
 				bankPanel.visible = !bankPanel.visible
 				buyMenuPanel.visible = !buyMenuPanel.visible
 				speedPanel.visible = !speedPanel.visible
@@ -87,6 +94,8 @@ func _process(_delta: float) -> void:
 					animationPlayer.play("PauseMenu")
 
 	if GlobalVariables.game_over == true:
+		print("normal speed???")
+		_speed_change(1.0, %Normal)
 		bankPanel.visible = false
 		buyMenuPanel.visible = false
 		speedPanel.visible = false
@@ -215,18 +224,21 @@ func _on_speed_button_pressed(_name, button) -> void:
 		"Normal":
 			_speed_change(1.0, button)
 		"SpeedUp":
-			_speed_change(1.5, button)
-		"SpeedHigh":
 			_speed_change(2.0, button)
+		"SpeedHigh":
+			_speed_change(3.0, button)
 
 func _speed_change(value, pressed_button):
-	if current_button:
-		current_button.disabled = false
-	current_button = pressed_button
-	if value:
-		current_button.disabled = true
-		Engine.time_scale = value
-	
+	if value != Engine.time_scale and pressed_button != current_button:
+		print("speed changed?????")
+		if current_button:
+			current_button.disabled = false
+		current_button = pressed_button
+		current_speed = value
+		if value:
+			current_button.disabled = true
+			Engine.time_scale = value
+
 
 func _on_button_pressed() -> void:
 	nextRoundPanel.visible = false
