@@ -11,8 +11,8 @@ var enemies: Array[PathFollow2D]
 		#else:
 			#enemy_count = 0
 var turrets: Array = []
-var player_hp: float = 1000.0
-var MAX_HP: float = 1000.0
+var player_hp: float = 5000.0
+var MAX_HP: float = 5000.0
 var cost: int = 0
 var current_round: int = 0
 var best_round: int
