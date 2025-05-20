@@ -6,3 +6,5 @@ signal NextRound
 signal Settings
 @warning_ignore("unused_signal")
 signal Controls
+@warning_ignore("unused_signal")
+signal RoundStart

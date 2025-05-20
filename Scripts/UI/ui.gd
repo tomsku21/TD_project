@@ -227,9 +227,9 @@ func _on_speed_button_pressed(_name, button) -> void:
 		"Normal":
 			_speed_change(1.0, button)
 		"SpeedUp":
-			_speed_change(2.0, button)
+			_speed_change(1.75, button)
 		"SpeedHigh":
-			_speed_change(3.0, button)
+			_speed_change(2.5, button)
 
 func _speed_change(value, pressed_button):
 	print("speed changed?????")
@@ -245,6 +245,7 @@ func _speed_change(value, pressed_button):
 func _on_button_pressed() -> void:
 	nextRoundPanel.visible = false
 	GlobalVariables.game_state = true
+	SignalBus.RoundStart.emit()
 
 
 func _on_shop_button_pressed() -> void:

@@ -11,6 +11,8 @@ func _physics_process(_delta):
 	if atk_ready and !enemies.is_empty():
 		attacking = true
 		atk_ready = false
+	if !atk_ready:
+		print("attack timer is: ",attack_timer.is_stopped())
 
 func _on_attack_timer_timeout() -> void:
 	atk_ready = true
@@ -25,12 +27,10 @@ func _attack() -> void:
 		target.get_child(0).grabbed = true
 		target.get_child(0).currently_grabbed = true
 		await get_tree().create_timer(10).timeout
-		attack_timer.start()
-		print("attack timer started")
 		var restored_enemy = grabbed.pop_front()
 		path.add_child(restored_enemy)
 		target.get_child(0).take_damage(stats["Damage"], self)
 		target.get_child(0).currently_grabbed = false
 	else:
 		print("doh you missed!")
-		attack_timer.start()
+	attack_timer.start()

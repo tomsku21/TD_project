@@ -34,6 +34,7 @@ var cell: Vector2i
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
+	stats["Rounds Survived"] = 0
 	SignalBus.NextRound.connect(_next_round)
 	tilemap = get_tree().get_first_node_in_group("Tile_data")
 	stats = stats.duplicate()
@@ -121,19 +122,19 @@ func Heal(restoration, healer):
 ##Ui/popups stuff from here on. Could probably be it's own node- "UI handler" if the project were larger
 func _on_mouse_entered() -> void:
 	hovered = true
-	print("mouse entered")
+	#print("mouse entered")
 
 
 func _on_mouse_exited() -> void:
 	hovered = false
-	print("mouse exited")
+	#print("mouse exited")
 
 func _on_focus_entered():
 	clicked = true
 	#hovered = true
 
 func _on_focus_exited():
-	print("focus exited?")
+	#print("focus exited?")
 	clicked = false
 	Popups.hideBuildInfo()
 
@@ -154,7 +155,7 @@ func _tower_borders_check(change: bool):
 	borders["top_middle"] = cell + Vector2i(0, -1)
 	#borders["top_left"] = cell + Vector2i(-1, -1)
 	for i in borders:
-		print(i, borders.get(i))
+		#print(i, borders.get(i))
 		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
 		#print("tile data before:", tile_data)
 		tilemap.set_cell(borders.get(i), 0, Vector2i(tile, 5))

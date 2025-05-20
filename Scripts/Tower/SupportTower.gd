@@ -31,6 +31,7 @@ var cell: Vector2i
 
 var towers: Array[Area2D] = []
 func _ready() -> void:
+	stats["Rounds Survived"] = 0
 	SignalBus.NextRound.connect(_next_round)
 	tilemap = get_tree().get_first_node_in_group("Tile_data")
 	stats = stats.duplicate()

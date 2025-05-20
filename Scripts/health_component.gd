@@ -17,7 +17,7 @@ func _ready():
 
 func damage(damage):
 	health -= damage
-	print("damage taken: ", damage)
+	#print("damage taken: ", damage)
 	shader_handler(true)
 	if health <= 0:
 		health = 0
@@ -31,6 +31,12 @@ func shader_handler(flash: bool = true):
 	if flash:
 		for i in 3:
 			material.set_shader_parameter("flash_amount", 0.3)
+			if character is Enemy:
+				if character.grabbed:
+					return
 			await get_tree().create_timer(0.05).timeout
 			material.set_shader_parameter("flash_amount", 0.0)
+			if character is Enemy:
+				if character.grabbed:
+					return
 			await get_tree().create_timer(0.05).timeout
