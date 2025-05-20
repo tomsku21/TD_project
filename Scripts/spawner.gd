@@ -12,10 +12,11 @@ extends Node
 @export var rounds := []
 
 var spawned_per_type: Array = []
-var current_type_index: int = 0
+var testi: Array[int]
+var current_type_index
 
 func _ready() -> void:
-	GlobalVariables.cost += 100
+	GlobalVariables.cost += 3
 	if rounds.size() > 0:
 		spawned_per_type.resize(rounds[0].size())
 		spawned_per_type.fill(0)
@@ -23,6 +24,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if GlobalVariables.game_state:
 		if GlobalVariables.started == false:
+			current_type_index = randi_range(0,4)
+			testi.append(current_type_index)
 			spawn_timer.start()
 			GlobalVariables.started = true
 			SignalBus.Controls.emit()
@@ -35,7 +38,6 @@ func _physics_process(_delta: float) -> void:
 			if all_spawned:
 				spawn_timer.stop()
 				if GlobalVariables.enemy_count == 0:
-					current_type_index = 0
 					spawned_per_type.fill(0)
 					SignalBus.NextRound.emit()
 					if GlobalVariables.current_round <= GlobalVariables.max_rounds:
@@ -49,6 +51,8 @@ func _physics_process(_delta: float) -> void:
 							GlobalVariables.game_state = false
 							GlobalVariables.started = false
 	else:
+		current_type_index = 0
+		testi.clear()
 		spawn_timer.stop()
 		GlobalVariables.started = false
 
@@ -65,4 +69,10 @@ func _on_timer_timeout() -> void:
 				spawned_per_type[current_type_index] += 1
 			break
 		else:
-			current_type_index += 1
+			current_type_index = randi_range(0,4)
+			if testi.has(current_type_index):
+				for i in range(10):
+					current_type_index = randi_range(0,4)
+					if not testi.has(current_type_index):
+						testi.append(current_type_index)
+						break
