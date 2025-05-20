@@ -88,6 +88,16 @@ bullet_sprite = ExtResource("4_yd0mu")
 bullet_sprite_rotation = 90.0
 bullet_scale = 1.0
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
+stats = {
+"Atk Speed": 0.9,
+"Damage": 8.0,
+"Damage Dealt": 0.0,
+"Damage Taken": 0.0,
+"Kills": 0,
+"Regen Time": 1.0,
+"Regeneration": 1.0,
+"Rounds Survived": 0
+}
 cost = 1
 title = "Seed"
 description = "Small seed."

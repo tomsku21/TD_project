@@ -367,11 +367,22 @@ upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_lnkkg")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Kills": 1
+"Kills": 20
 }
-cost = 5
+stats = {
+"Atk Speed": 20.0,
+"Damage": 400.0,
+"Damage Dealt": 0.0,
+"Damage Taken": 0.0,
+"Kills": 0,
+"Regen Time": 1.0,
+"Regeneration": 2.5,
+"Rounds Survived": 0
+}
+cost = 4
 title = "Flytrap"
 description = "Devours enemies whole"
+max_health = 1500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

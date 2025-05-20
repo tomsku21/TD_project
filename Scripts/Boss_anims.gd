@@ -7,7 +7,6 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	var direction = lastpos.direction_to(character.global_position)
-	print(direction)
-	if character.global_position != lastpos:
+	if direction != Vector2.ZERO:
 		animation_tree.set("parameters/blend_position", direction)
 	lastpos = character.global_position

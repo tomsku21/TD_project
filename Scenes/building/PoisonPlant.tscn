@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
 [ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_qtf4t"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_qtf4t"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("2_apre2")
@@ -116,7 +116,7 @@ upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_rp36r")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Dealt": 50.0
+"Damage Dealt": 1250.0
 }
 stats = {
 "Atk Speed": 5.0,
@@ -128,8 +128,8 @@ stats = {
 "Regeneration": 1.0,
 "Rounds Survived": 0
 }
-cost = 1
-title = "Poison Plant"
+cost = 3
+title = "Poison shroom"
 description = "Poisons enemies, applying a damage over time debuff"
 max_health = 500.0
 
