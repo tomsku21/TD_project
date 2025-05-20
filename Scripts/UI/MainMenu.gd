@@ -2,12 +2,15 @@ extends Node
 
 @export var gameScene: PackedScene
 @export var screen_button: OptionButton
+@export var best_score: Label
 var masterIndex: int
 var musicIndex: int
 var sfxIndex: int
 
 func _ready():
+	set_bestScore()
 	SignalBus.Settings.connect(_setting_changed)
+	SignalBus.BestScore.connect(set_bestScore)
 	if GlobalVariables.fullscreen:
 		screen_button.select(1)
 	else:
@@ -17,6 +20,9 @@ func _ready():
 	setup_volumes()
 	register_interacts()
 
+func set_bestScore():
+	if best_score != null:
+		best_score.text = str("Best score: ", GlobalVariables.best_round)
 
 func setup_volumes():
 	masterIndex = AudioServer.get_bus_index("Master")

@@ -8,3 +8,5 @@ signal Settings
 signal Controls
 @warning_ignore("unused_signal")
 signal RoundStart
+@warning_ignore("unused_signal")
+signal BestScore

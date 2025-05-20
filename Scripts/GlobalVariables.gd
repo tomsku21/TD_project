@@ -65,6 +65,7 @@ func save_game(path: String = "user://save.json"):
 		file.close()
 	else:
 		print("Failed to open file for writing")
+	SignalBus.BestScore.emit()
 
 func load_game(path: String = "user://save.json"):
 	if not FileAccess.file_exists(path):
