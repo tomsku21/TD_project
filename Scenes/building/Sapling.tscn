@@ -66,6 +66,9 @@ point_count = 2
 [node name="Sapling" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_k8lsj")
+autoplay = "default"
+frame = 2
+frame_progress = 0.690346
 offset = Vector2(0, -15)
 script = ExtResource("1_gjq8m")
 bullet = ExtResource("2_7mvnh")
