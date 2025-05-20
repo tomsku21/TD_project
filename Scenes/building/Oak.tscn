@@ -66,7 +66,7 @@ _limits = [0.550562, 2.0, 0.85567, 2.0]
 _data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
 point_count = 2
 
-[node name="Oak" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="Oak" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_aiiqu")
 animation = &"Idle"
@@ -85,6 +85,7 @@ plantimg = SubResource("AtlasTexture_ur44y")
 bullet_sprite = ExtResource("4_funno")
 bullet_sprite_rotation = 90.0
 bullet_scale = 2.0
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("4_csl5t"), null, null])
 upRequirement = {
 "Damage Taken": 750.0

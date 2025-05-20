@@ -8,12 +8,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3tqr"]
 size = Vector2(31, 32)
 
-[node name="TempBuilding" type="Area2D"]
+[node name="TempBuilding" type="Area2D" node_paths=PackedStringArray("range_marker")]
 z_index = 1
 input_pickable = false
 script = ExtResource("1_t3tqr")
 dropshadow_good = ExtResource("2_jbymx")
 dropshadow_bad = ExtResource("3_cymiu")
+range_marker = NodePath("RangeMarker")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -27,11 +28,6 @@ shape = SubResource("RectangleShape2D_t3tqr")
 unique_name_in_owner = true
 z_index = 1
 offset = Vector2(0, -15)
-
-[node name="Range" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.369, 0.369)
-texture = ExtResource("3_jbymx")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 z_index = -1

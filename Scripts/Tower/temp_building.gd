@@ -2,6 +2,7 @@ extends Area2D
 
 @export var dropshadow_good: Texture
 @export var dropshadow_bad: Texture
+@export var range_marker: Sprite2D
 
 var tilemap: TileMapLayer
 var turret: Node
@@ -21,9 +22,9 @@ func _process(_delta):
 	self.global_position = tilemap.map_to_local(cell)
 	if !spriteobtained and GlobalVariables.selected_turret != null:
 		new_turret = GlobalVariables.selected_turret.instantiate()
+		range_marker.scale = new_turret.range_indicator.scale
 		%Sprite2D.texture = new_turret.plantimg
 		spriteobtained = true
-		print(new_turret.plantimg)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_released():

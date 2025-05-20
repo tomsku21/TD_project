@@ -11,6 +11,7 @@ class_name Tower
 @export var bullet_sprite: Texture
 @export var bullet_sprite_rotation: float
 @export var bullet_scale: float
+@export var range_indicator: Sprite2D
 
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
@@ -18,7 +19,6 @@ class_name Tower
 
 @export_category("Tower Stats")
 @export var stats: Dictionary = {"Damage" : 10.0, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0, "Regeneration" : 0.0, "Regen Time": 1.0, "Rounds Survived": 0}
-
 @export var cost: int
 @export var title: String #Name of tower
 @export var description: String
