@@ -12,7 +12,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="8_1gr70"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_h62y5"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_ctpcp"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_ll3dy"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="12_ll3dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdjjs"]
 atlas = ExtResource("1_yd0mu")
@@ -59,7 +59,7 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yd0mu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 100.0
+radius = 125.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdi3x"]
 
@@ -68,7 +68,7 @@ _limits = [0.550562, 2.0, 0.85567, 2.0]
 _data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
 point_count = 2
 
-[node name="Flower" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="Flower" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_yd0mu")
 animation = &"Idle"
@@ -87,21 +87,21 @@ plantimg = SubResource("AtlasTexture_bdjjs")
 bullet_sprite = ExtResource("4_yd0mu")
 bullet_sprite_rotation = 90.0
 bullet_scale = 1.0
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
 stats = {
-"Atk Speed": 0.9,
+"Atk Speed": 0.6,
 "Damage": 8.0,
 "Damage Dealt": 0.0,
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 1
 title = "Seed"
 description = "Small seed."
-max_health = 500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -152,7 +152,7 @@ shader_material = ExtResource("8_1gr70")
 [node name="RangeMarker" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(0, -15)
-scale = Vector2(0.368659, 0.368659)
+scale = Vector2(0.46, 0.46)
 texture = ExtResource("9_h62y5")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]

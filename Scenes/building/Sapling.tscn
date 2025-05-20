@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_d63pv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_efv0f"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="13_1xls1"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="13_5yvm0"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="13_5yvm0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
 atlas = ExtResource("7_1xls1")
@@ -63,7 +63,7 @@ _limits = [0.550562, 2.0, 0.85567, 2.0]
 _data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
 point_count = 2
 
-[node name="Sapling" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="Sapling" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_k8lsj")
 offset = Vector2(0, -15)
@@ -79,6 +79,7 @@ plantimg = ExtResource("7_7mvnh")
 bullet_sprite = ExtResource("5_5yvm0")
 bullet_sprite_rotation = 90.0
 bullet_scale = 1.0
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("3_1xls1"), ExtResource("6_1xls1"), ExtResource("6_7mvnh")])
 stats = {
 "Atk Speed": 1.0,
@@ -87,13 +88,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 1
 title = "Sapling"
 description = "Small sapling."
-max_health = 750.0
+max_health = 1500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -136,7 +137,7 @@ shader_material = ExtResource("8_k8lsj")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 scale = Vector2(0.368659, 0.368659)
 texture = ExtResource("9_d63pv")
 
@@ -150,7 +151,7 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 input_pickable = false
 script = ExtResource("13_1xls1")
 tower = NodePath("..")

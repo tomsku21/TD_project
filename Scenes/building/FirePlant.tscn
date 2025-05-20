@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_tr10u"]
 [ext_resource type="AudioStream" uid="uid://ct0jf5bpr6lri" path="res://Assets/Sounds/fireball-whoosh-1-179125 (mp3cut.net).wav" id="8_hrvv2"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_j7pcx"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_hrvv2"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_hrvv2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrvv2"]
 atlas = ExtResource("3_j7pcx")
@@ -245,7 +245,7 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ngx4"]
 
-[node name="Fireplant" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="Fireplant" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Attack"
@@ -261,9 +261,10 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_hrvv2")
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Dealt": 5500.0
+"Damage Dealt": 10000.0
 }
 stats = {
 "Atk Speed": 2.5,
@@ -272,12 +273,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 5
 title = "Fire Plant"
 description = "Blasts enemies to ashes"
+max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

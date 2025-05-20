@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_tqlg5"]
 [ext_resource type="AudioStream" uid="uid://bw2csblleagwo" path="res://Assets/Sounds/puff.wav" id="7_qtf4t"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="8_qtf4t"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="9_xv0bi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp36r"]
 atlas = ExtResource("2_apre2")
@@ -100,7 +100,7 @@ radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2tv7"]
 
-[node name="PoisonPlant" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="PoisonPlant" type="AnimatedSprite2D" node_paths=PackedStringArray("Attack_effect", "attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
 animation = &"Idle"
@@ -114,9 +114,10 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_rp36r")
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Dealt": 1250.0
+"Damage Dealt": 2500.0
 }
 stats = {
 "Atk Speed": 5.0,
@@ -125,13 +126,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 3
 title = "Poison shroom"
-description = "Poisons enemies, applying a damage over time debuff"
-max_health = 500.0
+description = "Poisons enemies."
+max_health = 1500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -211,7 +212,7 @@ shader_material = ExtResource("4_1ebtt")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 scale = Vector2(0.553, 0.553)
 texture = ExtResource("5_tqlg5")
 
@@ -226,7 +227,7 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 input_pickable = false
 script = ExtResource("8_qtf4t")
 tower = NodePath("..")

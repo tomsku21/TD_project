@@ -58,7 +58,7 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_476cd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_52i1a"]
-radius = 150.0
+radius = 125.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w6pi6"]
 
@@ -67,7 +67,7 @@ _limits = [0.550562, 2.0, 0.85567, 2.0]
 _data = [Vector2(0.885163, 0.762277), 0.0, 1.11023, 0, 1, Vector2(2, 2), 1.11023, 0.0, 1, 0]
 point_count = 2
 
-[node name="Pine" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="Pine" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_476cd")
 animation = &"Idle"
@@ -86,9 +86,10 @@ plantimg = SubResource("AtlasTexture_h56vq")
 bullet_sprite = ExtResource("4_3h8hu")
 bullet_sprite_rotation = 90.0
 bullet_scale = 1.0
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
-"Damage Dealt": 750.0
+"Damage Dealt": 1500.0
 }
 stats = {
 "Atk Speed": 0.2,
@@ -97,13 +98,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 0.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 3
 title = "Pine"
 description = "A fast shooting pine tree"
-max_health = 800.0
+max_health = 1250.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -147,7 +148,7 @@ shader_material = ExtResource("5_tya3y")
 [node name="RangeMarker" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(0, -15)
-scale = Vector2(0.553, 0.553)
+scale = Vector2(0.46, 0.46)
 texture = ExtResource("6_52i1a")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
@@ -162,13 +163,12 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 input_pickable = false
 script = ExtResource("10_tya3y")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_52i1a")
 
 [node name="Hitbox" type="Area2D" parent="."]

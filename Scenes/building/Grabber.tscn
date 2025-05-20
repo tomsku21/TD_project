@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_jpcs6"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
-[ext_resource type="Script" path="res://Scripts/Tower/grabAttack.gd" id="7_xqlid"]
+[ext_resource type="Script" uid="uid://c3hvi7b4mxhtq" path="res://Scripts/Tower/grabAttack.gd" id="7_xqlid"]
 [ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="8_xqlid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqlid"]
@@ -126,7 +126,7 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbchp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 74.0068
+radius = 75.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpcs6"]
 
@@ -350,7 +350,7 @@ states/Start/position = Vector2(452, 160)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0cnpp"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_22x2m"), "Attack", "Full", SubResource("AnimationNodeStateMachineTransition_lnkkg"), "Full", "Idle", SubResource("AnimationNodeStateMachineTransition_7nxdr"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_xqlid")]
 graph_offset = Vector2(-215, -67)
 
-[node name="Grabber" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d") groups=["Turret"]]
+[node name="Grabber" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_a4le3")
 animation = &"Idle"
@@ -365,6 +365,7 @@ ARange = NodePath("RangeMarker")
 cpu_particles_2d = NodePath("CPUParticles2D")
 upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_lnkkg")
+range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Kills": 20
@@ -376,13 +377,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 2.5,
+"Regeneration": 4.0,
 "Rounds Survived": 0
 }
 cost = 4
 title = "Flytrap"
 description = "Devours enemies whole"
-max_health = 1500.0
+max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
@@ -441,8 +442,8 @@ character = NodePath("..")
 shader_material = ExtResource("4_jpcs6")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
+position = Vector2(0, -15)
 scale = Vector2(0.277458, 0.277458)
 texture = ExtResource("5_a1rsv")
 
@@ -456,13 +457,12 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 input_pickable = false
 script = ExtResource("7_xqlid")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_hskch")
 
 [node name="Hitbox" type="Area2D" parent="."]
