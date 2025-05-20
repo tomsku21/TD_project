@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dix30o4abr42v"]
+[gd_scene load_steps=18 format=4 uid="uid://dix30o4abr42v"]
 
 [ext_resource type="Script" uid="uid://besdl3kjeuv0v" path="res://Scripts/player.gd" id="1_7xbqi"]
 [ext_resource type="TileSet" uid="uid://bt5hmyta063ff" path="res://Assets/World/Testingtileset.tres" id="2_75dgk"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="7_psfxe"]
 [ext_resource type="Script" uid="uid://cqqc7s7kp8uem" path="res://addons/postfx/effects/VignetteFX.gd" id="8_7xbqi"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="8_66571"]
+[ext_resource type="Script" uid="uid://yrlvhu3dwhlh" path="res://Scripts/UI/BGClouds.gd" id="9_iqdgl"]
+[ext_resource type="Texture2D" uid="uid://dthjpa6c0edsi" path="res://Assets/World/forest1.png" id="10_wtxl4"]
+[ext_resource type="Texture2D" uid="uid://bwi7j5608wlyn" path="res://Assets/World/forest2.png" id="11_lshjk"]
+[ext_resource type="Texture2D" uid="uid://ddl0ml1gab2e5" path="res://Assets/World/forest3.png" id="12_ii2yc"]
 
 [sub_resource type="Curve2D" id="Curve2D_w6syb"]
 _data = {
@@ -58,6 +62,37 @@ offset_left = -705.0
 offset_top = -339.0
 offset_right = 670.0
 offset_bottom = 384.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(0, -300)
+transform = Transform2D(1, 0, 0, 1, 0, -300)
+follow_viewport_enabled = true
+scroll_ignore_camera_zoom = true
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1584, 0)
+script = ExtResource("9_iqdgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_wtxl4")
+
+[node name="Mountain" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0)
+motion_mirroring = Vector2(1584, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mountain"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_lshjk")
+
+[node name="Mount2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(1584, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mount2"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_ii2yc")
 
 [node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
