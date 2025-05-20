@@ -11,7 +11,7 @@ size = Vector2(108, 115)
 script = ExtResource("1_883my")
 shader_material = ExtResource("2_yb4q4")
 sdamage = 25
-attackTime = 2.0
+attackTime = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5jboi")
