@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_p48vb"]
 [ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_tdoqu"]
 [ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_t4luf"]
-[ext_resource type="Script" uid="uid://cup2128yv1gja" path="res://Scripts/Enemy_anims.gd" id="10_bq1cs"]
+[ext_resource type="Script" path="res://Scripts/Enemy_anims.gd" id="10_ho2oa"]
 
 [sub_resource type="Animation" id="Animation_tdoqu"]
 resource_name = "Down"
@@ -398,7 +398,7 @@ one_shot = true
 wait_time = 5.0
 
 [node name="AnimationHand" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "character")]
-script = ExtResource("10_bq1cs")
+script = ExtResource("10_ho2oa")
 animation_tree = NodePath("../AnimationTree")
 character = NodePath("..")
 
