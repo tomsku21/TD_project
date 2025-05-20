@@ -68,20 +68,18 @@ func _physics_process(delta: float) -> void:
 	if life_tree == null:
 		life_tree = get_tree().get_first_node_in_group("LifeTree")
 
-	change_rotation()
-
 func destroy():
 	cpu_particles_2d.emitting = true
 	await cpu_particles_2d.emitting == false
 	pathfollow.queue_free()
 	GlobalVariables.enemy_count -= 1
 
-func change_rotation():
-	var rot_deg = pathfollow.rotation_degrees
-	if rot_deg > 160 and rot_deg < 190 or rot_deg < -160 and rot_deg > -190:
-		animated_sprite_2d.flip_v = true
-	else:
-		animated_sprite_2d.flip_v = false
+#func change_rotation():
+	#var rot_deg = pathfollow.rotation_degrees
+	#if rot_deg > 160 and rot_deg < 190 or rot_deg < -160 and rot_deg > -190:
+		#animated_sprite_2d.flip_v = true
+	#else:
+		#animated_sprite_2d.flip_v = false
 
 func check_turret():
 	var nearest_turret = null

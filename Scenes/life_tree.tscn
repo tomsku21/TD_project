@@ -10,7 +10,7 @@ size = Vector2(108, 115)
 [node name="LifeTree" type="Area2D" groups=["LifeTree"]]
 script = ExtResource("1_883my")
 shader_material = ExtResource("2_yb4q4")
-sdamage = 5
+sdamage = 25
 attackTime = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
