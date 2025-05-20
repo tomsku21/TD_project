@@ -119,7 +119,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
-size = Vector2(11, 17)
+size = Vector2(11, 15)
 
 [sub_resource type="Animation" id="Animation_tq087"]
 resource_name = "Left"
@@ -397,7 +397,7 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 audio = NodePath("Audio")
 shader_material = ExtResource("4_c0b6a")
 speed = 16.0
-max_health = 200.0
+max_health = 150.0
 sdamage = 7.5
 attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
@@ -410,7 +410,7 @@ attack_timer = NodePath("Timers/AttackTimer")
 position = Vector2(0, -3)
 scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
-animation = &"Up"
+animation = &"Down"
 autoplay = "Left"
 offset = Vector2(0, -15)
 

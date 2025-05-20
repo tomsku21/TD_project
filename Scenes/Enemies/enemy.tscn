@@ -382,7 +382,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
-size = Vector2(11, 15)
+size = Vector2(11, 17)
 
 [node name="Enemy" type="PathFollow2D"]
 z_index = 1
@@ -398,7 +398,7 @@ cpu_particles_2d = NodePath("CPUParticles2D")
 audio = NodePath("Audio")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
-max_health = 100.0
+max_health = 75.0
 sdamage = 2.5
 attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
@@ -424,7 +424,7 @@ parameters/blend_position = Vector2(-0.0137275, -0.26178)
 position = Vector2(0, -3)
 scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
-animation = &"Down"
+animation = &"Up"
 autoplay = "Right"
 offset = Vector2(0, -15)
 
