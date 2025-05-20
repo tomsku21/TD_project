@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 					spawned_per_type.fill(0)
 					SignalBus.NextRound.emit()
 					if GlobalVariables.current_round <= GlobalVariables.max_rounds:
-						GlobalVariables.cost += 3
+						_reward_money()
 						if GlobalVariables.current_round != GlobalVariables.max_rounds:
 							GlobalVariables.current_round += 1
 							GlobalVariables.save_game()
@@ -55,6 +55,9 @@ func _physics_process(_delta: float) -> void:
 		testi.clear()
 		spawn_timer.stop()
 		GlobalVariables.started = false
+
+func _reward_money():
+	GlobalVariables.cost += int(floor(2+((GlobalVariables.current_round+1)**0.5)))
 
 func _on_timer_timeout() -> void:
 	var round_data = rounds[GlobalVariables.current_round]
