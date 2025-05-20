@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="4_jpcs6"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="5_a1rsv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="6_3a73y"]
-[ext_resource type="Script" path="res://Scripts/Tower/grabAttack.gd" id="7_xqlid"]
+[ext_resource type="Script" uid="uid://c3hvi7b4mxhtq" path="res://Scripts/Tower/grabAttack.gd" id="7_xqlid"]
 [ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="8_xqlid"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqlid"]
@@ -126,7 +126,7 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbchp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 74.0068
+radius = 75.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpcs6"]
 
@@ -441,8 +441,8 @@ character = NodePath("..")
 shader_material = ExtResource("4_jpcs6")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
+position = Vector2(0, -15)
 scale = Vector2(0.277458, 0.277458)
 texture = ExtResource("5_a1rsv")
 
@@ -456,13 +456,12 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 input_pickable = false
 script = ExtResource("7_xqlid")
 tower = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_hskch")
 
 [node name="Hitbox" type="Area2D" parent="."]

@@ -40,7 +40,7 @@ var path : Path2D
 
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
-	speed = speed * randf_range(0.8, 1.2)
+	#speed = speed * randf_range(0.8, 1.2)
 	current_speed = speed
 
 	if has_node("AnimatedSprite2D"):

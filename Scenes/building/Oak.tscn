@@ -57,7 +57,7 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur44y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 150.0
+radius = 175.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ww7k"]
 
@@ -144,10 +144,9 @@ character = NodePath("..")
 shader_material = ExtResource("6_knowi")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
-position = Vector2(0, -12)
-scale = Vector2(0.553, 0.553)
+position = Vector2(0, -15)
+scale = Vector2(0.64, 0.64)
 texture = ExtResource("7_r8k8u")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
@@ -160,7 +159,7 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 input_pickable = false
 script = ExtResource("9_7ww7k")
 tower = NodePath("..")

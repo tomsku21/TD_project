@@ -103,7 +103,7 @@ point_count = 2
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxka8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hskch"]
-radius = 261.989
+radius = 125.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oc3se"]
 
@@ -215,8 +215,8 @@ shader_material = ExtResource("4_bcjs5")
 
 [node name="RangeMarker" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -12)
-scale = Vector2(0.955, 0.955)
+position = Vector2(0, -15)
+scale = Vector2(0.46, 0.46)
 texture = ExtResource("5_oc3se")
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
@@ -225,7 +225,7 @@ pitch_scale = 1.1
 bus = &"SFX"
 
 [node name="Range" type="Area2D" parent="." node_paths=PackedStringArray("tower")]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 collision_mask = 4
 input_pickable = false
 script = ExtResource("8_bcjs5")
