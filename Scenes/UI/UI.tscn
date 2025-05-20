@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=53 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://3bveehniy4a6" path="res://Assets/UI/ArrowDown.png" id="6_nqsl3"]
 [ext_resource type="Texture2D" uid="uid://df8gou0fblph2" path="res://Assets/Towers/seed.png" id="7_o7qfm"]
 [ext_resource type="PackedScene" uid="uid://k6ufqb7xdej0" path="res://Scenes/building/Seed.tscn" id="8_cjk0b"]
-[ext_resource type="PackedScene" uid="uid://c4a83ta4dopyd" path="res://Scenes/building/MoneyMaker.tscn" id="9_tiitt"]
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="10_2t8xk"]
 [ext_resource type="Theme" uid="uid://c6gcax5qoo0q2" path="res://Assets/StyleBox/OptionButtonTheme.tres" id="12_jeqmb"]
 [ext_resource type="StyleBox" uid="uid://by7ymvcotcsu4" path="res://Assets/StyleBox/OptionButton_Normal.tres" id="12_u6hof"]
@@ -709,14 +708,6 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("7_o7qfm")
 item = ExtResource("8_cjk0b")
-
-[node name="BuyMoneyMaker" parent="buymenu/VBoxContainer/build" instance=ExtResource("5_xkw3u")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-texture_normal = ExtResource("7_o7qfm")
-item = ExtResource("9_tiitt")
-cost = 5
 
 [node name="cost" type="Label" parent="buymenu/VBoxContainer"]
 unique_name_in_owner = true
