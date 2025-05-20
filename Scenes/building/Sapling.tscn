@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="9_d63pv"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="10_efv0f"]
 [ext_resource type="Script" uid="uid://4rh548sejugb" path="res://Scripts/Hitbox_Component.gd" id="13_1xls1"]
-[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="13_5yvm0"]
+[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="13_5yvm0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yvm0"]
 atlas = ExtResource("7_1xls1")
