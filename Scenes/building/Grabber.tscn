@@ -377,13 +377,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 2.5,
+"Regeneration": 4.0,
 "Rounds Survived": 0
 }
 cost = 4
 title = "Flytrap"
 description = "Devours enemies whole"
-max_health = 1500.0
+max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

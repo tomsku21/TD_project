@@ -97,13 +97,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 5.0,
+"Regeneration": 7.5,
 "Rounds Survived": 0
 }
 cost = 2
 title = "Oak"
 description = "A sturdy oak tree"
-max_health = 2500.0
+max_health = 5000.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

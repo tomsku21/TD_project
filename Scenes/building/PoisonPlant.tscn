@@ -126,13 +126,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 3
 title = "Poison shroom"
 description = "Poisons enemies, applying a damage over time debuff"
-max_health = 500.0
+max_health = 1500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

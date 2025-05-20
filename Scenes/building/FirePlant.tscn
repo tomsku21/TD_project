@@ -273,12 +273,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 5
 title = "Fire Plant"
 description = "Blasts enemies to ashes"
+max_health = 2500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

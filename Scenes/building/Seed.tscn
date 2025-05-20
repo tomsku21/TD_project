@@ -90,19 +90,18 @@ bullet_scale = 1.0
 range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
 stats = {
-"Atk Speed": 0.9,
+"Atk Speed": 0.6,
 "Damage": 8.0,
 "Damage Dealt": 0.0,
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 1
 title = "Seed"
 description = "Small seed."
-max_health = 500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

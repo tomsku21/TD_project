@@ -93,13 +93,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 1.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 2
 title = "Cold Plant"
 description = "Slows enemies."
-max_health = 1250.0
+max_health = 2000.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

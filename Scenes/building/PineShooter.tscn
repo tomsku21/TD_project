@@ -98,13 +98,13 @@ stats = {
 "Damage Taken": 0.0,
 "Kills": 0,
 "Regen Time": 1.0,
-"Regeneration": 0.0,
+"Regeneration": 2.0,
 "Rounds Survived": 0
 }
 cost = 3
 title = "Pine"
 description = "A fast shooting pine tree"
-max_health = 800.0
+max_health = 1250.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
