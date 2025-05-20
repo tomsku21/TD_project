@@ -117,7 +117,7 @@ plantimg = SubResource("AtlasTexture_rp36r")
 range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Dealt": 1250.0
+"Damage Dealt": 2500.0
 }
 stats = {
 "Atk Speed": 5.0,
@@ -131,7 +131,7 @@ stats = {
 }
 cost = 3
 title = "Poison shroom"
-description = "Poisons enemies, applying a damage over time debuff"
+description = "Poisons enemies."
 max_health = 1500.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

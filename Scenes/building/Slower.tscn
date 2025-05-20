@@ -84,7 +84,7 @@ plantimg = SubResource("AtlasTexture_cpad0")
 range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Damage Taken": 450.0
+"Damage Taken": 1000.0
 }
 stats = {
 "Atk Speed": 5.0,
