@@ -37,7 +37,7 @@ var currently_grabbed: bool = false
 var poisoned: bool = false
 var burning: bool = false
 var path : Path2D
-
+var kill: bool = true
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
 	speed = speed * randf_range(0.8, 1.2)
@@ -69,10 +69,13 @@ func _physics_process(delta: float) -> void:
 		life_tree = get_tree().get_first_node_in_group("LifeTree")
 
 func destroy():
-	cpu_particles_2d.emitting = true
-	await cpu_particles_2d.emitting == false
-	pathfollow.queue_free()
-	GlobalVariables.enemy_count -= 1
+	if kill:
+		kill = false
+		cpu_particles_2d.emitting = true
+		await cpu_particles_2d.emitting == false
+		pathfollow.queue_free()
+		GlobalVariables.enemy_count -= 1
+		kill = true
 
 #func change_rotation():
 	#var rot_deg = pathfollow.rotation_degrees
