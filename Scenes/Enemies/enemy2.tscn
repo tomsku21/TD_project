@@ -387,6 +387,7 @@ blend_mode = 1
 [node name="Enemy" type="PathFollow2D"]
 z_index = 1
 rotates = false
+loop = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_1cilx")
@@ -397,6 +398,7 @@ audio = NodePath("Audio")
 shader_material = ExtResource("4_c0b6a")
 speed = 16.0
 max_health = 200.0
+sdamage = 7.5
 attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")

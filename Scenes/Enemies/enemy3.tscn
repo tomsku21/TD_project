@@ -387,6 +387,7 @@ blend_mode = 1
 [node name="Enemy" type="PathFollow2D"]
 z_index = 1
 rotates = false
+loop = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_i5nno")

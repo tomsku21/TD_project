@@ -388,6 +388,7 @@ size = Vector2(11, 15)
 z_index = 1
 y_sort_enabled = true
 rotates = false
+loop = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
 script = ExtResource("1_ubio8")
@@ -398,6 +399,7 @@ audio = NodePath("Audio")
 shader_material = ExtResource("4_haj6g")
 speed = 20.0
 max_health = 100.0
+sdamage = 2.5
 attack_distance = 100.0
 poison = NodePath("Debuff/Poison")
 burn = NodePath("Debuff/Burn")

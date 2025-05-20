@@ -56,7 +56,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if end == false:
 		pathfollow.progress += current_speed * delta
-	if pathfollow.progress_ratio >= 0.99:
+	if pathfollow.progress_ratio >= 1.0:
 		if attack_timer.is_stopped():
 			attack_timer.start()
 			end = true
