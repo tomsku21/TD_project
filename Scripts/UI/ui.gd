@@ -1,6 +1,7 @@
 extends CanvasLayer
 @export var bankPanel: Panel
 @export var buyMenuPanel: Panel
+@export var speedPanel: Panel
 @export var animationPlayer: AnimationPlayer
 @export var current_round: Label
 @export var shop_buton: TextureButton
@@ -27,6 +28,10 @@ var sfxIndex: int
 var startGame: bool = false
 var shop_hide: bool = false
 var show_controls: bool = true
+
+#speed buttons stuff
+var current_button: TextureButton = null
+
 func _ready() -> void:
 	if GlobalVariables.fullscreen:
 		screen_button.select(1)
@@ -48,11 +53,15 @@ func _process(_delta: float) -> void:
 	else:
 		push_warning("current_round Label is not assigned!")
 	if GlobalVariables.in_mainMenu:
+		_speed_change(1.0, %Normal)
 		bankPanel.visible = false
 		buyMenuPanel.visible = false
+		speedPanel.visible = false
 	elif not GlobalVariables.in_mainMenu and startGame == false:
 		bankPanel.visible = true
 		buyMenuPanel.visible = true
+		_speed_change(2.0, %SpeedHigh)
+		speedPanel.visible = true
 		startGame = true
 	if Input.is_action_just_pressed("Esc") and GlobalVariables.game_over == false and not GlobalVariables.in_mainMenu:
 		if not animationPlayer.current_animation == "Controls" and not animationPlayer.current_animation == "Exit" and not animationPlayer.current_animation == "Shop" and not animationPlayer.current_animation == "Shop2":
@@ -62,8 +71,10 @@ func _process(_delta: float) -> void:
 				settingsPanel.visible = false
 				in_settings = false
 			else:
+				_speed_change(1.0, %Normal)
 				bankPanel.visible = !bankPanel.visible
 				buyMenuPanel.visible = !buyMenuPanel.visible
+				speedPanel.visible = !speedPanel.visible
 				vboxContainer.visible = true
 				settingsPanel.visible = false
 				pausePanel.visible = !pausePanel.visible
@@ -78,6 +89,7 @@ func _process(_delta: float) -> void:
 	if GlobalVariables.game_over == true:
 		bankPanel.visible = false
 		buyMenuPanel.visible = false
+		speedPanel.visible = false
 		pausePanel.visible = false
 		gameOverPanel.visible = true
 		animationPlayer.speed_scale = 1.0
@@ -99,6 +111,7 @@ func _on_exit_pressed() -> void:
 	await _wait_until_animation_finish()
 	bankPanel.visible = false
 	buyMenuPanel.visible = false
+	speedPanel.visible = false
 	pausePanel.visible = false
 	settingsPanel.visible = false
 	gameOverPanel.visible = false
@@ -126,6 +139,7 @@ func _on_new_game_pressed() -> void:
 func defaultPanels(reset: bool) -> void:
 	bankPanel.visible = true
 	buyMenuPanel.visible = true
+	speedPanel.visible = true
 	pausePanel.visible = false
 	settingsPanel.visible = false
 	controls.visible = false
@@ -145,6 +159,7 @@ func _wait_until_animation_finish() -> void:
 
 func _on_resume_pressed() -> void:
 	bankPanel.visible = !bankPanel.visible
+	speedPanel.visible = !speedPanel.visible
 	buyMenuPanel.visible = !buyMenuPanel.visible
 	pausePanel.visible = !pausePanel.visible
 	get_tree().paused = !get_tree().paused
@@ -160,6 +175,9 @@ func connect_interacts() -> void:
 	for slider in sliders: #connect audio sliders to value changed signal and connect their values to their respective Audioserver indexes.
 		slider.value_changed.connect(_on_value_changed.bind(slider.name))
 		slider.visibility_changed.connect(_on_visibility_changed.bind(slider.name, slider))
+	var buttons = get_tree().get_nodes_in_group("SpeedButton")
+	for button in buttons:
+		button.pressed.connect(_on_speed_button_pressed.bind(button.name, button))
 
 func _on_visibility_changed(_name: String, slider) -> void:
 	match _name:
@@ -192,6 +210,23 @@ func _next_round():
 	nextRoundPanel.visible = true
 	animationPlayer.play("NextRound")
 
+func _on_speed_button_pressed(_name, button) -> void:
+	match _name:
+		"Normal":
+			_speed_change(1.0, button)
+		"SpeedUp":
+			_speed_change(1.5, button)
+		"SpeedHigh":
+			_speed_change(2.0, button)
+
+func _speed_change(value, pressed_button):
+	if current_button:
+		current_button.disabled = false
+	current_button = pressed_button
+	if value:
+		current_button.disabled = true
+		Engine.time_scale = value
+	
 
 func _on_button_pressed() -> void:
 	nextRoundPanel.visible = false

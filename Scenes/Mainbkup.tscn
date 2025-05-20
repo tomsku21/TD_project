@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cripyhw7uam3c" path="res://Scripts/spawner.gd" id="7_psfxe"]
 [ext_resource type="Script" uid="uid://cqqc7s7kp8uem" path="res://addons/postfx/effects/VignetteFX.gd" id="8_7xbqi"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="8_66571"]
-[ext_resource type="Script" path="res://Scripts/UI/BGClouds.gd" id="9_iqdgl"]
+[ext_resource type="Script" uid="uid://yrlvhu3dwhlh" path="res://Scripts/UI/BGClouds.gd" id="9_iqdgl"]
 [ext_resource type="Texture2D" uid="uid://dthjpa6c0edsi" path="res://Assets/World/forest1.png" id="10_wtxl4"]
 [ext_resource type="Texture2D" uid="uid://bwi7j5608wlyn" path="res://Assets/World/forest2.png" id="11_lshjk"]
 [ext_resource type="Texture2D" uid="uid://ddl0ml1gab2e5" path="res://Assets/World/forest3.png" id="12_ii2yc"]

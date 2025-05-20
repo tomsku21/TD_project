@@ -567,11 +567,12 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_813c4"]
 texture = ExtResource("2_y85ht")
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "controls", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "screen_button", "nextRoundPanel")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "speedPanel", "animationPlayer", "current_round", "shop_buton", "controls", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "screen_button", "nextRoundPanel")]
 process_mode = 3
 script = ExtResource("1_lotke")
 bankPanel = NodePath("Bank")
 buyMenuPanel = NodePath("buymenu")
+speedPanel = NodePath("Speed")
 animationPlayer = NodePath("AnimationPlayer")
 current_round = NodePath("Bank/Label")
 shop_buton = NodePath("buymenu/Panel/Shop_button")
@@ -1032,13 +1033,15 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Normal" type="TextureButton" parent="Speed/HBoxContainer"]
+[node name="Normal" type="TextureButton" parent="Speed/HBoxContainer" groups=["SpeedButton"]]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Speed1" type="TextureButton" parent="Speed/HBoxContainer"]
+[node name="SpeedUp" type="TextureButton" parent="Speed/HBoxContainer" groups=["SpeedButton"]]
 layout_mode = 2
 
-[node name="Speed2" type="TextureButton" parent="Speed/HBoxContainer"]
+[node name="SpeedHigh" type="TextureButton" parent="Speed/HBoxContainer" groups=["SpeedButton"]]
+unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="pressed" from="buymenu/Panel/Shop_button" to="." method="_on_shop_button_pressed"]
