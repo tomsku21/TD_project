@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=54 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
@@ -17,6 +17,18 @@
 [ext_resource type="StyleBox" uid="uid://n4v3tfoenhvi" path="res://Assets/StyleBox/OptionButton_Pressed.tres" id="15_813c4"]
 [ext_resource type="Texture2D" uid="uid://fa43hn0u88yl" path="res://Assets/UI/WASD.png" id="16_813c4"]
 [ext_resource type="Texture2D" uid="uid://ce8jy34r2y31j" path="res://Assets/UI/Mouse.png" id="17_jlkmm"]
+[ext_resource type="Texture2D" uid="uid://d2xbdrnn5ne62" path="res://Assets/UI/Normalt.png" id="18_8oemv"]
+[ext_resource type="Texture2D" uid="uid://du55nyp783x8g" path="res://Assets/UI/Normalt_Pressed.png" id="19_cjgo1"]
+[ext_resource type="Texture2D" uid="uid://cm2bs2xfqwre" path="res://Assets/UI/Speed1.png" id="19_dfgx4"]
+[ext_resource type="Texture2D" uid="uid://bs1w5cosn7bny" path="res://Assets/UI/Speed2.png" id="20_ph0kv"]
+[ext_resource type="Texture2D" uid="uid://ddnhsbexl72gr" path="res://Assets/UI/Normalt_hover.png" id="20_wnk6b"]
+[ext_resource type="Texture2D" uid="uid://b0tljbdgs7qcg" path="res://Assets/UI/Normalt_disabled.png" id="21_hgi12"]
+[ext_resource type="Texture2D" uid="uid://narrfsi4pfww" path="res://Assets/UI/Speed1_Pressed.png" id="23_wb2t4"]
+[ext_resource type="Texture2D" uid="uid://c67q2renhs82l" path="res://Assets/UI/Speed1_hover.png" id="24_h2gsf"]
+[ext_resource type="Texture2D" uid="uid://dljf17rrsr113" path="res://Assets/UI/Speed1_Disabled.png" id="25_bit2e"]
+[ext_resource type="Texture2D" uid="uid://dslv2608td2oo" path="res://Assets/UI/Speed2_pressed.png" id="27_6hcop"]
+[ext_resource type="Texture2D" uid="uid://uktpqto37yjp" path="res://Assets/UI/Speed2_hover.png" id="28_jba58"]
+[ext_resource type="Texture2D" uid="uid://cyru8gqu2af81" path="res://Assets/UI/Speed2_disabled.png" id="29_kqtf6"]
 
 [sub_resource type="Animation" id="Animation_813c4"]
 resource_name = "Controls"
@@ -1030,19 +1042,34 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_813c4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Speed"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 168.0
+offset_bottom = 59.0
+scale = Vector2(0.73023, 0.73023)
 
 [node name="Normal" type="TextureButton" parent="Speed/HBoxContainer" groups=["SpeedButton"]]
 unique_name_in_owner = true
 layout_mode = 2
+texture_normal = ExtResource("18_8oemv")
+texture_pressed = ExtResource("19_cjgo1")
+texture_hover = ExtResource("20_wnk6b")
+texture_disabled = ExtResource("21_hgi12")
 
 [node name="SpeedUp" type="TextureButton" parent="Speed/HBoxContainer" groups=["SpeedButton"]]
 layout_mode = 2
+texture_normal = ExtResource("19_dfgx4")
+texture_pressed = ExtResource("23_wb2t4")
+texture_hover = ExtResource("24_h2gsf")
+texture_disabled = ExtResource("25_bit2e")
 
 [node name="SpeedHigh" type="TextureButton" parent="Speed/HBoxContainer" groups=["SpeedButton"]]
 unique_name_in_owner = true
 layout_mode = 2
+texture_normal = ExtResource("20_ph0kv")
+texture_pressed = ExtResource("27_6hcop")
+texture_hover = ExtResource("28_jba58")
+texture_disabled = ExtResource("29_kqtf6")
 
 [connection signal="pressed" from="buymenu/Panel/Shop_button" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
