@@ -98,6 +98,7 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_regen_timer_timeout() -> void:
 	if healthcomponent.health < healthcomponent.MAX_HEALTH:
+		healthcomponent.shader_handler(false)
 		healthcomponent.health += stats["Regeneration"]
 
 func upgrade():

@@ -11,6 +11,35 @@
 [ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_t4luf"]
 [ext_resource type="Script" uid="uid://cup2128yv1gja" path="res://Scripts/Boss_anims.gd" id="10_bq1cs"]
 
+[sub_resource type="Animation" id="Animation_tdoqu"]
+resource_name = "Down"
+length = 0.400003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Down"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="Animation" id="Animation_tpyyq"]
 resource_name = "Left"
 length = 0.400003
@@ -99,35 +128,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"Up"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_tdoqu"]
-resource_name = "Down"
-length = 0.400003
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Down"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -331,8 +331,9 @@ visible = false
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_287tu")
 
-[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("4_tpyyq")]
+[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("sprite", "character") instance=ExtResource("4_tpyyq")]
 unique_name_in_owner = true
+sprite = NodePath("../AnimatedSprite2D")
 character = NodePath("..")
 shader_material = ExtResource("2_ho2oa")
 
