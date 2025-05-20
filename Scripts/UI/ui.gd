@@ -121,6 +121,7 @@ func _on_exit_pressed() -> void:
 	bankPanel.visible = false
 	buyMenuPanel.visible = false
 	speedPanel.visible = false
+	_speed_change(1.0, %Normal)
 	pausePanel.visible = false
 	settingsPanel.visible = false
 	gameOverPanel.visible = false
@@ -171,6 +172,8 @@ func _on_resume_pressed() -> void:
 	speedPanel.visible = !speedPanel.visible
 	buyMenuPanel.visible = !buyMenuPanel.visible
 	pausePanel.visible = !pausePanel.visible
+	print("back to normal", current_speed)
+	_speed_change(current_speed, current_button)
 	get_tree().paused = !get_tree().paused
 
 
@@ -229,15 +232,14 @@ func _on_speed_button_pressed(_name, button) -> void:
 			_speed_change(3.0, button)
 
 func _speed_change(value, pressed_button):
-	if value != Engine.time_scale and pressed_button != current_button:
-		print("speed changed?????")
-		if current_button:
-			current_button.disabled = false
-		current_button = pressed_button
-		current_speed = value
-		if value:
-			current_button.disabled = true
-			Engine.time_scale = value
+	print("speed changed?????")
+	if current_button:
+		current_button.disabled = false
+	current_button = pressed_button
+	current_speed = value
+	if value:
+		current_button.disabled = true
+		Engine.time_scale = value
 
 
 func _on_button_pressed() -> void:

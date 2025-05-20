@@ -72,7 +72,7 @@ func destroy():
 	cpu_particles_2d.emitting = true
 	await cpu_particles_2d.emitting == false
 	pathfollow.queue_free()
-	GlobalVariables.enemies.erase(self)
+	GlobalVariables.enemies.erase(get_parent())
 	#GlobalVariables.enemy_count -= 1
 
 #func change_rotation():

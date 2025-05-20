@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_ncwte"]
 [ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_20jvr"]
 [ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_yc70b"]
-[ext_resource type="Script" path="res://Scripts/Enemy_anims.gd" id="10_airl3"]
+[ext_resource type="Script" uid="uid://cup2128yv1gja" path="res://Scripts/Enemy_anims.gd" id="10_airl3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mld87"]
 atlas = ExtResource("3_mld87")

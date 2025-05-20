@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://qlcaabhbmpmc" path="res://Scripts/Debuff/poison.gd" id="7_haj6g"]
 [ext_resource type="Script" uid="uid://bvv52fentounf" path="res://Scripts/Debuff/burn.gd" id="8_u0emo"]
 [ext_resource type="Script" uid="uid://0k6sjil1d6kk" path="res://Scripts/Debuff/slow.gd" id="9_tq087"]
-[ext_resource type="Script" path="res://Scripts/Enemy_anims.gd" id="10_4bcle"]
+[ext_resource type="Script" uid="uid://cup2128yv1gja" path="res://Scripts/Enemy_anims.gd" id="10_4bcle"]
 
 [sub_resource type="Animation" id="Animation_ycxl0"]
 resource_name = "Down"
