@@ -367,7 +367,7 @@ upgrade_cpu_2d = NodePath("Upgrade")
 plantimg = SubResource("AtlasTexture_lnkkg")
 upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
-"Kills": 1
+"Kills": 20
 }
 cost = 5
 title = "Flytrap"

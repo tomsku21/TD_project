@@ -88,7 +88,7 @@ bullet_sprite_rotation = 90.0
 bullet_scale = 1.0
 upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
-"Damage Dealt": 150.0
+"Damage Dealt": 750.0
 }
 stats = {
 "Atk Speed": 0.2,
