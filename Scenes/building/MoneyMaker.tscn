@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://caqxysn4tq1wx" path="res://Shaders/ShaderMaterial.tres" id="5_gldyh"]
 [ext_resource type="Texture2D" uid="uid://dxccauntxtwni" path="res://Assets/Ants/Circle.png" id="6_40f82"]
 [ext_resource type="AudioStream" uid="uid://c2afcly67jr32" path="res://Assets/Sounds/shoot.wav" id="7_8uxj8"]
-[ext_resource type="Script" uid="uid://rj7ihjseyega" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
+[ext_resource type="Script" path="res://Scripts/Tower/Tower_hitbox.gd" id="11_h5qwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h5qwq"]
 atlas = ExtResource("2_h86t1")
