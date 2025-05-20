@@ -5,7 +5,8 @@ var gun: Marker2D
 var speed: float = 600
 var damage: float = 20
 var splash_radius: float = 64.0
-
+var timer: float
+var lifetime: float = 7.0
 @onready var sprite_2d: Sprite2D = $Sprite2D
 func _ready() -> void:
 	scale = Vector2(0,0)
@@ -19,6 +20,9 @@ func _physics_process(delta: float) -> void:
 		scale.x = clamp(scale.x, 0.0, 1.0)
 		scale.y = clamp(scale.y, 0.0, 1.0)
 	else:
+		queue_free()
+	timer += delta
+	if timer >= lifetime:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
