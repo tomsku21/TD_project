@@ -160,6 +160,7 @@ scroll_active = false
 
 [node name="UpPopup" type="PanelContainer" parent="UI/Build1stats/UpTabs"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(150, 116)
 layout_direction = 2
 layout_mode = 1
@@ -234,13 +235,13 @@ scroll_active = false
 [node name="SellPopup" type="PanelContainer" parent="UI/Build1stats/UpTabs"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(150, 116)
+custom_minimum_size = Vector2(150, 50)
 layout_direction = 2
 layout_mode = 0
 offset_left = 70.0
 offset_top = -125.0
-offset_right = 220.0
-offset_bottom = 18.0
+offset_right = 260.0
+offset_bottom = -55.0
 pivot_offset = Vector2(70, 0)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eu1q3")
