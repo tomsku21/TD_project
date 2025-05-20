@@ -3,12 +3,13 @@ extends Node
 var game_state: bool = false
 var started: bool = false
 var game_over: bool = false
-var enemy_count: int:
-	set(value):
-		if value >= 0:
-			enemy_count = value
-		else:
-			enemy_count = 0
+var enemies: Array[PathFollow2D]
+#var enemy_count: int:
+	#set(value):
+		#if value >= 0:
+			#enemy_count = value
+		#else:
+			#enemy_count = 0
 var turrets: Array = []
 var player_hp: float = 1000.0
 var MAX_HP: float = 1000.0
@@ -39,7 +40,7 @@ func _input(event: InputEvent) -> void:
 
 func reset():
 	save_game()
-	enemy_count = 0
+	enemies.clear()
 	game_state = true
 	player_hp = MAX_HP
 	game_over = false

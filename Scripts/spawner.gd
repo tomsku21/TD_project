@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 					break
 			if all_spawned:
 				spawn_timer.stop()
-				if GlobalVariables.enemy_count == 0:
+				if GlobalVariables.enemies.size() <= 0:
 					spawned_per_type.fill(0)
 					SignalBus.NextRound.emit()
 					if GlobalVariables.current_round <= GlobalVariables.max_rounds:
@@ -65,7 +65,7 @@ func _on_timer_timeout() -> void:
 				var path = paths.pick_random()
 				new_enemy.get_child(0).path = path
 				path.add_child(new_enemy)
-				GlobalVariables.enemy_count += 1
+				GlobalVariables.enemies.append(new_enemy)
 				spawned_per_type[current_type_index] += 1
 			break
 		else:

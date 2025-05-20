@@ -69,13 +69,11 @@ func _physics_process(delta: float) -> void:
 		life_tree = get_tree().get_first_node_in_group("LifeTree")
 
 func destroy():
-	if kill:
-		kill = false
-		cpu_particles_2d.emitting = true
-		await cpu_particles_2d.emitting == false
-		pathfollow.queue_free()
-		GlobalVariables.enemy_count -= 1
-		kill = true
+	cpu_particles_2d.emitting = true
+	await cpu_particles_2d.emitting == false
+	pathfollow.queue_free()
+	GlobalVariables.enemies.erase(self)
+	#GlobalVariables.enemy_count -= 1
 
 #func change_rotation():
 	#var rot_deg = pathfollow.rotation_degrees
