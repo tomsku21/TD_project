@@ -87,7 +87,7 @@ bullet_sprite_rotation = 90.0
 bullet_scale = 2.0
 upgrades = Array[PackedScene]([ExtResource("4_csl5t"), null, null])
 upRequirement = {
-"Damage Taken": 10.0
+"Damage Taken": 750.0
 }
 cost = 3
 title = "Oak"
