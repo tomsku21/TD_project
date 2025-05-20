@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dq5pfe5ho4c80"]
+[gd_scene load_steps=42 format=3 uid="uid://dq5pfe5ho4c80"]
 
 [ext_resource type="Script" uid="uid://dmr3g31w3kqy8" path="res://Scripts/UI/ui.gd" id="1_lotke"]
 [ext_resource type="Texture2D" uid="uid://u4bj7i5deqtm" path="res://Assets/UI/Panel2.png" id="2_y85ht"]
@@ -564,6 +564,9 @@ bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_462t7"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_813c4"]
+texture = ExtResource("2_y85ht")
+
 [node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bankPanel", "buyMenuPanel", "animationPlayer", "current_round", "shop_buton", "controls", "gameOverPanel", "overVBoxContainer", "pausePanel", "vboxContainer", "settingsPanel", "screen_button", "nextRoundPanel")]
 process_mode = 3
 script = ExtResource("1_lotke")
@@ -1013,6 +1016,30 @@ offset_bottom = 51.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("17_jlkmm")
+
+[node name="Speed" type="Panel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 365.0
+offset_right = 505.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_813c4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Speed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Normal" type="TextureButton" parent="Speed/HBoxContainer"]
+layout_mode = 2
+
+[node name="Speed1" type="TextureButton" parent="Speed/HBoxContainer"]
+layout_mode = 2
+
+[node name="Speed2" type="TextureButton" parent="Speed/HBoxContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="buymenu/Panel/Shop_button" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
