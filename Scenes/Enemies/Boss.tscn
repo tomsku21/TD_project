@@ -321,6 +321,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/blend_position = Vector2(-0.144208, 0.373272)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+z_index = 2
 position = Vector2(0, -3)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_ivn37")
