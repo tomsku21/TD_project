@@ -128,8 +128,8 @@ stats = {
 "Regeneration": 1.0,
 "Rounds Survived": 0
 }
-cost = 1
-title = "Poison Plant"
+cost = 3
+title = "Poison shroom"
 description = "Poisons enemies, applying a damage over time debuff"
 max_health = 500.0
 

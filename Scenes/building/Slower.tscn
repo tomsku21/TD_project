@@ -85,9 +85,20 @@ upgrades = Array[PackedScene]([null, null, null])
 upRequirement = {
 "Damage Taken": 450.0
 }
-cost = 1
+stats = {
+"Atk Speed": 5.0,
+"Damage": 25.0,
+"Damage Dealt": 0.0,
+"Damage Taken": 0.0,
+"Kills": 0,
+"Regen Time": 1.0,
+"Regeneration": 1.0,
+"Rounds Survived": 0
+}
+cost = 2
 title = "Cold Plant"
-description = "Slows enemies"
+description = "Slows enemies."
+max_health = 1250.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

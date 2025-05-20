@@ -277,7 +277,7 @@ stats = {
 }
 cost = 5
 title = "Fire Plant"
-description = "Rapidly Burns enemies"
+description = "Blasts enemies to ashes"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6

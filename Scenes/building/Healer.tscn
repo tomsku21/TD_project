@@ -129,15 +129,16 @@ upRequirement = {
 "Damage Taken": 2500.0
 }
 stats = {
-"Atk Speed": 1.0,
+"Atk Speed": 10.5,
 "Damage Taken": 0.0,
-"Healing": 10.0,
+"Healing": 20.0,
 "Health Restored": 0.0
 }
-cost = 1
-title = "Healer plant"
-description = "Healer"
+cost = 4
+title = "Healie"
+description = "Healer nearby plants"
 DMGText = "Healing: "
+max_health = 1000.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 6
