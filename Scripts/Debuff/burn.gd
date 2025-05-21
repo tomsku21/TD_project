@@ -21,6 +21,9 @@ func FireDebuff(damage: int, attackerPlant: Node2D):
 			main_script.burning = true
 			for i in range(times):
 				if is_instance_valid(attackerPlant):
+					if main_script is Enemy:
+						if main_script.grabbed:
+							return
 					main_script.take_damage(damage * randf_range(max_damage, min_damage), attackerPlant)
 					await get_tree().create_timer(burn_timeout).timeout
 			main_script.taking_damage = false
