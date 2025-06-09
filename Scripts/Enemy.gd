@@ -1,11 +1,11 @@
 extends CharacterBody2D
 class_name Enemy
 # Onready
-@onready var pathfollow: PathFollow2D = $".."
 @export_category("Components")
 @export var animated_sprite_2d: AnimatedSprite2D
 @export var healthcomponent: HealthComponent
 @export var cpu_particles_2d: CPUParticles2D
+@export var nav_agent: NavigationAgent2D
 @export var audio: Node
 
 # Export
@@ -36,7 +36,6 @@ var grabbed: bool = false
 var currently_grabbed: bool = false
 var poisoned: bool = false
 var burning: bool = false
-var path : Path2D
 var kill: bool = true
 func _ready():
 	life_tree = get_tree().get_first_node_in_group("LifeTree")
@@ -54,24 +53,31 @@ func _ready():
 		material.set_shader_parameter("ice_tint_amount", 0.0)
 
 func _physics_process(delta: float) -> void:
-	if end == false:
-		pathfollow.progress += current_speed * delta
-	if pathfollow.progress_ratio >= 1.0:
-		if attack_timer.is_stopped():
-			attack_timer.start()
-			end = true
-	else:
-		check_turret()
+	check_turret()
 	if grabbed == true and currently_grabbed == false:
 		await get_tree().create_timer(10).timeout
 		grabbed = false
 	if life_tree == null:
 		life_tree = get_tree().get_first_node_in_group("LifeTree")
+		
+		
+	## movement ##
+	var current_agent_position = global_position
+	var next_path_position = nav_agent.get_next_path_position()
+	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+	
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
+	move_and_collide(velocity * delta)
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
 
 func destroy():
 	cpu_particles_2d.emitting = true
 	await cpu_particles_2d.emitting == false
-	pathfollow.queue_free()
 	GlobalVariables.enemies.erase(get_parent())
 	#GlobalVariables.enemy_count -= 1
 

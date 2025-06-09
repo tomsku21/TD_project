@@ -1,6 +1,7 @@
 extends Node
 @export var spawn_timer: Timer
-@export var paths: Array[Path2D] = []
+#@export var paths: Array[Path2D] = []
+@export var paths: Array[Marker2D] = []
 @export var enemys: Dictionary = {
 	0: preload("res://Scenes/Enemies/Boss.tscn"),
 	1: preload("res://Scenes/Enemies/enemy.tscn"),
@@ -65,9 +66,11 @@ func _on_timer_timeout() -> void:
 		if spawned_per_type[current_type_index] < round_data[current_type_index]:
 			if current_type_index in enemys:
 				var new_enemy = enemys[current_type_index].instantiate()
+				
 				var path = paths.pick_random()
-				new_enemy.get_child(0).path = path
+				#new_enemy.get_child(0).path = path
 				path.add_child(new_enemy)
+				new_enemy.nav_agent.target_position == get_tree().get_first_node_in_group("LifeTree").global_position
 				GlobalVariables.enemies.append(new_enemy)
 				spawned_per_type[current_type_index] += 1
 			break
