@@ -248,8 +248,8 @@ radius = 150.0
 [node name="Fireplant" type="AnimatedSprite2D" node_paths=PackedStringArray("attack_timer", "marker_2d", "healthcomponent", "ARange", "cpu_particles_2d", "upgrade_cpu_2d", "range_indicator") groups=["Turret"]]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pe2kw")
-animation = &"Attack"
-frame_progress = 0.774431
+animation = &"Idle"
+autoplay = "Idle"
 offset = Vector2(0, -15)
 script = ExtResource("1_hrvv2")
 fire_bullet_scene = ExtResource("2_6ngx4")

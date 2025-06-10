@@ -3,8 +3,6 @@ extends Tower
 
 @export var fire_bullet_scene: PackedScene # Assign FireBullet.tscn in the editor
 @export var attack_frame: int
-func _ready() -> void:
-	play("Idle")
 
 func _on_attack_timer_timeout() -> void:
 	if not enemies.is_empty():
