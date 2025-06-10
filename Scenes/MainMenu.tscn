@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b87r1emqupuc1" path="res://Assets/Font/upheavtt.ttf" id="1_853f1"]
 [ext_resource type="Script" uid="uid://p5rbc8fsuvdn" path="res://Scripts/UI/MainMenu.gd" id="1_xim88"]
-[ext_resource type="PackedScene" uid="uid://dix30o4abr42v" path="res://Scenes/Mainbkup.tscn" id="2_koqhg"]
+[ext_resource type="PackedScene" uid="uid://r8rik4wpx0e8" path="res://Scenes/Stage1.tscn" id="3_loo7a"]
 [ext_resource type="Texture2D" uid="uid://c2absv078qcje" path="res://Assets/UI/Button.png" id="5_8um5k"]
 [ext_resource type="Texture2D" uid="uid://bq2gtwjfj6uce" path="res://Assets/Particles/Leaf.png" id="5_df05h"]
 [ext_resource type="Theme" uid="uid://c6gcax5qoo0q2" path="res://Assets/StyleBox/OptionButtonTheme.tres" id="5_loo7a"]
@@ -79,7 +79,7 @@ tile_set = ExtResource("9_cmrfp")
 
 [node name="Canvas" type="CanvasLayer" parent="." node_paths=PackedStringArray("screen_button", "best_score")]
 script = ExtResource("1_xim88")
-gameScene = ExtResource("2_koqhg")
+gameScene = ExtResource("3_loo7a")
 screen_button = NodePath("Settings/Panel/GridContainer/OptionButton")
 best_score = NodePath("MainMenu/VBoxContainer/Best_score")
 

@@ -3,7 +3,7 @@ extends Node
 var game_state: bool = false
 var started: bool = false
 var game_over: bool = false
-var enemies: Array[PathFollow2D]
+var enemies: Array[CharacterBody2D]
 #var enemy_count: int:
 	#set(value):
 		#if value >= 0:

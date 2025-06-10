@@ -10,7 +10,6 @@ class_name Enemy
 
 # Export
 @export var shader_material: ShaderMaterial
-@export var speed: float = 2.0
 @export var max_health: float = 15
 @export var sdamage: float = 10
 @export var attack_distance: float = 50.0
@@ -23,15 +22,18 @@ class_name Enemy
 @export var walk_timer: Timer
 @export var attack_timer: Timer
 
+# Navigation
+@export var speed: float = 2.0
+var route: Array[Marker2D]
+var current_enemy = null
+var life_tree: Area2D
 # Variables
 var sprite
 var end: bool = false
 var taking_damage: bool = false
 var current_speed: float
 var basic_speed: float
-var current_turret = null
 var attacktime: float
-var life_tree: Area2D
 var grabbed: bool = false
 var currently_grabbed: bool = false
 var poisoned: bool = false
@@ -53,7 +55,6 @@ func _ready():
 		material.set_shader_parameter("ice_tint_amount", 0.0)
 
 func _physics_process(delta: float) -> void:
-	check_turret()
 	if grabbed == true and currently_grabbed == false:
 		await get_tree().create_timer(10).timeout
 		grabbed = false
@@ -61,15 +62,7 @@ func _physics_process(delta: float) -> void:
 		life_tree = get_tree().get_first_node_in_group("LifeTree")
 		
 		
-	## movement ##
-	var current_agent_position = global_position
-	var next_path_position = nav_agent.get_next_path_position()
-	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
-	
-	if nav_agent.avoidance_enabled:
-		nav_agent.set_velocity(new_velocity)
-	else:
-		_on_navigation_agent_2d_velocity_computed(new_velocity)
+	_navigation()
 	move_and_collide(velocity * delta)
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
@@ -78,7 +71,8 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 func destroy():
 	cpu_particles_2d.emitting = true
 	await cpu_particles_2d.emitting == false
-	GlobalVariables.enemies.erase(get_parent())
+	GlobalVariables.enemies.erase(self)
+	queue_free()
 	#GlobalVariables.enemy_count -= 1
 
 #func change_rotation():
@@ -87,9 +81,34 @@ func destroy():
 		#animated_sprite_2d.flip_v = true
 	#else:
 		#animated_sprite_2d.flip_v = false
+func _navigation():
+	#Select next target
+	if !route.is_empty():
+		nav_agent.target_position = route[0].global_position
+		if nav_agent.distance_to_target() <= 15:
+			route.pop_front()
+			_navigation()
+	elif life_tree:
+		nav_agent.target_position = life_tree.global_position
+	#if path to next waypoint blocked, get mad.
+	if !nav_agent.is_target_reachable() or nav_agent.distance_to_target() <= 15:
+		check_enemy()
+	
+	## movement ##
+	if nav_agent.distance_to_target() > 15:
+		var current_agent_position = global_position
+		var next_path_position = nav_agent.get_next_path_position()
+		var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+		
+		if nav_agent.avoidance_enabled:
+			nav_agent.set_velocity(new_velocity)
+		else:
+			_on_navigation_agent_2d_velocity_computed(new_velocity)
+	else:
+		velocity = Vector2i(0,0)
 
-func check_turret():
-	var nearest_turret = null
+func check_enemy():
+	var nearest_enemy = null
 	var nearest_distance = 999999.0
 	
 	for turret in GlobalVariables.turrets:
@@ -97,10 +116,17 @@ func check_turret():
 			var dist = global_position.distance_to(turret.global_position)
 			if dist < nearest_distance:
 				nearest_distance = dist
-				nearest_turret = turret
-				current_turret = turret
+				nearest_enemy = turret
+				current_enemy = turret
+	if life_tree:
+		var dist = global_position.distance_to(life_tree.global_position)
+		if dist < attack_distance:
+			nearest_distance = dist
+			nearest_enemy = life_tree
+			current_enemy = life_tree
 			
-	if nearest_turret: 
+	if nearest_enemy: 
+		nav_agent.target_position = nearest_enemy.global_position
 		if nearest_distance < attack_distance:
 			if attack_timer.is_stopped():
 				attacktime = randf_range(0.5, 1.5)
@@ -109,7 +135,7 @@ func check_turret():
 		else:
 			if !attack_timer.is_stopped():
 				attack_timer.stop()
-				nearest_turret = null
+				nearest_enemy = null
 	
 func take_damage(damage: float, attackerPlant: Tower):
 	audio.get_node("Hit").pitch_scale = randf_range(0.8, 1.0)
@@ -133,9 +159,9 @@ func _on_attack_timer_timeout() -> void:
 		if life_tree and life_tree.has_method("take_damage"):
 			life_tree.take_damage(sdamage)
 	else:
-		if current_turret and current_turret.has_method("take_damage"):
+		if current_enemy and current_enemy.has_method("take_damage"):
 			current_speed = 0
-			current_turret.take_damage(sdamage)
+			current_enemy.take_damage(sdamage)
 		walk_timer.wait_time = attacktime * 0.25
 		walk_timer.start()
 		

@@ -384,20 +384,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
 size = Vector2(11, 17)
 
-[node name="Enemy" type="PathFollow2D"]
-z_index = 1
-y_sort_enabled = true
-rotates = false
-loop = false
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "nav_agent", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
+collision_mask = 0
 script = ExtResource("1_ubio8")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 healthcomponent = NodePath("HealthComponent")
 cpu_particles_2d = NodePath("CPUParticles2D")
+nav_agent = NodePath("NavigationAgent2D")
 audio = NodePath("Audio")
 shader_material = ExtResource("4_haj6g")
-speed = 20.0
 max_health = 75.0
 sdamage = 2.5
 attack_distance = 100.0
@@ -406,21 +401,22 @@ burn = NodePath("Debuff/Burn")
 slow = NodePath("Debuff/Slow")
 walk_timer = NodePath("Timers/WalkTimer")
 attack_timer = NodePath("Timers/AttackTimer")
+speed = 20.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
 libraries = {
 &"": SubResource("AnimationLibrary_ycxl0")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
 tree_root = SubResource("AnimationNodeBlendSpace2D_ycxl0")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/blend_position = Vector2(-0.0137275, -0.26178)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 scale = Vector2(0.272497, 0.272498)
 sprite_frames = SubResource("SpriteFrames_ghaa6")
@@ -428,17 +424,17 @@ animation = &"Up"
 autoplay = "Right"
 offset = Vector2(0, -15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2.8)
 shape = SubResource("RectangleShape2D_287tu")
 
-[node name="HealthComponent" parent="CharacterBody2D" node_paths=PackedStringArray("sprite", "character") instance=ExtResource("3_l8da7")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("sprite", "character") instance=ExtResource("3_l8da7")]
 unique_name_in_owner = true
 sprite = NodePath("../AnimatedSprite2D")
 character = NodePath("..")
 shader_material = ExtResource("4_haj6g")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CharacterBody2D"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 10
 texture = ExtResource("5_l8da7")
@@ -454,17 +450,17 @@ initial_velocity_max = 100.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 
-[node name="Audio" type="Node" parent="CharacterBody2D"]
+[node name="Audio" type="Node" parent="."]
 
-[node name="Hit" type="AudioStreamPlayer2D" parent="CharacterBody2D/Audio"]
+[node name="Hit" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_miwey")
 volume_db = -10.0
 pitch_scale = 0.8
 bus = &"SFX"
 
-[node name="Debuff" type="Node" parent="CharacterBody2D"]
+[node name="Debuff" type="Node" parent="."]
 
-[node name="Poison" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
+[node name="Poison" type="Node" parent="Debuff" node_paths=PackedStringArray("main_script")]
 script = ExtResource("7_haj6g")
 main_script = NodePath("../..")
 times = 4
@@ -472,7 +468,7 @@ poison_timeout = 1.0
 max_damage = 5.0
 min_damage = 2.0
 
-[node name="Burn" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script")]
+[node name="Burn" type="Node" parent="Debuff" node_paths=PackedStringArray("main_script")]
 script = ExtResource("8_u0emo")
 main_script = NodePath("../..")
 times = 10
@@ -480,28 +476,38 @@ burn_timeout = 1.0
 max_damage_minus_procent = 50.0
 min_damage_minus_procent = 30.0
 
-[node name="Slow" type="Node" parent="CharacterBody2D/Debuff" node_paths=PackedStringArray("main_script", "timer")]
+[node name="Slow" type="Node" parent="Debuff" node_paths=PackedStringArray("main_script", "timer")]
 script = ExtResource("9_tq087")
 main_script = NodePath("../..")
 timer = NodePath("../../Timers/SlowDebuff")
 slow_debuff = 60.0
 
-[node name="Timers" type="Node" parent="CharacterBody2D"]
+[node name="Timers" type="Node" parent="."]
 
-[node name="AttackTimer" type="Timer" parent="CharacterBody2D/Timers"]
+[node name="AttackTimer" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="WalkTimer" type="Timer" parent="CharacterBody2D/Timers"]
+[node name="WalkTimer" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="SlowDebuff" type="Timer" parent="CharacterBody2D/Timers"]
+[node name="SlowDebuff" type="Timer" parent="Timers"]
 wait_time = 5.0
 
-[node name="AnimationHand" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "character")]
+[node name="AnimationHand" type="Node2D" parent="." node_paths=PackedStringArray("animation_tree", "character")]
 script = ExtResource("10_4bcle")
 animation_tree = NodePath("../AnimationTree")
 character = NodePath("..")
 
-[connection signal="timeout" from="CharacterBody2D/Timers/AttackTimer" to="CharacterBody2D" method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="CharacterBody2D/Timers/WalkTimer" to="CharacterBody2D" method="_walk_again"]
-[connection signal="timeout" from="CharacterBody2D/Timers/SlowDebuff" to="CharacterBody2D/Debuff/Slow" method="_on_slow_debuff_timeout"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 50.0
+path_postprocessing = 1
+neighbor_distance = 50.0
+max_neighbors = 15
+time_horizon_agents = 5.0
+max_speed = 5.0
+debug_enabled = true
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/WalkTimer" to="." method="_walk_again"]
+[connection signal="timeout" from="Timers/SlowDebuff" to="Debuff/Slow" method="_on_slow_debuff_timeout"]

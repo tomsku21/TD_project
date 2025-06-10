@@ -21,10 +21,10 @@ func _process(_delta: float) -> void:
 			enemy.queue_free()
 			enemy_count -= 1
 
-func _on_timer_timeout() -> void:
-	if enemy_count < 300:
-		var rand = randi_range(0,1)
-		var new_enemy = enemys[rand].instantiate()
-		path.add_child(new_enemy)
-		enemies.append(new_enemy)
-		enemy_count += 1
+#func _on_timer_timeout() -> void:
+	#if enemy_count < 300:
+		#var rand = randi_range(0,1)
+		#var new_enemy = enemys[rand].instantiate()
+		#path.add_child(new_enemy)
+		#enemies.append(new_enemy)
+		#enemy_count += 1

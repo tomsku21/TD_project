@@ -2,6 +2,7 @@ extends Node
 @export var spawn_timer: Timer
 #@export var paths: Array[Path2D] = []
 @export var paths: Array[Marker2D] = []
+@export var route: Array[Marker2D] = []
 @export var enemys: Dictionary = {
 	0: preload("res://Scenes/Enemies/Boss.tscn"),
 	1: preload("res://Scenes/Enemies/enemy.tscn"),
@@ -17,7 +18,7 @@ var testi: Array[int]
 var current_type_index
 
 func _ready() -> void:
-	GlobalVariables.cost += 3
+	GlobalVariables.cost += 15
 	if rounds.size() > 0:
 		spawned_per_type.resize(rounds[0].size())
 		spawned_per_type.fill(0)
@@ -58,7 +59,7 @@ func _physics_process(_delta: float) -> void:
 		GlobalVariables.started = false
 
 func _reward_money():
-	GlobalVariables.cost += int(floor(2+((GlobalVariables.current_round+1)**0.5)))
+	GlobalVariables.cost += int(floor(10+((GlobalVariables.current_round+1)**0.5)))
 
 func _on_timer_timeout() -> void:
 	var round_data = rounds[GlobalVariables.current_round]
@@ -66,11 +67,10 @@ func _on_timer_timeout() -> void:
 		if spawned_per_type[current_type_index] < round_data[current_type_index]:
 			if current_type_index in enemys:
 				var new_enemy = enemys[current_type_index].instantiate()
-				
+				new_enemy.route = route.duplicate()
 				var path = paths.pick_random()
 				#new_enemy.get_child(0).path = path
 				path.add_child(new_enemy)
-				new_enemy.nav_agent.target_position == get_tree().get_first_node_in_group("LifeTree").global_position
 				GlobalVariables.enemies.append(new_enemy)
 				spawned_per_type[current_type_index] += 1
 			break

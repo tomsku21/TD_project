@@ -91,7 +91,7 @@ range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("4_ll3dy"), ExtResource("4_bdjjs"), ExtResource("6_ll3dy")])
 stats = {
 "Atk Speed": 0.6,
-"Damage": 8.0,
+"Damage": 0.8,
 "Damage Dealt": 0.0,
 "Damage Taken": 0.0,
 "Kills": 0,
