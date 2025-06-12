@@ -26,20 +26,22 @@ var turret
 var clicked: bool = false #for popups
 var hovered: bool = false #more for popups
 var up_forgiveness: bool = true
-var tilemap: TileMapLayer
+var data_layer: TileMapLayer
+var land_layer: TileMapLayer
 var cell: Vector2i
 
 var towers: Array[Area2D] = []
 func _ready() -> void:
 	stats["Rounds Survived"] = 0
 	SignalBus.NextRound.connect(_next_round)
-	tilemap = get_tree().get_first_node_in_group("Tile_data")
+	data_layer = get_tree().get_first_node_in_group("Tile_data")
+	land_layer = get_tree().get_first_node_in_group("TowerArea")
 	stats = stats.duplicate()
 	turret = get_tree().get_first_node_in_group("Turret_node")
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	$Button.grab_focus()
-	_tower_borders_check.call_deferred(false)
+	_tower_borders_check.call_deferred(true)
 	
 
 
@@ -144,27 +146,24 @@ func _on_focus_exited():
 
 
 	
-#improve this later
 func _tower_borders_check(change: bool):
 	var tile
+	var cells : Array[Vector2i]
 	if change:
-		tile = 7
-	else:
 		tile = 8
-	cell = tilemap.local_to_map(tilemap.to_local(global_position))
-	var borders: Dictionary
-	borders["current_pos"] = cell
-	#borders["bottom_right"] = cell + Vector2i(1, 0)
-	#borders["bottom_left"] = cell + Vector2i(-1, 0)
-	#borders["top_right"] = cell + Vector2i(1, -1)
-	borders["top_middle"] = cell + Vector2i(0, -1)
-	#borders["top_left"] = cell + Vector2i(-1, -1)
-	for i in borders:
-		print(i, borders.get(i))
-		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		#print("tile data before:", tile_data)
-		tilemap.set_cell(borders.get(i), 0, Vector2i(tile, 5))
-		#print("tile", tile)
-		tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		#print("tile data after:", tile_data)
-		continue
+	else:
+		tile = 7
+	var data_cell = data_layer.local_to_map(data_layer.to_local(global_position))
+	var land_cell = land_layer.local_to_map(land_layer.to_local(global_position))
+	for x in range(-1, 2):
+		for y in range(-1 ,2):
+			var data_border = data_cell + Vector2i(x, y)
+			var land_border = land_cell + Vector2i(x, y)
+			data_layer.set_cell(data_border, 0, Vector2i(tile, 5))
+			if change:
+				cells.append(land_border)
+				print("cell added to list")
+			continue
+	if change:
+		print("cells changed?")
+		land_layer.set_cells_terrain_connect(cells, 0, 0)

@@ -285,6 +285,7 @@ animations = [{
 size = Vector2(20, 29)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite_2d", "healthcomponent", "cpu_particles_2d", "nav_agent", "audio", "poison", "burn", "slow", "walk_timer", "attack_timer") groups=["enemies"]]
+collision_mask = 0
 script = ExtResource("1_ho2oa")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 healthcomponent = NodePath("HealthComponent")
@@ -400,7 +401,6 @@ character = NodePath("..")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
-debug_enabled = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/WalkTimer" to="." method="_walk_again"]

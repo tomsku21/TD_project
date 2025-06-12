@@ -506,7 +506,6 @@ neighbor_distance = 50.0
 max_neighbors = 15
 time_horizon_agents = 5.0
 max_speed = 5.0
-debug_enabled = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/WalkTimer" to="." method="_walk_again"]

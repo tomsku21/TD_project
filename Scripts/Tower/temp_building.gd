@@ -48,18 +48,30 @@ func _check_tile_validity():
 
 #improve this later
 func _tower_borders_check(cell):
-	var borders: Dictionary
-	borders["current_pos"] = cell
-	borders["bottom_right"] = cell + Vector2i(1, 0)
-	borders["bottom_left"] = cell + Vector2i(-1, 0)
-	borders["top_right"] = cell + Vector2i(1, -1)
-	borders["top_middle"] = cell + Vector2i(0, -1)
-	borders["top_left"] = cell + Vector2i(-1, -1)
-	for i in borders:
-		var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		if tile_data:
-			if tile_data.get_custom_data("Place"):
-				continue
+	for x in range(-1, 2):
+		for y in range(-1 ,2):
+			var border = cell + Vector2i(x, y)
+			var tile_data = tilemap.get_cell_tile_data(border)
+			if tile_data:
+				if tile_data.get_custom_data("Place"):
+					continue
+				return false
 			return false
-		return false
+	return true
+	#var borders: Dictionary
+	#borders["middle"] = cell
+	#borders["current_right"] = cell + Vector2i(1, 0)
+	#borders["current_left"] = cell + Vector2i(-1, 0)
+	#borders["top_middle"] = cell + Vector2i(0, -1)
+	#borders["top_right"] = cell + Vector2i(1, -1)
+	#borders["top_middle"] = cell + Vector2i(0, 1)
+	#borders["bottom_left"] = cell + Vector2i(1, 1)
+	#borders["borrom_right"] = cell + Vector2i(-1 , 1)
+	#for i in borders:
+		#var tile_data = tilemap.get_cell_tile_data(borders.get(i))
+		#if tile_data:
+			#if tile_data.get_custom_data("Place"):
+				#continue
+			#return false
+		#return false
 	return true
