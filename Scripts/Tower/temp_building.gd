@@ -27,15 +27,19 @@ func _process(_delta):
 		spriteobtained = true
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
-		if _check_tile_validity() and GlobalVariables.cost >= 1:#GlobalVariables.is_mouse_in_Area2D == false and :
-			#var new_turret = GlobalVariables.selected_turret.instantiate()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		if _check_tile_validity() and GlobalVariables.cost >= 1:
 			GlobalVariables.cost -= new_turret.cost
 			turret.add_child(new_turret)
 			new_turret.global_position = tilemap.map_to_local(cell)
-			GlobalVariables.show_circles = false
-		GlobalVariables.show_circles = false
+		if Input.is_action_pressed("Multibuy"):
+			new_turret = GlobalVariables.selected_turret.instantiate()
+		else:
+			queue_free()
+			Ui.on_shop_button_pressed()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 		queue_free()
+		Ui.on_shop_button_pressed()
 
 func _check_tile_validity():
 		var world_pos = get_global_mouse_position()
@@ -57,21 +61,4 @@ func _tower_borders_check(cell):
 					continue
 				return false
 			return false
-	return true
-	#var borders: Dictionary
-	#borders["middle"] = cell
-	#borders["current_right"] = cell + Vector2i(1, 0)
-	#borders["current_left"] = cell + Vector2i(-1, 0)
-	#borders["top_middle"] = cell + Vector2i(0, -1)
-	#borders["top_right"] = cell + Vector2i(1, -1)
-	#borders["top_middle"] = cell + Vector2i(0, 1)
-	#borders["bottom_left"] = cell + Vector2i(1, 1)
-	#borders["borrom_right"] = cell + Vector2i(-1 , 1)
-	#for i in borders:
-		#var tile_data = tilemap.get_cell_tile_data(borders.get(i))
-		#if tile_data:
-			#if tile_data.get_custom_data("Place"):
-				#continue
-			#return false
-		#return false
 	return true

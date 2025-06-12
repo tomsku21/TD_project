@@ -14,6 +14,6 @@ script = ExtResource("2_oa3ay")
 building = ExtResource("3_amfrt")
 item = ExtResource("4_gpmsl")
 
-[connection signal="button_down" from="." to="." method="_on_down"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exit"]
+[connection signal="pressed" from="." to="." method="_on_up"]

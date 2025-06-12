@@ -16,6 +16,7 @@ class_name Tower
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
 @export var upRequirement: Dictionary #Null if no extra requirements
+var upreqs: Dictionary #records the requirements for upgrades to current plant
 
 @export_category("Tower Stats")
 @export var stats: Dictionary = {"Damage" : 10.0, "Atk Speed" : 1.0, "Damage Taken" : 0.0, "Damage Dealt" : 0.0, "Kills" : 0, "Regeneration" : 0.0, "Regen Time": 1.0, "Rounds Survived": 0}
@@ -31,6 +32,7 @@ var up_forgiveness : bool = true #haha...
 var data_layer: TileMapLayer
 var land_layer: TileMapLayer
 
+
 var enemies: Array[Node2D] = []
 
 func _ready() -> void:
@@ -43,8 +45,15 @@ func _ready() -> void:
 	GlobalVariables.turrets.append(self)
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	%RegenTimer.wait_time = stats["Regen Time"]
-	$Button.grab_focus()
 	_tower_borders_check.call_deferred(true)
+	for i in upgrades:
+		if i != null:
+			var new_plant = i.instantiate()
+			if new_plant.upRequirement:
+				var req_dict = new_plant.upRequirement
+				upreqs.merge(req_dict)
+				print(upreqs)
+			new_plant.queue_free()
 
 func _process(_delta):
 	if turret == null:
@@ -63,18 +72,15 @@ func _process(_delta):
 				_on_focus_exited()
 		if up_forgiveness and !hovered:
 			up_forgiveness = false
+	if Input.is_action_just_released("rightClick"):
+		if $Button.has_focus():
+			$Button.release_focus()
+	
+	if !upreqs.is_empty():
+		for i in upreqs:
+			if stats[i] >= upreqs[i]:
+				upgrade_cpu_2d.emitting = true
 
-	for i in upgrades:
-		if i != null:
-			var new_plant = i.instantiate()
-			if new_plant.upRequirement:
-				var req_dict = new_plant.upRequirement
-				var upgrade_ = (req_dict.keys()[0])
-				var requirement = req_dict[upgrade_]
-				var cur_req = stats[upgrade_]
-				if cur_req >= requirement or req_dict == null:
-					upgrade_cpu_2d.emitting = true
-			new_plant.queue_free()
 
 func take_damage(damage: float):
 	healthcomponent.damage(damage)

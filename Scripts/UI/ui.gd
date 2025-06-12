@@ -1,8 +1,10 @@
 extends CanvasLayer
+class_name UI
 @export var bankPanel: Panel
 @export var buyMenuPanel: Panel
 @export var speedPanel: Panel
 @export var animationPlayer: AnimationPlayer
+@export var bankPlayer: AnimationPlayer
 @export var current_round: Label
 @export var shop_buton: TextureButton
 @export var controls: Panel
@@ -45,9 +47,9 @@ func _ready() -> void:
 	masterIndex = AudioServer.get_bus_index("Master")
 	musicIndex = AudioServer.get_bus_index("Music")
 	sfxIndex = AudioServer.get_bus_index("SFX")
-	connect_interacts()
+	_connect_interacts()
 	
-	defaultPanels(false)
+	_defaultPanels(false)
 
 func _process(_delta: float) -> void:
 	if current_round != null:
@@ -142,11 +144,11 @@ func _on_new_game_pressed() -> void:
 		await _wait_until_half_animation()
 		get_tree().reload_current_scene()
 		GlobalVariables.reset()
-		defaultPanels(true)
+		_defaultPanels(true)
 		await _wait_until_animation_finish()
-		defaultPanels(false)
+		_defaultPanels(false)
 
-func defaultPanels(reset: bool) -> void:
+func _defaultPanels(reset: bool) -> void:
 	bankPanel.visible = true
 	buyMenuPanel.visible = true
 	speedPanel.visible = true
@@ -182,7 +184,7 @@ func _on_settings_pressed() -> void:
 	settingsPanel.visible = !settingsPanel.visible
 	in_settings = true
 
-func connect_interacts() -> void:
+func _connect_interacts() -> void:
 	var sliders = get_tree().get_nodes_in_group("Setting_volume")
 	for slider in sliders: #connect audio sliders to value changed signal and connect their values to their respective Audioserver indexes.
 		slider.value_changed.connect(_on_value_changed.bind(slider.name))
@@ -232,7 +234,6 @@ func _on_speed_button_pressed(_name, button) -> void:
 			_speed_change(2.5, button)
 
 func _speed_change(value, pressed_button):
-	print("speed changed?????")
 	if current_button:
 		current_button.disabled = false
 	current_button = pressed_button
@@ -248,17 +249,16 @@ func _on_button_pressed() -> void:
 	SignalBus.RoundStart.emit()
 
 
-func _on_shop_button_pressed() -> void:
-	if not animationPlayer.is_playing():
-		animationPlayer.speed_scale = 1.0
-		if shop_hide:
-			shop_buton.texture_normal = preload("res://Assets/UI/ArrowDown.png")
-			animationPlayer.play("Shop2")
-			shop_hide = false
-		else:
-			shop_buton.texture_normal = preload("res://Assets/UI/ArrowUp.png")
-			animationPlayer.play("Shop")
-			shop_hide = true
+func on_shop_button_pressed() -> void:
+	animationPlayer.speed_scale = 1.0
+	if shop_hide:
+		shop_buton.texture_normal = preload("res://Assets/UI/ArrowDown.png")
+		bankPlayer.queue("Shop2")
+		shop_hide = false
+	else:
+		shop_buton.texture_normal = preload("res://Assets/UI/ArrowUp.png")
+		bankPlayer.queue("Shop")
+		shop_hide = true
 
 
 func _on_option_button_item_selected(index: int) -> void:

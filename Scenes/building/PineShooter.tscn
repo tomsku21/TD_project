@@ -89,7 +89,7 @@ bullet_scale = 1.0
 range_indicator = NodePath("RangeMarker")
 upgrades = Array[PackedScene]([ExtResource("3_6ytof"), null, null])
 upRequirement = {
-"Damage Dealt": 1500.0
+"Damage Dealt": 1.0
 }
 stats = {
 "Atk Speed": 0.2,

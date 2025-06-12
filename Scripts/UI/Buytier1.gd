@@ -14,11 +14,12 @@ func _process(_delta):
 	if ghost_node == null:
 		ghost_node = get_tree().get_first_node_in_group("Ghost")
 
-func _on_down():
+func _on_up():
 	#instantiate building under cursor, that has code to stay under your pointer.
 	var ghostT = building.instantiate()
 	ghost_node.add_child(ghostT)
 	GlobalVariables.selected_turret = item
+	Ui.on_shop_button_pressed()
 	#GlobalVariables.show_circles = true #Doesn't look good with multiple plants
 
 func _on_mouse_entered():
@@ -26,6 +27,7 @@ func _on_mouse_entered():
 	cost = new_plant.cost
 	%cost.text = str("Cost: ", cost)
 	%TDesc.text = new_plant.description
+	new_plant.queue_free()
 	
 func _on_mouse_exit():
 	%cost.text = str("")

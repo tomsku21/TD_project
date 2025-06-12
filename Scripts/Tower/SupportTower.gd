@@ -12,6 +12,7 @@ class_name SupportTower
 @export_category("Upgrade info")
 @export var upgrades: Array[PackedScene] #Iconi mukaan pakettiin jotenkin maybe >.>
 @export var upRequirement: Dictionary #Null if no extra requirements
+var upreqs: Dictionary #records the requirements for upgrades to current plant
 
 @export_category("Tower Stats")
 @export var stats: Dictionary = {"Atk Speed" : 1.0, "Damage Taken" : 0.0, "Rounds Survived" : 0}
@@ -42,13 +43,19 @@ func _ready() -> void:
 	%AttackTimer.wait_time = stats["Atk Speed"]
 	$Button.grab_focus()
 	_tower_borders_check.call_deferred(true)
+	for i in upgrades:
+		if i != null:
+			var new_plant = i.instantiate()
+			if new_plant.upRequirement:
+				var req_dict = new_plant.upRequirement
+				upreqs.merge(req_dict)
+				print(upreqs)
+			new_plant.queue_free()
 	
 
 
 func _process(_delta):
-	if GlobalVariables.show_circles:
-		ARange.visible = true
-	elif clicked:
+	if clicked:
 		ARange.visible = true
 		Popups.showBuildInfo(get_global_transform_with_canvas(), self)
 	else:
@@ -65,17 +72,10 @@ func _process(_delta):
 	if is_in_group("MoneyMaker") and attack_timer.is_stopped() and GlobalVariables.game_state:
 		attack_timer.start()
 		
-	for i in upgrades:
-		if i != null:
-			var new_plant = i.instantiate()
-			if new_plant.upRequirement:
-				var req_dict = new_plant.upRequirement
-				var upgrade_ = (req_dict.keys()[0])
-				var requirement = req_dict[upgrade_]
-				var cur_req = stats[upgrade_]
-				if cur_req >= requirement or req_dict == null:
-					upgrade_cpu_2d.emitting = true
-			new_plant.queue_free()
+	if !upreqs.is_empty():
+		for i in upreqs:
+			if stats[i] >= upreqs[i]:
+				upgrade_cpu_2d.emitting = true
 
 func take_damage(damage: int):
 	healthcomponent.damage(damage)
