@@ -18,7 +18,7 @@ range_marker = NodePath("RangeMarker")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.33, 0.33)
+scale = Vector2(0.445, 0.445)
 texture = ExtResource("2_jbymx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
